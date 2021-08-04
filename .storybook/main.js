@@ -9,6 +9,9 @@ module.exports = {
         implementation: require('postcss'),
         postcssOptions: {
           plugins: [
+            require('postcss-import'),
+            require('postcss-url'),
+            require('postcss-nested'),
             require('tailwindcss'),
             require('autoprefixer'),
           ],
