@@ -1,4 +1,4 @@
-# streets-2035-app
+# Streets 2035
 
 ## Project setup
 ```
