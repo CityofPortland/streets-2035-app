@@ -1,0 +1,47 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Basic, ColorArgs } from './Box.stories';
+import Box from './Box';
+
+<Meta
+    title="Element/Box"
+    component={Box}
+    argTypes={{
+        ...ColorArgs,
+        as: {
+            description: 'Controls what HTML element this box is rendered as.',
+            control: 'text',
+            default: 'div'
+        },
+        classes: {
+            description: 'Adds classes to the Box as you would from Vue.',
+            control: {
+                type: 'text',
+                default: ''
+            }
+        }
+    }}
+ />
+
+# Boxes
+The Box element is the most generic element in our component library and serves as a basis for many higher level components. It provides very basic coloring properties to ensure that accessibility standards are met no matter what choice is made.
+
+<Canvas>
+    <Story story={Basic} />
+</Canvas>
+
+<ArgsTable story="^" />
+
+## Variants
+
+Each color theme has three variants associated with it: `light`, `neutral`, and `dark`. The default option is `neutral`, and provides a way to draw attention to something typically, but don't usually work for longer reading. The `neutral` variant is best used for call to action elements as they draw attention against a white background. The `light` variant is useful to maintain a light background and denote the color chosen well, but be useful for longer bits of text inside. Messages should use this `light` variant. The `dark` variant is useful with longer strings of text as well when you want to provide an alternative environment or provide a lot of contrast to a section of your application.
+
+<Canvas>
+    <Story name='Variants'>{{
+        components: { Box },
+        template: `
+            <Box color="blue" variant="light">This box is blue with a 'light' variant</Box>
+            <Box color="blue" variant="neutral">This box is blue with a 'neutral' variant and is the default</Box>
+            <Box color="blue" variant="dark">This box is blue with a 'dark' variant</Box>
+        `,
+    }}</Story>
+</Canvas>
