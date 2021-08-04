@@ -1,0 +1,53 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+
+import Anchor from './Anchor.vue';
+import Box from '../box/Box';
+
+import { Slots, SlotsWithIcons } from './Anchor.stories';
+
+<Meta title="Element/Anchor" component={Anchor} />
+
+# Anchors
+The anchor element is useful for capturing complex use cases like anchors with icons, or adding some properties to them like whether the anchor should be shown as linking to an external site.
+
+The Anchor also serves as the base for other, more specialized links like those for telephone, email, or social media links.
+
+<Canvas>
+    <Story name='Basic'>{{
+        components: { Anchor },
+        template: '<p>This is <Anchor url="#">a link to a website.</Anchor> The link is within the context of a paragraph.</p>',
+    }}</Story>
+</Canvas>
+
+Anchors have special behavior when they detect that the url being linked to is an external link as denoted by any url starting with `http`.
+
+<Canvas>
+    <Story name='External'>{{
+        components: { Anchor },
+        template: '<p>This is <Anchor url="https://github.com">a link to an external website.</Anchor> The link is within the context of a paragraph.</p>',
+    }}</Story>
+</Canvas>
+
+<Canvas>
+    <Story name='Icon'>{{
+        components: { Anchor },
+        template: `
+            <p>This is <Anchor url="#">
+                <span class="h-4 w-4 mr-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span>a link with an icon.</span>
+            </Anchor> The link is within the context of a paragraph.</p>
+            <p>This is <Anchor url="https://github.com">
+                <span class="h-4 w-4 mr-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span>an external link with an icon.</span>
+            </Anchor> The link is within the context of a paragraph.</p>`,
+    }}</Story>
+</Canvas>
+
+<Canvas>
+    <Story story={Slots}></Story>
+    <Story story={SlotsWithIcons}></Story>
+</Canvas>

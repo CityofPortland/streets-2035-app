@@ -1,0 +1,19 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Basic, IconArgs } from './Icon.stories';
+import Icon from './Icon';
+
+<Meta
+    title="Element/Icon"
+    component={Icon}
+    argTypes={{
+        ...IconArgs
+    }}
+ />
+
+# Icons
+
+<Canvas>
+    <Story story={Basic} />
+</Canvas>
+
+<ArgsTable story="^" />
