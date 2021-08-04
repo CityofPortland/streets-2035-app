@@ -1,7 +1,7 @@
 import { Story } from '@storybook/vue3';
 import { defineComponent } from 'vue';
 
-import Logo from '@/assets/Logo.vue';
+import Logo from '@/components/Logo.vue';
 import Button from '@/elements/button/Button.vue';
 import Header from './Header.vue';
 import Nav from '../nav/Nav.vue';
