@@ -20,9 +20,12 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",
+    "@intlify/vue-i18n-loader": "^2.1.2",
+    "@storybook/addon-a11y": "^6.3.6",
     "@storybook/addon-actions": "^6.3.6",
     "@storybook/addon-essentials": "^6.3.6",
     "@storybook/addon-links": "^6.3.6",
+    "@storybook/addon-postcss": "^2.0.0",
     "@storybook/vue3": "^6.3.6",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^5.2.4",
