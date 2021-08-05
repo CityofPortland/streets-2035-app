@@ -23,6 +23,7 @@
   "devDependencies": {
     "@babel/core": "^7.14.8",
     "@intlify/vue-i18n-loader": "^2.1.2",
+    "@mdx-js/vue-loader": "^2.0.0-next.9",
     "@storybook/addon-a11y": "^6.3.6",
     "@storybook/addon-actions": "^6.3.6",
     "@storybook/addon-essentials": "^6.3.6",
