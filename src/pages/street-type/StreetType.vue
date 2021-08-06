@@ -1,47 +1,38 @@
 <template>
-  <main class="flex flex-col md:flex-row">
-    <nav class="md:w-1/4">
-      <ul>
-        <router-link
-          v-for="(item, idx) in links"
-          :key="idx"
-          :to="`/street-types/${item[0]}`"
-          custom
-          v-slot="{ href }"
-        >
-          <NavItem :url="href" :text="item[1]" />
-        </router-link>
-      </ul>
-    </nav>
-    <MDXProvider :components="components">
-      <StreetType1 />
-    </MDXProvider>
-  </main>
+  <section class="flex flex-col md:flex-row md:justify-between">
+    <Nav title="Street types" nav-class="md:w-1/4 order-last">
+      <router-link
+        v-for="(item, idx) in links"
+        :key="idx"
+        :to="`/street-types/${item[0]}`"
+        custom
+        v-slot="{ href }"
+      >
+        <NavItem :url="href" :text="item[1]" />
+      </router-link>
+    </Nav>
+    <section class="prose">
+      <router-view></router-view>
+    </section>
+  </section>
 </template>
 
 <script>
-import { defineComponent, h } from 'vue';
+import { defineComponent } from 'vue';
 
-import Box from '@/elements/box/Box';
+import Nav from '@/components/nav/Nav.vue';
 import NavItem from '@/components/nav/NavItem.vue';
-
-import StreetType1 from '@/pages/street-type/StreetType1.mdx';
 
 export default defineComponent({
   name: 'StreetTypes',
-  components: { NavItem, StreetType1 },
+  components: { Nav, NavItem },
   props: {
     page: { type: Object },
   },
-  setup(_, { slots }) {
+  setup() {
     console.log('In StreetType...');
     return {
       links: new Map([['street-type-1', 'Street type 1']]),
-      components: {
-        wrapper: 'article',
-        h1: () => h('h1', { class: 'text-2xl' }, slots.default),
-        Box: Box,
-      },
     };
   },
 });

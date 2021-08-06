@@ -1,0 +1,76 @@
+<template>
+  <article>
+    <h1 class="text-2xl font-semibold">Street type 1</h1>
+    <Box
+      color="gray"
+      variant="light"
+      class="
+        h-96
+        flex
+        items-center
+        justify-center
+        border border-current
+        rounded-lg
+      "
+      >Image here</Box
+    >
+    <p>
+      I'm baby vice twee hella cronut bitters. Heirloom semiotics waistcoat
+      gastropub brunch quinoa yr. Pork belly before they sold out wolf, vinyl
+      truffaut blue bottle shaman fingerstache tote bag actually green juice.
+      Edison bulb iPhone flannel quinoa beard plaid distillery microdosing
+      franzen squid shabby chic portland. Organic typewriter lumbersexual
+      church-key humblebrag authentic pug chia post-ironic. Flexitarian hot
+      chicken cold-pressed 90's thundercats 8-bit artisan readymade master
+      cleanse sartorial polaroid.
+    </p>
+    <p>
+      Thundercats snackwave skateboard, hella quinoa green juice venmo before
+      they sold out disrupt vice tote bag. Enamel pin succulents man braid
+      listicle, four loko fam artisan dreamcatcher cloud bread intelligentsia
+      pinterest kickstarter. Yr kombucha selvage twee flannel. Raclette
+      single-origin coffee street art kitsch polaroid XOXO. Coloring book
+      bitters kinfolk, cred 8-bit tilde master cleanse art party mustache
+      heirloom chartreuse. Poke whatever quinoa drinking vinegar, plaid twee
+      polaroid XOXO.
+    </p>
+    <p>
+      Cardigan yuccie viral, occupy asymmetrical lomo gentrify chia roof party.
+      Keffiyeh twee neutra thundercats PBR&B franzen mixtape raw denim. Cronut
+      franzen affogato brunch shaman. Lumbersexual humblebrag narwhal affogato
+      bespoke iceland. Lyft ethical tumblr pinterest marfa viral.
+    </p>
+    <p>
+      Pabst ethical jianbing heirloom 3 wolf moon lumbersexual, intelligentsia
+      street art kombucha trust fund dreamcatcher austin tumeric crucifix.
+      Brunch prism unicorn pug. Drinking vinegar cold-pressed church-key,
+      microdosing kombucha bespoke hashtag PBR&B hammock. Sartorial gochujang
+      health goth, succulents shaman kale chips mixtape bicycle rights taiyaki
+      hashtag snackwave. Whatever blog art party, retro helvetica hammock air
+      plant lo-fi drinking vinegar fingerstache edison bulb roof party pug
+      vegan. Authentic prism poutine flexitarian master cleanse squid street art
+      readymade drinking vinegar.
+    </p>
+    <p>
+      Cold-pressed 3 wolf moon single-origin coffee, venmo leggings typewriter
+      echo park beard bicycle rights direct trade truffaut affogato hashtag.
+      Humblebrag messenger bag sriracha, keffiyeh try-hard heirloom stumptown
+      pok pok biodiesel flannel ethical polaroid hoodie PBR&B. Meh hot chicken
+      tilde chambray food truck woke. Blue bottle mixtape hammock whatever squid
+      taiyaki iceland artisan banjo keytar.
+    </p>
+  </article>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+import Box from '@/elements/box/Box';
+
+export default defineComponent({
+  name: 'StreetType1',
+  components: {
+    Box,
+  },
+});
+</script>
