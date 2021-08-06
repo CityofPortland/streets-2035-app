@@ -1,9 +1,8 @@
-import { ref, toRef, toRefs, watch } from 'vue';
+import { ref } from 'vue';
 
 import { Story } from '@storybook/vue3';
 
 import Basemap from '@arcgis/core/Basemap';
-import { Extent } from '@arcgis/core/geometry';
 import FeatureLayer from '@arcgis/core/layers/FeatureLayer';
 import EsriMap from '@arcgis/core/Map';
 import TileLayer from '@arcgis/core/layers/TileLayer';
@@ -20,7 +19,7 @@ export default {
 
 const Template: Story = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { Component },
+  components: { Map: Component },
   setup: () => {
     const basemap: Basemap = new Basemap({
       baseLayers: [
@@ -34,7 +33,7 @@ const Template: Story = (args, { argTypes }) => ({
     const click = ref('');
     const pointer = ref('');
 
-    const layers = [new FeatureLayer({ url: args.layer })];
+    const layers = [new FeatureLayer({ url: args.layer, outFields: ['*'] })];
 
     return {
       ...args,
@@ -57,7 +56,7 @@ const Template: Story = (args, { argTypes }) => ({
     };
   },
   template: `
-  <Component
+  <Map
     :map="map"
     :extent="extent"
     :zoom="zoom"
@@ -79,7 +78,7 @@ const Template: Story = (args, { argTypes }) => ({
             <div>{{ pointer }}</div>
         </section>
     </template>
-  </Component>`,
+  </Map>`,
 });
 
 export const Map = Template.bind({});
