@@ -1,6 +1,6 @@
 <template>
   <section class="flex flex-col md:flex-row md:justify-between">
-    <Nav title="Street types" nav-class="md:w-1/4 order-last">
+    <Nav title="Street types" class="md:w-1/4 order-last">
       <router-link
         v-for="(item, idx) in links"
         :key="idx"
@@ -11,7 +11,7 @@
         <NavItem :url="href" :text="item[1]" />
       </router-link>
     </Nav>
-    <section class="prose">
+    <section class="mb-8 md:w-3/4 md:pr-4">
       <router-view></router-view>
     </section>
   </section>
