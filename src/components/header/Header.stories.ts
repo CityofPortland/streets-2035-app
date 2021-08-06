@@ -39,7 +39,7 @@ const Template: Story = (args, { argTypes }) => ({
         <h1 class="truncate text-xl">{{ appName }}</h1>
       </template>
       <template v-slot:menu>
-        <Nav class="grid grid-cols-1 gap-3 md:flex md:flex-row md:gap-0 md:space-x-3 md:items-center">
+        <Nav list-class="grid grid-cols-1 gap-3 md:flex md:flex-row md:gap-0 md:space-x-3 md:items-center">
           <NavItem url="#" text="Home"></NavItem>
           <NavItem url="#" text="News"></NavItem>
           <NavItem url="#" text="Events"></NavItem>

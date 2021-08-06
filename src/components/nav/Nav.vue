@@ -1,7 +1,7 @@
 <template>
   <nav>
     <h2 v-if="title" class="text-xl font-bold mb-4">{{ title }}</h2>
-    <ul class="list-none" v-bind="$attrs">
+    <ul class="list-none" :class="listClass">
       <slot></slot>
     </ul>
   </nav>
@@ -12,9 +12,9 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'Nav',
-  inheritAttrs: false,
   props: {
     title: String,
+    listClass: String,
   },
 });
 </script>

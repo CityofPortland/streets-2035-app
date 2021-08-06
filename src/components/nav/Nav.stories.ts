@@ -27,7 +27,7 @@ const Template: Story = (args, { argTypes }) => ({
   setup: () => {
     return { ...args };
   },
-  template: `<Nav :class="navClasses">
+  template: `<Nav :list-class="listClasses">
     <NavItem url="#" :class="navItemClasses" text="Home"></NavItem>
     <NavItem url="#" :class="navItemClasses" text="News"></NavItem>
     <NavItem url="#" :class="navItemClasses" text="Events"></NavItem>
@@ -40,5 +40,5 @@ Basic.args = {};
 
 export const Header = Template.bind({});
 Header.args = {
-  navClasses: 'flex flex-col md:flex-row md:space-x-3',
+  listClasses: 'flex flex-col md:flex-row md:space-x-3',
 };
