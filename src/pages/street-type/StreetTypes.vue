@@ -1,5 +1,15 @@
 <template>
-  <section class="flex flex-col md:flex-row md:justify-between">
+  <section
+    class="
+      flex flex-col
+      md:flex-row md:justify-between
+      max-w-7xl
+      w-full
+      mx-auto
+      px-4
+      mt-4
+    "
+  >
     <Nav title="Street types" class="md:w-1/4 order-last">
       <router-link
         v-for="(item, idx) in links"
