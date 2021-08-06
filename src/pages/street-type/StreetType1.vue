@@ -6,7 +6,6 @@
         color="gray"
         variant="light"
         class="
-          ß
           h-96
           flex
           items-center
@@ -39,6 +38,20 @@
         heirloom chartreuse. Poke whatever quinoa drinking vinegar, plaid twee
         polaroid XOXO.
       </p>
+      <Box
+        color="gray"
+        variant="light"
+        class="
+          h-64
+          flex
+          items-center
+          justify-center
+          border border-current
+          rounded-lg
+          max-w-none
+        "
+        >Image here</Box
+      >
       <p>
         Cardigan yuccie viral, occupy asymmetrical lomo gentrify chia roof
         party. Keffiyeh twee neutra thundercats PBR&B franzen mixtape raw denim.
