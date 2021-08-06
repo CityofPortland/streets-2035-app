@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import Disclaimer from '@/pages/Disclaimer.vue';
 import Home from '@/pages/Home.vue';
-import StreetTypes from '@/pages/street-type/StreetType.vue';
-import StreetType1 from '@/pages/street-type/StreetType1.mdx';
+import StreetTypes from '@/pages/street-type/StreetTypes.vue';
+import Overview from '@/pages/street-type/Overview.vue';
+import StreetType1 from '@/pages/street-type/StreetType1.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -16,22 +17,19 @@ const routes: Array<RouteRecordRaw> = [
     component: Disclaimer,
   },
   {
-    path: '/street-types/:id?',
+    path: '/street-types',
     name: 'StreetTypes',
     component: StreetTypes,
-    props: (route) => {
-      console.log('In async component');
-
-      const pages = new Map([['street-type-1', StreetType1]]);
-
-      const id = Array.isArray(route.params.id)
-        ? route.params.id[0]
-        : route.params.id;
-
-      return {
-        page: pages.has(id) ? pages.get(id) : Error('No page with that id'),
-      };
-    },
+    children: [
+      {
+        path: '',
+        component: Overview,
+      },
+      {
+        path: 'street-type-1',
+        component: StreetType1,
+      },
+    ],
   },
 ];
 
