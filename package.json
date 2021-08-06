@@ -31,6 +31,7 @@
     "@storybook/addon-postcss": "^2.0.0",
     "@storybook/vue3": "^6.3.6",
     "@tailwindcss/forms": "^0.3.3",
+    "@tailwindcss/typography": "^0.4.1",
     "@types/chai": "^4.2.11",
     "@types/lodash-es": "^4.17.4",
     "@types/mocha": "^5.2.4",
