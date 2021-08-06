@@ -1,19 +1,21 @@
 <template>
   <div class="min-h-screen flex flex-col">
-    <Header
-      color="white"
-      :open="menuOpen"
-      @toggle="menuOpen = !menuOpen"
-      :lang="locale"
-    >
+    <Header color="white" :open="menuOpen" @toggle="menuOpen = !menuOpen">
       <template v-slot:branding>
         <router-link to="/" class="w-full flex items-center">
           <Logo class="w-16 md:w-20 mr-3 flex-shrink-0" />
           <span class="truncate text-xl">Streets 2035</span>
         </router-link>
       </template>
+      <template v-slot:menu>
+        <Nav>
+          <router-link to="/street-types" custom v-slot="{ href }">
+            <NavItem :url="href" text="Types" />
+          </router-link>
+        </Nav>
+      </template>
     </Header>
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 mt-4" :lang="locale">
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 mt-4">
       <router-view />
     </main>
     <Footer color="gray" variant="light">

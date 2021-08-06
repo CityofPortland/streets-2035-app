@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@arcgis/core": "^4.20.2",
+    "@fontsource/merriweather": "^4.5.0",
+    "@fontsource/open-sans": "^4.5.0",
     "core-js": "^3.6.5",
     "lodash-es": "^4.17.21",
     "register-service-worker": "^1.7.1",
@@ -23,6 +25,7 @@
   "devDependencies": {
     "@babel/core": "^7.14.8",
     "@intlify/vue-i18n-loader": "^2.1.2",
+    "@mdx-js/vue-loader": "^2.0.0-next.9",
     "@storybook/addon-a11y": "^6.3.6",
     "@storybook/addon-actions": "^6.3.6",
     "@storybook/addon-essentials": "^6.3.6",
@@ -30,6 +33,7 @@
     "@storybook/addon-postcss": "^2.0.0",
     "@storybook/vue3": "^6.3.6",
     "@tailwindcss/forms": "^0.3.3",
+    "@tailwindcss/typography": "^0.4.1",
     "@types/chai": "^4.2.11",
     "@types/lodash-es": "^4.17.4",
     "@types/mocha": "^5.2.4",
