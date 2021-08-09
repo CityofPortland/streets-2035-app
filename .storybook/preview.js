@@ -1,4 +1,6 @@
 import './tailwind.css';
+import '@fontsource/open-sans';
+import '@fontsource/merriweather';
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

@@ -1,7 +1,9 @@
 <template>
-  <article>
-    <h1 class="text-2xl font-bold mb-8">Legal disclaimer</h1>
-    <main class="grid grid-cols-1 gap-3 prose">
+  <article class="max-w-7xl mt-8 px-4 mx-auto">
+    <header class="prose mb-8">
+      <h1>Legal disclaimer</h1>
+    </header>
+    <main class="prose">
       <p>
         In an effort to make parking information more accessible, the Bureau of
         Transportation has created this application. Every effort has been made

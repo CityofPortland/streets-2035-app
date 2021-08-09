@@ -1,6 +1,10 @@
 <template>
   <div class="min-h-screen flex flex-col">
-    <Header color="white" :open="menuOpen" @toggle="menuOpen = !menuOpen">
+    <Header
+      :color="header.color"
+      :open="menuOpen"
+      @toggle="menuOpen = !menuOpen"
+    >
       <template v-slot:branding>
         <router-link to="/" class="w-full flex items-center">
           <Logo class="w-16 md:w-20 mr-3 flex-shrink-0" />
@@ -15,7 +19,7 @@
         </Nav>
       </template>
     </Header>
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 mt-4">
+    <main class="flex-grow">
       <router-view />
     </main>
     <Footer color="gray" variant="light">
@@ -47,7 +51,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { computed, defineComponent, ref } from 'vue';
+import { useStore } from 'vuex';
 
 import Anchor from '@/elements/anchor/Anchor.vue';
 import Footer from '@/components/footer/Footer.vue';
@@ -60,7 +65,9 @@ export default defineComponent({
   setup() {
     const menuOpen = ref(false);
 
-    return { menuOpen };
+    const store = useStore();
+
+    return { menuOpen, header: computed(() => store.state.header) };
   },
   components: {
     Anchor,
