@@ -1,6 +1,6 @@
 <template>
   <Box
-    as="button"
+    :as="as"
     :color="color"
     :variant="variant"
     :class="[...sizeClasses, ...baseClasses]"
@@ -21,6 +21,10 @@ export default defineComponent({
   name: 'pbot-button',
   components: { Box },
   props: {
+    as: {
+      type: String,
+      default: 'button',
+    },
     label: {
       type: String,
       required: true,
