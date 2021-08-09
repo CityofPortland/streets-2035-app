@@ -1,20 +1,43 @@
 <template>
   <article>
-    <header class="h-96">
-      <Box color="blue" class="h-full p-12 flex items-center justify-start">
+    <Box as="header" color="blue" class="min-h-96 px-4 py-24">
+      <Box class="h-full max-w-7xl mx-auto flex items-center justify-start">
         <Box
           color="blue"
           variant="dark"
           class="p-8 transform skew-y-1 skew-x-1"
         >
-          <h1 class="text-4xl font-bold transform -skew-y-1 -skew-x-1">
-            Welcome to
-            <abbr title="Portland Bureau of Transportation">PBOT's</abbr>
-            Streets 2035 design app!
-          </h1>
+          <div class="transform -skew-y-1 -skew-x-1">
+            <h1 class="text-4xl font-bold">
+              Welcome to
+              <abbr title="Portland Bureau of Transportation">PBOT's</abbr>
+              Streets 2035 design app!
+            </h1>
+            <div
+              class="
+                mt-8
+                flex flex-col
+                md:flex-row
+                items-center
+                justify-center
+                gap-4
+              "
+            >
+              <router-link to="/map" class="flex">
+                <Button as="span" color="orange" size="large"
+                  >Check out the streets</Button
+                >
+              </router-link>
+              <router-link to="/street-types" class="flex">
+                <Button as="span" golor="gray" variant="light" size="large"
+                  >Read about street types</Button
+                >
+              </router-link>
+            </div>
+          </div>
         </Box>
       </Box>
-    </header>
+    </Box>
     <main class="max-w-7xl mt-8 px-4 mx-auto">
       <section class="prose">
         <p>
@@ -57,11 +80,13 @@ import { onBeforeRouteLeave } from 'vue-router';
 import store from '@/store';
 
 import Box from '@/elements/box/Box';
+import Button from '@/elements/button/Button.vue';
 
 export default defineComponent({
   name: 'Home',
   components: {
     Box,
+    Button,
   },
   setup() {
     const store = useStore();
