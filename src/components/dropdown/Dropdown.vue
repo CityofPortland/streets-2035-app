@@ -1,18 +1,23 @@
 <template>
-  <div class="relative inline-block text-left">
+  <div class="relative">
     <div>
       <Button
         :as="as"
         :color="color"
         :variant="variant"
-        id="menu-button"
+        :size="size"
+        :id="id"
         :aria-expanded="open"
         aria-haspopup="true"
-        class="inline-flex items-center gap-3"
+        class="w-full md:w-auto inline-flex items-center justify-between"
         @click="open = !open"
+        v-bind="$attrs"
       >
-        <slot>{{ label }}</slot>
-        <Icon :type="open ? 'chevron-up' : 'chevron-down'" class="w-4 h-4" />
+        <slot :open="open" :id="id">{{ label }}</slot>
+        <Icon
+          :type="open ? 'chevron-up' : 'chevron-down'"
+          class="ml-3 w-4 h-4"
+        />
       </Button>
     </div>
     <!--
@@ -33,29 +38,7 @@
       leave-from-class="transform opacity-100 scale-100"
       leave-to-class="transform opacity-0 scale-95"
     >
-      <div
-        class="
-          origin-top-right
-          absolute
-          right-0
-          mt-2
-          w-64
-          rounded-md
-          shadow-lg
-          bg-white
-          ring-1 ring-black ring-opacity-5
-          focus:outline-none
-        "
-        :class="open ? 'flex' : 'hidden'"
-        role="menu"
-        aria-orientation="vertical"
-        aria-labelledby="menu-button"
-        tabindex="-1"
-      >
-        <div class="py-1 w-full" role="none">
-          <slot name="menu"></slot>
-        </div>
-      </div>
+      <slot name="menu" :open="open" :id="id"></slot>
     </transition>
   </div>
 </template>
@@ -80,6 +63,10 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    id: {
+      type: String,
+      required: true,
+    },
     size: {
       type: String as () => ButtonSize,
       default: 'medium',
@@ -93,6 +80,7 @@ export default defineComponent({
       default: 'neutral',
     },
   },
+  inheritAttrs: false,
   setup() {
     const open = ref(false);
 
