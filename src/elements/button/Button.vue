@@ -46,7 +46,6 @@ export default defineComponent({
   setup(props: ButtonProps, { emit }) {
     const baseClasses = [
       'rounded-md',
-      'shadow',
       'cursor-pointer',
       'focus:outline-none',
       'focus:ring',

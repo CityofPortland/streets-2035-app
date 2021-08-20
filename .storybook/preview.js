@@ -11,3 +11,9 @@ export const parameters = {
     },
   },
 }
+
+
+export const decorators = [(story) => ({
+  components: { story },
+  template: '<div class="font-sans"><story /></div>'
+})];
