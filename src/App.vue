@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex flex-col">
+  <div class="min-h-screen flex flex-col font-sans">
     <Header
       :color="header.color"
       :open="menuOpen"
@@ -14,7 +14,7 @@
       <template v-slot:menu>
         <Nav>
           <router-link to="/street-types" custom v-slot="{ href }">
-            <NavItem :url="href" text="Types" />
+            <NavItem :url="href" text="Street types" />
           </router-link>
         </Nav>
       </template>
