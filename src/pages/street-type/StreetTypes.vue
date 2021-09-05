@@ -1,5 +1,5 @@
 <template>
-  <section
+  <div
     class="
       flex flex-col
       md:flex-row md:justify-between
@@ -22,9 +22,11 @@
       </router-link>
     </Nav>
     <section class="mb-8 md:w-3/4 md:pr-4">
-      <router-view></router-view>
+      <div class="prose">
+        <router-view></router-view>
+      </div>
     </section>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -40,9 +42,11 @@ export default defineComponent({
     page: { type: Object },
   },
   setup() {
-    console.log('In StreetType...');
     return {
-      links: new Map([['street-type-1', 'Street type 1']]),
+      links: new Map([
+        ['', 'Overview'],
+        ['civic-main-street', 'Civic Main Streets'],
+      ]),
     };
   },
 });
