@@ -4,7 +4,16 @@ module.exports = {
       rules: [
         {
           test: /\.mdx$/,
-          use: ['babel-loader', '@mdx-js/vue-loader'],
+          use: [
+            {
+              loader: 'babel-loader',
+              options: { plugins: ['@vue/babel-plugin-jsx'] },
+            },
+            {
+              loader: 'xdm/webpack.cjs',
+              options: { jsx: true },
+            },
+          ],
         },
       ],
     },
