@@ -85,6 +85,19 @@ module.exports = {
         fog: generateColors('#E7E8EA'),
         purple: generateColors(mix('#FF6666', '#005CB9', 0.5).hex()),
       },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            a: {
+              color: theme('colors.gray.900', defaultTheme.colors.gray[900]),
+              textDecoration: 'none',
+              borderBottomWidth: '2px',
+              borderColor: 'currentColor',
+              fontWeight: '500',
+            },
+          },
+        },
+      }),
     },
   },
   variants: {
