@@ -10,22 +10,22 @@
       mt-4
     "
   >
-    <Nav title="Street types" class="md:w-1/4 order-last">
-      <router-link
-        v-for="(item, idx) in links"
-        :key="idx"
-        :to="`/street-types/${item[0]}`"
-        custom
-        v-slot="{ href }"
-      >
-        <NavItem :url="href" :text="item[1]" />
-      </router-link>
-    </Nav>
-    <section class="mb-8 md:w-3/4 md:pr-4">
-      <div class="prose">
-        <router-view></router-view>
-      </div>
-    </section>
+    <aside class="md:w-1/4 order-last">
+      <Nav title="Sections">
+        <router-link
+          v-for="(item, idx) in links"
+          :key="idx"
+          :to="`/street-types/${item[0]}`"
+          custom
+          v-slot="{ href }"
+        >
+          <NavItem :url="href" :text="item[1]" />
+        </router-link>
+      </Nav>
+    </aside>
+    <article class="mb-8 md:w-3/4 md:pr-4">
+      <router-view></router-view>
+    </article>
   </div>
 </template>
 

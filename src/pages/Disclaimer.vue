@@ -5,14 +5,14 @@
     </header>
     <main class="prose">
       <p>
-        In an effort to make parking information more accessible, the Bureau of
-        Transportation has created this application. Every effort has been made
-        to offer the most current and correct information possible. The
-        information included in this tool is subject to change without notice.
-        The City of Portland makes no representations, express or implied, as to
-        the accuracy, quality, content, completeness of the data queried through
-        this function. The City reserves the right to make changes at any time
-        without notice.
+        In an effort to make transportation planning information more
+        accessible, the Bureau of Transportation has created this application.
+        Every effort has been made to offer the most current and correct
+        information possible. The information included in this tool is subject
+        to change without notice. The City of Portland makes no representations,
+        express or implied, as to the accuracy, quality, content, completeness
+        of the data queried through this function. The City reserves the right
+        to make changes at any time without notice.
       </p>
       <p>
         By using this application, you assume all risks arising out of or
