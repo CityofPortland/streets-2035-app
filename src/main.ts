@@ -5,8 +5,11 @@ import router from './router';
 import store from './store';
 import { createI18n } from 'vue-i18n';
 import 'tailwindcss/tailwind.css';
-import '@fontsource/open-sans';
-import '@fontsource/merriweather';
+import '@fontsource/open-sans/300.css';
+import '@fontsource/open-sans/400.css';
+import '@fontsource/open-sans/800.css';
+import '@fontsource/merriweather/400.css';
+import '@fontsource/merriweather/900.css';
 
 const i18n = createI18n({
   // something vue-i18n options here ...

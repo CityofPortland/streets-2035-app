@@ -14,7 +14,7 @@
             class="
               p-2
               bg-white
-              border-2 border-b
+              border border-b
               rounded-t
               border-fog-900
               focus:outline-none focus:shadow-outline
@@ -28,7 +28,7 @@
             class="
               p-2
               bg-white
-              border-2 border-t
+              border border-t
               rounded-b
               border-fog-900
               focus:outline-none focus:shadow-outline
