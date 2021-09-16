@@ -1,15 +1,14 @@
 <template>
   <Box
-    as="div"
+    :as="as"
     role="menu"
     tabindex="-1"
     aria-orientation="vertical"
     :aria-labelledby="id"
     :class="{ hidden: !open }"
+    class="p-2 flex flex-col"
   >
-    <div class="p-1 w-full" role="none">
-      <slot></slot>
-    </div>
+    <slot></slot>
   </Box>
 </template>
 
@@ -24,7 +23,7 @@ export default defineComponent({
   props: {
     as: {
       type: String,
-      default: 'span',
+      default: 'ul',
     },
     id: {
       type: String,
