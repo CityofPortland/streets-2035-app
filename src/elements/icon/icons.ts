@@ -1,4 +1,7 @@
 export default {
+  adjustment:
+    'M2 4h2a2 2 0 0 1 4 0a2 2 0 0 1 -4 0m4 0h14ZM22 12h-2a2 2 0 1 1 -4 0a2 2 0 1 1 4 0m-4 0h-14ZM2 20h2a 2 2 0 0 1 4 0a2 2 0 0 1 -4 0m4 0 h14Z',
+  check: 'M5 13l4 4L19 7',
   'check-circle': 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
   'chevron-down': 'M19 9l-7 7-7-7',
   'chevron-left': 'M15 19l-7-7 7-7',
@@ -18,6 +21,7 @@ export default {
   ],
   minus: 'M20 12H4',
   plus: 'M12 4v16m8-8H4',
+  search: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
   'x-circle':
     'M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z',
 } as Record<string, string | Array<string>>;
