@@ -10,15 +10,26 @@ export const IconArgs = {
       options: Object.keys(icons),
     },
   },
+  name: {
+    control: {
+      type: 'select',
+      options: Object.keys(icons.outline),
+    },
+  },
 };
 
 const Template: Story = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Component },
-  template: `<Component v-bind="$props" class="h-12 w-12" />`,
+  setup() {
+    return {
+      ...args,
+    };
+  },
+  template: `<Component :type="type" :name="name" class="h-12 w-12" />`,
 });
 
 export const Basic = Template.bind({});
 Basic.args = {
-  type: 'check-circle',
+  name: 'check-circle',
 };

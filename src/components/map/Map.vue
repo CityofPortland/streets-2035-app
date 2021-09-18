@@ -21,7 +21,7 @@
             "
             v-on:click="incrementZoom"
           >
-            <Icon type="plus" class="w-4 h-4" />
+            <Icon type="solid" name="plus" class="w-4 h-4" />
           </button>
           <button
             title="Zoom out"
@@ -35,7 +35,7 @@
             "
             v-on:click="decrementZoom"
           >
-            <Icon type="minus" class="w-4 h-4" />
+            <Icon type="solid" name="minus" class="w-4 h-4" />
           </button>
         </div>
       </slot>
