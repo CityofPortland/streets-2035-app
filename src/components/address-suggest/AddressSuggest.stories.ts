@@ -10,7 +10,14 @@ import CandidateList from './CandidateList.vue';
 export default {
   title: 'Component/Address Suggest',
   component: Component,
-  argTypes: {},
+  argTypes: {
+    onSearch: {
+      action: 'search',
+    },
+    onSelect: {
+      action: 'select',
+    },
+  },
   subcomponents: { Candidate, CandidateList },
 } as Meta;
 
@@ -20,15 +27,28 @@ const Template: Story = (args, { argTypes }) => ({
   setup() {
     const candidates: Ref<Array<ICandidate>> = ref([
       {
+        id: null,
+        type: 'property',
+        name: '3575 SE DIVISION ST',
+        location: {
+          x: -13650743.556,
+          y: 5701378.213,
+          spatialReference: { wkid: 102100, latestWkid: 3857 },
+        },
+        city: 'PORTLAND',
+        state: 'OR',
+      },
+
+      {
         type: 'address',
-        name: '1234 NE Main St.',
-        city: 'Portland',
+        name: '1234 NE MAIN ST',
+        city: 'PORTLAND',
         state: 'OR',
       } as ICandidate,
       {
-        type: 'address',
-        name: '1235 NE Main St.',
-        city: 'Portland',
+        type: 'intersection',
+        name: 'NE MAIN ST & 12TH AVE',
+        city: 'PORTLAND',
         state: 'OR',
       } as ICandidate,
     ]);
@@ -38,12 +58,14 @@ const Template: Story = (args, { argTypes }) => ({
       ...args,
       candidates,
       showCandidates,
-      handleSearch() {
+      handleSearch(search: unknown) {
         showCandidates.value = true;
+        args.onSearch(search);
         return;
       },
-      handleSelect(candidate) {
+      handleSelect(candidate: unknown) {
         showCandidates.value = false;
+        args.onSelect(candidate);
         return candidate;
       },
     };
