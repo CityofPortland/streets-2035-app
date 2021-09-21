@@ -7,7 +7,8 @@
     <slot name="after">
       <Icon
         v-if="externalIcon"
-        type="external-link"
+        type="solid"
+        name="external-link"
         class="h-4 w-4 ml-1 inline"
       />
     </slot>

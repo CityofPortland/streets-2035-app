@@ -22,10 +22,10 @@ export const SlotsWithIcons: Story = (args, { argTypes }) => ({
   components: { Anchor, Icon },
   template: `<Anchor url="#">
       <template v-slot:before>
-          <Icon type="check-circle" class="h-4 w-4 inline" />
+          <Icon name="check-circle" class="h-4 w-4 inline" />
       </template>This is the default slot<template
           v-slot:after>
-          <Icon type="check-circle" class="h-4 w-4 inline" />
+          <Icon name="check-circle" class="h-4 w-4 inline" />
       </template>
     </Anchor>`,
 });

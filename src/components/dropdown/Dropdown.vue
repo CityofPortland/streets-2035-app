@@ -1,25 +1,26 @@
 <template>
-  <div class="relative">
-    <div>
-      <Button
-        :as="as"
-        :color="color"
-        :variant="variant"
-        :size="size"
-        :id="id"
-        :aria-expanded="open"
-        aria-haspopup="true"
-        class="w-full md:w-auto inline-flex items-center justify-between"
-        @click="open = !open"
-        v-bind="$attrs"
-      >
-        <slot :open="open" :id="id">{{ label }}</slot>
+  <div ref="componentRef" class="relative">
+    <Button
+      :as="as"
+      :color="color"
+      :variant="variant"
+      :size="size"
+      :id="id"
+      :label="label"
+      :aria-expanded="open"
+      aria-haspopup="true"
+      class="w-full md:w-auto inline-flex items-center justify-between"
+      @click="open = !open"
+      v-bind="$attrs"
+    >
+      <slot name="label" :open="open" :id="id">
+        <span>{{ label }}</span>
         <Icon
-          :type="open ? 'chevron-up' : 'chevron-down'"
-          class="ml-3 w-4 h-4"
-        />
-      </Button>
-    </div>
+          type="solid"
+          :name="open ? 'chevron-up' : 'chevron-down'"
+          class="ml-2 w-5 h-5"
+      /></slot>
+    </Button>
     <!--
     Dropdown menu, show/hide based on menu state.
 
@@ -38,13 +39,15 @@
       leave-from-class="transform opacity-100 scale-100"
       leave-to-class="transform opacity-0 scale-95"
     >
-      <slot name="menu" :open="open" :id="id"></slot>
+      <slot :open="open" :id="id"></slot>
     </transition>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, Ref, ref } from 'vue';
+
+import { useWindowEvent } from '@/composables/useWindowEvent';
 
 import Button from '@/elements/button/Button.vue';
 import { ButtonSize } from '@/elements/button/Button.types';
@@ -82,10 +85,25 @@ export default defineComponent({
   },
   inheritAttrs: false,
   setup() {
+    const componentRef: Ref<HTMLElement | null> = ref(null);
     const open = ref(false);
+
+    const listener = (event: Event) => {
+      let target = event.target as HTMLElement;
+
+      if (!open.value) return;
+
+      if (componentRef.value && componentRef.value.contains(target)) return;
+
+      open.value = false;
+    };
+
+    useWindowEvent('focusin', listener);
+    useWindowEvent('mousedown', listener);
 
     return {
       open,
+      componentRef,
     };
   },
 });

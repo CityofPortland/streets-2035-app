@@ -28,11 +28,15 @@
       >
         <slot name="header">
           <h2 class="flex items-center space-x-2">
-            <Icon v-if="icon" :type="icon" class="w-6 h-6" />
+            <Icon v-if="icon" type="outline" :name="icon" class="w-6 h-6" />
             <span>{{ name }}</span>
           </h2>
         </slot>
-        <Icon :type="open ? 'chevron-up' : 'chevron-down'" class="w-4 h-4" />
+        <Icon
+          type="solid"
+          :name="open ? 'chevron-up' : 'chevron-down'"
+          class="w-5 h-5"
+        />
       </button>
     </Box>
     <div

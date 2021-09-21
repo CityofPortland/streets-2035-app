@@ -30,7 +30,7 @@ const Template: Story<ButtonProps & BoxProps> = (args, { argTypes }) => ({
     return { ...args };
   },
   template: `<Dropdown :color="color" :variant="variant" :size="size" :label="label" id="menu-button">
-        <template v-slot:menu="{ open, id }">
+        <template v-slot="{ open, id }">
           <DropdownList
             :open="open"
             :id="id"
@@ -39,14 +39,15 @@ const Template: Story<ButtonProps & BoxProps> = (args, { argTypes }) => ({
               absolute
               right-0
               mt-2
-              w-64
-              rounded-md
+              w-screen
+              max-w-xs
+              rounded-lg
               shadow-lg
               bg-white
               ring-1 ring-black ring-opacity-5
               focus:outline-none">
             <DropdownItem>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Item 1</a>
+                <a href="#" class="block px-4 py-2 rounded-lg hover:bg-gray-100">Item 1</a>
             </DropdownItem>
           </DropdownList>
         </template>
@@ -107,12 +108,8 @@ export const InHeader: Story<ButtonProps & BoxProps> = (
           :size="size"
           :label="label"
           id="menu-button"
-          class="
-            w-full
-            md:w-auto
-            justify-between
-          ">
-          <template v-slot:menu="{ open }">
+          class="w-full md:w-auto justify-between">
+          <template v-slot="{ open }">
             <DropdownList
               :open="open"
               class="
@@ -122,17 +119,18 @@ export const InHeader: Story<ButtonProps & BoxProps> = (
                 md:w-64
                 mt-1
                 bg-white
-                rounded
+                rounded-lg
                 border
+                shadow-lg
                 focus:outline-none">
               <DropdownItem>
-                  <Anchor url="#" class="block px-4 py-2 rounded-md hover:bg-fog-500">Item 1</Anchor>
+                  <Anchor url="#" class="block px-4 py-2 rounded-md hover:bg-fog-300">Item 1</Anchor>
               </DropdownItem>
               <DropdownItem>
-                  <Anchor url="#" class="block px-4 py-2 rounded-md hover:bg-fog-500">Item 2</Anchor>
+                  <Anchor url="#" class="block px-4 py-2 rounded-md hover:bg-fog-300">Item 2</Anchor>
               </DropdownItem>
               <DropdownItem>
-                  <Anchor url="#" class="block px-4 py-2 rounded-md hover:bg-fog-500">Item 3</Anchor>
+                  <Anchor url="#" class="block px-4 py-2 rounded-md hover:bg-fog-300">Item 3</Anchor>
               </DropdownItem>
             </DropdownList>
           </template>
@@ -148,7 +146,7 @@ export const InHeader: Story<ButtonProps & BoxProps> = (
             md:w-auto
             justify-between
           ">
-          <template v-slot:menu="{ open }">
+          <template v-slot="{ open }">
             <DropdownList
               :open="open"
               class="
@@ -158,18 +156,19 @@ export const InHeader: Story<ButtonProps & BoxProps> = (
                 md:w-64
                 mt-1
                 bg-white
-                rounded
+                rounded-lg
                 border
+                shadow-lg
                 focus:outline-none">
-              <DropdownItem>
-                  <Anchor url="#" class="block px-4 py-2 rounded-md hover:bg-fog-500">Item 1</Anchor>
-              </DropdownItem>
-              <DropdownItem>
-                  <Anchor url="#" class="block px-4 py-2 rounded-md hover:bg-fog-500">Item 2</Anchor>
-              </DropdownItem>
-              <DropdownItem>
-                  <Anchor url="#" class="block px-4 py-2 rounded-md hover:bg-fog-500">Item 3</Anchor>
-              </DropdownItem>
+                <DropdownItem>
+                    <Anchor url="#" class="block px-4 py-2 rounded-md hover:bg-fog-300">Item 1</Anchor>
+                </DropdownItem>
+                <DropdownItem>
+                    <Anchor url="#" class="block px-4 py-2 rounded-md hover:bg-fog-300">Item 2</Anchor>
+                </DropdownItem>
+                <DropdownItem>
+                    <Anchor url="#" class="block px-4 py-2 rounded-md hover:bg-fog-300">Item 3</Anchor>
+                </DropdownItem>
             </DropdownList>
           </template>
         </Dropdown>

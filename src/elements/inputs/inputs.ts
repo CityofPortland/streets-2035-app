@@ -1,6 +1,6 @@
 import { computed, ComputedRef, Ref } from 'vue';
 
-export type TextInputType = 'email' | 'text';
+export type TextInputType = 'email' | 'search' | 'text';
 
 export interface TextInputProps {
   id: string;
