@@ -46,7 +46,13 @@ export default defineComponent({
   },
   emits: ['click'],
   setup(props: ButtonProps, { emit }) {
-    const baseClasses = ['cursor-pointer', 'focus:outline-none'];
+    const baseClasses = [
+      'rounded-md',
+      'cursor-pointer',
+      'focus:outline-none',
+      'focus:ring-4',
+      'focus:ring-blue-300',
+    ];
 
     const sizeClasses = computed(() => {
       const sizeMap = new Map<ButtonSize, string[]>([

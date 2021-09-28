@@ -1,5 +1,8 @@
 <template>
-  <a :href="url" class="font-medium">
+  <a
+    :href="url"
+    class="rounded focus:outline-none focus:ring-2 focus:ring-black"
+  >
     <slot name="before"></slot>
     <span :class="{ ...borderClasses }">
       <slot>{{ url }}</slot>
