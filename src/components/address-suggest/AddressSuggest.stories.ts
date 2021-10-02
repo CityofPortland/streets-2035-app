@@ -37,8 +37,7 @@ const Template: Story = (args, { argTypes }) => ({
         },
         city: 'PORTLAND',
         state: 'OR',
-      },
-
+      } as ICandidate,
       {
         type: 'address',
         name: '1234 NE MAIN ST',
