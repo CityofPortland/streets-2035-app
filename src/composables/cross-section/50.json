@@ -40,7 +40,7 @@
             ]
         }
     },
-    "cc": {
+    "cic": {
         "none": {
             "PortlandStreets_CrossSections_50_50A_1Lane_Midbock1": [
                 "PortlandStreets_CrossSections_50_50A_1Lane_Median1",
@@ -240,7 +240,7 @@
             ]
         }
     },
-    "co": {
+    "cc": {
         "none": {
             "PortlandStreets_CrossSections_50_50A_1Lane_Midbock1": [
                 "PortlandStreets_CrossSections_50_50A_1Lane_Median1",
