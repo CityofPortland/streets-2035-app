@@ -30,6 +30,22 @@ const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
+  {
+    path: '/cross-section/:width/:designClassification/:subClassification',
+    name: 'CrossSection',
+    component: () => import('@/pages/CrossSection.vue'),
+    props: (route) => {
+      const { designClassification, subClassification } = route.params;
+      const width = Array.isArray(route.params.width)
+        ? route.params.width[0]
+        : route.params.width;
+      return {
+        width: Number.parseInt(width),
+        designClassification,
+        subClassification,
+      };
+    },
+  },
 ];
 
 const router = createRouter({
