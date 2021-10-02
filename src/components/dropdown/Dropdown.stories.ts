@@ -34,18 +34,7 @@ const Template: Story<ButtonProps & BoxProps> = (args, { argTypes }) => ({
           <DropdownList
             :open="open"
             :id="id"
-            class="
-              origin-top-right
-              absolute
-              right-0
-              mt-2
-              w-screen
-              max-w-xs
-              rounded-lg
-              shadow-lg
-              bg-white
-              ring-1 ring-black ring-opacity-5
-              focus:outline-none">
+            class="origin-top-right absolute right-0 mt-2 w-64 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
             <DropdownItem>
                 <a href="#" class="block px-4 py-2 rounded-lg hover:bg-gray-100">Item 1</a>
             </DropdownItem>
@@ -94,14 +83,7 @@ export const InHeader: Story<ButtonProps & BoxProps> = (
       <h1 class="truncate text-xl">Some App</h1>
     </template>
     <template #menu>
-      <div class="
-        flex
-        flex-col
-        md:flex-row
-        md:items-center
-        md:space-x-2
-        space-y-2
-        md:space-y-0">
+      <div class="flex flex-col md:flex-row md:items-center md:space-x-2 space-y-2 md:space-y-0">
         <Dropdown
           :color="color"
           :variant="variant"
@@ -112,17 +94,7 @@ export const InHeader: Story<ButtonProps & BoxProps> = (
           <template v-slot="{ open }">
             <DropdownList
               :open="open"
-              class="
-                md:origin-top-left
-                md:absolute
-                md:left-0
-                md:w-64
-                mt-1
-                bg-white
-                rounded-lg
-                border
-                shadow-lg
-                focus:outline-none">
+              class="md:origin-top-left md:absolute md:left-0 md:w-64 mt-1 bg-white rounded border focus:outline-none">
               <DropdownItem>
                   <Anchor url="#" class="block px-4 py-2 rounded-md hover:bg-fog-300">Item 1</Anchor>
               </DropdownItem>
@@ -141,34 +113,20 @@ export const InHeader: Story<ButtonProps & BoxProps> = (
           :size="size"
           :label="label"
           id="menu-button"
-          class="
-            w-full
-            md:w-auto
-            justify-between
-          ">
-          <template v-slot="{ open }">
+          class="w-full md:w-auto justify-between">
+          <template v-slot:menu="{ open }">
             <DropdownList
               :open="open"
-              class="
-                md:origin-top-left
-                md:absolute
-                md:left-0
-                md:w-64
-                mt-1
-                bg-white
-                rounded-lg
-                border
-                shadow-lg
-                focus:outline-none">
-                <DropdownItem>
-                    <Anchor url="#" class="block px-4 py-2 rounded-md hover:bg-fog-300">Item 1</Anchor>
-                </DropdownItem>
-                <DropdownItem>
-                    <Anchor url="#" class="block px-4 py-2 rounded-md hover:bg-fog-300">Item 2</Anchor>
-                </DropdownItem>
-                <DropdownItem>
-                    <Anchor url="#" class="block px-4 py-2 rounded-md hover:bg-fog-300">Item 3</Anchor>
-                </DropdownItem>
+              class="md:origin-top-left md:absolute md:left-0 md:w-64 mt-1 bg-white rounded border focus:outline-none">
+              <DropdownItem>
+                  <Anchor url="#" class="block px-4 py-2 rounded-md hover:bg-fog-500">Item 1</Anchor>
+              </DropdownItem>
+              <DropdownItem>
+                  <Anchor url="#" class="block px-4 py-2 rounded-md hover:bg-fog-500">Item 2</Anchor>
+              </DropdownItem>
+              <DropdownItem>
+                  <Anchor url="#" class="block px-4 py-2 rounded-md hover:bg-fog-500">Item 3</Anchor>
+              </DropdownItem>
             </DropdownList>
           </template>
         </Dropdown>

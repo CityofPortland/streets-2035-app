@@ -101,7 +101,14 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      borderWidth: ['focus'],
+      ringColor: ['hover', 'active'],
+      ringOpacity: ['hover', 'active'],
+      ringOffsetColor: ['hover', 'active'],
+      ringOffsetWidth: ['hover', 'active'],
+      ringWidth: ['hover', 'active'],
+    },
   },
   plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')],
 };
