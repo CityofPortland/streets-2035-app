@@ -1,4 +1,4 @@
-import { computed, Ref } from 'vue';
+import { computed, ComputedRef, Ref } from 'vue';
 
 import { Street } from '@/components/street/street';
 
@@ -13,7 +13,9 @@ const database: Record<
 
 export default database;
 
-export function useCrossSectionClassification(street: Ref<Street>) {
+export function useCrossSectionClassification(street: Ref<Street>): {
+  crossSectionClassification: ComputedRef;
+} {
   const bike = new Set(['MCB', 'CB']);
   const transit = new Set(['MTP', 'RTMTP']);
 
@@ -34,7 +36,9 @@ export function useCrossSectionProfile(
   width: Ref<number>,
   designClassification: Ref<string>,
   subClassification: Ref<string>
-) {
+): {
+  crossSectionProfile: ComputedRef;
+} {
   return {
     crossSectionProfile: computed(
       () =>

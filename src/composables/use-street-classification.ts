@@ -4,7 +4,7 @@ import axios from 'axios';
 import { rgb, RGBColorFactory } from 'd3-color';
 import { computed, ComputedRef, onMounted, Ref, ref } from 'vue';
 
-import { Street } from '../components/street/street';
+import { Street } from '@/components/street/street';
 
 type ViewModel = {
   group: string;
