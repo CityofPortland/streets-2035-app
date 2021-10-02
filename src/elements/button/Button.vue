@@ -4,6 +4,8 @@
     :color="color"
     :variant="variant"
     :class="[...sizeClasses, ...baseClasses]"
+    :title="label"
+    :aria-label="label"
     @click="onClick"
   >
     <slot>{{ label }}</slot>
@@ -44,12 +46,7 @@ export default defineComponent({
   },
   emits: ['click'],
   setup(props: ButtonProps, { emit }) {
-    const baseClasses = [
-      'rounded-md',
-      'cursor-pointer',
-      'focus:outline-none',
-      'focus:ring',
-    ];
+    const baseClasses = ['cursor-pointer', 'focus:outline-none'];
 
     const sizeClasses = computed(() => {
       const sizeMap = new Map<ButtonSize, string[]>([

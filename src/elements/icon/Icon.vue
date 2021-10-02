@@ -1,5 +1,6 @@
 <template>
   <svg
+    v-if="type == 'outline'"
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
@@ -14,6 +15,20 @@
       :d="path"
     />
   </svg>
+  <svg
+    v-else
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+  >
+    <path
+      v-for="(path, index) in paths"
+      :key="index"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      :d="path"
+    />
+  </svg>
 </template>
 
 <script lang="ts">
@@ -25,6 +40,10 @@ export default defineComponent({
   name: 'Icon',
   props: {
     type: {
+      type: String as () => 'outline' | 'solid',
+      default: 'outline',
+    },
+    name: {
       type: String,
       required: true,
     },
@@ -32,9 +51,9 @@ export default defineComponent({
   setup(props) {
     return {
       paths: computed(() =>
-        Array.isArray(icons[props.type])
-          ? icons[props.type]
-          : [icons[props.type]]
+        Array.isArray(icons[props.type][props.name])
+          ? icons[props.type][props.name]
+          : [icons[props.type][props.name]]
       ),
     };
   },

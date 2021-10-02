@@ -9,7 +9,7 @@ export default {
   component: Component,
   argTypes: {
     ...ColorArgs,
-    icon: IconArgs.type,
+    icon: IconArgs.name,
     summary: {
       control: {
         type: 'text',

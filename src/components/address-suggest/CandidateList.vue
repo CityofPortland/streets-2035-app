@@ -1,12 +1,11 @@
 <template>
   <Box
-    :as="as"
-    role="menu"
+    as="ul"
+    role="listbox"
     tabindex="-1"
     aria-orientation="vertical"
-    :aria-labelledby="id"
+    class="grid grid-cols-1 gap-1"
     :class="{ hidden: !open }"
-    class="p-2 flex flex-col"
   >
     <slot></slot>
   </Box>
@@ -18,17 +17,9 @@ import { defineComponent } from 'vue';
 import Box from '@/elements/box/Box';
 
 export default defineComponent({
-  name: 'DropdownList',
+  name: 'CandidateList',
   components: { Box },
   props: {
-    as: {
-      type: String,
-      default: 'ul',
-    },
-    id: {
-      type: String,
-      required: true,
-    },
     open: {
       type: Boolean,
       required: true,
