@@ -2,11 +2,12 @@
 ARG MODE=production
 
 FROM node:16 AS builder
+
 COPY ./.docker/rootfs /
 
-ENV NODE_EXTRA_CA_CERTS="/etc/ssl/certs/ca-certificates.crt"
-
+# Add corporate proxy certificates and tell Node to use them
 RUN update-ca-certificates
+ENV NODE_EXTRA_CA_CERTS="/etc/ssl/certs/ca-certificates.crt"
 # Create directory under root to build from
 WORKDIR /app
 # Add package install files and run install separately to help with rebuild caching
