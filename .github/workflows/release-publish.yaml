@@ -1,0 +1,60 @@
+name: Deploy release
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    env:
+      REPOSITORY: ${{ secrets.ACR_NAME }}.azurecr.io
+      IMAGE: streets-2035
+    steps:
+      - name: Set $IMAGE_TAG
+        run: echo "IMAGE_TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      - uses: actions/checkout@v2
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Log in to Azure Container Registry
+        env:
+          ACR_NAME: ${{ secrets.ACR_NAME }}
+        run: az acr login --name $ACR_NAME
+      - name: Run Docker build
+        run: docker build -t $REPOSITORY/$IMAGE:$IMAGE_TAG --build-arg MODE=production .
+      - name: Push image to repository
+        run: docker push $REPOSITORY/$IMAGE:$IMAGE_TAG
+
+  deploy-release:
+    name: Deploy Helm upgrade on production namespace
+    needs:
+      - build-image
+    runs-on: ubuntu-latest
+    env:
+      K8S_CLUSTER_NAME: ${{ secrets.K8S_CLUSTER_NAME }}
+      K8S_CLUSTER_RG: ${{ secrets.K8S_CLUSTER_RG }}
+      K8S_NAMESPACE: ${{ secrets.K8S_NAMESPACE }}
+      REPOSITORY: ${{ secrets.ACR_NAME }}.azurecr.io
+      IMAGE: streets-2035
+      RELEASE_NAME: ${{ secrets.HELM_RELEASE_NAME }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: azure/setup-kubectl@v1
+      - uses: azure/setup-helm@v1
+      - name: Login via Az module
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Log in to AKS
+        run: az aks get-credentials --name $K8S_CLUSTER_NAME --resource-group $K8S_CLUSTER_RG
+      - name: Deploy release
+        run: |
+          helm \
+          upgrade \
+          --namespace $K8S_NAMESPACE \
+          --install \
+          $RELEASE_NAME \
+          chart/

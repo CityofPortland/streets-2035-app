@@ -1,0 +1,95 @@
+name: Test pull requests
+
+on: pull_request
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Cache CLI dependencies
+        uses: actions/cache@v2
+        with:
+          path: ./node_modules
+          key: v1-cli-cache-${{ matrix.node-version }}-${{ hashFiles('./package-lock.json') }}
+          restore-keys: v1-cli-cache-${{ matrix.node-version }}-
+      - run: npm install
+
+  test:
+    needs: install
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Cache CLI dependencies
+        uses: actions/cache@v2
+        with:
+          path: ./node_modules
+          key: v1-cli-cache-${{ matrix.node-version }}-${{ hashFiles('./package-lock.json') }}
+          restore-keys: v1-cli-cache-${{ matrix.node-version }}-
+      - run: npm run test:unit
+
+  lint:
+    needs: install
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Cache CLI dependencies
+        uses: actions/cache@v2
+        with:
+          path: ./node_modules
+          key: v1-cli-cache-${{ matrix.node-version }}-${{ hashFiles('./package-lock.json') }}
+          restore-keys: v1-cli-cache-${{ matrix.node-version }}-
+      - run: npm run lint
+
+  build:
+    needs: [test, lint]
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Cache CLI dependencies
+        uses: actions/cache@v2
+        with:
+          path: ./node_modules
+          key: v1-cli-cache-${{ matrix.node-version }}-${{ hashFiles('./package-lock.json') }}
+          restore-keys: v1-cli-cache-${{ matrix.node-version }}-
+      - run: npm ci
+      - run: npm run build
