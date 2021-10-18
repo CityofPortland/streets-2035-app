@@ -44,7 +44,7 @@
 <script lang="ts">
 import { defineComponent, toRefs } from 'vue';
 
-import { debounce } from 'lodash-es';
+import { debounce } from 'lodash';
 
 import Box from '@/elements/box/Box';
 import { Street } from './street';
