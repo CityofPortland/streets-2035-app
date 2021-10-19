@@ -6,7 +6,9 @@
     :required="required"
     @change="handleChange"
   >
-    <option value="" disabled selected>{{ placeholder }}</option>
+    <option v-if="placeholder" value="" disabled selected>
+      {{ placeholder }}
+    </option>
     <slot></slot>
   </select>
 </template>
@@ -37,7 +39,6 @@ export default defineComponent({
     },
     placeholder: {
       type: String,
-      default: 'Select option',
     },
     modelValue: String,
   },
