@@ -41,8 +41,6 @@ jobs:
       K8S_CLUSTER_NAME: ${{ secrets.K8S_CLUSTER_NAME }}
       K8S_CLUSTER_RG: ${{ secrets.K8S_CLUSTER_RG }}
       K8S_NAMESPACE: test
-      REPOSITORY: ${{ secrets.ACR_NAME }}.azurecr.io
-      IMAGE: streets-2035
       RELEASE_NAME: ${{ secrets.HELM_RELEASE_NAME }}-test
     steps:
       - uses: actions/checkout@v2
@@ -87,6 +85,6 @@ jobs:
       - name: Delete release's pods
         run: |
           kubectl \
-          --namespace='$K8S_NAMESPACE' \
+          --namespace=$K8S_NAMESPACE \
           delete pods \
           -l app.kubernetes.io/instance=$RELEASE_NAME
