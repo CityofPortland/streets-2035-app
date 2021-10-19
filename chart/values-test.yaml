@@ -1,5 +1,8 @@
+image:
+  tag: main
+  pullPolicy: Always
+
 ingress:
-  enabled: true
   hosts:
     - host: pbotapps-test.portland.gov
       paths:
