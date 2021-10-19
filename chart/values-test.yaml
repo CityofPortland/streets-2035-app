@@ -1,0 +1,10 @@
+ingress:
+  enabled: true
+  hosts:
+    - host: pbotapps-test.portland.gov
+      paths:
+        - path: /streets-2035
+  tls:
+    - secretName: pbotapps-test-portland-gov-tls
+      hosts:
+        - pbotapps-test.portland.gov
