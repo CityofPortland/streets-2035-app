@@ -13,40 +13,60 @@
     <aside class="md:w-1/4 order-last">
       <Nav title="Sections">
         <router-link
-          v-for="(item, idx) in links"
+          v-for="(page, idx) in pages"
           :key="idx"
-          :to="`/street-types/${item[0]}`"
+          :to="`/street-types/${page[0]}`"
           custom
           v-slot="{ href }"
         >
-          <NavItem :url="href" :text="item[1]" />
+          <NavItem :url="href" :text="page[1].name" />
         </router-link>
       </Nav>
     </aside>
     <article class="mb-8 md:w-3/4 md:pr-4">
-      <router-view></router-view>
+      <component :is="currentPage"></component>
     </article>
   </div>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 import Nav from '@/components/nav/Nav.vue';
 import NavItem from '@/components/nav/NavItem.vue';
 
+import Overview from '@/pages/street-type/Overview.mdx';
+import CivicMainStreet from '@/pages/street-type/CivicMainStreet.mdx';
+
 export default defineComponent({
   name: 'StreetTypes',
-  components: { Nav, NavItem },
+  components: { Nav, NavItem, Overview, CivicMainStreet },
   props: {
-    page: { type: Object },
+    page: String,
   },
-  setup() {
+  setup(props) {
+    const pages = new Map([
+      [
+        '',
+        {
+          name: 'Overview',
+          component: Overview,
+        },
+      ],
+      [
+        'civic-main-street',
+        {
+          name: 'Civic Main Streets',
+          component: CivicMainStreet,
+        },
+      ],
+    ]);
+
+    const currentPage = ref(pages.get(props.page).component);
+
     return {
-      links: new Map([
-        ['', 'Overview'],
-        ['civic-main-street', 'Civic Main Streets'],
-      ]),
+      currentPage,
+      pages,
     };
   },
 });

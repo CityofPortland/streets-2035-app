@@ -16,21 +16,10 @@ const routes: Array<RouteRecordRaw> = [
     component: Disclaimer,
   },
   {
-    path: '/street-types',
+    path: '/street-types/:page?',
     name: 'StreetTypes',
     component: StreetTypes,
-    children: [
-      {
-        path: '',
-        component: () =>
-          Promise.resolve(import('@/pages/street-type/Overview.mdx')),
-      },
-      {
-        path: 'civic-main-street',
-        component: () =>
-          Promise.resolve(import('@/pages/street-type/CivicMainStreet.mdx')),
-      },
-    ],
+    props: true,
   },
 ];
 
