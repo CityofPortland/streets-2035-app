@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? '/streets-2035/' : '',
+  publicPath: process.env.NODE_ENV === 'production' ? '/streets-2035/' : '/',
   configureWebpack: {
     module: {
       rules: [
