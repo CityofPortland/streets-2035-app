@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       REPOSITORY: ${{ secrets.ACR_NAME }}.azurecr.io
+      ACR_NAME: ${{ secrets.ACR_NAME }}
       IMAGE: streets-2035
     steps:
       - name: Set $IMAGE_TAG
@@ -20,11 +21,14 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: Log in to Azure Container Registry
-        env:
-          ACR_NAME: ${{ secrets.ACR_NAME }}
         run: az acr login --name $ACR_NAME
-      - name: Run Docker build
-        run: docker build -t $REPOSITORY/$IMAGE:$IMAGE_TAG --build-arg MODE=production .
+      - name: Pull last main build
+        run: docker pull $REPOSITORY/$IMAGE:main
+      - name: Tag last main build as release
+        run: |
+          docker tag \
+          $REPOSITORY/$IMAGE:main \
+          $REPOSITORY/$IMAGE:$IMAGE_TAG
       - name: Push image to repository
         run: docker push $REPOSITORY/$IMAGE:$IMAGE_TAG
 
