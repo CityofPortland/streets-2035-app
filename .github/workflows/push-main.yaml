@@ -7,6 +7,7 @@ on:
 
 jobs:
   build-image:
+    name: Build Docker image
     runs-on: ubuntu-latest
     env:
       REPOSITORY: ${{ secrets.ACR_NAME }}.azurecr.io
