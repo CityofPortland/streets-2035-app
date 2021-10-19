@@ -95,6 +95,7 @@ module.exports = {
               borderColor: 'currentColor',
               fontWeight: '500',
             },
+            maxWidth: '72ex',
           },
         },
       }),
