@@ -22,11 +22,13 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: '',
-        component: () => import('@/pages/street-type/Overview.mdx'),
+        component: () =>
+          Promise.resolve(import('@/pages/street-type/Overview.mdx')),
       },
       {
         path: 'civic-main-street',
-        component: () => import('@/pages/street-type/CivicMainStreet.mdx'),
+        component: () =>
+          Promise.resolve(import('@/pages/street-type/CivicMainStreet.mdx')),
       },
     ],
   },
