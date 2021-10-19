@@ -57,7 +57,7 @@ import Anchor from '@/elements/anchor/Anchor.vue';
 import Button from '@/elements/button/Button.vue';
 
 import { Street } from './street';
-import { useStreetClassification } from './use-street-classification';
+import { useStreetClassification } from '@/composables/use-street-classification';
 
 export default defineComponent({
   name: 'Street',
