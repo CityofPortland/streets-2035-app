@@ -22,7 +22,7 @@ jobs:
           path: ./node_modules
           key: v1-cli-cache-${{ matrix.node-version }}-${{ hashFiles('./package-lock.json') }}
           restore-keys: v1-cli-cache-${{ matrix.node-version }}-
-      - run: npm install
+      - run: npm ci
 
   test:
     needs: install
@@ -91,5 +91,4 @@ jobs:
           path: ./node_modules
           key: v1-cli-cache-${{ matrix.node-version }}-${{ hashFiles('./package-lock.json') }}
           restore-keys: v1-cli-cache-${{ matrix.node-version }}-
-      - run: npm ci
       - run: npm run build
