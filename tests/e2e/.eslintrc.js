@@ -1,10 +1,11 @@
 module.exports = {
-  plugins: ["cypress"],
   env: {
-    mocha: true,
-    "cypress/globals": true,
+    jest: true,
   },
-  rules: {
-    strict: "off",
+  globals: {
+    page: true,
+    browser: true,
+    context: true,
+    jestPuppeteer: true,
   },
 };
