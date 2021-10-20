@@ -14,7 +14,7 @@
         v-for="(image, index) in balancedImages"
         :key="index"
         v-show="index == balancedIndex"
-        :src="`/img/cross-section/${width}/${image}.png`"
+        :src="`${publicPath}img/cross-section/${width}/${image}.png`"
       />
       <Pager
         v-if="balancedImages.length > 1"
@@ -32,7 +32,7 @@
         v-for="(image, index) in periodicImages"
         :key="index"
         v-show="index == periodicIndex"
-        :src="`/img/cross-section/${width}/${image}.png`"
+        :src="`${publicPath}img/cross-section/${width}/${image}.png`"
       />
       <Pager
         v-if="periodicImages.length > 1"
@@ -79,6 +79,7 @@ export default defineComponent({
     const periodicIndex = ref(0);
 
     return {
+      publicPath: process.env.BASE_URL,
       balancedIndex,
       periodicIndex,
       profiles,
