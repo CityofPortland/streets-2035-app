@@ -30,17 +30,14 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue';
+import { defineAsyncComponent, defineComponent, markRaw } from 'vue';
 
 import Nav from '@/components/nav/Nav.vue';
 import NavItem from '@/components/nav/NavItem.vue';
 
-import Overview from '@/pages/street-type/Overview.mdx';
-import CivicMainStreet from '@/pages/street-type/CivicMainStreet.mdx';
-
 export default defineComponent({
   name: 'StreetTypes',
-  components: { Nav, NavItem, Overview, CivicMainStreet },
+  components: { Nav, NavItem },
   props: {
     page: String,
   },
@@ -50,19 +47,21 @@ export default defineComponent({
         '',
         {
           name: 'Overview',
-          component: Overview,
+          component: defineAsyncComponent(() => import('./Overview.mdx')),
         },
       ],
       [
         'civic-main-street',
         {
           name: 'Civic Main Streets',
-          component: CivicMainStreet,
+          component: defineAsyncComponent(() =>
+            import('./CivicMainStreet.mdx')
+          ),
         },
       ],
     ]);
 
-    const currentPage = ref(pages.get(props.page).component);
+    const currentPage = markRaw(pages.get(props.page).component);
 
     return {
       currentPage,
