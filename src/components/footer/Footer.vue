@@ -1,5 +1,5 @@
 <template>
-  <Box as="footer" :color="color" :variant="variant" class="mt-8">
+  <Box as="footer" :color="color" :variant="variant">
     <div class="max-w-7xl mx-auto p-4">
       <div class="grid grid-cols-1 gap-3">
         <section>
