@@ -60,7 +60,7 @@ function generateColors(colorHex) {
 }
 
 module.exports = {
-  purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx,mdx}'],
   darkMode: 'media', // or 'media' or 'class'
   theme: {
     fontFamily: {
@@ -95,6 +95,7 @@ module.exports = {
               borderColor: 'currentColor',
               fontWeight: '500',
             },
+            maxWidth: '72ex',
           },
         },
       }),

@@ -13,24 +13,24 @@
     <aside class="md:w-1/4 order-last">
       <Nav title="Sections">
         <router-link
-          v-for="(item, idx) in links"
+          v-for="(page, idx) in pages"
           :key="idx"
-          :to="`/street-types/${item[0]}`"
+          :to="`/street-types/${page[0]}`"
           custom
           v-slot="{ href }"
         >
-          <NavItem :url="href" :text="item[1]" />
+          <NavItem :url="href" :text="page[1].name" />
         </router-link>
       </Nav>
     </aside>
     <article class="mb-8 md:w-3/4 md:pr-4">
-      <router-view></router-view>
+      <component :is="currentPage"></component>
     </article>
   </div>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineAsyncComponent, defineComponent, markRaw } from 'vue';
 
 import Nav from '@/components/nav/Nav.vue';
 import NavItem from '@/components/nav/NavItem.vue';
@@ -39,14 +39,33 @@ export default defineComponent({
   name: 'StreetTypes',
   components: { Nav, NavItem },
   props: {
-    page: { type: Object },
+    page: String,
   },
-  setup() {
+  setup(props) {
+    const pages = new Map([
+      [
+        '',
+        {
+          name: 'Overview',
+          component: defineAsyncComponent(() => import('./Overview.mdx')),
+        },
+      ],
+      [
+        'civic-main-street',
+        {
+          name: 'Civic Main Streets',
+          component: defineAsyncComponent(() =>
+            import('./CivicMainStreet.mdx')
+          ),
+        },
+      ],
+    ]);
+
+    const currentPage = markRaw(pages.get(props.page).component);
+
     return {
-      links: new Map([
-        ['', 'Overview'],
-        ['civic-main-street', 'Civic Main Streets'],
-      ]),
+      currentPage,
+      pages,
     };
   },
 });

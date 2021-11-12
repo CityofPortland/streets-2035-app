@@ -95,7 +95,7 @@ export default defineComponent({
       store.dispatch('setHeader', { color: 'transparent' });
     });
   },
-  beforeRouteEnter(to, from, next) {
+  beforeRouteEnter(_to, _from, next) {
     next(() => {
       store.dispatch('setHeader', { color: 'blue' });
     });

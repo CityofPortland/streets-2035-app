@@ -79,9 +79,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style>
-.prose {
-  max-width: 72ex;
-}
-</style>

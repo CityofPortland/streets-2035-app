@@ -16,19 +16,26 @@ const routes: Array<RouteRecordRaw> = [
     component: Disclaimer,
   },
   {
-    path: '/street-types',
+    path: '/street-types/:page?',
     name: 'StreetTypes',
     component: StreetTypes,
-    children: [
-      {
-        path: '',
-        component: () => import('@/pages/street-type/Overview.mdx'),
-      },
-      {
-        path: 'civic-main-street',
-        component: () => import('@/pages/street-type/CivicMainStreet.mdx'),
-      },
-    ],
+    props: true,
+  },
+  {
+    path: '/cross-section/:width/:designClassification/:subClassification',
+    name: 'CrossSection',
+    component: () => import('@/pages/CrossSection.vue'),
+    props: (route) => {
+      const { designClassification, subClassification } = route.params;
+      const width = Array.isArray(route.params.width)
+        ? route.params.width[0]
+        : route.params.width;
+      return {
+        width: Number.parseInt(width),
+        designClassification,
+        subClassification,
+      };
+    },
   },
 ];
 

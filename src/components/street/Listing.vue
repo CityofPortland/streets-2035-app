@@ -44,11 +44,11 @@
 <script lang="ts">
 import { defineComponent, toRefs } from 'vue';
 
-import { debounce } from 'lodash-es';
+import { debounce } from 'lodash';
 
 import Box from '@/elements/box/Box';
 import { Street } from './street';
-import { useStreetClassification } from './use-street-classification';
+import { useStreetClassification } from '@/composables/use-street-classification';
 
 export default defineComponent({
   name: 'StreetListing',
