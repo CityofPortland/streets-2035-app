@@ -1,6 +1,6 @@
 <template>
   <router-link
-    :to="street.id"
+    :to="`/streets/${street.id}`"
     append
     @mouseenter="handleHighlight()"
     @focus="handleHighlight()"
@@ -22,14 +22,14 @@
     <div v-if="street.block" class="text-gray-700 font-semibold">
       {{ street.block }} block
     </div>
-    <div class="flex flex-wrap gap-1">
+    <div class="flex flex-wrap gap-2">
       <Box
         v-for="(classification, index) in classificationKeys"
         :key="index"
         as="span"
         color="gray"
         variant="light"
-        class="inline-flex px-1 text-xs ring-1 ring-black rounded"
+        class="inline-flex px-1 text-sm ring-1 ring-black rounded"
       >
         {{
           classificationLabel(

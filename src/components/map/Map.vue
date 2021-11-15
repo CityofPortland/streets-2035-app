@@ -60,8 +60,9 @@ import debounce from 'lodash-es/debounce';
 import { whenTrue } from '@arcgis/core/core/watchUtils';
 import Extent from '@arcgis/core/geometry/Extent';
 import EsriMap from '@arcgis/core/Map';
-import MapView from '@arcgis/core/views/MapView';
 import Legend from '@arcgis/core/widgets/Legend';
+import MapView from '@arcgis/core/views/MapView';
+import Point from '@arcgis/core/geometry/Point';
 
 import Icon from '@/elements/icon/Icon.vue';
 
@@ -69,6 +70,7 @@ export default defineComponent({
   name: 'Map',
   components: { Icon },
   props: {
+    id: { type: String, required: true },
     map: {
       type: Object as () => EsriMap,
       required: true,
@@ -77,6 +79,9 @@ export default defineComponent({
       type: Object as () => Extent,
       required: true,
     },
+    center: {
+      type: Object as () => Point,
+    },
     zoom: {
       type: Number,
       default: 12,
@@ -84,9 +89,6 @@ export default defineComponent({
     legend: {
       type: Boolean,
       default: false,
-    },
-    layers: {
-      type: Array,
     },
   },
   setup(props, { emit }) {
@@ -100,14 +102,14 @@ export default defineComponent({
 
     let view: MapView;
 
-    const { extent, zoom } = toRefs(props);
+    const { center, extent, zoom } = toRefs(props);
 
     onMounted(() => {
       view = new MapView({
         container: mapElement.value,
         map: props.map,
         extent: new Extent(extent.value),
-        zoom: props.zoom,
+        zoom: zoom.value,
       });
 
       view.ui.remove('zoom');
@@ -140,6 +142,12 @@ export default defineComponent({
         });
       }
 
+      props.map.layers.forEach((layer) => {
+        view.whenLayerView(layer).then((layerView) => {
+          emit('layer-view', layerView);
+        });
+      });
+
       view.watch(
         'extent',
         debounce((newValue: Extent) => {
@@ -155,9 +163,13 @@ export default defineComponent({
 
       view.on('click', (event) => {
         emit('click', event);
+        view.hitTest(event).then((response) => {
+          emit('click-hit', response.results);
+        });
       });
 
       view.on('pointer-move', (event) => {
+        emit('pointer-move', event);
         view.hitTest(event).then((response) => {
           emit('pointer-hit', response.results);
         });
@@ -166,6 +178,21 @@ export default defineComponent({
 
     watch(extent, () => {
       view.goTo(new Extent(extent.value));
+    });
+
+    watch(center, () => {
+      view
+        .goTo({
+          center: new Point({
+            x: center.value?.x,
+            y: center.value?.y,
+            spatialReference: center.value?.spatialReference,
+          }),
+          zoom: 18,
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     });
 
     watch(zoom, () => {

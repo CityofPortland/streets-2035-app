@@ -1,11 +1,11 @@
+import Point from '@arcgis/core/geometry/Point';
+
+export type CandidateType = 'address' | 'intersection' | 'property';
+
 export type Candidate = {
-  type?: 'address' | 'intersection' | 'property';
+  type?: CandidateType;
   name: string;
   city?: string;
   state: string;
-  location?: {
-    x: number;
-    y: number;
-    spatialReference: { wkid: number; latestWkid: number };
-  };
+  location: Partial<Point>;
 };
