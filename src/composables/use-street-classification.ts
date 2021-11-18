@@ -102,15 +102,15 @@ export function useStreetClassification(street?: Ref<Street>): {
   return {
     models,
     classificationKeys: computed(() =>
-      street?.value.classifications
-        ? Object.keys(street.value.classifications)
-        : []
+      Object.entries(street?.value.classifications ?? {})
+        .filter((entry) => entry[1] != 'N/A')
+        .map((entry) => entry[0])
     ),
     classificationLabel(type: string, value: string) {
       return (
         models.value.find((model) => {
           return model.group == type && model.value == value;
-        })?.label || ''
+        })?.label || 'N/A'
       );
     },
   };
