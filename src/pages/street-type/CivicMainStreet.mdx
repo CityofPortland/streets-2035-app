@@ -3,6 +3,8 @@ import Map from '@/components/map/StreetTypeMap.vue';
 
 import Image from '@/elements/img/Image.vue';
 
+export const publicPath = process.env.BASE_URL;
+
 <header class="prose max-w-none">
     # Civic Main Streets
 
@@ -14,11 +16,12 @@ import Image from '@/elements/img/Image.vue';
     </section>
 
     <Image
-        src="/img/street-type/CivicMainStreet.webp"
+        src={`${publicPath}img/street-type/CivicMainStreet.webp`}
         class="flex items-center justify-center border border-current rounded"
         alt="Perspective rendering of a civic main street"
         title="Perspective rendering of a civic main street"
     />
+
 </header>
 <section class="mt-8">
     <Field name="Typical Street Classification">
@@ -64,9 +67,11 @@ import Image from '@/elements/img/Image.vue';
     <Field name="Place Creation">
         Where on-street parking/loading is provided, Street Seats may be placed in the curb zone to provide additional community gathering space. Streets Seats are appropriate on streets with three or fewer lanes to provide a comfortable environment.
     </Field>
+
 </section>
 <section class="prose max-w-none">
     ## Example Streets
 
     <Map type="civic-main-street" style="height: 50vh;"></Map>
+
 </section>
