@@ -68,11 +68,11 @@
       <header class="prose">
         <h2>Balanced cross-section(s)</h2>
       </header>
-      <img
+      <Image
         v-for="(image, index) in balancedImages"
         :key="index"
         v-show="index == balancedIndex"
-        :src="`${publicPath}img/cross-section/${width}/${image}.png`"
+        :src="`${publicPath}img/cross-section/${width}/${image}.webp`"
       />
       <Pager
         v-if="balancedImages.length > 1"
@@ -86,11 +86,11 @@
       <header class="prose">
         <h2>Periodic cross-section(s)</h2>
       </header>
-      <img
+      <Image
         v-for="(image, index) in periodicImages"
         :key="index"
         v-show="index == periodicIndex"
-        :src="`${publicPath}img/cross-section/${width}/${image}.png`"
+        :src="`${publicPath}img/cross-section/${width}/${image}.webp`"
       />
       <Pager
         v-if="periodicImages.length > 1"
@@ -108,13 +108,14 @@ import database from '@/composables/cross-section';
 
 import { useStreetClassification } from '@/composables/use-street-classification';
 import Box from '@/elements/box/Box';
+import Image from '@/elements/img/Image.vue';
 import Pager from '@/components/pager/Pager.vue';
 import Select from '@/elements/inputs/Select.vue';
 import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router';
 
 export default defineComponent({
   name: 'CrossSections',
-  components: { Box, Pager, Select },
+  components: { Box, Image, Pager, Select },
   props: {
     width: {
       type: Number,
