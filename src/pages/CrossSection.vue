@@ -1,9 +1,8 @@
 <template>
   <article class="flex flex-col gap-1 max-w-7xl px-4 mx-auto">
-    <header class="prose">
+    <header class="prose max-w-none">
       <h1 class="capitalize">
-        {{ classificationLabel('design', designClassification) }} @
-        {{ width }} feet - {{ subClassification }}
+        {{ title }}
       </h1>
     </header>
     <section>
@@ -169,6 +168,12 @@ export default defineComponent({
 
     return {
       publicPath: process.env.BASE_URL,
+      title: computed(
+        () =>
+          `${classificationLabel('design', designClassification.value)} @ ${
+            width.value
+          } feet - ${subClassification.value}`
+      ),
       balancedIndex,
       periodicIndex,
       widths: Object.keys(database),

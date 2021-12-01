@@ -109,7 +109,12 @@ export function useStreetClassification(street?: Ref<Street>): {
     classificationLabel(type: string, value: string) {
       return (
         models.value.find((model) => {
-          return model.group == type && model.value == value;
+          return (
+            model.group == type &&
+            model.value.localeCompare(value, undefined, {
+              sensitivity: 'base',
+            }) === 0
+          );
         })?.label || 'N/A'
       );
     },
