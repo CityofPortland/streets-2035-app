@@ -2,7 +2,7 @@
   <article>
     <header>
       <h1 class="mb-3 text-2xl lg:text-3xl font-bold">
-        {{ street.name.trim() || 'Unnamed segment' }}
+        {{ street.name?.trim() || 'Unnamed segment' }}
       </h1>
       <p
         class="my-2 text-xl lg:text-2xl text-gray-700 font-bold"

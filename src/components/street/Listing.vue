@@ -17,7 +17,7 @@
     "
   >
     <h3 class="text-lg font-bold leading-tight">
-      {{ street.name.trim() || 'Unnamed segment' }}
+      {{ street.name?.trim() || 'Unnamed segment' }}
     </h3>
     <div v-if="street.block" class="text-gray-700 font-semibold">
       {{ street.block }} block
