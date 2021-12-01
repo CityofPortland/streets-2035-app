@@ -115,11 +115,6 @@ import MapVue from '@/components/map/Map.vue';
 import Panel from '@/components/panel/Panel.vue';
 import { Street } from '@/components/street/street';
 import { query } from '@/composables/use-graphql';
-import {
-  STREET_CLASSIFICATION_KEY,
-  getModels,
-  ViewModel,
-} from '@/composables/use-street-classification';
 
 export default defineComponent({
   components: {
@@ -214,11 +209,7 @@ export default defineComponent({
       }
     };
 
-    const models = ref(new Array<ViewModel>());
-    provide(STREET_CLASSIFICATION_KEY, models);
-
     onMounted(async () => {
-      models.value = await getModels();
       if (params.id) {
         street.value = await getStreet(params.id);
         if (street.value) {

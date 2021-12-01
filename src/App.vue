@@ -51,7 +51,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue';
+import { computed, defineComponent, onMounted, provide, ref } from 'vue';
 import { useStore } from 'vuex';
 
 import Anchor from '@/elements/anchor/Anchor.vue';
@@ -60,12 +60,24 @@ import Header from '@/components/header/Header.vue';
 import Logo from '@/components/Logo.vue';
 import Nav from '@/components/nav/Nav.vue';
 import NavItem from '@/components/nav/NavItem.vue';
+import {
+  getModels,
+  STREET_CLASSIFICATION_KEY,
+  ViewModel,
+} from './composables/use-street-classification';
 
 export default defineComponent({
   setup() {
     const menuOpen = ref(false);
 
     const store = useStore();
+
+    const models = ref(new Array<ViewModel>());
+    provide(STREET_CLASSIFICATION_KEY, models);
+
+    onMounted(async () => {
+      models.value = await getModels();
+    });
 
     return { menuOpen, header: computed(() => store.state.header) };
   },
