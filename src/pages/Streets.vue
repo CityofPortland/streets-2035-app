@@ -240,7 +240,7 @@ export default defineComponent({
         // add a graphic for higlighting the street
       } else {
         street.value = undefined;
-        highlight.remove();
+        if (highlight) highlight.remove();
       }
     });
 
