@@ -4,8 +4,6 @@
     color="gray"
     variant="light"
     title="Search"
-    role="search"
-    action="/"
     class="flex flex-col border border-gray-500 shadow-md rounded-md"
     @submit.prevent="handleSubmit"
   >
@@ -29,7 +27,7 @@
       <input
         id="query"
         name="query"
-        type="search"
+        type="text"
         role="searchbox"
         :placeholder="placeholder"
         tabindex="0"
@@ -45,6 +43,7 @@
         "
       />
       <Button
+        type="submit"
         color="transparent"
         label="Search"
         tabindex="0"

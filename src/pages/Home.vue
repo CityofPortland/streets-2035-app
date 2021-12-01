@@ -1,5 +1,5 @@
 <template>
-  <article>
+  <article class="mb-8">
     <Box as="header" color="blue" class="min-h-96 px-4 py-24">
       <Box class="h-full max-w-7xl mx-auto flex items-center justify-start">
         <Box
@@ -23,7 +23,7 @@
                 gap-4
               "
             >
-              <router-link to="/map" class="flex">
+              <router-link to="/streets" class="flex">
                 <Button as="span" color="orange" size="large"
                   >Check out the streets</Button
                 >

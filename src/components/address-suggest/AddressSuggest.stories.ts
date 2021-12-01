@@ -1,10 +1,11 @@
 import { Ref, ref } from 'vue';
 
+import SpatialReference from '@arcgis/core/geometry/SpatialReference';
 import { Story, Meta } from '@storybook/vue3';
 
 import Component from './AddressSuggest.vue';
 import Candidate from './Candidate.vue';
-import { Candidate as ICandidate } from './candidate';
+import { Candidate as TCandidate, CandidateType } from './candidate';
 import CandidateList from './CandidateList.vue';
 
 export default {
@@ -25,31 +26,26 @@ const Template: Story = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { AddressSuggest: Component, Candidate, CandidateList },
   setup() {
-    const candidates: Ref<Array<ICandidate>> = ref([
+    const candidates: Ref<Array<Partial<TCandidate>>> = ref([
       {
         id: null,
-        type: 'property',
+        type: 'property' as CandidateType,
         name: '3575 SE DIVISION ST',
-        location: {
-          x: -13650743.556,
-          y: 5701378.213,
-          spatialReference: { wkid: 102100, latestWkid: 3857 },
-        },
         city: 'PORTLAND',
         state: 'OR',
-      } as ICandidate,
+      },
       {
-        type: 'address',
+        type: 'address' as CandidateType,
         name: '1234 NE MAIN ST',
         city: 'PORTLAND',
         state: 'OR',
-      } as ICandidate,
+      },
       {
-        type: 'intersection',
+        type: 'intersection' as CandidateType,
         name: 'NE MAIN ST & 12TH AVE',
         city: 'PORTLAND',
         state: 'OR',
-      } as ICandidate,
+      },
     ]);
     const showCandidates = ref(false);
 

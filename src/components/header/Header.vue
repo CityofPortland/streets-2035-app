@@ -1,6 +1,6 @@
 <template>
   <Box as="nav" :color="color" :variant="variant">
-    <div class="max-w-7xl mx-auto px-4">
+    <div class="px-4">
       <div class="flex items-center space-x-3 h-16">
         <div class="flex items-center truncate">
           <!-- @slot Branding area, should contain app name and logo -->

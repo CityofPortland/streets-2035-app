@@ -1,5 +1,5 @@
 <template>
-  <article class="max-w-7xl mt-8 px-4 mx-auto">
+  <article class="max-w-7xl mt-8 px-4 mx-auto mb-8">
     <header class="prose mb-8">
       <h1>Legal disclaimer</h1>
     </header>

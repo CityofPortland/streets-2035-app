@@ -2,11 +2,11 @@ import FeatureLayer from '@arcgis/core/layers/FeatureLayer';
 import UniqueValueInfo from '@arcgis/core/renderers/support/UniqueValueInfo';
 import axios from 'axios';
 import { rgb, RGBColorFactory } from 'd3-color';
-import { computed, ComputedRef, onMounted, Ref, ref } from 'vue';
+import { computed, ComputedRef, inject, Ref } from 'vue';
 
 import { Street } from '@/components/street/street';
 
-type ViewModel = {
+export type ViewModel = {
   group: string;
   value: string;
   enabled: false;
@@ -46,63 +46,71 @@ const classifications = new Map([
   ],
 ]);
 
+export const STREET_CLASSIFICATION_KEY = 'streetClassifications';
+
+export const getModels = async (): Promise<Array<ViewModel>> => {
+  const models = new Array<ViewModel>();
+
+  for (const value of classifications) {
+    const res = await axios.get(value[1], {
+      params: {
+        f: 'json',
+      },
+    });
+
+    if (res.data) {
+      models.push(
+        ...res.data.drawingInfo.renderer.uniqueValueInfos.map(
+          (json: UniqueValueInfo) => {
+            const info = UniqueValueInfo.fromJSON(json);
+            const { r, g, b, a } = info.symbol.color;
+            return {
+              group: value[0],
+              value: info.value.toString(),
+              enabled: false,
+              label: info.label,
+              symbol: { type: 'color', value: rgb(r, g, b, a) },
+              layer: new FeatureLayer({
+                url: value[1],
+                outFields: ['*'],
+                definitionExpression: `${
+                  value[0]
+                } = '${info.value.toString()}'`,
+                visible: false,
+              }),
+            };
+          }
+        )
+      );
+    }
+  }
+
+  return models;
+};
+
 export function useStreetClassification(street?: Ref<Street>): {
   models: Ref<Array<ViewModel>>;
   classificationKeys: ComputedRef<Array<string>>;
   classificationLabel: (type: string, value: string) => string;
 } {
-  const models: Ref<Array<ViewModel>> = ref([]);
+  const models = inject<Ref<Array<ViewModel>>>(STREET_CLASSIFICATION_KEY);
 
-  onMounted(async () => {
-    if (!models.value.length) {
-      for (const value of classifications) {
-        const res = await axios.get(value[1], {
-          params: {
-            f: 'json',
-          },
-        });
-
-        if (res.data) {
-          models.value.push(
-            ...res.data.drawingInfo.renderer.uniqueValueInfos.map(
-              (json: UniqueValueInfo) => {
-                const info = UniqueValueInfo.fromJSON(json);
-                const { r, g, b, a } = info.symbol.color;
-                return {
-                  group: value[0],
-                  value: info.value.toString(),
-                  enabled: false,
-                  label: info.label,
-                  symbol: { type: 'color', value: rgb(r, g, b, a) },
-                  layer: new FeatureLayer({
-                    url: value[1],
-                    outFields: ['*'],
-                    definitionExpression: `${
-                      value[0]
-                    } = '${info.value.toString()}'`,
-                    visible: false,
-                  }),
-                };
-              }
-            )
-          );
-        }
-      }
-    }
-  });
+  if (!models) {
+    throw new Error('unable to find street classification models');
+  }
 
   return {
     models,
     classificationKeys: computed(() =>
-      street?.value.classifications
-        ? Object.keys(street?.value.classifications)
-        : []
+      Object.entries(street?.value.classifications ?? {})
+        .filter((entry) => entry[1] != 'N/A')
+        .map((entry) => entry[0])
     ),
     classificationLabel(type: string, value: string) {
       return (
         models.value.find((model) => {
-          return model.group == type && model.value == value.toUpperCase();
-        })?.label || ''
+          return model.group == type && model.value == value;
+        })?.label || 'N/A'
       );
     },
   };

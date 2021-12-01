@@ -85,6 +85,10 @@ module.exports = {
         fog: generateColors('#E7E8EA'),
         purple: generateColors(mix('#FF6666', '#005CB9', 0.5).hex()),
       },
+      height: {
+        'screen-50': '50vh',
+        '(screen-16)': 'calc(100vh - 4rem)'
+      },
       typography: (theme) => ({
         DEFAULT: {
           css: {

@@ -16,7 +16,7 @@
         <h2 class="text-gray-700 font-semibold">Transportation plan ID</h2>
         <span>{{ street.id }}</span>
       </div>
-      <div class="my-2">
+      <div class="my-2" v-if="street.width">
         <h2 class="text-gray-700 font-semibold">Width</h2>
         <span>{{ street.width }} feet</span>
       </div>
