@@ -4,18 +4,7 @@
   >
     <h1 class="sr-only">Street listings</h1>
     <section
-      class="
-        w-full
-        sm:w-1/3
-        md:w-full
-        lg:w-1/3
-        xl:w-1/4
-        h-full
-        sm:h-(screen-16)
-        md:h-full
-        lg:h-(screen-16)
-        overflow-y-auto
-      "
+      class="w-full sm:w-1/3 md:w-full lg:w-1/3 xl:w-1/4 h-full sm:h-(screen-16) md:h-full lg:h-(screen-16) overflow-y-auto"
     >
       <section v-if="!street" class="p-4 grid grid-cols-1 gap-3">
         <address-suggest @search="handleSearch" />
@@ -35,9 +24,34 @@
           color="gray"
           variant="light"
           :open="open"
-          name="Filters"
+          name="Settings"
           @toggle="open = !open"
         >
+          <fieldset>
+            <div
+              v-for="(c, index) in classifications"
+              :key="index"
+              class="flex items-center space-x-1"
+            >
+              <Toggle
+                :id="`classification-${index}`"
+                :name="`classification-${index}`"
+                :modelValue="c.enabled"
+                @update:modelValue="handleClassificationToggle(c)"
+              >
+                <label
+                  :for="`classification-${index}`"
+                  class="inline-flex items-center space-x-1"
+                >
+                  <i
+                    class="w-5 h-5 border border-current rounded"
+                    :style="{ 'background-color': c.symbol.value.formatRgb() }"
+                  />
+                  <span>{{ c.label }}</span>
+                </label>
+              </Toggle>
+            </div>
+          </fieldset>
         </Panel>
         <ul v-if="streets.length" class="grid grid-cols-1 gap-3">
           <li v-for="street in streets" :key="street.id">
@@ -57,18 +71,7 @@
       </section>
     </section>
     <section
-      class="
-        w-full
-        sm:w-2/3
-        md:w-full
-        lg:w-2/3
-        xl:w-3/4
-        h-screen-50
-        sm:h-(screen-16)
-        md:h-screen-50
-        lg:h-(screen-16)
-        overflow-y-auto
-      "
+      class="w-full sm:w-2/3 md:w-full lg:w-2/3 xl:w-3/4 h-screen-50 sm:h-(screen-16) md:h-screen-50 lg:h-(screen-16) overflow-y-auto"
     >
       <MapVue
         id="streets"
@@ -92,6 +95,7 @@
 import Basemap from '@arcgis/core/Basemap';
 import EsriMap from '@arcgis/core/Map';
 import Extent from '@arcgis/core/geometry/Extent';
+import FeatureFilter from '@arcgis/core/layers/support/FeatureFilter';
 import FeatureLayer from '@arcgis/core/layers/FeatureLayer';
 import FeatureLayerView from '@arcgis/core/views/layers/FeatureLayerView';
 import LayerView from '@arcgis/core/views/layers/LayerView';
@@ -102,7 +106,7 @@ import along from '@turf/along';
 import { lineString } from '@turf/helpers';
 import length from '@turf/length';
 
-import { defineComponent, onMounted, provide, ref } from 'vue';
+import { computed, defineComponent, onMounted, ref } from 'vue';
 import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router';
 
 import AddressSuggest from '@/components/address-suggest/AddressSuggest.vue';
@@ -114,7 +118,12 @@ import Listing from '@/components/street/Listing.vue';
 import MapVue from '@/components/map/Map.vue';
 import Panel from '@/components/panel/Panel.vue';
 import { Street } from '@/components/street/street';
+import Toggle from '@/elements/inputs/Toggle.vue';
 import { query } from '@/composables/use-graphql';
+import {
+  useStreetClassification,
+  ViewModel,
+} from '@/composables/use-street-classification';
 
 export default defineComponent({
   components: {
@@ -125,11 +134,12 @@ export default defineComponent({
     Listing,
     MapVue,
     Panel,
+    Toggle,
   },
   setup() {
     const street = ref<Partial<Street> | undefined>(undefined);
     const streets = ref<Array<Partial<Street>>>([]);
-    const open = ref(false);
+    const open = ref(true);
     const showCandidates = ref(false);
     const candidates = ref(new Array<TCandidate>());
     const basemap: Basemap = new Basemap({
@@ -156,6 +166,11 @@ export default defineComponent({
 
     const { push } = useRouter();
     const { params } = useRoute();
+    const { models } = useStreetClassification();
+
+    const classifications = computed(() => {
+      return models.value.filter((m) => m.group === 'design');
+    });
 
     const getStreet = async (id: string | string[]) => {
       const { data } = await query<{ street: Array<Street> }>(`{
@@ -251,9 +266,21 @@ export default defineComponent({
       },
       center,
       zoom,
+      classifications,
       highlightStreet,
       handleLayerView: (layerView: LayerView) => {
         layerViews.set(layerView.layer.id, layerView);
+      },
+      handleClassificationToggle(model: ViewModel) {
+        const m = classifications.value.find((m) => m.value === model.value);
+        if (m) m.enabled = !m.enabled;
+        const layerView = layerViews.get('classifications') as FeatureLayerView;
+        layerView.filter = new FeatureFilter({
+          where: `Design in (${classifications.value
+            .filter((c) => c.enabled)
+            .map((c) => `'${c.value}'`)
+            .join(',')})`,
+        });
       },
       async handleSearch({
         query: q,

@@ -9,7 +9,7 @@ import { Street } from '@/components/street/street';
 export type ViewModel = {
   group: string;
   value: string;
-  enabled: false;
+  enabled: boolean;
   label: string;
   symbol: { type: 'color'; value: RGBColorFactory };
   layer: FeatureLayer;
@@ -67,15 +67,14 @@ export const getModels = async (): Promise<Array<ViewModel>> => {
             return {
               group: value[0],
               value: info.value.toString(),
-              enabled: false,
+              enabled: true,
               label: info.label,
               symbol: { type: 'color', value: rgb(r, g, b, a) },
               layer: new FeatureLayer({
                 url: value[1],
                 outFields: ['*'],
-                definitionExpression: `${
-                  value[0]
-                } = '${info.value.toString()}'`,
+                definitionExpression: `${value[0]
+                  } = '${info.value.toString()}'`,
                 visible: false,
               }),
             };

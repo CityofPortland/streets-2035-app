@@ -5,7 +5,7 @@
       role="switch"
       :aria-checked="String(modelValue)"
       :aria-labelledby="`${id}-label`"
-      class="inline-flex items-center border border-current rounded text-sm"
+      class="inline-flex items-center border border-current rounded text-sm bg-white"
       @click="toggle"
     >
       <span class="px-1">on</span>
