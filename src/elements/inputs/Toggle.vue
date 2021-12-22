@@ -1,16 +1,29 @@
 <template>
   <div class="inline-flex items-center space-x-2">
-    <button
+    <Box
+      as="button"
+      :color="modelValue ? 'blue' : 'red'"
+      variant="light"
       :id="id"
       role="switch"
       :aria-checked="String(modelValue)"
       :aria-labelledby="`${id}-label`"
-      class="inline-flex items-center border border-current rounded text-sm"
+      class="inline-flex items-center border border-current rounded text-xs p-1 focus:ring-2 focus:ring-offset-1 focus:ring-current"
       @click="toggle"
     >
-      <span class="px-1">on</span>
-      <span class="px-1">off</span>
-    </button>
+      <Box
+        as="span"
+        :color="modelValue ? 'blue' : 'transparent'"
+        class="px-1 rounded"
+        >on</Box
+      >
+      <Box
+        as="span"
+        :color="modelValue ? 'transparent' : 'red'"
+        class="px-1 rounded"
+        >off</Box
+      >
+    </Box>
     <slot>
       <label :id="`${id}-label`">{{ label }}</label>
     </slot>
@@ -19,8 +32,11 @@
 <script lang="ts">
 import { defineComponent, toRefs } from 'vue';
 
+import Box from '@/elements/box/Box';
+
 export default defineComponent({
   name: 'Toggle',
+  components: { Box },
   props: {
     id: {
       type: String,
@@ -43,9 +59,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-[role='switch'][aria-checked='false'] :first-child,
-[role='switch'][aria-checked='true'] :last-child {
-  @apply bg-black text-white;
-}
-</style>
+<style scoped></style>

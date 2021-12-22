@@ -4,18 +4,7 @@
   >
     <h1 class="sr-only">Street listings</h1>
     <section
-      class="
-        w-full
-        sm:w-1/3
-        md:w-full
-        lg:w-1/3
-        xl:w-1/4
-        h-full
-        sm:h-(screen-16)
-        md:h-full
-        lg:h-(screen-16)
-        overflow-y-auto
-      "
+      class="w-full sm:w-1/3 md:w-full lg:w-1/3 xl:w-1/4 h-full sm:h-(screen-16) md:h-full lg:h-(screen-16) overflow-y-auto"
     >
       <section v-if="!street" class="p-4 grid grid-cols-1 gap-3">
         <address-suggest @search="handleSearch" />
@@ -35,9 +24,34 @@
           color="gray"
           variant="light"
           :open="open"
-          name="Filters"
+          name="Settings"
           @toggle="open = !open"
         >
+          <fieldset class="grid grid-cols-1 gap-1">
+            <div
+              v-for="(c, index) in classifications"
+              :key="index"
+              class="flex items-center space-x-1"
+            >
+              <Toggle
+                :id="`classification-${index}`"
+                :name="`classification-${index}`"
+                :modelValue="c.enabled"
+                @update:modelValue="handleClassificationToggle(c)"
+              >
+                <label
+                  :for="`classification-${index}`"
+                  class="inline-flex items-center space-x-1"
+                >
+                  <i
+                    class="w-5 h-5 border border-current rounded"
+                    :style="{ 'background-color': c.symbol.value.formatRgb() }"
+                  />
+                  <span>{{ c.label }}</span>
+                </label>
+              </Toggle>
+            </div>
+          </fieldset>
         </Panel>
         <ul v-if="streets.length" class="grid grid-cols-1 gap-3">
           <li v-for="street in streets" :key="street.id">
@@ -57,18 +71,7 @@
       </section>
     </section>
     <section
-      class="
-        w-full
-        sm:w-2/3
-        md:w-full
-        lg:w-2/3
-        xl:w-3/4
-        h-screen-50
-        sm:h-(screen-16)
-        md:h-screen-50
-        lg:h-(screen-16)
-        overflow-y-auto
-      "
+      class="w-full sm:w-2/3 md:w-full lg:w-2/3 xl:w-3/4 h-screen-50 sm:h-(screen-16) md:h-screen-50 lg:h-(screen-16) overflow-y-auto"
     >
       <MapVue
         id="streets"
@@ -80,8 +83,19 @@
         @extent-change="handleExtent"
         @click-hit="handleClick"
         @layer-view="handleLayerView"
+        @pointer-hit="handlePointer"
       >
-        <template v-slot:top-right> </template>
+        <template v-slot:top-right>
+          <section
+            v-if="pointer"
+            class="p-2 border border-black rounded-md shadow bg-white overflow-auto flex flex-col"
+          >
+            <span class="font-semibold text-lg">{{ pointer.name }}</span>
+            <span class="text-gray-700">{{
+              classificationLabel('design', pointer.classifications?.design)
+            }}</span>
+          </section>
+        </template>
         <template v-slot:bottom-right> </template>
       </MapVue>
     </section>
@@ -92,6 +106,7 @@
 import Basemap from '@arcgis/core/Basemap';
 import EsriMap from '@arcgis/core/Map';
 import Extent from '@arcgis/core/geometry/Extent';
+import FeatureFilter from '@arcgis/core/layers/support/FeatureFilter';
 import FeatureLayer from '@arcgis/core/layers/FeatureLayer';
 import FeatureLayerView from '@arcgis/core/views/layers/FeatureLayerView';
 import LayerView from '@arcgis/core/views/layers/LayerView';
@@ -102,7 +117,7 @@ import along from '@turf/along';
 import { lineString } from '@turf/helpers';
 import length from '@turf/length';
 
-import { defineComponent, onMounted, provide, ref } from 'vue';
+import { computed, defineComponent, onMounted, ref } from 'vue';
 import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router';
 
 import AddressSuggest from '@/components/address-suggest/AddressSuggest.vue';
@@ -114,7 +129,13 @@ import Listing from '@/components/street/Listing.vue';
 import MapVue from '@/components/map/Map.vue';
 import Panel from '@/components/panel/Panel.vue';
 import { Street } from '@/components/street/street';
+import Toggle from '@/elements/inputs/Toggle.vue';
 import { query } from '@/composables/use-graphql';
+import {
+  useStreetClassification,
+  ViewModel,
+} from '@/composables/use-street-classification';
+import { ESRIStreet, useStreet } from '@/composables/use-street';
 
 export default defineComponent({
   components: {
@@ -125,13 +146,15 @@ export default defineComponent({
     Listing,
     MapVue,
     Panel,
+    Toggle,
   },
   setup() {
     const street = ref<Partial<Street> | undefined>(undefined);
     const streets = ref<Array<Partial<Street>>>([]);
-    const open = ref(false);
+    const open = ref(true);
     const showCandidates = ref(false);
     const candidates = ref(new Array<TCandidate>());
+    const pointer = ref<Partial<Street> | undefined>(undefined);
     const basemap: Basemap = new Basemap({
       baseLayers: [
         'https://www.portlandmaps.com/arcgis/rest/services/Public/Basemap_Color/MapServer',
@@ -150,12 +173,27 @@ export default defineComponent({
       basemap,
       layers,
     });
+    const extent = ref<Extent>(
+      new Extent({
+        spatialReference: { wkid: 102100 },
+        xmin: -13674088.5469,
+        ymin: 5689892.284199998,
+        xmax: -13633591.503800001,
+        ymax: 5724489.626800001,
+      }).toJSON()
+    );
     const center = ref<Partial<Point>>({});
     const zoom = ref(12);
     const layerViews = new Map<string, LayerView>();
 
     const { push } = useRouter();
     const { params } = useRoute();
+    const { models, classificationLabel } = useStreetClassification();
+    const { convertStreet } = useStreet();
+
+    const classifications = computed(() => {
+      return models.value.filter((m) => m.group === 'design');
+    });
 
     const getStreet = async (id: string | string[]) => {
       const { data } = await query<{ street: Array<Street> }>(`{
@@ -178,6 +216,28 @@ export default defineComponent({
       }`);
 
       return data?.street[0];
+    };
+
+    const createListings = () => {
+      const layerView = layerViews.get('classifications') as FeatureLayerView;
+      if (layerView) {
+        const query = layerView.filter
+          ? layerView.filter.createQuery()
+          : layerView.layer.createQuery();
+        query.outFields = [
+          'TranPlanID',
+          'StreetName',
+          'Design',
+          'Bicycle',
+          'Transit',
+        ];
+        query.geometry = new Extent(extent.value);
+        layerView.queryFeatures(query).then((result) => {
+          streets.value = result.features.map((graphic) => {
+            return convertStreet('esri', graphic.attributes) as Partial<Street>;
+          });
+        });
+      }
     };
 
     const centerStreet = (street: Partial<Street>) => {
@@ -242,18 +302,27 @@ export default defineComponent({
       candidates,
       showCandidates,
       map,
-      extent: {
-        spatialReference: { wkid: 102100 },
-        xmin: -13674088.5469,
-        ymin: 5689892.284199998,
-        xmax: -13633591.503800001,
-        ymax: 5724489.626800001,
-      },
+      extent,
       center,
       zoom,
+      classifications,
+      pointer,
+      classificationLabel,
       highlightStreet,
       handleLayerView: (layerView: LayerView) => {
         layerViews.set(layerView.layer.id, layerView);
+      },
+      handleClassificationToggle(model: ViewModel) {
+        const m = classifications.value.find((m) => m.value === model.value);
+        if (m) m.enabled = !m.enabled;
+        const layerView = layerViews.get('classifications') as FeatureLayerView;
+        layerView.filter = new FeatureFilter({
+          where: `Design in (${classifications.value
+            .filter((c) => c.enabled)
+            .map((c) => `'${c.value}'`)
+            .join(',')})`,
+        });
+        createListings();
       },
       async handleSearch({
         query: q,
@@ -294,48 +363,28 @@ export default defineComponent({
       handleZoom(z: number) {
         zoom.value = z;
       },
-      handleExtent(extent: Extent) {
+      handleExtent(e: Extent) {
+        extent.value = e.toJSON();
         // retrieve the streets within the extent if ~ one square km
-        if (extent.width <= 1 * 1000) {
-          extent.spatialReference.wkid;
-          const layerView = layerViews.get(
-            'classifications'
-          ) as FeatureLayerView;
-          if (layerView) {
-            const query = layerView.layer.createQuery();
-            query.outFields = [
-              'TranPlanID',
-              'StreetName',
-              'Design',
-              'Bicycle',
-              'Transit',
-            ];
-            query.geometry = extent;
-            layerView.queryFeatures(query).then((result) => {
-              streets.value = result.features.map((graphic) => {
-                const { TranPlanID, StreetName, Design, Bicycle, Transit } =
-                  graphic.attributes;
-                return {
-                  id: TranPlanID,
-                  name: StreetName,
-                  classifications: {
-                    design: Design,
-                    bicycle: Bicycle,
-                    transit: Transit,
-                  },
-                } as Street;
-              });
-            });
-          }
+        if (e.width <= 1 * 1000) {
+          createListings();
         }
       },
       handleClick(
-        event: Array<
-          { graphic?: { attributes: { TranPlanID: string } } } | undefined
-        >
+        event: Array<{ graphic?: { attributes: ESRIStreet } } | undefined>
       ) {
         const street = event[0]?.graphic?.attributes;
         if (street) push(`/streets/${street.TranPlanID}`);
+      },
+      handlePointer(event: Array<{ graphic: { attributes: ESRIStreet } }>) {
+        if (event && event.length > 0) {
+          pointer.value = convertStreet(
+            'esri',
+            event[0].graphic.attributes
+          ) as Partial<Street>;
+        } else {
+          pointer.value = undefined;
+        }
       },
     };
   },
