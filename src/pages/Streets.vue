@@ -27,7 +27,7 @@
           name="Settings"
           @toggle="open = !open"
         >
-          <fieldset>
+          <fieldset class="grid grid-cols-1 gap-1">
             <div
               v-for="(c, index) in classifications"
               :key="index"
@@ -83,8 +83,19 @@
         @extent-change="handleExtent"
         @click-hit="handleClick"
         @layer-view="handleLayerView"
+        @pointer-hit="handlePointer"
       >
-        <template v-slot:top-right> </template>
+        <template v-slot:top-right>
+          <section
+            v-if="pointer"
+            class="p-2 border border-black rounded-md shadow bg-white overflow-auto flex flex-col"
+          >
+            <span class="font-semibold text-lg">{{ pointer.name }}</span>
+            <span class="text-gray-700">{{
+              classificationLabel('design', pointer.classifications?.design)
+            }}</span>
+          </section>
+        </template>
         <template v-slot:bottom-right> </template>
       </MapVue>
     </section>
@@ -124,6 +135,7 @@ import {
   useStreetClassification,
   ViewModel,
 } from '@/composables/use-street-classification';
+import { ESRIStreet, useStreet } from '@/composables/use-street';
 
 export default defineComponent({
   components: {
@@ -142,6 +154,7 @@ export default defineComponent({
     const open = ref(true);
     const showCandidates = ref(false);
     const candidates = ref(new Array<TCandidate>());
+    const pointer = ref<Partial<Street> | undefined>(undefined);
     const basemap: Basemap = new Basemap({
       baseLayers: [
         'https://www.portlandmaps.com/arcgis/rest/services/Public/Basemap_Color/MapServer',
@@ -160,13 +173,23 @@ export default defineComponent({
       basemap,
       layers,
     });
+    const extent = ref<Extent>(
+      new Extent({
+        spatialReference: { wkid: 102100 },
+        xmin: -13674088.5469,
+        ymin: 5689892.284199998,
+        xmax: -13633591.503800001,
+        ymax: 5724489.626800001,
+      }).toJSON()
+    );
     const center = ref<Partial<Point>>({});
     const zoom = ref(12);
     const layerViews = new Map<string, LayerView>();
 
     const { push } = useRouter();
     const { params } = useRoute();
-    const { models } = useStreetClassification();
+    const { models, classificationLabel } = useStreetClassification();
+    const { convertStreet } = useStreet();
 
     const classifications = computed(() => {
       return models.value.filter((m) => m.group === 'design');
@@ -193,6 +216,28 @@ export default defineComponent({
       }`);
 
       return data?.street[0];
+    };
+
+    const createListings = () => {
+      const layerView = layerViews.get('classifications') as FeatureLayerView;
+      if (layerView) {
+        const query = layerView.filter
+          ? layerView.filter.createQuery()
+          : layerView.layer.createQuery();
+        query.outFields = [
+          'TranPlanID',
+          'StreetName',
+          'Design',
+          'Bicycle',
+          'Transit',
+        ];
+        query.geometry = new Extent(extent.value);
+        layerView.queryFeatures(query).then((result) => {
+          streets.value = result.features.map((graphic) => {
+            return convertStreet('esri', graphic.attributes) as Partial<Street>;
+          });
+        });
+      }
     };
 
     const centerStreet = (street: Partial<Street>) => {
@@ -257,16 +302,12 @@ export default defineComponent({
       candidates,
       showCandidates,
       map,
-      extent: {
-        spatialReference: { wkid: 102100 },
-        xmin: -13674088.5469,
-        ymin: 5689892.284199998,
-        xmax: -13633591.503800001,
-        ymax: 5724489.626800001,
-      },
+      extent,
       center,
       zoom,
       classifications,
+      pointer,
+      classificationLabel,
       highlightStreet,
       handleLayerView: (layerView: LayerView) => {
         layerViews.set(layerView.layer.id, layerView);
@@ -281,6 +322,7 @@ export default defineComponent({
             .map((c) => `'${c.value}'`)
             .join(',')})`,
         });
+        createListings();
       },
       async handleSearch({
         query: q,
@@ -321,48 +363,28 @@ export default defineComponent({
       handleZoom(z: number) {
         zoom.value = z;
       },
-      handleExtent(extent: Extent) {
+      handleExtent(e: Extent) {
+        extent.value = e.toJSON();
         // retrieve the streets within the extent if ~ one square km
-        if (extent.width <= 1 * 1000) {
-          extent.spatialReference.wkid;
-          const layerView = layerViews.get(
-            'classifications'
-          ) as FeatureLayerView;
-          if (layerView) {
-            const query = layerView.layer.createQuery();
-            query.outFields = [
-              'TranPlanID',
-              'StreetName',
-              'Design',
-              'Bicycle',
-              'Transit',
-            ];
-            query.geometry = extent;
-            layerView.queryFeatures(query).then((result) => {
-              streets.value = result.features.map((graphic) => {
-                const { TranPlanID, StreetName, Design, Bicycle, Transit } =
-                  graphic.attributes;
-                return {
-                  id: TranPlanID,
-                  name: StreetName,
-                  classifications: {
-                    design: Design,
-                    bicycle: Bicycle,
-                    transit: Transit,
-                  },
-                } as Street;
-              });
-            });
-          }
+        if (e.width <= 1 * 1000) {
+          createListings();
         }
       },
       handleClick(
-        event: Array<
-          { graphic?: { attributes: { TranPlanID: string } } } | undefined
-        >
+        event: Array<{ graphic?: { attributes: ESRIStreet } } | undefined>
       ) {
         const street = event[0]?.graphic?.attributes;
         if (street) push(`/streets/${street.TranPlanID}`);
+      },
+      handlePointer(event: Array<{ graphic: { attributes: ESRIStreet } }>) {
+        if (event && event.length > 0) {
+          pointer.value = convertStreet(
+            'esri',
+            event[0].graphic.attributes
+          ) as Partial<Street>;
+        } else {
+          pointer.value = undefined;
+        }
       },
     };
   },
