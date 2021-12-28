@@ -1,4 +1,5 @@
 import axios from 'axios';
+import sha256 from 'crypto-js/sha256';
 
 type GraphQLError = {
   message: string;
@@ -10,6 +11,8 @@ export type GraphQLResponse<T> = {
   errors?: Array<GraphQLError>;
 };
 
+const cache: Map<string, GraphQLResponse<unknown>> = new Map();
+
 export async function query<T>(q: string): Promise<GraphQLResponse<T>> {
   if (!process.env.VUE_APP_GRAPHQL_URL) {
     throw Error(
@@ -17,10 +20,18 @@ export async function query<T>(q: string): Promise<GraphQLResponse<T>> {
     );
   }
 
+  q = q.replace(/\s+/g, ' ').trim();
+
+  const hash = sha256(q).toString();
+
+  if (cache.has(hash)) {
+    return cache.get(hash) as GraphQLResponse<T>;
+  }
+
   const res = await axios.post<GraphQLResponse<T>>(
     process.env.VUE_APP_GRAPHQL_URL,
     {
-      query: q.replace(/\s+/, ' '),
+      query: q,
     },
     {
       headers: {
@@ -28,6 +39,8 @@ export async function query<T>(q: string): Promise<GraphQLResponse<T>> {
       },
     }
   );
+
+  cache.set(hash, res.data);
 
   return res.data;
 }
