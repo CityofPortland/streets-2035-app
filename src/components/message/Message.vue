@@ -8,10 +8,10 @@
       v-if="icon"
       type="outline"
       :name="icon"
-      class="h-10 w-10 flex-shrink-0"
+      class="h-6 w-6 flex-shrink-0"
     />
     <div class="flex flex-col space-y-3">
-      <p class="mt-1 text-xl font-semibold" v-if="summary">{{ summary }}</p>
+      <p class="font-semibold" v-if="summary">{{ summary }}</p>
       <slot></slot>
     </div>
   </Box>

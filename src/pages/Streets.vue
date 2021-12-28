@@ -58,6 +58,9 @@
             <Listing :street="street" @highlight="highlightStreet(street)" />
           </li>
         </ul>
+        <Message v-else color="blue" variant="light" icon="information">
+          <p>{{ message }}</p>
+        </Message>
       </section>
       <section v-else class="p-4 grid grid-cols-1 gap-3">
         <div>
@@ -76,7 +79,7 @@
       <MapVue
         id="streets"
         :map="map"
-        :extent="extent"
+        :extent="defaultExtent"
         :center="center"
         :zoom="zoom"
         @zoom-change="handleZoom"
@@ -127,6 +130,7 @@ import CandidateList from '@/components/address-suggest/CandidateList.vue';
 import Full from '@/components/street/Full.vue';
 import Listing from '@/components/street/Listing.vue';
 import MapVue from '@/components/map/Map.vue';
+import Message from '@/components/message/Message.vue';
 import Panel from '@/components/panel/Panel.vue';
 import { Street } from '@/components/street/street';
 import Toggle from '@/elements/inputs/Toggle.vue';
@@ -137,6 +141,12 @@ import {
 } from '@/composables/use-street-classification';
 import { ESRIStreet, useStreet } from '@/composables/use-street';
 
+const MESSAGES = {
+  ZOOM_IN: 'You must zoom in further to view listings of streets',
+  ENABLE_CLASSIFICATION:
+    'You must enable a classification to view listings of streets',
+};
+
 export default defineComponent({
   components: {
     AddressSuggest,
@@ -145,12 +155,14 @@ export default defineComponent({
     Full,
     Listing,
     MapVue,
+    Message,
     Panel,
     Toggle,
   },
   setup() {
     const street = ref<Partial<Street> | undefined>(undefined);
     const streets = ref<Array<Partial<Street>>>([]);
+    const message = ref(MESSAGES.ZOOM_IN);
     const open = ref(true);
     const showCandidates = ref(false);
     const candidates = ref(new Array<TCandidate>());
@@ -173,7 +185,7 @@ export default defineComponent({
       basemap,
       layers,
     });
-    const extent = ref<Extent>(
+    const defaultExtent = ref<Extent>(
       new Extent({
         spatialReference: { wkid: 102100 },
         xmin: -13674088.5469,
@@ -182,6 +194,7 @@ export default defineComponent({
         ymax: 5724489.626800001,
       }).toJSON()
     );
+    let extent = new Extent(defaultExtent.value);
     const center = ref<Partial<Point>>({});
     const zoom = ref(12);
     const layerViews = new Map<string, LayerView>();
@@ -189,54 +202,56 @@ export default defineComponent({
     const { push } = useRouter();
     const { params } = useRoute();
     const { models, classificationLabel } = useStreetClassification();
-    const { convertStreet } = useStreet();
+    const { convertStreet, retrieveStreet } = useStreet();
 
     const classifications = computed(() => {
       return models.value.filter((m) => m.group === 'design');
     });
 
     const getStreet = async (id: string | string[]) => {
-      const { data } = await query<{ street: Array<Street> }>(`{
-        street(id:"${id}") {
-          id
-          name
-          classifications {
-            design
-            pedestrian
-            bicycle
-            transit
-            freight
-            emergency
-            traffic
-          }
-          geometry {
-            coordinates
-          }
-        }
-      }`);
+      const street = await retrieveStreet({
+        street: {
+          id: Array.isArray(id) ? id[0] : id,
+        },
+        classifications: [
+          'design',
+          'pedestrian',
+          'bicycle',
+          'transit',
+          'freight',
+          'emergency',
+          'traffic',
+        ],
+      });
 
-      return data?.street[0];
+      return street[0];
     };
 
-    const createListings = () => {
-      const layerView = layerViews.get('classifications') as FeatureLayerView;
-      if (layerView) {
-        const query = layerView.filter
-          ? layerView.filter.createQuery()
-          : layerView.layer.createQuery();
-        query.outFields = [
-          'TranPlanID',
-          'StreetName',
-          'Design',
-          'Bicycle',
-          'Transit',
-        ];
-        query.geometry = new Extent(extent.value);
-        layerView.queryFeatures(query).then((result) => {
-          streets.value = result.features.map((graphic) => {
-            return convertStreet('esri', graphic.attributes) as Partial<Street>;
-          });
+    const createListings = async () => {
+      if (extent.width <= 1 * 1000) {
+        const s = await retrieveStreet({
+          extent,
+          classifications: ['design', 'bicycle', 'transit'],
         });
+
+        streets.value = s
+          .filter((x) =>
+            classifications.value
+              .filter((c) => c.enabled)
+              .find((c) => c.value == x.classifications.design)
+          )
+          .sort((a, b) =>
+            a.name.localeCompare(b.name, undefined, {
+              sensitivity: 'base',
+            })
+          );
+
+        if (!streets.value.length) {
+          message.value = MESSAGES.ENABLE_CLASSIFICATION;
+        }
+      } else {
+        streets.value = [];
+        message.value = MESSAGES.ZOOM_IN;
       }
     };
 
@@ -298,11 +313,12 @@ export default defineComponent({
     return {
       street,
       streets,
+      message,
       open,
       candidates,
       showCandidates,
       map,
-      extent,
+      defaultExtent,
       center,
       zoom,
       classifications,
@@ -364,11 +380,8 @@ export default defineComponent({
         zoom.value = z;
       },
       handleExtent(e: Extent) {
-        extent.value = e.toJSON();
-        // retrieve the streets within the extent if ~ one square km
-        if (e.width <= 1 * 1000) {
-          createListings();
-        }
+        extent = e;
+        createListings();
       },
       handleClick(
         event: Array<{ graphic?: { attributes: ESRIStreet } } | undefined>
