@@ -180,6 +180,9 @@ export default defineComponent({
         url: 'https://www.portlandmaps.com/arcgis/rest/services/Public/Transportation_System_Plan/MapServer/10',
         outFields: ['*'],
       }),
+      new TileLayer({
+        url: 'https://www.portlandmaps.com/arcgis/rest/services/Public/Basemap_Color_Labels/MapServer'
+      })
     ];
     const map = new EsriMap({
       basemap,
