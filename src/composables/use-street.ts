@@ -72,6 +72,7 @@ export function useStreet() {
               id
               ${street.name ? '' : 'name'}
               ${street.block ? '' : 'block'}
+              ${street.width ? '' : 'width'}
               classifications {
                   ${classifications.join(' ')}
               }
@@ -89,6 +90,7 @@ export function useStreet() {
               id
               name
               block
+              width
               classifications {
                   ${classifications.join(' ')}
               }
