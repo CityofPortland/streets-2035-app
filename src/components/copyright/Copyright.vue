@@ -6,12 +6,12 @@
         <img
           class="max-w-16 max-h-16"
           alt="Portland City Seal"
-          src="./city_seal.png"
+          src="./city_seal@64.webp"
         />
         <img
           class="max-h-16"
           alt="PBOT Vertical Applications logo"
-          src="./pbot-verticalapps-logo_dark.png"
+          src="./pbot-verticalapps-logo_dark@64.webp"
         />
       </div>
       <p class="text-gray-700 text-base">© Copyright {{ copyrightDate }}</p>
