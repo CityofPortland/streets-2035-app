@@ -1,7 +1,7 @@
+FROM node:16 AS builder
+
 # In case we want to test with a different mode or environment variables
 ARG MODE=production
-
-FROM node:16 AS builder
 
 COPY ./.docker/rootfs /
 
