@@ -7,30 +7,31 @@ on:
 
 jobs:
   build-image:
+    name: Build Docker image
     runs-on: ubuntu-latest
     env:
       REPOSITORY: ${{ secrets.ACR_NAME }}.azurecr.io
-      ACR_NAME: ${{ secrets.ACR_NAME }}
       IMAGE: streets-2035
     steps:
       - name: Set $IMAGE_TAG
         run: echo "IMAGE_TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - uses: actions/checkout@v2
+      - name: Run Docker build
+        run: |
+          docker build \
+          --tag $REPOSITORY/$IMAGE:$IMAGE_TAG \
+          --file ./.docker/Dockerfile \
+          .
       - name: Log in to Azure
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: Log in to Azure Container Registry
+        env:
+          ACR_NAME: ${{ secrets.ACR_NAME }}
         run: az acr login --name $ACR_NAME
-      - name: Pull last main build
-        run: docker pull $REPOSITORY/$IMAGE:main
-      - name: Tag last main build as release
-        run: |
-          docker tag \
-          $REPOSITORY/$IMAGE:main \
-          $REPOSITORY/$IMAGE:$IMAGE_TAG
       - name: Push image to repository
-        run: docker push $REPOSITORY/$IMAGE:$IMAGE_TAG
+        run: docker push $REPOSITORY/$IMAGE:main
 
   deploy-release:
     name: Deploy Helm upgrade on production namespace
