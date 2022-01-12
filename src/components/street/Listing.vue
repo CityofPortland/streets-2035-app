@@ -4,23 +4,17 @@
     append
     @mouseenter="handleHighlight()"
     @focus="handleHighlight()"
-    class="
-      flex flex-col
-      gap-1
-      p-2
-      rounded-lg
-      shadow
-      ring-1 ring-black ring-opacity-50
-      cursor-pointer
-      hover:bg-blue-100 hover:ring-4 hover:ring-blue-300
-      focus:bg-blue-100 focus:ring-4 focus:ring-blue-300
-    "
+    class="flex flex-col gap-1 p-2 rounded-lg shadow ring-1 ring-black ring-opacity-50 cursor-pointer hover:bg-blue-100 hover:ring-4 hover:ring-blue-300 focus:bg-blue-100 focus:ring-4 focus:ring-blue-300"
   >
     <h3 class="text-lg font-bold leading-tight">
       {{ street.name?.trim() || 'Unnamed segment' }}
     </h3>
     <div v-if="street.block" class="text-gray-700 font-semibold">
       {{ street.block }} block
+    </div>
+    <div v-if="street.width" class="flex space-x-1">
+      <label class="text-gray-700 font-semibold">Width</label>
+      <span>{{ street.width }} feet</span>
     </div>
     <div class="flex flex-wrap gap-2">
       <Box
