@@ -82,6 +82,14 @@
         :extent="defaultExtent"
         :center="center"
         :zoom="zoom"
+        :options="{
+          highlightOptions: {
+            color: '#FF9494',
+            fillOpacity: 0.8,
+            haloColor: '#E65C5C',
+            haloOpacity: 1,
+          },
+        }"
         @zoom-change="handleZoom"
         @extent-change="handleExtent"
         @click-hit="handleClick"
