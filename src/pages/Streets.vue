@@ -54,8 +54,17 @@
           </fieldset>
         </Panel>
         <ul v-if="streets.length" class="grid grid-cols-1 gap-3">
-          <li v-for="street in streets" :key="street.id">
-            <Listing :street="street" @highlight="highlightStreet(street)" />
+          <li v-for="(street, index) in streets" :key="index">
+            <Section
+              :street="street"
+              @highlight-section="
+                highlightStreet({ type: 'section', data: $event })
+              "
+              @highlight-segment="
+                highlightStreet({ type: 'segment', data: $event })
+              "
+            />
+            <!-- <Listing :street="street" @highlight="highlightStreet(street)" /> -->
           </li>
         </ul>
         <Message v-else color="blue" variant="light" icon="information">
@@ -136,11 +145,11 @@ import Candidate from '@/components/address-suggest/Candidate.vue';
 import { Candidate as TCandidate } from '@/components/address-suggest/candidate';
 import CandidateList from '@/components/address-suggest/CandidateList.vue';
 import Full from '@/components/street/Full.vue';
-import Listing from '@/components/street/Listing.vue';
 import MapVue from '@/components/map/Map.vue';
 import Message from '@/components/message/Message.vue';
 import Panel from '@/components/panel/Panel.vue';
-import { Street } from '@/components/street/street';
+import Section from '@/components/street/Section.vue';
+import { Street, StreetSection } from '@/components/street/street';
 import Toggle from '@/elements/inputs/Toggle.vue';
 import { query } from '@/composables/use-graphql';
 import {
@@ -161,9 +170,9 @@ export default defineComponent({
     Candidate,
     CandidateList,
     Full,
-    Listing,
     MapVue,
     Message,
+    Section,
     Panel,
     Toggle,
   },
@@ -189,8 +198,8 @@ export default defineComponent({
         outFields: ['*'],
       }),
       new TileLayer({
-        url: 'https://www.portlandmaps.com/arcgis/rest/services/Public/Basemap_Color_Labels/MapServer'
-      })
+        url: 'https://www.portlandmaps.com/arcgis/rest/services/Public/Basemap_Color_Labels/MapServer',
+      }),
     ];
     const map = new EsriMap({
       basemap,
@@ -245,17 +254,44 @@ export default defineComponent({
           classifications: ['design', 'bicycle', 'transit'],
         });
 
-        streets.value = s
-          .filter((x) =>
-            classifications.value
-              .filter((c) => c.enabled)
-              .find((c) => c.value == x.classifications.design)
-          )
-          .sort((a, b) =>
-            a.name.localeCompare(b.name, undefined, {
-              sensitivity: 'base',
-            })
-          );
+        streets.value = [
+          ...s
+            .filter((x) =>
+              classifications.value
+                .filter((c) => c.enabled)
+                .find((c) => c.value == x.classifications.design)
+            )
+            .reduce<Map<string, StreetSection>>((acc, curr) => {
+              const hash = `${curr.name}:${curr.classifications.design}:${curr.classifications.bicycle}:${curr.classifications.transit}`;
+              if (acc.has(hash)) {
+                const section = acc.get(hash);
+                if (section) {
+                  section.segments.push(curr);
+                  section.minWidth = Math.min(
+                    section.minWidth || curr.width,
+                    curr.width
+                  );
+                  section.maxWidth = Math.max(
+                    section.maxWidth || curr.width,
+                    curr.width
+                  );
+                }
+              } else {
+                acc.set(hash, {
+                  segments: [curr],
+                  minWidth: curr.width,
+                  maxWidth: curr.width,
+                  ...curr,
+                });
+              }
+              return acc;
+            }, new Map())
+            .values(),
+        ].sort((a, b) =>
+          a.name.localeCompare(b.name, undefined, {
+            sensitivity: 'base',
+          })
+        );
 
         if (!streets.value.length) {
           message.value = MESSAGES.ENABLE_CLASSIFICATION;
@@ -283,11 +319,26 @@ export default defineComponent({
 
     let highlight: { remove: () => void };
 
-    const highlightStreet = (street: Partial<Street>) => {
+    const highlightStreet = (options: {
+      type: 'section' | 'segment';
+      data: Partial<StreetSection> | Partial<Street>;
+    }) => {
       const layerView = layerViews.get('classifications') as FeatureLayerView;
       if (layerView) {
         const query = layerView.layer.createQuery();
-        query.where = `TranPlanID = '${street.id}'`;
+        const where =
+          options.type == 'segment'
+            ? `('${(options.data as Street).id}')`
+            : `(${(options.data as StreetSection).segments.reduce(
+                (acc, curr, idx) => {
+                  if (idx > 0) acc = acc.concat(',');
+                  acc = acc.concat(`'${curr.id}'`);
+                  return acc;
+                },
+                ''
+              )})`;
+        console.log(`where: ${where}`);
+        query.where = `TranPlanID IN ${where}`;
         layerView.queryFeatures(query).then((result) => {
           if (highlight) highlight.remove();
           highlight = layerView.highlight(result.features);
@@ -300,7 +351,7 @@ export default defineComponent({
         street.value = await getStreet(params.id);
         if (street.value) {
           centerStreet(street.value);
-          highlightStreet(street.value);
+          highlightStreet({ type: 'segment', data: street.value });
         }
       }
     });
@@ -312,7 +363,7 @@ export default defineComponent({
         // center on the midpoint
         if (street.value) {
           centerStreet(street.value);
-          highlightStreet(street.value);
+          highlightStreet({ type: 'segment', data: street.value });
         }
         // add a graphic for higlighting the street
       } else {

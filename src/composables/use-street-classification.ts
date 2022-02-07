@@ -4,7 +4,7 @@ import axios from 'axios';
 import { rgb, RGBColorFactory } from 'd3-color';
 import { computed, ComputedRef, inject, Ref } from 'vue';
 
-import { Street } from '@/components/street/street';
+import { Street, StreetSection } from '@/components/street/street';
 
 export type ViewModel = {
   group: string;
@@ -73,8 +73,9 @@ export const getModels = async (): Promise<Array<ViewModel>> => {
               layer: new FeatureLayer({
                 url: value[1],
                 outFields: ['*'],
-                definitionExpression: `${value[0]
-                  } = '${info.value.toString()}'`,
+                definitionExpression: `${
+                  value[0]
+                } = '${info.value.toString()}'`,
                 visible: false,
               }),
             };
@@ -87,7 +88,7 @@ export const getModels = async (): Promise<Array<ViewModel>> => {
   return models;
 };
 
-export function useStreetClassification(street?: Ref<Street>): {
+export function useStreetClassification(street?: Ref<Street | StreetSection>): {
   models: Ref<Array<ViewModel>>;
   classificationKeys: ComputedRef<Array<string>>;
   classificationLabel: (type: string, value: string) => string;

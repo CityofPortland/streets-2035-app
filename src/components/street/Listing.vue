@@ -23,7 +23,7 @@
         as="span"
         color="gray"
         variant="light"
-        class="inline-flex px-1 text-sm ring-1 ring-black rounded"
+        class="inline-flex px-1 text-xs uppercase ring-1 ring-black rounded"
       >
         {{
           classificationLabel(
