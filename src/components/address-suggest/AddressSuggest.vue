@@ -33,14 +33,7 @@
         tabindex="0"
         required="required"
         v-model="query"
-        class="
-          flex-1
-          min-w-0
-          appearance-none
-          bg-transparent
-          border-transparent
-          placeholder-gray-600
-        "
+        class="flex-1 min-w-0 appearance-none bg-transparent border-transparent placeholder-gray-600"
       />
       <Button
         type="submit"

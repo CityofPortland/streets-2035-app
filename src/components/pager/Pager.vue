@@ -3,15 +3,7 @@
     as="nav"
     color="gray"
     variant="light"
-    class="
-      p-1
-      border border-gray-500
-      rounded-lg
-      flex
-      items-center
-      justify-between
-      text-sm
-    "
+    class="p-1 border border-gray-500 rounded-lg flex items-center justify-between text-sm"
   >
     <Button
       label="Go to previous item"

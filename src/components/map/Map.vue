@@ -11,28 +11,14 @@
         <div class="flex flex-col shadow-lg">
           <button
             title="Zoom in"
-            class="
-              p-2
-              bg-white
-              border border-b
-              rounded-t
-              border-fog-900
-              focus:outline-none focus:shadow-outline
-            "
+            class="p-2 bg-white border border-b rounded-t border-fog-900 focus:outline-none focus:shadow-outline"
             v-on:click="incrementZoom"
           >
             <Icon type="solid" name="plus" class="w-4 h-4" />
           </button>
           <button
             title="Zoom out"
-            class="
-              p-2
-              bg-white
-              border border-t
-              rounded-b
-              border-fog-900
-              focus:outline-none focus:shadow-outline
-            "
+            class="p-2 bg-white border border-t rounded-b border-fog-900 focus:outline-none focus:shadow-outline"
             v-on:click="decrementZoom"
           >
             <Icon type="solid" name="minus" class="w-4 h-4" />

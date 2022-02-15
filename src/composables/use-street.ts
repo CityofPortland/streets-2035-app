@@ -32,7 +32,13 @@ type RetrieveOptions = {
   extent?: Extent;
 };
 
-export function useStreet() {
+export function useStreet(): {
+  convertStreet(
+    sourceType: 'esri' | 'graphql',
+    street: Street | ESRIStreet
+  ): Partial<Street | ESRIStreet>;
+  retrieveStreet(options: RetrieveOptions): Promise<Array<Street>>;
+} {
   return {
     convertStreet(
       sourceType: 'esri' | 'graphql',
