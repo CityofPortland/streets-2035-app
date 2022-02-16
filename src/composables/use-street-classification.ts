@@ -73,8 +73,9 @@ export const getModels = async (): Promise<Array<ViewModel>> => {
               layer: new FeatureLayer({
                 url: value[1],
                 outFields: ['*'],
-                definitionExpression: `${value[0]
-                  } = '${info.value.toString()}'`,
+                definitionExpression: `${
+                  value[0]
+                } = '${info.value.toString()}'`,
                 visible: false,
               }),
             };

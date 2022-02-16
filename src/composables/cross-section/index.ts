@@ -2,13 +2,27 @@ import { computed, ComputedRef, Ref } from 'vue';
 
 import { Street } from '@/components/street/street';
 
+import thirtySix from './36.json';
+import forty from './40.json';
+import fortyFour from './44.json';
 import fifty from './50.json';
+import fiftySix from './56.json';
+import sixty from './60.json';
+import sixtySix from './66.json';
+import seventySix from './76.json';
 
 const database: Record<
   number,
   Record<string, Record<string, Record<string, Array<string>>>>
 > = {
+  36: thirtySix,
+  40: forty,
+  44: fortyFour,
   50: fifty,
+  56: fiftySix,
+  60: sixty,
+  66: sixtySix,
+  76: seventySix,
 };
 
 export default database;

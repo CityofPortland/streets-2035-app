@@ -16,14 +16,7 @@
       }"
     >
       <button
-        class="
-          p-2
-          w-full
-          flex
-          items-center
-          justify-between
-          focus:outline-none focus:shadow-outline
-        "
+        class="p-2 w-full flex items-center justify-between focus:outline-none focus:shadow-outline"
         @click="toggle()"
       >
         <slot name="header">
