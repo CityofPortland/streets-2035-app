@@ -8,14 +8,7 @@
     <slot>
       <span
         v-if="candidate.type"
-        class="
-          px-2
-          rounded-full
-          bg-blue-500
-          text-white text-xs
-          font-bold
-          uppercase
-        "
+        class="px-2 rounded-full bg-blue-500 text-white text-xs font-bold uppercase"
         >{{ candidate.type }}</span
       >
       <div class="text-sm">{{ candidate.name }}</div>
