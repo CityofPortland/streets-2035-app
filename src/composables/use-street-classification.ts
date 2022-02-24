@@ -18,31 +18,31 @@ export type ViewModel = {
 const classifications = new Map([
   [
     'pedestrian',
-    'https://www.portlandmaps.com/arcgis/rest/services/Public/Transportation_System_Plan/MapServer/15',
+    'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/27',
   ],
   [
     'bicycle',
-    'https://www.portlandmaps.com/arcgis/rest/services/Public/Transportation_System_Plan/MapServer/12',
+    'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/24',
   ],
   [
     'transit',
-    'https://www.portlandmaps.com/arcgis/rest/services/Public/Transportation_System_Plan/MapServer/3',
+    'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/15',
   ],
   [
     'freight',
-    'https://www.portlandmaps.com/arcgis/rest/services/Public/Transportation_System_Plan/MapServer/19',
+    'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/31',
   ],
   [
     'design',
-    'https://www.portlandmaps.com/arcgis/rest/services/Public/Transportation_System_Plan/MapServer/10',
+    'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/22',
   ],
   [
     'emergency',
-    'https://www.portlandmaps.com/arcgis/rest/services/Public/Transportation_System_Plan/MapServer/7',
+    'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/19',
   ],
   [
     'traffic',
-    'https://www.portlandmaps.com/arcgis/rest/services/Public/Transportation_System_Plan/MapServer/4',
+    'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/16',
   ],
 ]);
 

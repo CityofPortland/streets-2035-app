@@ -92,5 +92,5 @@ Map.args = {
   },
   zoom: 12,
   layer:
-    'https://www.portlandmaps.com/arcgis/rest/services/Public/Transportation_System_Plan/MapServer/10',
+    'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/22',
 };
