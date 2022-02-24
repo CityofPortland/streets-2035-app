@@ -1,14 +1,6 @@
 <template>
   <div
-    class="
-      flex flex-col
-      md:flex-row md:justify-between
-      max-w-7xl
-      w-full
-      mx-auto
-      px-4
-      mt-4
-    "
+    class="flex flex-col md:flex-row md:justify-between max-w-7xl w-full mx-auto px-4 mt-4"
   >
     <aside class="md:w-1/4 order-last">
       <Nav title="Sections">
