@@ -1,10 +1,10 @@
-import { computed, ComputedRef } from 'vue';
+import { unref } from 'vue';
 
 export function useBox(
   color: string,
   variant: string
 ): {
-  colorClasses: ComputedRef;
+  colorClasses: string[] | undefined;
 } {
   const classMap = new Map([
     [
@@ -74,6 +74,6 @@ export function useBox(
   ]);
 
   return {
-    colorClasses: computed(() => classMap.get(color)?.get(variant)),
+    colorClasses: classMap.get(unref(color))?.get(unref(variant)),
   };
 }

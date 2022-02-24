@@ -4,7 +4,7 @@
     tabindex="0"
     @mouseenter="handleHighlightSection(street)"
     @focus="handleHighlightSection(street)"
-    class="flex flex-col gap-3 p-2 rounded-lg hover:ring-4 hover:ring-blue-300 focus:ring-4 focus:ring-blue-300"
+    class="flex flex-col gap-3 p-2 border border-current shadow-md rounded-lg hover:ring-4 hover:ring-blue-300 focus:ring-4 focus:ring-blue-300"
   >
     <h3 class="text-lg font-bold leading-tight">
       {{ street.name?.trim() || 'Unnamed segment' }}
@@ -27,10 +27,11 @@
       </Box>
     </div>
     <FieldList class="gap-1 text-sm">
-      <Field display="inline" name="Width">
+      <Field display="inline" name="Road width">
         <div v-if="!street.minWidth && !street.maxWidth">
           <Help
-            help="We may display unknown values because this street has no associated postal addresses."
+            help="We may display unknown values because the City of Portland
+                    does not manage this specific street section."
           >
             <span>Unknown</span>
           </Help>
@@ -51,7 +52,8 @@
     </FieldList>
     <Panel
       v-if="street.segments?.length"
-      color="transparent"
+      color="fog"
+      variant="light"
       class="text-sm"
       :open="showSegments"
       @toggle="showSegments = !showSegments"
@@ -64,39 +66,44 @@
           }}</Box>
         </div>
       </template>
-      <ul class="grid grid-cols-1 gap-2">
-        <li
-          v-for="street in street.segments"
-          :key="street.id"
-          @mouseenter="handleHighlightSegment(street)"
-          @focus="handleHighlightSegment(street)"
-          class="p-2 border border-current rounded-md hover:bg-blue-100 hover:ring-4 hover:ring-blue-300 focus:bg-blue-100 focus:ring-4 focus:ring-blue-300"
+      <div class="grid grid-cols-1">
+        <router-link
+          v-for="(segment, index) in street.segments"
+          :key="segment.id"
+          :to="`/streets/${segment.id}`"
+          @mouseenter="handleHighlightSegment(segment)"
+          @focus="handleHighlightSegment(segment)"
+          class="p-2 border-current hover:bg-blue-100 focus:bg-blue-100"
+          :class="{
+            'border-t': index > 0,
+            'rounded-b-md': index == street.segments.length - 1,
+          }"
         >
           <FieldList class="gap-1">
             <Field display="inline" name="Block">
-              <span v-if="street.block">{{ street.block }}</span>
+              <span v-if="segment.block">{{ segment.block }}</span>
               <div v-else>
                 <Help
-                  help="We may display unknown values because this street has no associated postal addresses."
+                  help="We may display unknown values because this segment has no associated postal addresses."
                 >
                   <span>Unknown</span>
                 </Help>
               </div>
             </Field>
-            <Field display="inline" name="Width">
-              <span v-if="street.width">{{ street.width }} feet</span>
+            <Field display="inline" name="Road width">
+              <span v-if="segment.width">{{ segment.width }} feet</span>
               <div v-else>
                 <Help
                   help="We may display unknown values because the City of Portland
-                    does not manage this specific street section."
+                    does not manage this specific street segment."
                 >
                   <span>Unknown</span>
                 </Help>
               </div>
             </Field>
           </FieldList>
-        </li>
-      </ul>
+        </router-link>
+      </div>
     </Panel>
   </Box>
 </template>
@@ -138,15 +145,15 @@ export default defineComponent({
         (section: StreetSection) => {
           emit('highlightSection', section);
         },
-        500,
-        { leading: true, trailing: false }
+        300,
+        { leading: false, trailing: true }
       ),
       handleHighlightSegment: debounce(
         (segment: Street) => {
           emit('highlightSegment', segment);
         },
-        500,
-        { leading: true, trailing: false }
+        300,
+        { leading: false, trailing: true }
       ),
       classificationLabel,
       classificationKeys,

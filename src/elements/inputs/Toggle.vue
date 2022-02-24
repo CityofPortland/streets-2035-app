@@ -1,5 +1,5 @@
 <template>
-  <div class="inline-flex items-center space-x-2">
+  <div class="inline-flex items-center space-x-2 cursor-pointer">
     <Box
       as="button"
       :color="modelValue ? 'blue' : 'red'"
@@ -15,12 +15,14 @@
         as="span"
         :color="modelValue ? 'blue' : 'transparent'"
         class="px-1 rounded"
+        :class="{ 'shadow-lg': modelValue }"
         >on</Box
       >
       <Box
         as="span"
         :color="modelValue ? 'transparent' : 'red'"
         class="px-1 rounded"
+        :class="{ 'shadow-lg': modelValue }"
         >off</Box
       >
     </Box>

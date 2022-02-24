@@ -182,7 +182,7 @@ export default defineComponent({
         () => profiles.value[Object.keys(profiles.value)[balancedIndex.value]]
       ),
       designClasses: computed(() =>
-        models.value
+        models
           .filter((m) => m.group == 'design')
           .filter((m) =>
             Object.keys(database[width.value]).find(

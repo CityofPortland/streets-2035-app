@@ -89,11 +89,11 @@ export const getModels = async (): Promise<Array<ViewModel>> => {
 };
 
 export function useStreetClassification(street?: Ref<Street | StreetSection>): {
-  models: Ref<Array<ViewModel>>;
+  models: Array<ViewModel>;
   classificationKeys: ComputedRef<Array<string>>;
   classificationLabel: (type: string, value: string) => string;
 } {
-  const models = inject<Ref<Array<ViewModel>>>(STREET_CLASSIFICATION_KEY);
+  const models = inject<Array<ViewModel>>(STREET_CLASSIFICATION_KEY);
 
   if (!models) {
     throw new Error('unable to find street classification models');
@@ -108,7 +108,7 @@ export function useStreetClassification(street?: Ref<Street | StreetSection>): {
     ),
     classificationLabel(type: string, value: string) {
       return (
-        models.value.find((model) => {
+        models.find((model) => {
           return (
             model.group == type &&
             model.value.localeCompare(value, undefined, {

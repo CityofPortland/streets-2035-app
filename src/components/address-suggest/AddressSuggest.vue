@@ -4,7 +4,7 @@
     color="gray"
     variant="light"
     title="Search"
-    class="flex flex-col border border-gray-500 shadow-md rounded-md"
+    class="flex flex-col border border-current shadow-md rounded-md"
     @submit.prevent="handleSubmit"
   >
     <section

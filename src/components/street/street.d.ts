@@ -16,6 +16,7 @@ export type Classifications = {
 };
 
 export type StreetSection = {
+  hash: string;
   name: string;
   minWidth?: number;
   maxWidth?: number;

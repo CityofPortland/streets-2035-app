@@ -35,11 +35,14 @@ export function useCrossSectionClassification(street: Ref<Street>): {
 
   return {
     crossSectionClassification: computed(() =>
+      street.value.classifications.bicycle &&
       bike.has(street.value.classifications.bicycle)
-        ? transit.has(street.value.classifications.transit)
+        ? street.value.classifications.transit &&
+          transit.has(street.value.classifications.transit)
           ? 'both'
           : 'bike'
-        : transit.has(street.value.classifications.transit)
+        : street.value.classifications.transit &&
+          transit.has(street.value.classifications.transit)
         ? 'transit'
         : 'none'
     ),

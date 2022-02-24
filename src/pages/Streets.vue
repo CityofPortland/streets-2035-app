@@ -27,20 +27,22 @@
           name="Settings"
           @toggle="open = !open"
         >
-          <fieldset class="grid grid-cols-1 gap-1">
+          <fieldset class="p-2 grid grid-cols-1 gap-1">
             <div
-              v-for="(c, index) in classifications"
-              :key="index"
+              v-for="c in classifications"
+              :key="c.value"
               class="flex items-center space-x-1"
             >
               <Toggle
-                :id="`classification-${index}`"
-                :name="`classification-${index}`"
+                :id="`classification-${c.value.toLowerCase()}`"
+                :name="`classification-${c.value.toLowerCase()}`"
+                :label="c.label"
                 :modelValue="c.enabled"
                 @update:modelValue="handleClassificationToggle(c)"
               >
                 <label
-                  :for="`classification-${index}`"
+                  :id="`classification-${c.value.toLowerCase()}-label`"
+                  :for="`classification-${c.value.toLowerCase()}`"
                   class="inline-flex items-center space-x-1"
                 >
                   <i
@@ -54,7 +56,7 @@
           </fieldset>
         </Panel>
         <ul v-if="streets.length" class="grid grid-cols-1 gap-3">
-          <li v-for="(street, index) in streets" :key="index">
+          <li v-for="street in streets" :key="street.hash">
             <Section
               :street="street"
               @highlight-section="
@@ -136,7 +138,7 @@ import TileLayer from '@arcgis/core/layers/TileLayer';
 import along from '@turf/along';
 import { lineString } from '@turf/helpers';
 import length from '@turf/length';
-
+import md5 from 'crypto-js/md5';
 import { computed, defineComponent, onMounted, ref } from 'vue';
 import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router';
 
@@ -178,7 +180,7 @@ export default defineComponent({
   },
   setup() {
     const street = ref<Partial<Street> | undefined>(undefined);
-    const streets = ref<Array<Partial<Street>>>([]);
+    const streets = ref<Array<Partial<StreetSection>>>([]);
     const message = ref(MESSAGES.ZOOM_IN);
     const open = ref(true);
     const showCandidates = ref(false);
@@ -225,7 +227,7 @@ export default defineComponent({
     const { convertStreet, retrieveStreet } = useStreet();
 
     const classifications = computed(() => {
-      return models.value.filter((m) => m.group === 'design');
+      return models.filter((m) => m.group === 'design');
     });
 
     const getStreet = async (id: string | string[]) => {
@@ -262,7 +264,9 @@ export default defineComponent({
                 .find((c) => c.value == x.classifications.design)
             )
             .reduce<Map<string, StreetSection>>((acc, curr) => {
-              const hash = `${curr.name}:${curr.classifications.design}:${curr.classifications.bicycle}:${curr.classifications.transit}`;
+              const hash = md5(
+                `${curr.name}:${curr.classifications.design}:${curr.classifications.bicycle}:${curr.classifications.transit}`
+              ).toString();
               if (acc.has(hash)) {
                 const section = acc.get(hash);
                 if (section) {
@@ -278,6 +282,7 @@ export default defineComponent({
                 }
               } else {
                 acc.set(hash, {
+                  hash,
                   segments: [curr],
                   minWidth: curr.width,
                   maxWidth: curr.width,
@@ -287,11 +292,18 @@ export default defineComponent({
               return acc;
             }, new Map())
             .values(),
-        ].sort((a, b) =>
-          a.name.localeCompare(b.name, undefined, {
-            sensitivity: 'base',
-          })
-        );
+        ]
+          .sort((a, b) =>
+            a.name.localeCompare(b.name, undefined, {
+              sensitivity: 'base',
+            })
+          )
+          .map((s) => {
+            s.segments = s.segments.sort(
+              (a, b) => (a.block || 0) - (b.block || 0)
+            );
+            return s;
+          });
 
         if (!streets.value.length) {
           message.value = MESSAGES.ENABLE_CLASSIFICATION;
@@ -337,7 +349,6 @@ export default defineComponent({
                 },
                 ''
               )})`;
-        console.log(`where: ${where}`);
         query.where = `TranPlanID IN ${where}`;
         layerView.queryFeatures(query).then((result) => {
           if (highlight) highlight.remove();
@@ -359,13 +370,10 @@ export default defineComponent({
     onBeforeRouteUpdate(async (to) => {
       if (to.params.id) {
         street.value = await getStreet(to.params.id);
-        // highlight the street
-        // center on the midpoint
         if (street.value) {
           centerStreet(street.value);
           highlightStreet({ type: 'segment', data: street.value });
         }
-        // add a graphic for higlighting the street
       } else {
         street.value = undefined;
         if (highlight) highlight.remove();
@@ -393,6 +401,7 @@ export default defineComponent({
       handleClassificationToggle(model: ViewModel) {
         const m = classifications.value.find((m) => m.value === model.value);
         if (m) m.enabled = !m.enabled;
+
         const layerView = layerViews.get('classifications') as FeatureLayerView;
         layerView.filter = new FeatureFilter({
           where: `Design in (${classifications.value
@@ -400,6 +409,7 @@ export default defineComponent({
             .map((c) => `'${c.value}'`)
             .join(',')})`,
         });
+
         createListings();
       },
       async handleSearch({

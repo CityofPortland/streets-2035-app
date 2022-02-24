@@ -1,6 +1,6 @@
 <template>
   <div :class="layoutClasses">
-    <dt class="font-semibold capitalize" :class="labelClasses">
+    <dt class="font-semibold" :class="labelClasses">
       <slot name="name">{{ name }}</slot>
     </dt>
     <dd :class="valueClasses">

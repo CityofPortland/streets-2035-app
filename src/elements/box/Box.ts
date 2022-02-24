@@ -1,5 +1,4 @@
 import { defineComponent, h } from 'vue';
-
 import { useBox } from '@/composables/use-box';
 
 export type BoxColor =
@@ -40,14 +39,13 @@ export const BoxProps = {
 
 export default defineComponent({
   props: BoxProps,
-  setup(props, { slots }) {
-    const { colorClasses } = useBox(props.color, props.variant);
+  render() {
+    const { colorClasses } = useBox(this.color, this.variant);
 
-    return () =>
-      h(
-        props.as,
-        { class: colorClasses.value },
-        slots.default && slots.default()
-      );
+    return h(
+      this.as,
+      { class: colorClasses },
+      this.$slots.default && this.$slots.default()
+    );
   },
 });

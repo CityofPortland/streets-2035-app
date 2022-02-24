@@ -17,7 +17,7 @@
         <span>{{ street.id }}</span>
       </div>
       <div class="my-2" v-if="street.width">
-        <h2 class="text-gray-700 font-semibold">Width</h2>
+        <h2 class="text-gray-700 font-semibold">Road width</h2>
         <span>{{ street.width }} feet</span>
       </div>
       <div

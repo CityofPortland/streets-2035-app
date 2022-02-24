@@ -35,16 +35,16 @@
     </Box>
     <transition
       enter-active-class="transition ease-out duration-100"
-      enter-from-class="transform scale-95"
-      enter-to-class="transform scale-100"
+      enter-from-class="transform scale-y-95"
+      enter-to-class="transform scale-y-100"
       leave-active-class="transition ease-in duration-100"
-      leave-from-class="transform scale-100"
-      leave-to-class="transform scale-95"
+      leave-from-class="transform scale-y-100"
+      leave-to-class="transform scale-y-95"
     >
       <div
         v-show="open"
         :aria-expanded="open"
-        class="p-2 border border-current rounded-b-md"
+        class="border border-current rounded-b-md"
       >
         <slot></slot>
       </div>
