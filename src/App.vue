@@ -12,7 +12,10 @@
         </router-link>
       </template>
       <template v-slot:menu>
-        <Nav>
+        <Nav :list-class="'flex flex-col md:flex-row md:space-x-3'">
+          <router-link to="/streets" custom v-slot="{ href }">
+            <NavItem :url="href" text="Map" />
+          </router-link>
           <router-link to="/street-types" custom v-slot="{ href }">
             <NavItem :url="href" text="Street types" />
           </router-link>
