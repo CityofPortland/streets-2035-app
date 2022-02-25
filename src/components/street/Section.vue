@@ -66,21 +66,21 @@
           }}</Box>
         </div>
       </template>
-      <div class="grid grid-cols-1">
-        <router-link
+      <ul class="grid grid-cols-1">
+        <li
+          tabindex="0"
           v-for="(segment, index) in street.segments"
           :key="segment.id"
-          :to="`/streets/${segment.id}`"
           @mouseenter="handleHighlightSegment(segment)"
           @focus="handleHighlightSegment(segment)"
-          class="p-2 border-current hover:bg-blue-100 focus:bg-blue-100"
+          class="p-2 border-current grid grid-cols-2 gap-2 hover:bg-blue-100 focus:bg-blue-100"
           :class="{
             'border-t': index > 0,
             'rounded-b-md': index == street.segments.length - 1,
           }"
         >
           <FieldList class="gap-1">
-            <Field display="inline" name="Block">
+            <Field display="above" name="Block">
               <span v-if="segment.block">{{ segment.block }}</span>
               <div v-else>
                 <Help
@@ -90,7 +90,7 @@
                 </Help>
               </div>
             </Field>
-            <Field display="inline" name="Road width">
+            <Field display="above" name="Road width">
               <span v-if="segment.width">{{ segment.width }} feet</span>
               <div v-else>
                 <Help
@@ -102,8 +102,17 @@
               </div>
             </Field>
           </FieldList>
-        </router-link>
-      </div>
+          <div class="flex flex-col justify-center gap-3 flex-wrap">
+            <div>
+              <router-link
+                :to="`/streets/${segment.id}`"
+                class="border-b-2 border-current text-sm font-medium"
+                >View segment details</router-link
+              >
+            </div>
+          </div>
+        </li>
+      </ul>
     </Panel>
   </Box>
 </template>
