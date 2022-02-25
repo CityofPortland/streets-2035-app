@@ -1,22 +1,52 @@
 <template>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
-    <span class="font-semibold text-lg capitalize">
+  <div :class="layoutClasses">
+    <dt class="font-semibold" :class="labelClasses">
       <slot name="name">{{ name }}</slot>
-    </span>
-    <span class="md:col-span-2 prose">
-      <slot>{{ value }}</slot>
-    </span>
+    </dt>
+    <dd :class="valueClasses">
+      <slot></slot>
+    </dd>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
+
+type DisplayType = 'inline' | 'above' | 'hidden';
 
 export default defineComponent({
   name: 'Field',
   props: {
     name: { type: String, required: true },
-    value: { type: String },
+    display: {
+      type: String as () => DisplayType,
+      default: 'inline',
+    },
+  },
+  setup(props) {
+    return {
+      layoutClasses: computed(() => {
+        const m = new Map<DisplayType, string[]>([
+          ['inline', ['sm:grid-cols-3']],
+        ]);
+
+        return ['grid', 'grid-cols-1', 'gap-1'].concat(
+          ...(m.get(props.display) || [])
+        );
+      }),
+      labelClasses: computed(() => {
+        const m = new Map<DisplayType, string[]>([['hidden', ['sr-only']]]);
+
+        return m.get(props.display) || [];
+      }),
+      valueClasses: computed(() => {
+        const m = new Map<DisplayType, string[]>([
+          ['inline', ['sm:col-span-2']],
+        ]);
+
+        return m.get(props.display) || [];
+      }),
+    };
   },
 });
 </script>

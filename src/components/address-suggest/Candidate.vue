@@ -3,7 +3,7 @@
     as="li"
     role="option"
     tabindex="0"
-    class="w-full p-2 rounded-lg cursor-pointer hover:bg-fog-500"
+    class="w-full p-2 border border-current rounded-lg cursor-pointer hover:bg-blue-100"
   >
     <slot>
       <span

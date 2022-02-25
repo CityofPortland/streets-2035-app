@@ -4,7 +4,7 @@
     color="gray"
     variant="light"
     title="Search"
-    class="flex flex-col border border-gray-500 shadow-md rounded-md"
+    class="flex flex-col border border-current shadow-md rounded-md"
     @submit.prevent="handleSubmit"
   >
     <section
@@ -17,7 +17,7 @@
         label="Search settings"
         id="menu-button"
         tabindex="0"
-        class="rounded-l-md focus:ring-2 focus:ring-blue-500"
+        class="flex rounded-l-md focus:ring-2 focus:ring-blue-500"
         :class="{ 'rounded-bl-none': open }"
         @click="open = !open"
       >
@@ -40,7 +40,7 @@
         color="transparent"
         label="Search"
         tabindex="0"
-        class="rounded-r-md focus:ring-2 focus:ring-blue-500"
+        class="flex rounded-r-md focus:ring-2 focus:ring-blue-500"
         :class="{ 'rounded-br-none': open }"
       >
         <Icon type="solid" name="search" class="w-6 h-6" />

@@ -4,7 +4,7 @@ import axios from 'axios';
 import { rgb, RGBColorFactory } from 'd3-color';
 import { computed, ComputedRef, inject, Ref } from 'vue';
 
-import { Street } from '@/components/street/street';
+import { Street, StreetSection } from '@/components/street/street';
 
 export type ViewModel = {
   group: string;
@@ -88,12 +88,12 @@ export const getModels = async (): Promise<Array<ViewModel>> => {
   return models;
 };
 
-export function useStreetClassification(street?: Ref<Street>): {
-  models: Ref<Array<ViewModel>>;
+export function useStreetClassification(street?: Ref<Street | StreetSection>): {
+  models: Array<ViewModel>;
   classificationKeys: ComputedRef<Array<string>>;
   classificationLabel: (type: string, value: string) => string;
 } {
-  const models = inject<Ref<Array<ViewModel>>>(STREET_CLASSIFICATION_KEY);
+  const models = inject<Array<ViewModel>>(STREET_CLASSIFICATION_KEY);
 
   if (!models) {
     throw new Error('unable to find street classification models');
@@ -108,7 +108,7 @@ export function useStreetClassification(street?: Ref<Street>): {
     ),
     classificationLabel(type: string, value: string) {
       return (
-        models.value.find((model) => {
+        models.find((model) => {
           return (
             model.group == type &&
             model.value.localeCompare(value, undefined, {

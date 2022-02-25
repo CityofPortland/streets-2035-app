@@ -27,20 +27,22 @@
           name="Settings"
           @toggle="open = !open"
         >
-          <fieldset class="grid grid-cols-1 gap-1">
+          <fieldset class="p-2 grid grid-cols-1 gap-1">
             <div
-              v-for="(c, index) in classifications"
-              :key="index"
+              v-for="c in classifications"
+              :key="c.value"
               class="flex items-center space-x-1"
             >
               <Toggle
-                :id="`classification-${index}`"
-                :name="`classification-${index}`"
+                :id="`classification-${c.value.toLowerCase()}`"
+                :name="`classification-${c.value.toLowerCase()}`"
+                :label="c.label"
                 :modelValue="c.enabled"
                 @update:modelValue="handleClassificationToggle(c)"
               >
                 <label
-                  :for="`classification-${index}`"
+                  :id="`classification-${c.value.toLowerCase()}-label`"
+                  :for="`classification-${c.value.toLowerCase()}`"
                   class="inline-flex items-center space-x-1"
                 >
                   <i
@@ -54,8 +56,17 @@
           </fieldset>
         </Panel>
         <ul v-if="streets.length" class="grid grid-cols-1 gap-3">
-          <li v-for="street in streets" :key="street.id">
-            <Listing :street="street" @highlight="highlightStreet(street)" />
+          <li v-for="street in streets" :key="street.hash">
+            <Section
+              :street="street"
+              @highlight-section="
+                highlightStreet({ type: 'section', data: $event })
+              "
+              @highlight-segment="
+                highlightStreet({ type: 'segment', data: $event })
+              "
+            />
+            <!-- <Listing :street="street" @highlight="highlightStreet(street)" /> -->
           </li>
         </ul>
         <Message v-else color="blue" variant="light" icon="information">
@@ -82,6 +93,14 @@
         :extent="defaultExtent"
         :center="center"
         :zoom="zoom"
+        :options="{
+          highlightOptions: {
+            color: '#FF9494',
+            fillOpacity: 0.8,
+            haloColor: '#E65C5C',
+            haloOpacity: 1,
+          },
+        }"
         @zoom-change="handleZoom"
         @extent-change="handleExtent"
         @click-hit="handleClick"
@@ -116,10 +135,11 @@ import LayerView from '@arcgis/core/views/layers/LayerView';
 import Point from '@arcgis/core/geometry/Point';
 import SpatialReference from '@arcgis/core/geometry/SpatialReference';
 import TileLayer from '@arcgis/core/layers/TileLayer';
+import { whenFalseOnce } from '@arcgis/core/core/watchUtils';
 import along from '@turf/along';
 import { lineString } from '@turf/helpers';
 import length from '@turf/length';
-
+import md5 from 'crypto-js/md5';
 import { computed, defineComponent, onMounted, ref } from 'vue';
 import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router';
 
@@ -128,11 +148,11 @@ import Candidate from '@/components/address-suggest/Candidate.vue';
 import { Candidate as TCandidate } from '@/components/address-suggest/candidate';
 import CandidateList from '@/components/address-suggest/CandidateList.vue';
 import Full from '@/components/street/Full.vue';
-import Listing from '@/components/street/Listing.vue';
 import MapVue from '@/components/map/Map.vue';
 import Message from '@/components/message/Message.vue';
 import Panel from '@/components/panel/Panel.vue';
-import { Street } from '@/components/street/street';
+import Section from '@/components/street/Section.vue';
+import { Street, StreetSection } from '@/components/street/street';
 import Toggle from '@/elements/inputs/Toggle.vue';
 import { query } from '@/composables/use-graphql';
 import {
@@ -153,15 +173,15 @@ export default defineComponent({
     Candidate,
     CandidateList,
     Full,
-    Listing,
     MapVue,
     Message,
+    Section,
     Panel,
     Toggle,
   },
   setup() {
     const street = ref<Partial<Street> | undefined>(undefined);
-    const streets = ref<Array<Partial<Street>>>([]);
+    const streets = ref<Array<Partial<StreetSection>>>([]);
     const message = ref(MESSAGES.ZOOM_IN);
     const open = ref(true);
     const showCandidates = ref(false);
@@ -200,7 +220,7 @@ export default defineComponent({
     let extent = new Extent(defaultExtent.value);
     const center = ref<Partial<Point>>({});
     const zoom = ref(12);
-    const layerViews = new Map<string, LayerView>();
+    const layerViews = new Map<string, Promise<FeatureLayerView>>();
 
     const { push } = useRouter();
     const { params } = useRoute();
@@ -208,7 +228,7 @@ export default defineComponent({
     const { convertStreet, retrieveStreet } = useStreet();
 
     const classifications = computed(() => {
-      return models.value.filter((m) => m.group === 'design');
+      return models.filter((m) => m.group === 'design');
     });
 
     const getStreet = async (id: string | string[]) => {
@@ -237,17 +257,54 @@ export default defineComponent({
           classifications: ['design', 'bicycle', 'transit'],
         });
 
-        streets.value = s
-          .filter((x) =>
-            classifications.value
-              .filter((c) => c.enabled)
-              .find((c) => c.value == x.classifications.design)
-          )
+        streets.value = [
+          ...s
+            .filter((x) =>
+              classifications.value
+                .filter((c) => c.enabled)
+                .find((c) => c.value == x.classifications.design)
+            )
+            .reduce<Map<string, StreetSection>>((acc, curr) => {
+              const hash = md5(
+                `${curr.name}:${curr.classifications.design}:${curr.classifications.bicycle}:${curr.classifications.transit}`
+              ).toString();
+              if (acc.has(hash)) {
+                const section = acc.get(hash);
+                if (section) {
+                  section.segments.push(curr);
+                  section.minWidth = Math.min(
+                    section.minWidth || curr.width,
+                    curr.width
+                  );
+                  section.maxWidth = Math.max(
+                    section.maxWidth || curr.width,
+                    curr.width
+                  );
+                }
+              } else {
+                acc.set(hash, {
+                  hash,
+                  segments: [curr],
+                  minWidth: curr.width,
+                  maxWidth: curr.width,
+                  ...curr,
+                });
+              }
+              return acc;
+            }, new Map())
+            .values(),
+        ]
           .sort((a, b) =>
             a.name.localeCompare(b.name, undefined, {
               sensitivity: 'base',
             })
-          );
+          )
+          .map((s) => {
+            s.segments = s.segments.sort(
+              (a, b) => (a.block || 0) - (b.block || 0)
+            );
+            return s;
+          });
 
         if (!streets.value.length) {
           message.value = MESSAGES.ENABLE_CLASSIFICATION;
@@ -275,14 +332,32 @@ export default defineComponent({
 
     let highlight: { remove: () => void };
 
-    const highlightStreet = (street: Partial<Street>) => {
-      const layerView = layerViews.get('classifications') as FeatureLayerView;
+    const highlightStreet = async (options: {
+      type: 'section' | 'segment';
+      data: Partial<StreetSection> | Partial<Street>;
+    }) => {
+      const layerView = await layerViews.get('classifications');
       if (layerView) {
-        const query = layerView.layer.createQuery();
-        query.where = `TranPlanID = '${street.id}'`;
-        layerView.queryFeatures(query).then((result) => {
-          if (highlight) highlight.remove();
-          highlight = layerView.highlight(result.features);
+        whenFalseOnce(layerView, 'updating', () => {
+          const query = layerView.layer.createQuery();
+          const where =
+            options.type == 'segment'
+              ? `('${(options.data as Street).id}')`
+              : `(${(options.data as StreetSection).segments.reduce(
+                  (acc, curr, idx) => {
+                    if (idx > 0) acc = acc.concat(',');
+                    acc = acc.concat(`'${curr.id}'`);
+                    return acc;
+                  },
+                  ''
+                )})`;
+          query.where = `TranPlanID IN ${where}`;
+          layerView.queryFeatures(query).then((result) => {
+            if (highlight) {
+              highlight.remove();
+            }
+            highlight = layerView.highlight(result.features);
+          });
         });
       }
     };
@@ -292,7 +367,7 @@ export default defineComponent({
         street.value = await getStreet(params.id);
         if (street.value) {
           centerStreet(street.value);
-          highlightStreet(street.value);
+          highlightStreet({ type: 'segment', data: street.value });
         }
       }
     });
@@ -300,16 +375,15 @@ export default defineComponent({
     onBeforeRouteUpdate(async (to) => {
       if (to.params.id) {
         street.value = await getStreet(to.params.id);
-        // highlight the street
-        // center on the midpoint
         if (street.value) {
           centerStreet(street.value);
-          highlightStreet(street.value);
+          highlightStreet({ type: 'segment', data: street.value });
         }
-        // add a graphic for higlighting the street
       } else {
         street.value = undefined;
-        if (highlight) highlight.remove();
+        if (highlight) {
+          highlight.remove();
+        }
       }
     });
 
@@ -328,19 +402,23 @@ export default defineComponent({
       pointer,
       classificationLabel,
       highlightStreet,
-      handleLayerView: (layerView: LayerView) => {
-        layerViews.set(layerView.layer.id, layerView);
+      handleLayerView: (data: { id: string; promise: Promise<LayerView> }) => {
+        layerViews.set(data.id, data.promise as Promise<FeatureLayerView>);
       },
-      handleClassificationToggle(model: ViewModel) {
+      async handleClassificationToggle(model: ViewModel) {
         const m = classifications.value.find((m) => m.value === model.value);
         if (m) m.enabled = !m.enabled;
-        const layerView = layerViews.get('classifications') as FeatureLayerView;
-        layerView.filter = new FeatureFilter({
-          where: `Design in (${classifications.value
-            .filter((c) => c.enabled)
-            .map((c) => `'${c.value}'`)
-            .join(',')})`,
-        });
+
+        const layerView = await layerViews.get('classifications');
+        if (layerView) {
+          layerView.filter = new FeatureFilter({
+            where: `Design in (${classifications.value
+              .filter((c) => c.enabled)
+              .map((c) => `'${c.value}'`)
+              .join(',')})`,
+          });
+        }
+
         createListings();
       },
       async handleSearch({

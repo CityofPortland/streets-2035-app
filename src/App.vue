@@ -12,7 +12,10 @@
         </router-link>
       </template>
       <template v-slot:menu>
-        <Nav>
+        <Nav :list-class="'flex flex-col md:flex-row md:space-x-3'">
+          <router-link to="/streets" custom v-slot="{ href }">
+            <NavItem :url="href" text="Map" />
+          </router-link>
           <router-link to="/street-types" custom v-slot="{ href }">
             <NavItem :url="href" text="Street types" />
           </router-link>
@@ -51,7 +54,14 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, provide, ref } from 'vue';
+import {
+  computed,
+  defineComponent,
+  onMounted,
+  provide,
+  reactive,
+  ref,
+} from 'vue';
 import { useStore } from 'vuex';
 
 import Anchor from '@/elements/anchor/Anchor.vue';
@@ -72,11 +82,11 @@ export default defineComponent({
 
     const store = useStore();
 
-    const models = ref(new Array<ViewModel>());
+    let models = reactive(new Array<ViewModel>());
     provide(STREET_CLASSIFICATION_KEY, models);
 
     onMounted(async () => {
-      models.value = await getModels();
+      models.push(...(await getModels()));
     });
 
     return { menuOpen, header: computed(() => store.state.header) };

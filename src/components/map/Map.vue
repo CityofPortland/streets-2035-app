@@ -76,6 +76,9 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    options: {
+      type: Object,
+    },
   },
   setup(props, { emit }) {
     const mapElement = ref<HTMLDivElement>();
@@ -92,6 +95,7 @@ export default defineComponent({
 
     onMounted(() => {
       view = new MapView({
+        ...props.options,
         container: mapElement.value,
         map: props.map,
         extent: new Extent(extent.value),
@@ -129,8 +133,9 @@ export default defineComponent({
       }
 
       props.map.layers.forEach((layer) => {
-        view.whenLayerView(layer).then((layerView) => {
-          emit('layer-view', layerView);
+        emit('layer-view', {
+          id: layer.id,
+          promise: view.whenLayerView(layer),
         });
       });
 
