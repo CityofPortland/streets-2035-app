@@ -133,8 +133,9 @@ export default defineComponent({
       }
 
       props.map.layers.forEach((layer) => {
-        view.whenLayerView(layer).then((layerView) => {
-          emit('layer-view', layerView);
+        emit('layer-view', {
+          id: layer.id,
+          promise: view.whenLayerView(layer),
         });
       });
 

@@ -135,6 +135,7 @@ import LayerView from '@arcgis/core/views/layers/LayerView';
 import Point from '@arcgis/core/geometry/Point';
 import SpatialReference from '@arcgis/core/geometry/SpatialReference';
 import TileLayer from '@arcgis/core/layers/TileLayer';
+import { whenFalseOnce } from '@arcgis/core/core/watchUtils';
 import along from '@turf/along';
 import { lineString } from '@turf/helpers';
 import length from '@turf/length';
@@ -219,7 +220,7 @@ export default defineComponent({
     let extent = new Extent(defaultExtent.value);
     const center = ref<Partial<Point>>({});
     const zoom = ref(12);
-    const layerViews = new Map<string, LayerView>();
+    const layerViews = new Map<string, Promise<FeatureLayerView>>();
 
     const { push } = useRouter();
     const { params } = useRoute();
@@ -331,28 +332,32 @@ export default defineComponent({
 
     let highlight: { remove: () => void };
 
-    const highlightStreet = (options: {
+    const highlightStreet = async (options: {
       type: 'section' | 'segment';
       data: Partial<StreetSection> | Partial<Street>;
     }) => {
-      const layerView = layerViews.get('classifications') as FeatureLayerView;
+      const layerView = await layerViews.get('classifications');
       if (layerView) {
-        const query = layerView.layer.createQuery();
-        const where =
-          options.type == 'segment'
-            ? `('${(options.data as Street).id}')`
-            : `(${(options.data as StreetSection).segments.reduce(
-                (acc, curr, idx) => {
-                  if (idx > 0) acc = acc.concat(',');
-                  acc = acc.concat(`'${curr.id}'`);
-                  return acc;
-                },
-                ''
-              )})`;
-        query.where = `TranPlanID IN ${where}`;
-        layerView.queryFeatures(query).then((result) => {
-          if (highlight) highlight.remove();
-          highlight = layerView.highlight(result.features);
+        whenFalseOnce(layerView, 'updating', () => {
+          const query = layerView.layer.createQuery();
+          const where =
+            options.type == 'segment'
+              ? `('${(options.data as Street).id}')`
+              : `(${(options.data as StreetSection).segments.reduce(
+                  (acc, curr, idx) => {
+                    if (idx > 0) acc = acc.concat(',');
+                    acc = acc.concat(`'${curr.id}'`);
+                    return acc;
+                  },
+                  ''
+                )})`;
+          query.where = `TranPlanID IN ${where}`;
+          layerView.queryFeatures(query).then((result) => {
+            if (highlight) {
+              highlight.remove();
+            }
+            highlight = layerView.highlight(result.features);
+          });
         });
       }
     };
@@ -376,7 +381,9 @@ export default defineComponent({
         }
       } else {
         street.value = undefined;
-        if (highlight) highlight.remove();
+        if (highlight) {
+          highlight.remove();
+        }
       }
     });
 
@@ -395,20 +402,22 @@ export default defineComponent({
       pointer,
       classificationLabel,
       highlightStreet,
-      handleLayerView: (layerView: LayerView) => {
-        layerViews.set(layerView.layer.id, layerView);
+      handleLayerView: (data: { id: string; promise: Promise<LayerView> }) => {
+        layerViews.set(data.id, data.promise as Promise<FeatureLayerView>);
       },
-      handleClassificationToggle(model: ViewModel) {
+      async handleClassificationToggle(model: ViewModel) {
         const m = classifications.value.find((m) => m.value === model.value);
         if (m) m.enabled = !m.enabled;
 
-        const layerView = layerViews.get('classifications') as FeatureLayerView;
-        layerView.filter = new FeatureFilter({
-          where: `Design in (${classifications.value
-            .filter((c) => c.enabled)
-            .map((c) => `'${c.value}'`)
-            .join(',')})`,
-        });
+        const layerView = await layerViews.get('classifications');
+        if (layerView) {
+          layerView.filter = new FeatureFilter({
+            where: `Design in (${classifications.value
+              .filter((c) => c.enabled)
+              .map((c) => `'${c.value}'`)
+              .join(',')})`,
+          });
+        }
 
         createListings();
       },

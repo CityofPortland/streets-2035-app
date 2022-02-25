@@ -82,6 +82,10 @@ export function useStreet(): {
               classifications {
                   ${classifications.join(' ')}
               }
+              geometry {
+                type
+                coordinates
+              }
           } }`);
 
         return data ? data.street : [];
