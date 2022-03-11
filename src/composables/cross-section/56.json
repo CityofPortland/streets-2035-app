@@ -1,195 +1,313 @@
 {
-   "metadata": {},
-   "cims": {
-      "none": {
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock2": ["PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"]
-
-      },
-      "bike": {
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock2": ["PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"]
-
-      },
-      "transit": {
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock2": ["PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"]
-      },
-      "both": {
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock2": ["PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"]
-      }
-   },
-   "cic": {
-      "none": {
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56B_4Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56B_4Lane_TransitPriority1", "PortlandStreets_CrossSections_56B_4Lane_TransitPriority3"
-
-         ],
-         "PortlandStreets_CrossSections_56C_4Lane_Midbock1": ["PortlandStreets_CrossSections_56C_4Lane_LTLMedianRefuge1", "PortlandStreets_CrossSections_56C_4Lane_TransitPriority1"]
-      },
-      "bike": {
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56B_4Lane_Midbock1": ["PortlandStreets_CrossSections_56B_4Lane_TransitPriority1", "PortlandStreets_CrossSections_56B_4Lane_TransitPriority3"]
-      },
-      "transit": {
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56B_4Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56B_4Lane_TransitPriority1", "PortlandStreets_CrossSections_56B_4Lane_TransitPriority3"
-
-         ],
-         "PortlandStreets_CrossSections_56C_4Lane_Midbock1": ["PortlandStreets_CrossSections_56C_4Lane_LTLMedianRefuge1", "PortlandStreets_CrossSections_56C_4Lane_TransitPriority1"]
-      },
-      "both": {
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56B_4Lane_Midbock1": ["PortlandStreets_CrossSections_56B_4Lane_TransitPriority1", "PortlandStreets_CrossSections_56B_4Lane_TransitPriority3"]
-      }
-   },
-   "nms": {
-      "none": {
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock2": ["PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"]
-      },
-      "bike": {
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock2": ["PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"]
-      },
-      "transit": {
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock2": ["PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"]
-      },
-      "both": {
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock2": ["PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"]
-      }
-   },
-   "nc": {
-      "none": {
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56B_4Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56B_4Lane_TransitPriority1", "PortlandStreets_CrossSections_56B_4Lane_TransitPriority3"
-
-         ],
-         "PortlandStreets_CrossSections_56C_4Lane_Midbock1": ["PortlandStreets_CrossSections_56C_4Lane_LTLMedianRefuge1", "PortlandStreets_CrossSections_56C_4Lane_TransitPriority1"]
-      },
-      "bike": {
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56B_4Lane_Midbock1": ["PortlandStreets_CrossSections_56B_4Lane_TransitPriority1", "PortlandStreets_CrossSections_56B_4Lane_TransitPriority3"]
-      },
-      "transit": {
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56B_4Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56B_4Lane_TransitPriority1", "PortlandStreets_CrossSections_56B_4Lane_TransitPriority3"
-
-         ],
-         "PortlandStreets_CrossSections_56C_4Lane_Midbock1": ["PortlandStreets_CrossSections_56C_4Lane_LTLMedianRefuge1", "PortlandStreets_CrossSections_56C_4Lane_TransitPriority1"]
-      },
-      "both": {
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56B_4Lane_Midbock1": ["PortlandStreets_CrossSections_56B_4Lane_TransitPriority1", "PortlandStreets_CrossSections_56B_4Lane_TransitPriority3"]
-      }
-   },
-   "cc": {
-      "none": {
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56B_4Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56B_4Lane_TransitPriority1", "PortlandStreets_CrossSections_56B_4Lane_TransitPriority3"
-
-         ],
-         "PortlandStreets_CrossSections_56C_4Lane_Midbock1": ["PortlandStreets_CrossSections_56C_4Lane_LTLMedianRefuge1", "PortlandStreets_CrossSections_56C_4Lane_TransitPriority1"]
-      },
-      "bike": {
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56B_4Lane_Midbock1": ["PortlandStreets_CrossSections_56B_4Lane_TransitPriority1", "PortlandStreets_CrossSections_56B_4Lane_TransitPriority3"]
-      },
-      "transit": {
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56B_4Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56B_4Lane_TransitPriority1", "PortlandStreets_CrossSections_56B_4Lane_TransitPriority3"
-
-         ],
-         "PortlandStreets_CrossSections_56C_4Lane_Midbock1": ["PortlandStreets_CrossSections_56C_4Lane_LTLMedianRefuge1", "PortlandStreets_CrossSections_56C_4Lane_TransitPriority1"]
-      },
-      "both": {
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
-            "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1", "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
-         ],
-         "PortlandStreets_CrossSections_56B_4Lane_Midbock1": ["PortlandStreets_CrossSections_56B_4Lane_TransitPriority1", "PortlandStreets_CrossSections_56B_4Lane_TransitPriority3"]
-      }
-   }
+  "metadata": {},
+  "cims": {
+    "none": {
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ]
+    },
+    "bike": {
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ]
+    },
+    "transit": {
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ]
+    },
+    "both": {
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ]
+    }
+  },
+  "cic": {
+    "none": {
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56B_4Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56B_4Lane_TransitPriority1"
+      ],
+      "PortlandStreets_CrossSections_56C_4Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56C_4Lane_LTLMedianRefuge1",
+        "PortlandStreets_CrossSections_56C_4Lane_TransitPriority1"
+      ]
+    },
+    "bike": {
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56B_4Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56B_4Lane_TransitPriority1"
+      ]
+    },
+    "transit": {
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56B_4Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56B_4Lane_TransitPriority1"
+      ],
+      "PortlandStreets_CrossSections_56C_4Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56C_4Lane_LTLMedianRefuge1",
+        "PortlandStreets_CrossSections_56C_4Lane_TransitPriority1"
+      ]
+    },
+    "both": {
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56B_4Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56B_4Lane_TransitPriority1"
+      ]
+    }
+  },
+  "nms": {
+    "none": {
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ]
+    },
+    "bike": {
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ]
+    },
+    "transit": {
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ]
+    },
+    "both": {
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ]
+    }
+  },
+  "nc": {
+    "none": {
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56B_4Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56B_4Lane_TransitPriority1"
+      ],
+      "PortlandStreets_CrossSections_56C_4Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56C_4Lane_LTLMedianRefuge1",
+        "PortlandStreets_CrossSections_56C_4Lane_TransitPriority1"
+      ]
+    },
+    "bike": {
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56B_4Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56B_4Lane_TransitPriority1"
+      ]
+    },
+    "transit": {
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56B_4Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56B_4Lane_TransitPriority1"
+      ],
+      "PortlandStreets_CrossSections_56C_4Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56C_4Lane_LTLMedianRefuge1",
+        "PortlandStreets_CrossSections_56C_4Lane_TransitPriority1"
+      ]
+    },
+    "both": {
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56B_4Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56B_4Lane_TransitPriority1"
+      ]
+    }
+  },
+  "cc": {
+    "none": {
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56B_4Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56B_4Lane_TransitPriority1"
+      ],
+      "PortlandStreets_CrossSections_56C_4Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56C_4Lane_LTLMedianRefuge1",
+        "PortlandStreets_CrossSections_56C_4Lane_TransitPriority1"
+      ]
+    },
+    "bike": {
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56B_4Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56B_4Lane_TransitPriority1"
+      ]
+    },
+    "transit": {
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56B_4Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56B_4Lane_TransitPriority1"
+      ],
+      "PortlandStreets_CrossSections_56C_4Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56C_4Lane_LTLMedianRefuge1",
+        "PortlandStreets_CrossSections_56C_4Lane_TransitPriority1"
+      ]
+    },
+    "both": {
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56A_2Lane_Midbock2": [
+        "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority1",
+        "PortlandStreets_CrossSections_56A_2Lane_TransitPriority2"
+      ],
+      "PortlandStreets_CrossSections_56B_4Lane_Midbock1": [
+        "PortlandStreets_CrossSections_56B_4Lane_TransitPriority1"
+      ]
+    }
+  }
 }
