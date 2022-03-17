@@ -16,14 +16,7 @@
       }"
     >
       <button
-        class="
-          p-2
-          w-full
-          flex
-          items-center
-          justify-between
-          focus:outline-none focus:shadow-outline
-        "
+        class="p-2 w-full flex items-center justify-between focus:outline-none focus:shadow-outline"
         @click="toggle()"
       >
         <slot name="header">
@@ -34,18 +27,28 @@
         </slot>
         <Icon
           type="solid"
-          :name="open ? 'chevron-up' : 'chevron-down'"
-          class="w-5 h-5"
+          name="chevron-down"
+          class="w-5 h-5 transition ease-in-out duration-100"
+          :class="{ transform: open, 'rotate-180': open }"
         />
       </button>
     </Box>
-    <div
-      v-show="open"
-      :aria-expanded="open"
-      class="p-2 border border-current rounded-b-md"
+    <transition
+      enter-active-class="transition ease-out duration-100"
+      enter-from-class="transform scale-y-95"
+      enter-to-class="transform scale-y-100"
+      leave-active-class="transition ease-in duration-100"
+      leave-from-class="transform scale-y-100"
+      leave-to-class="transform scale-y-95"
     >
-      <slot></slot>
-    </div>
+      <div
+        v-show="open"
+        :aria-expanded="open"
+        class="border border-current rounded-b-md"
+      >
+        <slot></slot>
+      </div>
+    </transition>
   </Box>
 </template>
 <script lang="ts">

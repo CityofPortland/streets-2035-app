@@ -54,7 +54,7 @@ export default defineComponent({
 
     const layers = [
       new FeatureLayer({
-        url: 'https://www.portlandmaps.com/arcgis/rest/services/Public/Transportation_System_Plan/MapServer/10',
+        url: 'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/22',
         outFields: ['*'],
         definitionExpression: `Design = '${TYPE_MAP.get(type.value)}'`,
       }),

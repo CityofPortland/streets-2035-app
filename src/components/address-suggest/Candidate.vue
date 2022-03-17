@@ -3,19 +3,12 @@
     as="li"
     role="option"
     tabindex="0"
-    class="w-full p-2 rounded-lg cursor-pointer hover:bg-fog-500"
+    class="w-full p-2 border border-current rounded-lg cursor-pointer hover:bg-blue-100"
   >
     <slot>
       <span
         v-if="candidate.type"
-        class="
-          px-2
-          rounded-full
-          bg-blue-500
-          text-white text-xs
-          font-bold
-          uppercase
-        "
+        class="px-2 rounded-full bg-blue-500 text-white text-xs font-bold uppercase"
         >{{ candidate.type }}</span
       >
       <div class="text-sm">{{ candidate.name }}</div>

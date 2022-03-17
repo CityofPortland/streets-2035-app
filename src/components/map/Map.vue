@@ -11,28 +11,14 @@
         <div class="flex flex-col shadow-lg">
           <button
             title="Zoom in"
-            class="
-              p-2
-              bg-white
-              border border-b
-              rounded-t
-              border-fog-900
-              focus:outline-none focus:shadow-outline
-            "
+            class="p-2 bg-white border border-b rounded-t border-fog-900 focus:outline-none focus:shadow-outline"
             v-on:click="incrementZoom"
           >
             <Icon type="solid" name="plus" class="w-4 h-4" />
           </button>
           <button
             title="Zoom out"
-            class="
-              p-2
-              bg-white
-              border border-t
-              rounded-b
-              border-fog-900
-              focus:outline-none focus:shadow-outline
-            "
+            class="p-2 bg-white border border-t rounded-b border-fog-900 focus:outline-none focus:shadow-outline"
             v-on:click="decrementZoom"
           >
             <Icon type="solid" name="minus" class="w-4 h-4" />
@@ -90,6 +76,9 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    options: {
+      type: Object,
+    },
   },
   setup(props, { emit }) {
     const mapElement = ref<HTMLDivElement>();
@@ -106,6 +95,7 @@ export default defineComponent({
 
     onMounted(() => {
       view = new MapView({
+        ...props.options,
         container: mapElement.value,
         map: props.map,
         extent: new Extent(extent.value),
@@ -143,8 +133,9 @@ export default defineComponent({
       }
 
       props.map.layers.forEach((layer) => {
-        view.whenLayerView(layer).then((layerView) => {
-          emit('layer-view', layerView);
+        emit('layer-view', {
+          id: layer.id,
+          promise: view.whenLayerView(layer),
         });
       });
 

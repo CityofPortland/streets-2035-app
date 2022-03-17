@@ -14,14 +14,7 @@
               Streets 2035 design app!
             </h1>
             <div
-              class="
-                mt-8
-                flex flex-col
-                md:flex-row
-                items-center
-                justify-center
-                gap-4
-              "
+              class="mt-8 flex flex-col md:flex-row items-center justify-center gap-4"
             >
               <router-link to="/streets" class="flex">
                 <Button as="span" color="orange" size="large"

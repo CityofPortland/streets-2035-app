@@ -4,7 +4,7 @@ import axios from 'axios';
 import { rgb, RGBColorFactory } from 'd3-color';
 import { computed, ComputedRef, inject, Ref } from 'vue';
 
-import { Street } from '@/components/street/street';
+import { Street, StreetSection } from '@/components/street/street';
 
 export type ViewModel = {
   group: string;
@@ -18,31 +18,31 @@ export type ViewModel = {
 const classifications = new Map([
   [
     'pedestrian',
-    'https://www.portlandmaps.com/arcgis/rest/services/Public/Transportation_System_Plan/MapServer/15',
+    'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/27',
   ],
   [
     'bicycle',
-    'https://www.portlandmaps.com/arcgis/rest/services/Public/Transportation_System_Plan/MapServer/12',
+    'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/24',
   ],
   [
     'transit',
-    'https://www.portlandmaps.com/arcgis/rest/services/Public/Transportation_System_Plan/MapServer/3',
+    'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/15',
   ],
   [
     'freight',
-    'https://www.portlandmaps.com/arcgis/rest/services/Public/Transportation_System_Plan/MapServer/19',
+    'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/31',
   ],
   [
     'design',
-    'https://www.portlandmaps.com/arcgis/rest/services/Public/Transportation_System_Plan/MapServer/10',
+    'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/22',
   ],
   [
     'emergency',
-    'https://www.portlandmaps.com/arcgis/rest/services/Public/Transportation_System_Plan/MapServer/7',
+    'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/19',
   ],
   [
     'traffic',
-    'https://www.portlandmaps.com/arcgis/rest/services/Public/Transportation_System_Plan/MapServer/4',
+    'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/16',
   ],
 ]);
 
@@ -73,8 +73,9 @@ export const getModels = async (): Promise<Array<ViewModel>> => {
               layer: new FeatureLayer({
                 url: value[1],
                 outFields: ['*'],
-                definitionExpression: `${value[0]
-                  } = '${info.value.toString()}'`,
+                definitionExpression: `${
+                  value[0]
+                } = '${info.value.toString()}'`,
                 visible: false,
               }),
             };
@@ -87,12 +88,12 @@ export const getModels = async (): Promise<Array<ViewModel>> => {
   return models;
 };
 
-export function useStreetClassification(street?: Ref<Street>): {
-  models: Ref<Array<ViewModel>>;
+export function useStreetClassification(street?: Ref<Street | StreetSection>): {
+  models: Array<ViewModel>;
   classificationKeys: ComputedRef<Array<string>>;
   classificationLabel: (type: string, value: string) => string;
 } {
-  const models = inject<Ref<Array<ViewModel>>>(STREET_CLASSIFICATION_KEY);
+  const models = inject<Array<ViewModel>>(STREET_CLASSIFICATION_KEY);
 
   if (!models) {
     throw new Error('unable to find street classification models');
@@ -107,7 +108,7 @@ export function useStreetClassification(street?: Ref<Street>): {
     ),
     classificationLabel(type: string, value: string) {
       return (
-        models.value.find((model) => {
+        models.find((model) => {
           return (
             model.group == type &&
             model.value.localeCompare(value, undefined, {

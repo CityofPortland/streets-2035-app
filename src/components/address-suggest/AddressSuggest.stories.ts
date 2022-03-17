@@ -1,7 +1,5 @@
-import { Ref, ref } from 'vue';
-
-import SpatialReference from '@arcgis/core/geometry/SpatialReference';
 import { Story, Meta } from '@storybook/vue3';
+import { Ref, ref } from 'vue';
 
 import Component from './AddressSuggest.vue';
 import Candidate from './Candidate.vue';
