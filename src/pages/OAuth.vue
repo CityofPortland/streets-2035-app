@@ -57,7 +57,6 @@ export default defineComponent({
   name: 'OAuth',
   components: { Field, FieldList, Message },
   setup() {
-    console.log('in OAuth setup...');
     const { clientId, authority } = useLogin();
     const { query, hash } = useRoute();
     const { replace, resolve } = useRouter();
@@ -76,7 +75,6 @@ export default defineComponent({
         );
 
         try {
-          console.log('Retrieving token...');
           let res = await axios.post(
             `${authority}/oauth2/v2.0/token`,
             qs.stringify({
@@ -92,7 +90,6 @@ export default defineComponent({
 
           const { access_token, refresh_token } = res.data;
 
-          console.log('Setting token...');
           store.setTokens(access_token, refresh_token);
 
           store.initialize();

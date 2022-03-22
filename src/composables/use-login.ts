@@ -26,7 +26,6 @@ const generateCodeVerifier = (): string =>
  */
 const generateCodeChallenge = (pkceCodeVerifier: string): string => {
   try {
-    console.log('generateCodeChallenge');
     return CryptoJS.SHA256(pkceCodeVerifier).toString(CryptoJS.enc.Base64url);
   } catch (e) {
     throw Error('PKCE not generated');

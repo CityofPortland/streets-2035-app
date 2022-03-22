@@ -55,8 +55,6 @@ export const useAuthStore = defineStore('auth', {
           }
         }
 
-        console.log('Retriving user info...');
-
         let res = await axios.get('https://graph.microsoft.com/v1.0/me/', {
           headers: {
             Authorization: `Bearer ${this.accessToken}`,
