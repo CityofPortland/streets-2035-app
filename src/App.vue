@@ -4,6 +4,7 @@
       :color="header.color"
       :open="menuOpen"
       @toggle="menuOpen = !menuOpen"
+      class="items-center"
     >
       <template v-slot:branding>
         <router-link to="/" class="w-full flex items-center">
@@ -11,7 +12,7 @@
           <span class="truncate text-xl">Streets 2035</span>
         </router-link>
       </template>
-      <template v-slot:menu>
+      <template v-slot:menu class="items-center">
         <Nav :list-class="'flex flex-col md:flex-row md:space-x-3'">
           <router-link to="/streets" custom v-slot="{ href }">
             <NavItem :url="href" text="Map" />
@@ -19,6 +20,10 @@
           <router-link to="/street-types" custom v-slot="{ href }">
             <NavItem :url="href" text="Street types" />
           </router-link>
+        </Nav>
+        <Nav class="md:ml-auto">
+          <SignIn v-if="!user" />
+          <LoggedIn v-else />
         </Nav>
       </template>
     </Header>
@@ -62,42 +67,53 @@ import {
   reactive,
   ref,
 } from 'vue';
-import { useStore } from 'vuex';
 
 import Anchor from '@/elements/anchor/Anchor.vue';
 import Footer from '@/components/footer/Footer.vue';
 import Header from '@/components/header/Header.vue';
 import Logo from '@/components/Logo.vue';
+import LoggedIn from '@/components/login/LoggedIn.vue';
 import Nav from '@/components/nav/Nav.vue';
 import NavItem from '@/components/nav/NavItem.vue';
+import SignIn from '@/components/login/SignIn.vue';
 import {
   getModels,
   STREET_CLASSIFICATION_KEY,
   ViewModel,
 } from './composables/use-street-classification';
+import { useAuthStore } from '@/store/auth';
+import { useHeaderStore } from '@/store/header';
 
 export default defineComponent({
   setup() {
     const menuOpen = ref(false);
 
-    const store = useStore();
+    const headerStore = useHeaderStore();
+    const authStore = useAuthStore();
 
     let models = reactive(new Array<ViewModel>());
     provide(STREET_CLASSIFICATION_KEY, models);
 
     onMounted(async () => {
+      authStore.initialize();
       models.push(...(await getModels()));
     });
 
-    return { menuOpen, header: computed(() => store.state.header) };
+    return {
+      menuOpen,
+      header: computed(() => headerStore.header),
+      user: computed(() => authStore.user),
+    };
   },
   components: {
     Anchor,
     Footer,
     Header,
+    LoggedIn,
     Logo,
     Nav,
     NavItem,
+    SignIn,
   },
 });
 </script>
