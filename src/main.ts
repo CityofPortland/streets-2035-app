@@ -10,9 +10,11 @@ import '@fontsource/open-sans/400.css';
 import '@fontsource/open-sans/800.css';
 import '@fontsource/merriweather/400.css';
 import '@fontsource/merriweather/900.css';
+import { createPinia } from 'pinia';
 
 const i18n = createI18n({
   // something vue-i18n options here ...
 });
+const pinia = createPinia();
 
-createApp(App).use(store).use(router).use(i18n).mount('#app');
+createApp(App).use(pinia).use(router).use(i18n).mount('#app');
