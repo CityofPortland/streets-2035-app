@@ -45,7 +45,7 @@ export default defineComponent({
   props: {
     as: {
       type: String,
-      default: 'i',
+      default: 'span',
     },
     type: {
       type: String as () => 'outline' | 'solid',
