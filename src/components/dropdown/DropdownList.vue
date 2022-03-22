@@ -6,7 +6,7 @@
     aria-orientation="vertical"
     :aria-labelledby="id"
     :class="{ hidden: !open }"
-    class="p-2 flex flex-col"
+    class="p-2 flex flex-col z-50"
   >
     <slot></slot>
   </Box>

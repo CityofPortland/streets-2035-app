@@ -71,6 +71,14 @@ export function useBox(
         ['dark', ['bg-transparent']],
       ]),
     ],
+    [
+      'white',
+      new Map([
+        ['light', ['bg-white', 'text-black']],
+        ['neutral', ['bg-white', 'text-black']],
+        ['dark', ['bg-white', 'text-black']],
+      ]),
+    ],
   ]);
 
   return {
