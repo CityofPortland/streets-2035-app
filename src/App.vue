@@ -4,7 +4,6 @@
       :color="header.color"
       :open="menuOpen"
       @toggle="menuOpen = !menuOpen"
-      class="items-center"
     >
       <template v-slot:branding>
         <router-link to="/" class="w-full flex items-center">
@@ -12,7 +11,7 @@
           <span class="truncate text-xl">Streets 2035</span>
         </router-link>
       </template>
-      <template v-slot:menu class="items-center">
+      <template v-slot:menu>
         <Nav :list-class="'flex flex-col md:flex-row md:space-x-3'">
           <router-link to="/streets" custom v-slot="{ href }">
             <NavItem :url="href" text="Map" />
