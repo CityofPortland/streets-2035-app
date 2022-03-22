@@ -52,6 +52,9 @@ export const useAuthStore = defineStore('auth', {
               this.clear();
               return;
             }
+          } else {
+            this.clear();
+            return;
           }
         }
 
