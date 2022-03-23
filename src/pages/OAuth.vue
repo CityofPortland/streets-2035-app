@@ -57,9 +57,9 @@ export default defineComponent({
   name: 'OAuth',
   components: { Field, FieldList, Message },
   setup() {
-    const { clientId, authority } = useLogin();
+    const { clientId, authority, redirectURI } = useLogin();
     const { query, hash } = useRoute();
-    const { replace, resolve } = useRouter();
+    const { replace } = useRouter();
     const store = useAuthStore();
 
     const loading = ref(true);
@@ -79,12 +79,7 @@ export default defineComponent({
             `${authority}/oauth2/v2.0/token`,
             qs.stringify({
               grant_type: 'authorization_code',
-              redirect_uri: new URL(
-                resolve({
-                  name: 'OAuthCallback',
-                }).path.slice(1),
-                window.location.origin
-              ).toString(),
+              redirect_uri: redirectURI,
               code: query.code.toString(),
               code_verifier: codes.verifier,
               client_id: clientId,

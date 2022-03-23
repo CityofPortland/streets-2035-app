@@ -19,8 +19,8 @@ import { useLogin } from '@/composables/use-login';
 export default defineComponent({
   components: { Button },
   setup() {
-    const { clientId, authority, challenge } = useLogin();
-    const { resolve, currentRoute } = useRouter();
+    const { clientId, authority, challenge, redirectURI } = useLogin();
+    const { currentRoute } = useRouter();
 
     return {
       handleSignIn() {
@@ -35,15 +35,7 @@ export default defineComponent({
         const url = new URL(`${authority}/oauth2/v2.0/authorize`);
         let { searchParams } = url;
         searchParams.append('client_id', clientId || '');
-        searchParams.append(
-          'redirect_uri',
-          new URL(
-            resolve({
-              name: 'OAuthCallback',
-            }).path.slice(1),
-            window.location.origin
-          ).toString()
-        );
+        searchParams.append('redirect_uri', redirectURI);
         searchParams.append('response_type', 'code');
         searchParams.append('scope', `User.Read`);
         searchParams.append('code_challenge_method', 'S256');

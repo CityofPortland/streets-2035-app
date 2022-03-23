@@ -1,4 +1,5 @@
 import { onMounted, Ref, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 import CryptoJS from 'crypto-js';
 
@@ -11,6 +12,7 @@ export type LoginContext = {
   clientId?: string;
   authority?: string;
   challenge: Ref<string | undefined>;
+  redirectURI: string;
 };
 
 /**
@@ -45,6 +47,7 @@ const generateCodes = (): PkceCodes => {
 };
 
 export function useLogin(): LoginContext {
+  const { resolve } = useRouter();
   const challenge: Ref<string | undefined> = ref(undefined);
 
   onMounted(() => {
@@ -60,9 +63,17 @@ export function useLogin(): LoginContext {
     }
   });
 
+  const redirectURI = new URL(
+    resolve({
+      name: 'OAuthCallback',
+    }).href,
+    window.location.origin
+  ).toString();
+
   return {
     authority: `https://login.microsoftonline.com/${process.env.VUE_APP_AZURE_TENANT_ID}`,
     clientId: process.env.VUE_APP_AZURE_CLIENT_ID,
     challenge,
+    redirectURI,
   };
 }
