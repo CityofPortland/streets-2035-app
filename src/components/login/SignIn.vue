@@ -38,9 +38,9 @@ export default defineComponent({
         searchParams.append(
           'redirect_uri',
           new URL(
-            `${process.env.BASE_URL}${resolve({
+            resolve({
               name: 'OAuthCallback',
-            }).path.slice(1)}`,
+            }).path.slice(1),
             window.location.origin
           ).toString()
         );
