@@ -44,7 +44,7 @@ export default defineComponent({
           ['inline', ['sm:col-span-2']],
         ]);
 
-        return m.get(props.display) || [];
+        return ['break-words', ...(m.get(props.display) || [])];
       }),
     };
   },

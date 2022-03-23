@@ -9,7 +9,8 @@ export type BoxColor =
   | 'orange'
   | 'red'
   | 'tangerine'
-  | 'transparent';
+  | 'transparent'
+  | 'white';
 
 export type BoxColorVariant = 'light' | 'neutral' | 'dark';
 

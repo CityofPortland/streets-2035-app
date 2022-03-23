@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import Disclaimer from '@/pages/Disclaimer.vue';
 import Home from '@/pages/Home.vue';
+import OAuth from '@/pages/OAuth.vue';
 import Streets from '@/pages/Streets.vue';
 import StreetTypes from '@/pages/street-type/StreetTypes.vue';
 
@@ -42,6 +43,11 @@ const routes: Array<RouteRecordRaw> = [
         subClassification,
       };
     },
+  },
+  {
+    path: '/oauth/callback',
+    name: 'OAuthCallback',
+    component: OAuth,
   },
 ];
 

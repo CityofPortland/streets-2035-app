@@ -6,7 +6,10 @@
           <!-- @slot Branding area, should contain app name and logo -->
           <slot name="branding"></slot>
         </div>
-        <div v-if="hasMenu" class="hidden md:flex md:flex-row flex-grow">
+        <div
+          v-if="hasMenu"
+          class="hidden md:flex md:flex-row items-center flex-grow"
+        >
           <!-- @slot Menu area, should contain navigation menu for the site -->
           <slot name="menu"></slot>
         </div>

@@ -67,13 +67,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useStore } from 'vuex';
 import { onBeforeRouteLeave } from 'vue-router';
-
-import store from '@/store';
 
 import Box from '@/elements/box/Box';
 import Button from '@/elements/button/Button.vue';
+
+import { useHeaderStore } from '@/store/header';
 
 export default defineComponent({
   name: 'Home',
@@ -82,15 +81,15 @@ export default defineComponent({
     Button,
   },
   setup() {
-    const store = useStore();
-
     onBeforeRouteLeave(() => {
-      store.dispatch('setHeader', { color: 'transparent' });
+      const store = useHeaderStore();
+      store.setHeader({ color: 'transparent' });
     });
   },
   beforeRouteEnter(_to, _from, next) {
     next(() => {
-      store.dispatch('setHeader', { color: 'blue' });
+      const store = useHeaderStore();
+      store.setHeader({ color: 'blue' });
     });
   },
 });

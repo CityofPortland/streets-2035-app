@@ -20,6 +20,10 @@
             <NavItem :url="href" text="Street types" />
           </router-link>
         </Nav>
+        <Nav class="md:ml-auto">
+          <SignIn v-if="!user" />
+          <LoggedIn v-else />
+        </Nav>
       </template>
     </Header>
     <main class="flex-grow">
@@ -62,42 +66,53 @@ import {
   reactive,
   ref,
 } from 'vue';
-import { useStore } from 'vuex';
 
 import Anchor from '@/elements/anchor/Anchor.vue';
 import Footer from '@/components/footer/Footer.vue';
 import Header from '@/components/header/Header.vue';
 import Logo from '@/components/Logo.vue';
+import LoggedIn from '@/components/login/LoggedIn.vue';
 import Nav from '@/components/nav/Nav.vue';
 import NavItem from '@/components/nav/NavItem.vue';
+import SignIn from '@/components/login/SignIn.vue';
 import {
   getModels,
   STREET_CLASSIFICATION_KEY,
   ViewModel,
 } from './composables/use-street-classification';
+import { useAuthStore } from '@/store/auth';
+import { useHeaderStore } from '@/store/header';
 
 export default defineComponent({
   setup() {
     const menuOpen = ref(false);
 
-    const store = useStore();
+    const headerStore = useHeaderStore();
+    const authStore = useAuthStore();
 
     let models = reactive(new Array<ViewModel>());
     provide(STREET_CLASSIFICATION_KEY, models);
 
     onMounted(async () => {
+      authStore.initialize();
       models.push(...(await getModels()));
     });
 
-    return { menuOpen, header: computed(() => store.state.header) };
+    return {
+      menuOpen,
+      header: computed(() => headerStore.header),
+      user: computed(() => authStore.user),
+    };
   },
   components: {
     Anchor,
     Footer,
     Header,
+    LoggedIn,
     Logo,
     Nav,
     NavItem,
+    SignIn,
   },
 });
 </script>
