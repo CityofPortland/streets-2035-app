@@ -7,7 +7,7 @@
  * ## Usage
  * From the project root directory:
  * ```
- * node scripts/cross-section-data.mjs --excel "[your excel path here]" --json "[json file to output]"
+ * node scripts/cross-section-data.mjs --excel="[your excel path here]" --json="[json file to output]"
  * ```
  * Note the quotes around the path argument. They are necessary to prevent
  * shell expansion of glob patterns and allow spaces in paths
