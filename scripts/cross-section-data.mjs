@@ -13,8 +13,10 @@
  * shell expansion of glob patterns and allow spaces in paths
  */
 
+import glob from 'glob';
 import minimist from 'minimist';
-
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
 // Setup SheetsJS library
 import * as XLSX from 'xlsx/xlsx.mjs';
 
@@ -41,6 +43,12 @@ const balancedSheet =
 
 const dataset = new Object();
 const midblockMap = new Map();
+
+const imagePath = path.resolve(
+  dirname(fileURLToPath(import.meta.url)),
+  '..',
+  'public/img/cross-section'
+);
 
 function getColumnsAndRows(sheet) {
   const columns = new Set();
@@ -80,16 +88,33 @@ let [midblockColumn, midblockRow] = findCell(
 );
 
 // loop through midblock column below midblock row
-//  to get the midblock keys
+// to get the map of midblock to periodic images
 for (const row of rows.filter((r) => r > midblockRow)) {
   const key = periodicSheet[`${midblockColumn}${row}`].v;
   midblockMap.set(key, []);
+
+  // check if we have an image
+  glob(path.join(imagePath, '**', `${key}.*`), (err, matches) => {
+    if (err) console.error(err);
+    if (!matches || !matches.length)
+      console.error('WARNING:', `No image ${key} found in existing images!`);
+  });
 
   // then loop through the columns in that row and check for values
   for (const column of columns.filter((c) => c > midblockColumn)) {
     if (periodicSheet[`${column}${row}`]) {
       // if there is a value, check the header row for the value to add
-      midblockMap.get(key).push(periodicSheet[`${column}${midblockRow}`].v);
+      const periodic = periodicSheet[`${column}${midblockRow}`].v;
+      midblockMap.get(key).push(periodic);
+      // check if we have an image
+      glob(path.join(imagePath, '**', `${periodic}.*`), (err, matches) => {
+        if (err) console.error(err);
+        if (!matches || !matches.length)
+          console.error(
+            'WARNING:',
+            `No image ${periodic} found in existing images!`
+          );
+      });
     }
   }
 }
