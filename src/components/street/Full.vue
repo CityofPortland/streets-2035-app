@@ -16,10 +16,20 @@
         <h2 class="text-gray-700 font-semibold">Transportation plan ID</h2>
         <span>{{ street.id }}</span>
       </div>
-      <div class="my-2" v-if="street.width">
-        <h2 class="text-gray-700 font-semibold">Road width</h2>
-        <span>{{ street.width }} feet</span>
+
+      <div class="grid grid-cols-1 gap-2">
+        <div v-if="street.width">
+          <h2 class="text-gray-700 font-semibold">Road width</h2>
+          <span>{{ street.width }} feet</span>
+        </div>
+
+        <div v-if="crossSectionLink">
+          <router-link :to="crossSectionLink"
+            ><Button size="small">View Cross sections</Button></router-link
+          >
+        </div>
       </div>
+
       <div
         v-for="(classification, index) in classificationKeys"
         :key="index"
@@ -46,18 +56,18 @@
           }}
         </Anchor>
       </div>
-      <Button size="medium" class="my-2">View cross sections</Button>
     </main>
   </article>
 </template>
 <script lang="ts">
-import { defineComponent, toRefs } from 'vue';
+import { computed, defineComponent, toRefs } from 'vue';
 
 import Anchor from '@/elements/anchor/Anchor.vue';
 import Button from '@/elements/button/Button.vue';
 
 import { Street } from './street';
 import { useStreetClassification } from '@/composables/use-street-classification';
+import { useCrossSection } from '@/composables/cross-section';
 
 export default defineComponent({
   name: 'Street',
@@ -72,12 +82,16 @@ export default defineComponent({
     },
   },
   setup(props) {
+    console.log('falling vue.vue setup');
+
     const { street } = toRefs(props);
+    const { crossSectionLink } = useCrossSection(street);
     const { classificationKeys, classificationLabel } =
       useStreetClassification(street);
     return {
       classificationLabel,
       classificationKeys,
+      crossSectionLink,
     };
   },
 });
