@@ -1,7 +1,7 @@
 import { computed, ComputedRef, Ref } from 'vue';
 import { RouteLocation, useRouter } from 'vue-router';
 
-import { Street } from '@/components/street/street';
+import { Classifications, Street } from '@/components/street/street';
 
 import thirtySix from './36.json';
 import forty from './40.json';
@@ -28,74 +28,61 @@ const database: Record<
 
 export default database;
 
-function getCrossSectionLink(
-  width: number | null,
-  subClassification: string,
-  design: string | null
-): RouteLocation | null {
-  const closestStreetWidth = Object.keys(database)
+const getClosestWidth = (width: number): number | undefined =>
+  Object.keys(database)
     .map((k) => parseInt(k))
-    .filter((k) => width && k <= width)
-    .sort((a, b) => b - a)
+    .filter((k) => k <= width)
+    .sort((a, b) => b - a) // biggest to smallest
     .shift();
 
-  //console.log('width', width);
-  //console.log('database[width]', database[width] || null);
-  //console.log('database[width][design]', database[width][design] || null);
-  //console.log('design', design);
+const hasCrossSection = (
+  width: number,
+  designClassification: string,
+  subClassification: string
+): boolean =>
+  width &&
+  database[width] &&
+  database[width][designClassification] &&
+  database[width][designClassification][subClassification]
+    ? true
+    : false;
 
-  if (
-    closestStreetWidth &&
-    database[closestStreetWidth] &&
-    design &&
-    database[closestStreetWidth][design] &&
-    subClassification &&
-    database[closestStreetWidth][design][subClassification]
-  ) {
-    const { resolve } = useRouter();
+function getSubClassification(classifications: Classifications): string {
+  const bike = new Set(['MCB', 'CB']).has(classifications.bicycle);
+  const transit = new Set(['MTP', 'RTMTP']).has(classifications.transit);
 
-    return resolve({
-      name: 'CrossSection',
-      params: {
-        width,
-        designClassification: design,
-        subClassification,
-      },
-    });
-  } else {
-    return null;
-  }
+  return bike ? (transit ? 'both' : 'bike') : transit ? 'transit' : 'none';
 }
 
-export function useCrossSectionClassification(street: Street): string {
-  const bike = new Set(['MCB', 'CB']);
-  const transit = new Set(['MTP', 'RTMTP']);
-
-  return street.classifications.bicycle &&
-    bike.has(street.classifications.bicycle)
-    ? street.classifications.transit &&
-      transit.has(street.classifications.transit)
-      ? 'both'
-      : 'bike'
-    : street.classifications.transit &&
-      transit.has(street.classifications.transit)
-    ? 'transit'
-    : 'none';
-}
-
-export function useCrossSection(street: Ref<Street>): {
+export function useCrossSection(street: Ref<Partial<Street>>): {
   crossSectionLink: ComputedRef<RouteLocation | null>;
 } {
-  const { width } = street.value;
-  const subClassification = useCrossSectionClassification(street.value);
-  let { design } = street.value.classifications;
-  if (design) {
-    design = design?.toLowerCase();
-  }
+  const { resolve } = useRouter();
 
   return {
-    crossSectionLink: computed(() =>
-      getCrossSectionLink(width, subClassification, design)
-    ),
+    crossSectionLink: computed(() => {
+      const { classifications } = street.value;
+      let { width } = street.value;
+
+      if (!classifications || !width) return null;
+
+      width = getClosestWidth(width);
+
+      if (!width) return null;
+
+      const designClassification = classifications.design.toLowerCase();
+      const subClassification = getSubClassification(classifications);
+
+      return hasCrossSection(width, designClassification, subClassification)
+        ? resolve({
+            name: 'CrossSection',
+            params: {
+              width,
+              designClassification,
+              subClassification,
+            },
+          })
+        : null;
+    }),
   };
 }
