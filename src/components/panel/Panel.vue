@@ -1,12 +1,12 @@
 <template>
   <Box
-    as="fieldset"
+    as="section"
     :color="color"
     :variant="variant"
     class="border-current rounded-md shadow"
   >
     <Box
-      as="legend"
+      as="header"
       :color="color"
       :variant="variant"
       class="w-full border-current border rounded-t-md"
@@ -16,7 +16,11 @@
       }"
     >
       <button
-        class="p-2 w-full flex items-center justify-between focus:outline-none focus:shadow-outline"
+        type="button"
+        class="p-2 w-full flex items-center justify-between rounded-t-md focus:outline-none focus:ring-4"
+        :class="{
+          'rounded-b-md': !open,
+        }"
         @click="toggle()"
       >
         <slot name="header">
@@ -41,13 +45,13 @@
       leave-from-class="transform scale-y-100"
       leave-to-class="transform scale-y-95"
     >
-      <div
+      <main
         v-show="open"
         :aria-expanded="open"
         class="border border-current rounded-b-md"
       >
         <slot></slot>
-      </div>
+      </main>
     </transition>
   </Box>
 </template>

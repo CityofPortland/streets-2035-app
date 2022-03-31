@@ -3,16 +3,16 @@ import { LineString } from '@turf/helpers';
 export type Street = {
   id: string;
   name: string;
-  block?: number | null;
+  block: number | null;
   width: number | null;
   classifications: Classifications;
   geometry: LineString;
 };
 
 export type Classifications = {
-  design: string | null;
-  transit: string | null;
-  bicycle: string | null;
+  design: string;
+  transit: string;
+  bicycle: string;
 };
 
 export type StreetSection = {

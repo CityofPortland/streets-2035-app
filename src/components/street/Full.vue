@@ -25,7 +25,7 @@
 
         <div v-if="crossSectionLink">
           <router-link :to="crossSectionLink"
-            ><Button size="small">View Cross sections</Button></router-link
+            ><Button size="small">View cross sections</Button></router-link
           >
         </div>
       </div>
@@ -60,7 +60,7 @@
   </article>
 </template>
 <script lang="ts">
-import { computed, defineComponent, toRefs } from 'vue';
+import { defineComponent, toRefs } from 'vue';
 
 import Anchor from '@/elements/anchor/Anchor.vue';
 import Button from '@/elements/button/Button.vue';
