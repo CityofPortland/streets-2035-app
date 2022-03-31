@@ -82,8 +82,6 @@ export default defineComponent({
     },
   },
   setup(props) {
-    console.log('falling vue.vue setup');
-
     const { street } = toRefs(props);
     const { crossSectionLink } = useCrossSection(street);
     const { classificationKeys, classificationLabel } =
