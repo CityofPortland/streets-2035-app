@@ -51,7 +51,7 @@
       </Field>
     </FieldList>
     <Panel
-      v-if="street.segments?.length"
+      v-if="street.segments.length"
       color="fog"
       variant="light"
       class="text-sm"
@@ -67,51 +67,18 @@
         </div>
       </template>
       <ul class="grid grid-cols-1">
-        <li
+        <Segment
+          as="li"
           tabindex="0"
           v-for="(segment, index) in street.segments"
           :key="segment.id"
-          @mouseenter="handleHighlightSegment(segment)"
-          @focus="handleHighlightSegment(segment)"
-          class="p-2 border-current grid grid-cols-2 gap-2 hover:bg-blue-100 focus:bg-blue-100"
+          :street="segment"
+          @highlight="handleHighlightSegment"
           :class="{
             'border-t': index > 0,
             'rounded-b-md': index == street.segments.length - 1,
           }"
-        >
-          <FieldList class="gap-1">
-            <Field display="above" name="Block">
-              <span v-if="segment.block">{{ segment.block }}</span>
-              <div v-else>
-                <Help
-                  help="We may display unknown values because this segment has no associated postal addresses."
-                >
-                  <span>Unknown</span>
-                </Help>
-              </div>
-            </Field>
-            <Field display="above" name="Road width">
-              <span v-if="segment.width">{{ segment.width }} feet</span>
-              <div v-else>
-                <Help
-                  help="We may display unknown values because the City of Portland
-                    does not manage this specific street segment."
-                >
-                  <span>Unknown</span>
-                </Help>
-              </div>
-            </Field>
-          </FieldList>
-          <div class="flex flex-col justify-center gap-3 flex-wrap">
-            <div>
-              <router-link
-                :to="`/streets/${segment.id}`"
-                class="border-b-2 border-current text-sm font-medium"
-                >View segment details</router-link
-              >
-            </div>
-          </div>
-        </li>
+        />
       </ul>
     </Panel>
   </Box>
@@ -126,12 +93,13 @@ import Field from '@/components/field/Field.vue';
 import FieldList from '@/components/field/FieldList.vue';
 import Help from './Help.vue';
 import Panel from '@/components/panel/Panel.vue';
+import Segment from '@/components/street/Segment.vue';
 import { Street, StreetSection } from './street';
 import { useStreetClassification } from '@/composables/use-street-classification';
 
 export default defineComponent({
   name: 'StreetSection',
-  components: { Box, Field, FieldList, Help, Panel },
+  components: { Box, Field, FieldList, Help, Panel, Segment },
   props: {
     as: {
       type: String,
@@ -147,9 +115,9 @@ export default defineComponent({
     const { classificationKeys, classificationLabel } =
       useStreetClassification(street);
     const showSegments = ref(false);
+
     return {
       showSegments,
-      showUnknownHelp: ref(false),
       handleHighlightSection: debounce(
         (section: StreetSection) => {
           emit('highlightSection', section);
