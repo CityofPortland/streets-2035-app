@@ -16,6 +16,7 @@
     "@fontsource/merriweather": "^4.5.0",
     "@fontsource/open-sans": "^4.5.0",
     "@turf/along": "^6.5.0",
+    "@turf/bbox": "^6.5.0",
     "@turf/centroid": "^6.5.0",
     "@turf/helpers": "^6.5.0",
     "@turf/length": "^6.5.0",

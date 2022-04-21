@@ -76,7 +76,17 @@
       <section v-else class="p-4 grid grid-cols-1 gap-3">
         <div>
           <router-link
-            to="/streets"
+            :to="{
+              name: 'Streets',
+              query: {
+                extent: [
+                  extent.xmin,
+                  extent.ymin,
+                  extent.xmax,
+                  extent.ymax,
+                ].join(','),
+              },
+            }"
             class="inline-flex border-b-2 border-current"
             >Back to search</router-link
           >
@@ -90,7 +100,7 @@
       <MapVue
         id="streets"
         :map="map"
-        :extent="defaultExtent"
+        :extent="extent"
         :center="center"
         :zoom="zoom"
         :options="{
@@ -125,41 +135,38 @@
 </template>
 
 <script lang="ts">
-import Basemap from '@arcgis/core/Basemap';
-import EsriMap from '@arcgis/core/Map';
-import Extent from '@arcgis/core/geometry/Extent';
-import FeatureFilter from '@arcgis/core/layers/support/FeatureFilter';
-import FeatureLayer from '@arcgis/core/layers/FeatureLayer';
-import FeatureLayerView from '@arcgis/core/views/layers/FeatureLayerView';
-import LayerView from '@arcgis/core/views/layers/LayerView';
-import Point from '@arcgis/core/geometry/Point';
-import SpatialReference from '@arcgis/core/geometry/SpatialReference';
-import TileLayer from '@arcgis/core/layers/TileLayer';
-import { whenFalseOnce } from '@arcgis/core/core/watchUtils';
-import along from '@turf/along';
-import { lineString } from '@turf/helpers';
-import length from '@turf/length';
-import md5 from 'crypto-js/md5';
-import { computed, defineComponent, onMounted, ref } from 'vue';
-import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router';
-
 import AddressSuggest from '@/components/address-suggest/AddressSuggest.vue';
-import Candidate from '@/components/address-suggest/Candidate.vue';
 import { Candidate as TCandidate } from '@/components/address-suggest/candidate';
+import Candidate from '@/components/address-suggest/Candidate.vue';
 import CandidateList from '@/components/address-suggest/CandidateList.vue';
-import Full from '@/components/street/Full.vue';
 import MapVue from '@/components/map/Map.vue';
 import Message from '@/components/message/Message.vue';
 import Panel from '@/components/panel/Panel.vue';
+import Full from '@/components/street/Full.vue';
 import Section from '@/components/street/Section.vue';
 import { Street, StreetSection } from '@/components/street/street';
-import Toggle from '@/elements/inputs/Toggle.vue';
 import { query } from '@/composables/use-graphql';
+import { ESRIStreet, useStreet } from '@/composables/use-street';
 import {
   useStreetClassification,
   ViewModel,
 } from '@/composables/use-street-classification';
-import { ESRIStreet, useStreet } from '@/composables/use-street';
+import Toggle from '@/elements/inputs/Toggle.vue';
+import Basemap from '@arcgis/core/Basemap';
+import { whenFalseOnce } from '@arcgis/core/core/watchUtils';
+import Extent from '@arcgis/core/geometry/Extent';
+import Point from '@arcgis/core/geometry/Point';
+import SpatialReference from '@arcgis/core/geometry/SpatialReference';
+import FeatureLayer from '@arcgis/core/layers/FeatureLayer';
+import FeatureFilter from '@arcgis/core/layers/support/FeatureFilter';
+import TileLayer from '@arcgis/core/layers/TileLayer';
+import EsriMap from '@arcgis/core/Map';
+import FeatureLayerView from '@arcgis/core/views/layers/FeatureLayerView';
+import LayerView from '@arcgis/core/views/layers/LayerView';
+import bbox from '@turf/bbox';
+import md5 from 'crypto-js/md5';
+import { computed, defineComponent, onMounted, ref } from 'vue';
+import { onBeforeRouteUpdate, useRouter } from 'vue-router';
 
 const MESSAGES = {
   ZOOM_IN: 'You must zoom in further to view listings of streets',
@@ -208,22 +215,11 @@ export default defineComponent({
       basemap,
       layers,
     });
-    const defaultExtent = ref<Extent>(
-      new Extent({
-        spatialReference: { wkid: 102100 },
-        xmin: -13674088.5469,
-        ymin: 5689892.284199998,
-        xmax: -13633591.503800001,
-        ymax: 5724489.626800001,
-      }).toJSON()
-    );
-    let extent = new Extent(defaultExtent.value);
     const center = ref<Partial<Point>>({});
     const zoom = ref(12);
     const layerViews = new Map<string, Promise<FeatureLayerView>>();
 
-    const { push } = useRouter();
-    const { params } = useRoute();
+    const { push, replace, currentRoute } = useRouter();
     const { models, classificationLabel } = useStreetClassification();
     const { convertStreet, retrieveStreet } = useStreet();
 
@@ -234,7 +230,7 @@ export default defineComponent({
     const getStreet = async (id: string | string[]) => {
       const street = await retrieveStreet({
         street: {
-          id: Array.isArray(id) ? id[0] : id,
+          id: Array.isArray(id) ? id.shift() : id,
         },
         classifications: [
           'design',
@@ -250,10 +246,53 @@ export default defineComponent({
       return street[0];
     };
 
+    const extent = computed(() => {
+      const q = currentRoute.value.query;
+
+      if (q && q.extent) {
+        const extentString = Array.isArray(q.extent)
+          ? q.extent.shift()
+          : q.extent;
+
+        if (extentString) {
+          const [xmin, ymin, xmax, ymax] = extentString
+            .split(',')
+            .map((s) => parseFloat(s));
+
+          return {
+            xmin,
+            ymin,
+            xmax,
+            ymax,
+            spatialReference: new SpatialReference({ wkid: 102100 }),
+          };
+        }
+      }
+
+      if (street.value && street.value.geometry) {
+        const [xmin, ymin, xmax, ymax] = bbox(street.value.geometry);
+        return {
+          xmin,
+          ymin,
+          xmax,
+          ymax,
+          spatialReference: new SpatialReference({ wkid: 4326 }),
+        };
+      }
+
+      return {
+        spatialReference: new SpatialReference({ wkid: 102100 }),
+        xmin: -13674088.5469,
+        ymin: 5689892.284199998,
+        xmax: -13633591.503800001,
+        ymax: 5724489.626800001,
+      };
+    });
+
     const createListings = async () => {
-      if (extent.width <= 1 * 1000) {
+      if (extent.value && new Extent(extent.value).width <= 1 * 1000) {
         const s = await retrieveStreet({
-          extent,
+          extent: extent.value,
           classifications: ['design', 'bicycle', 'transit'],
         });
 
@@ -315,21 +354,6 @@ export default defineComponent({
       }
     };
 
-    const centerStreet = (street: Partial<Street>) => {
-      if (street.geometry) {
-        const line = lineString(street.geometry.coordinates);
-        const midpoint = along(line, length(line, { units: 'feet' }) / 2, {
-          units: 'feet',
-        }).geometry.coordinates;
-
-        center.value = {
-          x: midpoint[0],
-          y: midpoint[1],
-          spatialReference: new SpatialReference({ wkid: 4326 }).toJSON(),
-        };
-      }
-    };
-
     let highlight: { remove: () => void };
 
     const highlightStreet = async (options: {
@@ -363,10 +387,9 @@ export default defineComponent({
     };
 
     onMounted(async () => {
-      if (params.id) {
-        street.value = await getStreet(params.id);
+      if (currentRoute.value.params.id) {
+        street.value = await getStreet(currentRoute.value.params.id);
         if (street.value) {
-          centerStreet(street.value);
           highlightStreet({ type: 'segment', data: street.value });
         }
       }
@@ -376,7 +399,6 @@ export default defineComponent({
       if (to.params.id) {
         street.value = await getStreet(to.params.id);
         if (street.value) {
-          centerStreet(street.value);
           highlightStreet({ type: 'segment', data: street.value });
         }
       } else {
@@ -395,7 +417,7 @@ export default defineComponent({
       candidates,
       showCandidates,
       map,
-      defaultExtent,
+      extent,
       center,
       zoom,
       classifications,
@@ -460,15 +482,27 @@ export default defineComponent({
       handleZoom(z: number) {
         zoom.value = z;
       },
-      handleExtent(e: Extent) {
-        extent = e;
+      handleExtent(extent: Extent) {
+        const { xmin, ymin, xmax, ymax } = extent;
+
+        const f = currentRoute.value.params.id ? replace : push;
+
+        f({
+          ...currentRoute.value,
+          query: {
+            ...currentRoute.value.query,
+            extent: [xmin, ymin, xmax, ymax].join(','),
+          },
+        });
+
         createListings();
       },
       handleClick(
         event: Array<{ graphic?: { attributes: ESRIStreet } } | undefined>
       ) {
         const street = event[0]?.graphic?.attributes;
-        if (street) push(`/streets/${street.TranPlanID}`);
+        if (street)
+          push({ name: 'Streets', params: { id: street.TranPlanID } });
       },
       handlePointer(event: Array<{ graphic: { attributes: ESRIStreet } }>) {
         if (event && event.length > 0) {
