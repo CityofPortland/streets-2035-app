@@ -94,7 +94,6 @@ export default defineComponent({
     provide(STREET_CLASSIFICATION_KEY, models);
 
     onMounted(async () => {
-      authStore.initialize();
       models.push(...(await getModels()));
     });
 

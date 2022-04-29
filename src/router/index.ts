@@ -2,9 +2,12 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import Disclaimer from '@/pages/Disclaimer.vue';
 import Home from '@/pages/Home.vue';
+import Login from '@/pages/Login.vue';
 import OAuth from '@/pages/OAuth.vue';
 import Streets from '@/pages/Streets.vue';
 import StreetTypes from '@/pages/street-type/StreetTypes.vue';
+
+import { useAuthStore } from '@/store/auth';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -49,11 +52,28 @@ const routes: Array<RouteRecordRaw> = [
     name: 'OAuthCallback',
     component: OAuth,
   },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login,
+  },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeResolve(async (to) => {
+  const store = useAuthStore();
+  if (!store.isLoggedIn) {
+    console.log('initializing auth store');
+    await store.initialize();
+  }
+
+  if (!store.user && to.name !== 'Login' && to.name !== 'OAuthCallback') {
+    return { name: 'Login' };
+  }
 });
 
 export default router;
