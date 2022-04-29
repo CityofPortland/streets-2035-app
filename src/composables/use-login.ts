@@ -1,5 +1,5 @@
 import { onMounted, Ref, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, RouteRecordRaw, RouteLocationNormalized } from 'vue-router';
 
 import CryptoJS from 'crypto-js';
 
@@ -13,6 +13,8 @@ export type LoginContext = {
   authority?: string;
   challenge: Ref<string | undefined>;
   redirectURI: string;
+  getReturnLocation: () => RouteRecordRaw;
+  saveReturnLocation: (to: RouteLocationNormalized) => void;
 };
 
 /**
@@ -47,7 +49,7 @@ const generateCodes = (): PkceCodes => {
 };
 
 export function useLogin(): LoginContext {
-  const { resolve } = useRouter();
+  const router = useRouter();
   const challenge: Ref<string | undefined> = ref(undefined);
 
   onMounted(() => {
@@ -63,10 +65,22 @@ export function useLogin(): LoginContext {
     }
   });
 
+  const getReturnLocation = () => {
+    return JSON.parse(window.localStorage.getItem('pbotapps.auth.route') || '');
+  };
+  const saveReturnLocation = (to: RouteLocationNormalized) => {
+    const { name, path, params, query, hash } = to;
+    window.localStorage.setItem(
+      'pbotapps.auth.route',
+      JSON.stringify({ name, path, params, query, hash })
+    );
+  };
+
   const redirectURI = new URL(
-    resolve({
-      name: 'OAuthCallback',
-    }).href,
+    router &&
+      router.resolve({
+        name: 'OAuthCallback',
+      }).href,
     window.location.origin
   ).toString();
 
@@ -75,5 +89,7 @@ export function useLogin(): LoginContext {
     clientId: process.env.VUE_APP_AZURE_CLIENT_ID,
     challenge,
     redirectURI,
+    getReturnLocation,
+    saveReturnLocation,
   };
 }

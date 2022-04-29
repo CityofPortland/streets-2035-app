@@ -1,11 +1,7 @@
 <template>
-  <main class="max-w-7xl mt-8 px-4 mx-auto" v-if="!user">
+  <main class="max-w-7xl mt-8 px-4 mx-auto">
     <section class="grid grid-cols-1 gap-4">
-      <p>
-        You must sign in before you can view this site. City Employees should
-        login with their Office 365 credentials. Guests/contractors can login
-        with their approved Office 365 account.
-      </p>
+      <p>You have been logged out.</p>
       <SignIn
         size="large"
         color="blue"
@@ -18,13 +14,17 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
+import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/store/auth';
 import SignIn from '@/components/login/SignIn.vue';
 
 export default defineComponent({
-  name: 'Login',
+  name: 'Logout',
   setup() {
     const authStore = useAuthStore();
+    authStore.clear();
+    const { replace } = useRouter();
+    replace({ name: 'Home' });
 
     return {
       user: computed(() => authStore.user),
