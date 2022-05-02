@@ -7,11 +7,9 @@
         <router-link
           v-for="(page, idx) in pages"
           :key="idx"
-          :to="`/street-types/${page[0]}`"
-          custom
-          v-slot="{ href }"
+          :to="{ name: 'StreetTypes', params: { page: page[0] } }"
         >
-          <NavItem :url="href" :text="page[1].name" />
+          <NavItem :text="page[1].name" />
         </router-link>
       </Nav>
     </aside>
@@ -21,8 +19,9 @@
   </div>
 </template>
 
-<script>
-import { defineAsyncComponent, defineComponent, markRaw } from 'vue';
+<script lang="ts">
+import { computed, defineAsyncComponent, defineComponent, markRaw } from 'vue';
+import { useRouter } from 'vue-router';
 
 import Nav from '@/components/nav/Nav.vue';
 import NavItem from '@/components/nav/NavItem.vue';
@@ -30,10 +29,9 @@ import NavItem from '@/components/nav/NavItem.vue';
 export default defineComponent({
   name: 'StreetTypes',
   components: { Nav, NavItem },
-  props: {
-    page: String,
-  },
-  setup(props) {
+  setup() {
+    const { currentRoute } = useRouter();
+
     const pages = new Map([
       [
         '',
@@ -46,14 +44,21 @@ export default defineComponent({
         'civic-main-street',
         {
           name: 'Civic Main Streets',
-          component: defineAsyncComponent(() =>
-            import('./CivicMainStreet.mdx')
+          component: defineAsyncComponent(
+            () => import('./CivicMainStreet.mdx')
           ),
         },
       ],
     ]);
 
-    const currentPage = markRaw(pages.get(props.page).component);
+    const currentPage = computed(() => {
+      let page = currentRoute.value.params.page;
+      page = Array.isArray(page) ? page[0] : page;
+
+      const currentPage = pages.get(page);
+
+      return currentPage ? markRaw(currentPage.component) : undefined;
+    });
 
     return {
       currentPage,
