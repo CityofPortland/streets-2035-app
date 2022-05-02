@@ -362,7 +362,20 @@ export default defineComponent({
       }
     };
 
+    const setupFeatureFilter = async () => {
+      const layerView = await layerViews.get('classifications');
+      if (layerView) {
+        layerView.filter = new FeatureFilter({
+          where: `Design in (${classifications.value
+            .filter((c) => c.enabled)
+            .map((c) => `'${c.value}'`)
+            .join(',')})`,
+        });
+      }
+    };
+
     onMounted(async () => {
+      setupFeatureFilter();
       if (params.id) {
         street.value = await getStreet(params.id);
         if (street.value) {
@@ -409,7 +422,9 @@ export default defineComponent({
         const m = classifications.value.find((m) => m.value === model.value);
         if (m) m.enabled = !m.enabled;
 
-        const layerView = await layerViews.get('classifications');
+        setupFeatureFilter();
+
+        /*const layerView = await layerViews.get('classifications');
         if (layerView) {
           layerView.filter = new FeatureFilter({
             where: `Design in (${classifications.value
@@ -417,7 +432,7 @@ export default defineComponent({
               .map((c) => `'${c.value}'`)
               .join(',')})`,
           });
-        }
+        }*/
 
         createListings();
       },
