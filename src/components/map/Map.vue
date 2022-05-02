@@ -62,7 +62,7 @@ export default defineComponent({
       required: true,
     },
     extent: {
-      type: Object as () => Extent,
+      type: Object,
       required: true,
     },
     center: {
@@ -99,7 +99,6 @@ export default defineComponent({
         container: mapElement.value,
         map: props.map,
         extent: new Extent(extent.value),
-        zoom: zoom.value,
       });
 
       view.ui.remove('zoom');
