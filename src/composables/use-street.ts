@@ -29,7 +29,7 @@ export type Classifications = {
 type RetrieveOptions = {
   classifications: Array<string>;
   street?: Partial<Street>;
-  extent?: Extent;
+  extent?: Pick<Extent, 'xmin' | 'ymin' | 'xmax' | 'ymax' | 'spatialReference'>;
 };
 
 export function useStreet(): {
