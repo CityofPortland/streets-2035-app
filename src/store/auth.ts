@@ -105,4 +105,7 @@ export const useAuthStore = defineStore('auth', {
       this.user = user;
     },
   },
+  getters: {
+    isLoggedIn: (state) => (state.user ? true : false),
+  },
 });

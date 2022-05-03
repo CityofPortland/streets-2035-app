@@ -37,13 +37,9 @@
           </FieldList>
         </DropdownItem>
         <DropdownItem>
-          <Button
-            size="small"
-            color="gray"
-            variant="light"
-            @click="handleLogout"
-            >Log out</Button
-          >
+          <RouterLink to="/logout">
+            <Button size="small" color="gray" variant="light">Log out</Button>
+          </RouterLink>
         </DropdownItem>
       </DropdownList>
     </template>
@@ -82,9 +78,6 @@ export default defineComponent({
           ? URL.createObjectURL(store.user.photo)
           : undefined
       ),
-      handleLogout() {
-        store.clear();
-      },
     };
   },
 });
