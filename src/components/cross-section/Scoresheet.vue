@@ -16,12 +16,9 @@
       :scores="score"
       class="row-span-6"
     >
-      <Box
-        color="gray"
-        variant="light"
-        class="flex items-center justify-center w-64 h-32 border border-current rounded-md"
-        >Image here</Box
-      >
+      <img
+        src="https://pbotapps-test.portland.gov/streets-2035/img/cross-section/50/PortlandStreets_CrossSections_50C_2Lane_Midbock1@2048.webp"
+      />
     </Scorecard>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="w-32 md:w-full">
     <slot></slot>
     <Box
       as="h3"
