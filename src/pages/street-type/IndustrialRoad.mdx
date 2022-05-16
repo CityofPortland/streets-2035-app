@@ -1,0 +1,71 @@
+import Anchor from '@/elements/anchor/Anchor.vue';
+import Field from '@/components/field/Field.vue';
+import FieldList from '@/components/field/FieldList.vue';
+import Map from '@/components/map/StreetTypeMap.vue';
+
+<header>
+    # Industrial Roads
+    <section class="text-xl text-fog-900">
+         Industrial roads serve industrial land uses and provide freight connections to regional transportation facilities such as interstate and state highways.
+
+         These streets are designed to accommodate a significant volume of large trucks providing freight services for industry.
+    </section>
+
+</header>
+<section class="mt-8">
+    <FieldList class="gap-4">
+        <Field name="Typical Street Classification">
+            * City Walkway 
+            * City Bikeway 
+            * Local Service or Transit Access 
+            * Major City Traffic 
+            * Priority Truck Street 
+            * Major Emergency Response
+        </Field>
+
+        <Field name="Typical Travel-Way Width">
+            56’-72’
+        </Field>
+
+        <Field name="Travel Lanes">
+            Typically include two to four vehicle lanes, with additional turning lanes as needed.
+        </Field>
+
+        <Field name="Pedestrian">
+            Sidewalks serve pedestrians accessing places of employment, limited commercial uses, and transit service.
+        </Field>
+
+        <Field name="Transit">
+            Approximately half of Portland’s Industrial Roads support transit service. A few have the highest transit classification that may require space in the road or at signals for transit priority treatments.
+        </Field>
+
+        <Field name="Bicycle">
+            Protected bike lanes or off-street multi-use paths are the preferred facilities to separate people bicycling from heavy vehicles on Industrial Roads.
+        </Field>
+
+        <Field name="Greening">
+            Street trees are located in a continuous planter strip. Some Industrial Roads are lined by street trees that were planted behind the sidewalk.
+        </Field>
+
+        <Field name="Freight">
+            Industrial Roads serve a high volume of freight traffic and are designed to accommodate large vehicles through wider lane widths and turning radii.
+        </Field>
+
+        <Field name="Curbside Access">
+            Parking for land uses along Industrial Roads is generally served on site, though some Industrial Roads require truck staging areas within the roadway.
+        </Field>
+
+        <Field name="Place Creation">
+            Community uses in the curb zone are not appropriate on Industrial Roads due to higher speeds and volumes of large vehicles.
+        </Field>
+
+        <Field name="Emergency Response">
+         Industrial Roads are typically Major Emergency Response routes, which informs the use of vertical constraints adjacent to travel lanes (e.g., medians, protected bike lanes)
+        </Field>
+    </FieldList>
+
+</section>
+<section>
+    ## Example Streets
+    <Map type="ir"></Map>
+</section>

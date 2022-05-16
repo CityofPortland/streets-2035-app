@@ -4,16 +4,22 @@
   >
     <aside class="md:w-1/4 order-last">
       <Nav title="Sections">
-        <router-link
+        <NavItem
           v-for="(page, idx) in pages"
           :key="idx"
-          :to="{ name: 'StreetTypes', params: { page: page[0] } }"
+          :text="page[1].name"
+          class="my-2"
+          v-slot="{ display }"
         >
-          <NavItem :text="page[1].name" />
-        </router-link>
+          <router-link
+            :to="{ name: 'StreetTypes', params: { page: page[0] } }"
+            class="border-b-2 border-current"
+            >{{ display }}</router-link
+          >
+        </NavItem>
       </Nav>
     </aside>
-    <article class="mb-8 md:w-3/4 md:pr-4">
+    <article class="mb-8 md:w-3/4 md:pr-4 prose max-w-none">
       <component :is="currentPage"></component>
     </article>
   </div>
@@ -41,12 +47,60 @@ export default defineComponent({
         },
       ],
       [
+        'civic-corridor',
+        {
+          name: 'Civic Corridors',
+          component: defineAsyncComponent(() => import('./CivicCorridor.mdx')),
+        },
+      ],
+      [
         'civic-main-street',
         {
           name: 'Civic Main Streets',
           component: defineAsyncComponent(
             () => import('./CivicMainStreet.mdx')
           ),
+        },
+      ],
+      [
+        'neighborhood-corridor',
+        {
+          name: 'Neighborhood Corridors',
+          component: defineAsyncComponent(
+            () => import('./NeighborhoodCorridor.mdx')
+          ),
+        },
+      ],
+      [
+        'neighborhood-main-street',
+        {
+          name: 'Neighborhood Main Streets',
+          component: defineAsyncComponent(
+            () => import('./NeighborhoodMainStreet.mdx')
+          ),
+        },
+      ],
+      [
+        'community-corridor',
+        {
+          name: 'Community Corridors',
+          component: defineAsyncComponent(
+            () => import('./CommunityCorridor.mdx')
+          ),
+        },
+      ],
+      [
+        'local-street',
+        {
+          name: 'Local Streets',
+          component: defineAsyncComponent(() => import('./LocalStreet.mdx')),
+        },
+      ],
+      [
+        'industrial-road',
+        {
+          name: 'Industrial Roads',
+          component: defineAsyncComponent(() => import('./IndustrialRoad.mdx')),
         },
       ],
     ]);
@@ -67,3 +121,20 @@ export default defineComponent({
   },
 });
 </script>
+<style>
+.prose p:first-child {
+  @apply mt-0;
+}
+
+.prose ul:first-child {
+  @apply mt-0;
+}
+
+.prose li:first-child {
+  @apply mt-0;
+}
+
+.prose p:last-child {
+  @apply mb-0;
+}
+</style>

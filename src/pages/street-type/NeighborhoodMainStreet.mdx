@@ -1,0 +1,81 @@
+import Anchor from '@/elements/anchor/Anchor.vue';
+import Field from '@/components/field/Field.vue';
+import FieldList from '@/components/field/FieldList.vue';
+import Map from '@/components/map/StreetTypeMap.vue';
+
+<header>
+    # Neighborhood Main Streets
+    <section class="text-xl text-fog-900">
+      Neighborhood Main Streets are mid-sized streets that pass through smaller neighborhood-serving Centers. These centers support vibrant business districts and residential buildings, bringing amenities, goods, and services within walking distance of neighborhood residents.
+
+      Neighborhood Main Streets emphasize multimodal access to destinations, while accommodating mobility for all modes.
+
+      Some Neighborhood Main Streets have been business districts for decades, while others are transitioning to this role over time.
+    </section>
+
+</header>
+<section class="mt-8">
+    <FieldList class="gap-4">
+        <Field name="Typical Street Classification">
+            * Major City Walkway 
+            * City/Major City Bikeway
+            * Major Transit Priority or Transit Access 
+            * Neighborhood/District Collector 
+            * Local Service or Truck Access 
+            * Major Emergency Response
+        </Field>
+
+        <Field name="Typical Travel-Way Width">
+            36’-50’
+        </Field>
+
+        <Field name="Travel Lanes">
+            Typically include two vehicle lanes with additional turning lanes as needed.
+        </Field>
+
+        <Field name="Pedestrian">
+            Neighborhood Main Streets have the widest sidewalks in the city to accommodate a high volume of pedestrians accessing destinations and providing space for community uses such as sidewalk cafes or benches.
+
+            Closely spaced marked crossings facilitate access to transit and dense, diverse land uses. Designs such as warning signage, median islands, curb extensions, and beacons may be present to enhance pedestrian safety, as appropriate.
+        </Field>
+
+        <Field name="Transit">
+            Neighborhood Main Streets are well served by transit. Periodic transit priority treatments, such as transit stop curb extensions or islands, transit signal priority and queue bypasses may make use of the curb zone on Major Transit Priority routes (the highest transit designation) to improve transit speed and reliability.
+        </Field>
+
+        <Field name="Bicycle">
+            Depending on automobile speeds and volumes, Neighborhood Main Streets support bicycle access to destinations with buffered or protected bike lanes. When access to commercial destinations is prioritized on these (typically) narrow corridors, bicycles may be moved to parallel streets, provided that project design considers how people traveling on bicycle will access the main street.
+        </Field>
+
+        <Field name="Greening">
+            Street trees are located in tree wells to enhance the public realm adjacent to destinations. Where space allows and safe sight lines can be maintained, median refuge islands may also be planted.
+
+            In constrained locations, side streets may be the preferred place for stormwater swales to avoid pinch points that may preclude transit priority and planned bikeways.
+        </Field>
+
+        <Field name="Freight">
+            Neighborhood Main Streets are generally not major freight routes but provide access for goods loading/unloading, sorting, equipment handling, and other delivery and service operations at commercial destinations by smaller commercial vehicles.
+        </Field>
+
+        <Field name="Curbside Access">
+            Neighborhood Main Streets emphasize multimodal access to adjacent land uses, including transit stops. On some Neighborhood Main Streets parking, goods and passenger loading, and delivery needs may be accommodated on one side of the street, on side streets, or in off-street facilities to enable mobility uses in the curb zone.
+        </Field>
+
+        <Field name="Place Creation">
+            Where on-street parking/loading is provided, community- or commercial-uses, such as Street Seats, may be placed in the curb zone to provide additional gathering or commercial space. Street Seats are especially appropriate where space for such uses in the pedestrian realm is limited.
+
+            Community events such as street fairs may be held on Neighborhood Main Streets.
+        </Field>
+
+        <Field name="Emergency Response">
+         Neighborhood Main Streets are typically Major Emergency Response routes, which informs the use of vertical constraints adjacent to travel lanes (e.g., medians, protected bike lanes).
+
+         On Secondary Response Routes, speed bumps may be an available tool to reduce speeds and volumes and should be “fire friendly.”
+        </Field>
+    </FieldList>
+
+</section>
+<section>
+    ## Example Streets
+    <Map type="nms"></Map>
+</section>

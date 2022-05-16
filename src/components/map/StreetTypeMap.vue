@@ -28,8 +28,6 @@ import TileLayer from '@arcgis/core/layers/TileLayer';
 
 import MapVue from '@/components/map/Map.vue';
 
-const TYPE_MAP = new Map<string, string>([['civic-main-street', 'CIMS']]);
-
 export default defineComponent({
   name: 'StreetTypeMap',
   components: {
@@ -56,7 +54,7 @@ export default defineComponent({
       new FeatureLayer({
         url: 'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/22',
         outFields: ['*'],
-        definitionExpression: `Design = '${TYPE_MAP.get(type.value)}'`,
+        definitionExpression: `Design = '${type.value.toUpperCase()}'`,
       }),
       new TileLayer({
         url: 'https://www.portlandmaps.com/arcgis/rest/services/Public/Basemap_Color_Labels/MapServer',

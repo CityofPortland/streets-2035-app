@@ -1,0 +1,75 @@
+import Anchor from '@/elements/anchor/Anchor.vue';
+import Field from '@/components/field/Field.vue';
+import FieldList from '@/components/field/FieldList.vue';
+import Map from '@/components/map/StreetTypeMap.vue';
+
+<header>
+    # Civic Corridors
+    <section class="text-xl text-fog-900">
+        Civic Corridors are generally Portland’s busiest, widest, and most prominent streets. As the city grows, Civic Corridors are increasingly lined with multifamily residential and commercial mixed-use developments.
+
+        Civic Corridors balance the need to provide safe mobility for all modes while moving large volumes of people and goods.
+    </section>
+
+</header>
+<section class="mt-8">
+    <FieldList class="gap-4">
+        <Field name="Typical Street Classification">
+            * Major City Walkway                    
+            * City/Major City Bikeway
+            * Major Transit Priority
+            * Major City Traffic
+            * Major Truck or Truck Access
+            * Major Emergency Response
+        </Field>
+
+        <Field name="Typical Travel-Way Width">
+            56’-76’
+        </Field>
+
+        <Field name="Travel Lanes">
+            Typically include two to four vehicle lanes, with additional turning lanes as needed.
+        </Field>
+
+        <Field name="Pedestrian">
+            Sidewalks accommodate a medium volume of pedestrians traveling along the street and accessing destinations and frequent transit services.
+
+            Enhanced crossings contribute to pedestrian safety, mobility and access to transit. Designs such as median islands and pedestrian signals or beacons may be used to shorten the length of crossings and stop traffic as appropriate.
+        </Field>
+
+        <Field name="Transit">
+            Civic Corridors are typically Major Transit Priority routes and play an essential role in the city’s transit network. Street design includes transit priority treatments from the <Anchor url="https://www.portland.gov/sites/default/files/2020-03/capital-operational-toolbox.pdf">ETC Toolbox</Anchor> such as transit stop curb extensions or islands to allow transit to stop in lane, transit signal priority, queue bypasses, and Business Access and Transit lanes to make transit a rapid and reliable choice for daily transportation.
+        </Field>
+
+        <Field name="Bicycle">
+            Most Civic Corridors are part of the planned bicycle network, providing important through connections and access to the many destinations along these streets. Protected bike lanes are the preferred facility type to increase comfort and separation on these higher volume roads. There may be opportunities on such corridors for short segments of shared bus and bike lanes.
+        </Field>
+
+        <Field name="Greening">
+            Greening functions related to tree canopy and stormwater management typically occur in the furnishing zone or in tree-lined medians to create distinctive, memorable places and offset the presence of wide paved areas serving transportation functions. Median plantings may depend upon the location of underground utilities.
+
+            Green infrastructure in the curb zone requires careful consideration of existing and future mobility needs to ensure infrastructure is consistent with transit priority and planned bikeways.
+        </Field>
+
+        <Field name="Freight">
+            Civic Corridors often carry a high freight classification. Typically designated as Major Truck or Truck Access Streets, these classifications inform the extent to which street design accommodates truck needs in balance with other modal needs and whether through freight trips are discouraged. Heavy–duty commercial vehicles have similar needs as transit vehicles in terms of lane widths and turning radii.
+        </Field>
+
+        <Field name="Curbside Access">
+            Civic Corridors prioritize the use of the curb zone for multimodal mobility and comfort with design elements such as transit stops, transit priority treatments and buffered or protected bike lanes. Loading and parking on side streets or off-street, as possible, is preferred to allow increased mobility along the roadway.
+        </Field>
+
+        <Field name="Place Creation">
+            Repurposing street space for placemaking or commercial use is an appropriate use of the curb zone when street design includes on-street parking and adjacent traffic speeds and volumes create a comfortable environment for people to stay in the curb zone.
+        </Field>
+
+        <Field name="Emergency Response">
+            Civic Corridors are typically Major Emergency Response routes, which informs the use of vertical constraints adjacent to travel lanes (e.g., medians, protected bike lanes).
+        </Field>
+    </FieldList>
+
+</section>
+<section>
+    ## Example Streets
+    <Map type="cic"></Map>
+</section>

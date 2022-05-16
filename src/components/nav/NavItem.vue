@@ -1,6 +1,6 @@
 <template>
   <li>
-    <slot>
+    <slot :url="url" :display="display">
       <Anchor :url="url" v-bind="$attrs">
         {{ display }}
       </Anchor>
