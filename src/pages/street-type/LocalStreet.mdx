@@ -1,0 +1,77 @@
+import Anchor from '@/elements/anchor/Anchor.vue';
+import Field from '@/components/field/Field.vue';
+import FieldList from '@/components/field/FieldList.vue';
+import Map from '@/components/map/StreetTypeMap.vue';
+
+<header>
+    # Local Streets
+    <section class="text-xl text-fog-900">
+        Local streets make up the majority of Portland’s streets. These are narrower streets that provide access for people and goods deliveries to residences and destinations like schools and parks.
+
+        There are fewer mobility demands on these streets since automobile volumes and speeds are usually low, allowing transportation modes to share space in the street, and transit is very rare.
+    </section>
+
+</header>
+<section class="mt-8">
+    <FieldList class="gap-4">
+        <Field name="Typical Street Classification">
+            * Local or Neighborhood Walkway
+            * Local or City Bikeway
+            * Local Service Transit
+            * Local Service Traffic
+            * Local Service Truck
+            * Minor Emergency Response
+        </Field>
+
+        <Field name="Typical Travel-Way Width">
+            22’-36’
+        </Field>
+
+        <Field name="Travel Lanes">
+            Often designed as queuing streets where one vehicle must pull over for another to pass, local streets typically do not have a centerline to designate travel lanes.
+        </Field>
+
+        <Field name="Pedestrian">
+            Sidewalks accommodate lower volumes of people walking, and pedestrian comfort is sometimes enhanced through traffic calming such as speed humps or diverters.
+
+            Local Streets in Pedestrian Districts have wider sidewalks to accommodate higher volumes of people walking to denser, diverse land uses.
+        </Field>
+
+        <Field name="Transit">
+            Transit is usually not present on Local Streets, but these streets provide connections for people walking between home and transit.
+        </Field>
+
+        <Field name="Bicycle">
+            Local Streets designated as City Bikeways or Major City Bikeways can be developed as neighborhood greenways. Operational guidelines inform the use of traffic calming and auto diversion to bring volumes and speeds to conditions where the roadways can be shared between people driving and people of all ages and abilities bicycling.
+        </Field>
+
+        <Field name="Greening">
+            Local streets generally have continuous planter strips for street trees and other plantings. Fewer mobility demands make local streets good candidates for green stormwater infrastructure, and large canopy trees. Trees may be planted in traffic calming and diversion infrastructure such as traffic circles and curb extensions, if it doesn’t impact safety and visible clearance requirements.
+        </Field>
+
+        <Field name="Freight">
+            Local streets serve residential deliveries and other services, typically with smaller commercial vehicles, but are not designated freight routes.
+        </Field>
+
+        <Field name="Curbside Access">
+            Most local streets have parking on both sides that serves adjacent housing for residents, services providers, and home delivery operations.
+        </Field>
+
+        <Field name="Place Creation">
+            Resident-driven efforts may host temporary uses of Local Streets such as temporary street closure  permits for block parties and play streets.
+
+            Local streets that intersect commercial main streets may be good candidates for side street plaza installations. These can serve business and community use without impacting transit or mobility needs on the main street.
+        </Field>
+
+        <Field name="Emergency Response">
+         Local Streets are typically Minor Emergency Response routes.
+
+        On Secondary Response Routes, speed bumps may be an available tool to reduce speeds and volumes and should be “fire friendly.”
+        </Field>
+    </FieldList>
+
+</section>
+<section>
+    ## Example Streets
+    <Map type="ls"></Map>
+</section>
