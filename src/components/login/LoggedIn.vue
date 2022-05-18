@@ -3,18 +3,18 @@
     size="small"
     label="User information"
     id="menu-button"
-    class="w-full md:w-auto justify-between"
+    class="w-full rounded-md border border-current"
   >
     <template v-slot:label="{ open }">
-      <article class="inline-flex items-center space-x-2">
-        <header>
+      <article class="inline-flex items-center space-x-2 w-full">
+        <header class="md:flex-1">
           <img
             class="w-6 h-6 rounded-full"
             :src="photo"
             :alt="`Avatar image for logged in user`"
           />
         </header>
-        <main class="inline-flex items-center space-x-2">
+        <main class="flex-1 inline-flex items-center justify-between">
           <span>{{ user.givenName }}</span>
           <Icon
             type="solid"
@@ -38,7 +38,14 @@
         </DropdownItem>
         <DropdownItem>
           <RouterLink to="/logout">
-            <Button size="small" color="gray" variant="light">Log out</Button>
+            <Button
+              as="span"
+              label="Log out"
+              size="small"
+              color="gray"
+              variant="light"
+              >Log out</Button
+            >
           </RouterLink>
         </DropdownItem>
       </DropdownList>
