@@ -3,7 +3,7 @@ import Field from '@/components/field/Field.vue';
 import FieldList from '@/components/field/FieldList.vue';
 import Map from '@/components/map/StreetTypeMap.vue';
 
-<header>
+<header class="prose">
     # Civic Corridors
     <section class="text-xl text-fog-900">
         Civic Corridors are generally Portland’s busiest, widest, and most prominent streets. As the city grows, Civic Corridors are increasingly lined with multifamily residential and commercial mixed-use developments.
@@ -12,7 +12,7 @@ import Map from '@/components/map/StreetTypeMap.vue';
     </section>
 
 </header>
-<section class="mt-8">
+<section class="mt-8 prose">
     <FieldList class="gap-4">
         <Field name="Typical Street Classification">
             * Major City Walkway                    
@@ -70,6 +70,8 @@ import Map from '@/components/map/StreetTypeMap.vue';
 
 </section>
 <section>
-    ## Example Streets
+    <header class="prose mb-4">
+        ## Example streets
+    </header>
     <Map type="cic"></Map>
 </section>

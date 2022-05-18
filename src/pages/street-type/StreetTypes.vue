@@ -3,23 +3,17 @@
     class="flex flex-col md:flex-row md:justify-between max-w-7xl w-full mx-auto px-4 mt-4"
   >
     <aside class="md:w-1/4 order-last">
-      <Nav title="Sections">
+      <Nav title="Sections" class="my-2">
         <NavItem
           v-for="(page, idx) in pages"
           :key="idx"
           :text="page[1].name"
+          :to="{ name: 'StreetTypes', params: { page: page[0] } }"
           class="my-2"
-          v-slot="{ display }"
-        >
-          <router-link
-            :to="{ name: 'StreetTypes', params: { page: page[0] } }"
-            class="border-b-2 border-current"
-            >{{ display }}</router-link
-          >
-        </NavItem>
+        />
       </Nav>
     </aside>
-    <article class="mb-8 md:w-3/4 md:pr-4 prose max-w-none">
+    <article class="mb-8 md:w-3/4 md:pr-4">
       <component :is="currentPage"></component>
     </article>
   </div>

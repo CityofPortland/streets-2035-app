@@ -6,22 +6,22 @@ import Image from '@/elements/img/Image.vue';
 
 export const publicPath = process.env.BASE_URL;
 
-<header>
+<header class="prose">
     # Civic Main Streets
     <section class="text-xl text-fog-900">
         Civic Main Streets are generally Portland’s busiest, widest streets that pass through compact, pedestrian-oriented Centers that anchor neighborhoods with retail and businesses, schools and libraries, housing options, employment centers, and gathering places.
 
         Civic Main Streets emphasize multimodal access to destinations, while accommodating mobility for all modes.
     </section>
-    <Image
-        src={`${publicPath}img/street-type/PortlandStreets_CivicMainStreet1_Grey.webp`}
-
-        alt="Perspective rendering of a civic main street"
-        title="Perspective rendering of a civic main street"
-    />
 
 </header>
-<section class="mt-8">
+<Image
+    src={`${publicPath}img/street-type/PortlandStreets_CivicMainStreet1_Grey.webp`}
+    class="my-4"
+    alt="Perspective rendering of a civic main street"
+    title="Perspective rendering of a civic main street"
+/>
+<section class="mt-8 prose">
     <FieldList class="gap-4">
         <Field name="Typical Street Classification">
             * [Major City Walkway](https://portland-tsp.com/#/text#major-city-walkways)
@@ -78,8 +78,9 @@ export const publicPath = process.env.BASE_URL;
 
 </section>
 <section>
-    ## Example Streets
-
+    <header class="prose mb-4">
+        ## Example streets
+    </header>
     <Map type="cims"></Map>
 
 </section>
