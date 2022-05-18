@@ -12,15 +12,11 @@
         </router-link>
       </template>
       <template v-slot:menu>
-        <Nav :list-class="'flex flex-col md:flex-row md:space-x-3'">
-          <router-link to="/streets">
-            <NavItem text="Map" />
-          </router-link>
-          <router-link to="/street-types">
-            <NavItem text="Street types" />
-          </router-link>
+        <Nav list-class="flex flex-col gap-2 md:gap-3 md:flex-row">
+          <NavItem text="Map" to="/streets" />
+          <NavItem text="Street types" to="/street-types" />
         </Nav>
-        <Nav class="md:ml-auto">
+        <Nav class="mt-3 md:mt-0 md:ml-auto">
           <SignIn v-if="!user" />
           <LoggedIn v-else />
         </Nav>
@@ -33,23 +29,13 @@
       <template v-slot:middle>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
           <Nav title="General information">
-            <nav-item>
-              <Anchor url="//portland.gov">City of Portland</Anchor>
-            </nav-item>
-            <nav-item>
-              <Anchor url="//portland.gov/transportation"
-                >Portland Bureau of Transportation</Anchor
-              >
-            </nav-item>
+            <NavItem to="https://portland.gov">City of Portland</NavItem>
+            <NavItem to="https://portland.gov/transportation"
+              >Portland Bureau of Transportation</NavItem
+            >
           </Nav>
           <Nav title="Legal notices">
-            <nav-item>
-              <router-link
-                to="/disclaimer"
-                class="border-b-2 border-current font-medium"
-                >Disclaimer</router-link
-              >
-            </nav-item>
+            <NavItem to="/disclaimer">Disclaimer</NavItem>
           </Nav>
         </div>
       </template>
@@ -67,7 +53,6 @@ import {
   ref,
 } from 'vue';
 
-import Anchor from '@/elements/anchor/Anchor.vue';
 import Footer from '@/components/footer/Footer.vue';
 import Header from '@/components/header/Header.vue';
 import Logo from '@/components/Logo.vue';
@@ -104,7 +89,6 @@ export default defineComponent({
     };
   },
   components: {
-    Anchor,
     Footer,
     Header,
     LoggedIn,
