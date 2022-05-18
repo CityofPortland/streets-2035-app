@@ -1,7 +1,7 @@
 <template>
   <a
     :href="url"
-    class="rounded focus:outline-none focus:ring-2 focus:ring-black"
+    class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-black"
   >
     <slot name="before"></slot>
     <span :class="{ ...borderClasses }">

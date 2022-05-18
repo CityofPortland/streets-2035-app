@@ -1,15 +1,19 @@
 <template>
   <li>
-    <slot :url="url" :display="display">
-      <Anchor :url="url" v-bind="$attrs">
-        {{ display }}
+    <Anchor v-if="isExternalLink" v-bind="$attrs" :url="to">
+      <slot :url="url" :display="display">{{ display }}</slot>
+    </Anchor>
+    <router-link v-else v-bind="$props" custom v-slot="{ href, navigate }">
+      <Anchor v-bind="$attrs" :url="href" @click="navigate">
+        <slot :url="url" :display="display">{{ display }}</slot>
       </Anchor>
-    </slot>
+    </router-link>
   </li>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
+import { RouterLink, useLink } from 'vue-router';
 
 import Anchor from '@/elements/anchor/Anchor.vue';
 
@@ -18,6 +22,9 @@ export default defineComponent({
   components: { Anchor },
   inheritAttrs: false,
   props: {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    ...RouterLink.props,
     url: {
       type: String,
     },
@@ -26,8 +33,19 @@ export default defineComponent({
     },
   },
   setup(props) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    const { href, navigate } = useLink(props);
+
+    const isExternalLink = computed(
+      () => typeof props.to === 'string' && props.to.startsWith('http')
+    );
+
     return {
       display: props.text || props.url,
+      href,
+      isExternalLink,
+      navigate,
     };
   },
 });

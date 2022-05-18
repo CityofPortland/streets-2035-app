@@ -1,12 +1,10 @@
 import { Story } from '@storybook/vue3';
 
 import StreetFull from './Full.vue';
-import StreetList from './Listing.vue';
 
 export default {
   title: 'Component/Street',
   component: StreetFull,
-  subcomponents: { StreetList },
   argTypes: {
     onHighlight: {
       type: 'action',
@@ -42,17 +40,5 @@ export const Full: Story = (args, { argTypes }) => ({
   template: `<Street :street="street" />`,
 });
 Full.args = {
-  street,
-};
-
-export const List: Story = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { Street: StreetList },
-  setup: () => {
-    return { ...args };
-  },
-  template: `<div class="grid grid-cols-1 gap-2"><Street v-for="index in 3" :key="index" :street="street" @highlight="onHighlight" /></div>`,
-});
-List.args = {
   street,
 };

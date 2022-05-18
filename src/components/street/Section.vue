@@ -4,7 +4,7 @@
     tabindex="0"
     @mouseenter="handleHighlightSection(street)"
     @focus="handleHighlightSection(street)"
-    class="flex flex-col gap-3 p-2 border border-current shadow-md rounded-lg hover:ring-4 hover:ring-blue-300 focus:ring-4 focus:ring-blue-300"
+    class="flex flex-col gap-3 p-2 border border-current shadow-md rounded-lg hover:bg-blue-100 focus:outline-none focus:ring-4 focus:ring-blue-300"
   >
     <h3 class="text-lg font-bold leading-tight">
       {{ street.name?.trim() || 'Unnamed segment' }}
@@ -26,7 +26,7 @@
         }}
       </Box>
     </div>
-    <FieldList class="gap-1 text-sm">
+    <FieldList v-if="street.minWidth || street.maxWidth" class="gap-1 text-sm">
       <Field display="inline" name="Road width">
         <div v-if="!street.minWidth && !street.maxWidth">
           <Help
@@ -51,7 +51,7 @@
       </Field>
     </FieldList>
     <Panel
-      v-if="street.segments.length"
+      v-if="street.segments && street.segments.length"
       color="fog"
       variant="light"
       class="text-sm"
