@@ -3,7 +3,7 @@ import Field from '@/components/field/Field.vue';
 import FieldList from '@/components/field/FieldList.vue';
 import Map from '@/components/map/StreetTypeMap.vue';
 
-<header>
+<header class="prose">
     # Neighborhood Main Streets
     <section class="text-xl text-fog-900">
       Neighborhood Main Streets are mid-sized streets that pass through smaller neighborhood-serving Centers. These centers support vibrant business districts and residential buildings, bringing amenities, goods, and services within walking distance of neighborhood residents.
@@ -14,7 +14,7 @@ import Map from '@/components/map/StreetTypeMap.vue';
     </section>
 
 </header>
-<section class="mt-8">
+<section class="mt-8 prose">
     <FieldList class="gap-4">
         <Field name="Typical Street Classification">
             * Major City Walkway 
@@ -39,18 +39,18 @@ import Map from '@/components/map/StreetTypeMap.vue';
             Closely spaced marked crossings facilitate access to transit and dense, diverse land uses. Designs such as warning signage, median islands, curb extensions, and beacons may be present to enhance pedestrian safety, as appropriate.
         </Field>
 
-        <Field name="Transit">
-            Neighborhood Main Streets are well served by transit. Periodic transit priority treatments, such as transit stop curb extensions or islands, transit signal priority and queue bypasses may make use of the curb zone on Major Transit Priority routes (the highest transit designation) to improve transit speed and reliability.
+        <Field name="Greening">
+            Street trees are located in tree wells to enhance the public realm adjacent to destinations. Where space allows and safe sight lines can be maintained, median refuge islands may also be planted.
+
+            In constrained locations, side streets may be the preferred place for stormwater swales to avoid pinch points that may preclude transit priority and planned bikeways.
         </Field>
 
         <Field name="Bicycle">
             Depending on automobile speeds and volumes, Neighborhood Main Streets support bicycle access to destinations with buffered or protected bike lanes. When access to commercial destinations is prioritized on these (typically) narrow corridors, bicycles may be moved to parallel streets, provided that project design considers how people traveling on bicycle will access the main street.
         </Field>
 
-        <Field name="Greening">
-            Street trees are located in tree wells to enhance the public realm adjacent to destinations. Where space allows and safe sight lines can be maintained, median refuge islands may also be planted.
-
-            In constrained locations, side streets may be the preferred place for stormwater swales to avoid pinch points that may preclude transit priority and planned bikeways.
+        <Field name="Transit">
+            Neighborhood Main Streets are well served by transit. Periodic transit priority treatments, such as transit stop curb extensions or islands, transit signal priority and queue bypasses may make use of the curb zone on Major Transit Priority routes (the highest transit designation) to improve transit speed and reliability.
         </Field>
 
         <Field name="Freight">
@@ -76,6 +76,8 @@ import Map from '@/components/map/StreetTypeMap.vue';
 
 </section>
 <section>
-    ## Example Streets
+    <header class="prose mb-4">
+        ## Example streets
+    </header>
     <Map type="nms"></Map>
 </section>

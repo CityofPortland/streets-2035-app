@@ -94,43 +94,40 @@
         <Full :street="street" />
       </section>
     </section>
-    <section
+    <MapVue
+      id="streets"
+      :map="map"
+      :extent="extent"
+      :center="center"
+      :zoom="zoom"
+      :options="{
+        highlightOptions: {
+          color: '#FF9494',
+          fillOpacity: 0.8,
+          haloColor: '#E65C5C',
+          haloOpacity: 1,
+        },
+      }"
       class="w-full sm:w-2/3 md:w-full lg:w-2/3 xl:w-3/4 h-screen-50 sm:h-(screen-16) md:h-screen-50 lg:h-(screen-16) overflow-y-auto"
+      @zoom-change="handleZoom"
+      @extent-change="handleExtent"
+      @click-hit="handleClick"
+      @layer-view="handleLayerView"
+      @pointer-hit="handlePointer"
     >
-      <MapVue
-        id="streets"
-        :map="map"
-        :extent="extent"
-        :center="center"
-        :zoom="zoom"
-        :options="{
-          highlightOptions: {
-            color: '#FF9494',
-            fillOpacity: 0.8,
-            haloColor: '#E65C5C',
-            haloOpacity: 1,
-          },
-        }"
-        @zoom-change="handleZoom"
-        @extent-change="handleExtent"
-        @click-hit="handleClick"
-        @layer-view="handleLayerView"
-        @pointer-hit="handlePointer"
-      >
-        <template v-slot:top-right>
-          <section
-            v-if="pointer"
-            class="p-2 border border-black rounded-md shadow bg-white overflow-auto flex flex-col"
-          >
-            <span class="font-semibold text-lg">{{ pointer.name }}</span>
-            <span class="text-gray-700">{{
-              classificationLabel('design', pointer.classifications?.design)
-            }}</span>
-          </section>
-        </template>
-        <template v-slot:bottom-right> </template>
-      </MapVue>
-    </section>
+      <template v-slot:top-right>
+        <section
+          v-if="pointer"
+          class="p-2 border border-black rounded-md shadow bg-white overflow-auto flex flex-col"
+        >
+          <span class="font-semibold text-lg">{{ pointer.name }}</span>
+          <span class="text-gray-700">{{
+            classificationLabel('design', pointer.classifications?.design)
+          }}</span>
+        </section>
+      </template>
+      <template v-slot:bottom-right> </template>
+    </MapVue>
   </div>
 </template>
 

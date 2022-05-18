@@ -3,7 +3,7 @@ import Field from '@/components/field/Field.vue';
 import FieldList from '@/components/field/FieldList.vue';
 import Map from '@/components/map/StreetTypeMap.vue';
 
-<header>
+<header class="prose">
     # Civic Corridors
     <section class="text-xl text-fog-900">
         Civic Corridors are generally Portland’s busiest, widest, and most prominent streets. As the city grows, Civic Corridors are increasingly lined with multifamily residential and commercial mixed-use developments.
@@ -12,7 +12,7 @@ import Map from '@/components/map/StreetTypeMap.vue';
     </section>
 
 </header>
-<section class="mt-8">
+<section class="mt-8 prose">
     <FieldList class="gap-4">
         <Field name="Typical Street Classification">
             * Major City Walkway                    
@@ -37,18 +37,18 @@ import Map from '@/components/map/StreetTypeMap.vue';
             Enhanced crossings contribute to pedestrian safety, mobility and access to transit. Designs such as median islands and pedestrian signals or beacons may be used to shorten the length of crossings and stop traffic as appropriate.
         </Field>
 
-        <Field name="Transit">
-            Civic Corridors are typically Major Transit Priority routes and play an essential role in the city’s transit network. Street design includes transit priority treatments from the <Anchor url="https://www.portland.gov/sites/default/files/2020-03/capital-operational-toolbox.pdf">ETC Toolbox</Anchor> such as transit stop curb extensions or islands to allow transit to stop in lane, transit signal priority, queue bypasses, and Business Access and Transit lanes to make transit a rapid and reliable choice for daily transportation.
+        <Field name="Greening">
+            Greening functions related to tree canopy and stormwater management typically occur in the furnishing zone or in tree-lined medians to create distinctive, memorable places and offset the presence of wide paved areas serving transportation functions. Median plantings may depend upon the location of underground utilities.
+
+            Green infrastructure in the curb zone requires careful consideration of existing and future mobility needs to ensure infrastructure is consistent with transit priority and planned bikeways.
         </Field>
 
         <Field name="Bicycle">
             Most Civic Corridors are part of the planned bicycle network, providing important through connections and access to the many destinations along these streets. Protected bike lanes are the preferred facility type to increase comfort and separation on these higher volume roads. There may be opportunities on such corridors for short segments of shared bus and bike lanes.
         </Field>
 
-        <Field name="Greening">
-            Greening functions related to tree canopy and stormwater management typically occur in the furnishing zone or in tree-lined medians to create distinctive, memorable places and offset the presence of wide paved areas serving transportation functions. Median plantings may depend upon the location of underground utilities.
-
-            Green infrastructure in the curb zone requires careful consideration of existing and future mobility needs to ensure infrastructure is consistent with transit priority and planned bikeways.
+        <Field name="Transit">
+            Civic Corridors are typically Major Transit Priority routes and play an essential role in the city’s transit network. Street design includes transit priority treatments from the <Anchor url="https://www.portland.gov/sites/default/files/2020-03/capital-operational-toolbox.pdf">ETC Toolbox</Anchor> such as transit stop curb extensions or islands to allow transit to stop in lane, transit signal priority, queue bypasses, and Business Access and Transit lanes to make transit a rapid and reliable choice for daily transportation.
         </Field>
 
         <Field name="Freight">
@@ -70,6 +70,8 @@ import Map from '@/components/map/StreetTypeMap.vue';
 
 </section>
 <section>
-    ## Example Streets
+    <header class="prose mb-4">
+        ## Example streets
+    </header>
     <Map type="cic"></Map>
 </section>

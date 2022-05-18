@@ -15,7 +15,7 @@
         </div>
         <div v-if="hasMenu" class="-mr-2 flex md:hidden flex-grow">
           <button
-            class="inline-flex items-center justify-center p-2 ml-auto rounded-md hover:opacity-50"
+            class="inline-flex items-center justify-center p-2 ml-auto rounded-md"
             :class="buttonClasses"
             @click="handleToggle"
           >
@@ -56,7 +56,7 @@
         </div>
       </div>
     </div>
-    <div class="px-4 md:hidden" :class="{ hidden: !open }">
+    <div class="px-4 py-2 md:hidden" :class="{ hidden: !open }">
       <slot name="menu"></slot>
     </div>
   </Box>
