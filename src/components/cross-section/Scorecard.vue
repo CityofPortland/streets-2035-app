@@ -1,75 +1,96 @@
 <template>
-  <header class="w-32 md:w-full">
+  <Box as="header" class="flex flex-col gap-1">
     <slot></slot>
     <Box
-      as="h3"
       color="gray"
       variant="light"
-      class="text-center rounded-md p-4"
-      >{{ name }}</Box
+      class="p-2 rounded-md font-bold grid grid-cols-2 gap-1 justify-items-center"
     >
-  </header>
+      <span>Mobility</span>
+      <span>Access</span>
+    </Box>
+  </Box>
   <Box
     :color="scoreColor(scores.safety)"
     variant="light"
-    class="text-center p-4 rounded-md"
+    class="text-center p-2 rounded-md"
     title="Safety score"
-    >{{ scores.safety }}</Box
-  >
-  <div class="grid grid-cols-2">
+  />
+  <div class="grid grid-cols-2 gap-1">
     <Box
       :color="scoreColor(scores['pedestrian:mobility'])"
       variant="light"
-      class="text-center p-4 rounded-l-md"
+      class="text-center p-2 rounded-md"
       title="Pedestrian mobility score"
-      >{{ scores['pedestrian:mobility'] }}</Box
-    >
+    />
     <Box
       :color="scoreColor(scores['pedestrian:access'])"
       variant="light"
-      class="text-center p-4 rounded-r-md"
+      class="text-center p-2 rounded-md"
       title="Pedestrian access score"
-      >{{ scores['pedestrian:access'] }}</Box
-    >
+    />
   </div>
   <Box
     :color="scoreColor(scores.greening)"
     variant="light"
-    class="text-center p-4 rounded-md"
+    class="text-center p-2 rounded-md"
     title="Greening score"
-    >{{ scores.greening }}</Box
-  >
-  <div class="grid grid-cols-2">
+  />
+  <div class="grid grid-cols-2 gap-1">
     <Box
       :color="scoreColor(scores['bicycle:mobility'])"
       variant="light"
-      class="text-center p-4 rounded-l-md"
+      class="text-center p-2 rounded-md"
       title="Bicycle mobility score"
-      >{{ scores['bicycle:mobility'] }}</Box
-    >
+    />
     <Box
       :color="scoreColor(scores['bicycle:access'])"
       variant="light"
-      class="text-center p-4 rounded-r-md"
+      class="text-center p-2 rounded-md"
       title="Bicycle access score"
-      >{{ scores['bicycle:access'] }}</Box
-    >
+    />
   </div>
-  <div class="grid grid-cols-2">
+  <div class="grid grid-cols-2 gap-1">
     <Box
       :color="scoreColor(scores['transit:mobility'])"
       variant="light"
-      class="text-center p-4 rounded-l-md"
+      class="text-center p-2 rounded-md"
       title="Transit mobility score"
-      >{{ scores['transit:mobility'] }}</Box
-    >
+    />
     <Box
       :color="scoreColor(scores['transit:access'])"
       variant="light"
-      class="text-center p-4 rounded-r-md"
+      class="text-center p-2 rounded-md"
       title="Transit access score"
-      >{{ scores['transit:access'] }}</Box
-    >
+    />
+  </div>
+  <div class="grid grid-cols-2 gap-1">
+    <Box
+      :color="scoreColor(scores['freight:mobility'])"
+      variant="light"
+      class="text-center p-2 rounded-md"
+      title="Freight mobility score"
+    />
+    <Box
+      :color="scoreColor(scores['freight:access'])"
+      variant="light"
+      class="text-center p-2 rounded-md"
+      title="Freight access score"
+    />
+  </div>
+  <div class="grid grid-cols-2 gap-1">
+    <Box
+      :color="scoreColor(scores['traffic:mobility'])"
+      variant="light"
+      class="text-center p-2 rounded-md"
+      title="Traffic mobility score"
+    />
+    <Box
+      :color="scoreColor(scores['traffic:access'])"
+      variant="light"
+      class="text-center p-2 rounded-md"
+      title="Traffic access score"
+    />
   </div>
 </template>
 <script lang="ts">
@@ -86,14 +107,16 @@ type ScoreSet = {
   'bicycle:access': number;
   'transit:mobility': number;
   'transit:access': number;
+  'freight:mobility': number;
+  'freight:access': number;
+  'traffic:mobility': number;
+  'traffic:access': number;
 };
 
 export default defineComponent({
   name: 'Scorecard',
   components: { Box },
   props: {
-    name: String,
-    image: String,
     scores: {
       type: Object as () => ScoreSet,
       required: true,

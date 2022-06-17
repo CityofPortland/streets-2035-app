@@ -1,45 +1,43 @@
 <template>
-  <div
+  <section
     class="grid grid-flow-col gap-1"
-    style="grid-template-rows: repeat(6, auto)"
+    :style="`
+        grid-template-rows: repeat(8, auto);
+        grid-template-columns: repeat(${
+          options.length + 1
+        }, minmax(10rem, 14rem) [col-start]);
+      `"
   >
-    <span class="py-4"></span>
-    <span class="py-4">Safety</span>
-    <span class="py-4">Pedestrian</span>
-    <span class="py-4">Greening</span>
-    <span class="py-4">Bicycle</span>
-    <span class="py-4">Transit</span>
+    <span class="py-2"></span>
+    <span class="py-2">Safety</span>
+    <span class="py-2">Pedestrian</span>
+    <span class="py-2">Greening</span>
+    <span class="py-2">Bicycle</span>
+    <span class="py-2">Transit</span>
+    <span class="py-2">Freight</span>
+    <span class="py-2">Traffic</span>
     <Scorecard
-      v-for="score in scores"
-      :key="score.name"
-      :name="score.name"
-      :scores="score"
-      class="row-span-6"
+      v-for="option in options"
+      :key="option.name"
+      :scores="option"
+      class="row-span-8"
     >
-      <img
-        src="https://pbotapps-test.portland.gov/streets-2035/img/cross-section/50/PortlandStreets_CrossSections_50C_2Lane_Midbock1@2048.webp"
-      />
+      <slot :option="option"></slot>
     </Scorecard>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">
-import { computed } from '@vue/reactivity';
 import { defineComponent } from 'vue';
 
-import Box from '@/elements/box/Box';
 import Scorecard from '@/components/cross-section/Scorecard.vue';
+import { CrossSection } from '@/composables/cross-section';
 
 export default defineComponent({
   name: 'Scoresheet',
-  components: { Box, Scorecard },
+  components: { Scorecard },
   props: {
-    scores: { type: Array, required: true },
-  },
-  setup(props) {
-    return {
-      layoutClasses: computed(() => [`grid-cols-${props.scores.length + 1}`]),
-    };
+    options: { type: Array as () => Array<CrossSection>, required: true },
   },
 });
 </script>
