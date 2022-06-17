@@ -542,14 +542,14 @@ export default defineComponent({
 
         createListings();
       },
-      handleClick(
-        event: Array<{ graphic?: { attributes: ESRIStreet } } | undefined>
-      ) {
-        const street = event[0]?.graphic?.attributes;
-        if (street)
-          push({ name: 'Streets', params: { id: street.TranPlanID } });
+      handleClick(event: Array<{ graphic: { attributes: unknown } }>) {
+        const street = convertStreet(
+          'esri',
+          event[0].graphic.attributes
+        ) as Partial<Street>;
+        if (street) push({ name: 'Streets', params: { id: street.id } });
       },
-      handlePointer(event: Array<{ graphic: { attributes: ESRIStreet } }>) {
+      handlePointer(event: Array<{ graphic: { attributes: unknown } }>) {
         if (event && event.length > 0) {
           pointer.value = convertStreet(
             'esri',
