@@ -1,4 +1,3 @@
-import FeatureLayer from '@arcgis/core/layers/FeatureLayer';
 import UniqueValueInfo from '@arcgis/core/renderers/support/UniqueValueInfo';
 import axios from 'axios';
 import { rgb, RGBColorFactory } from 'd3-color';

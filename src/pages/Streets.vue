@@ -166,7 +166,7 @@ import Full from '@/components/street/Full.vue';
 import Section from '@/components/street/Section.vue';
 import { Street, StreetSection } from '@/components/street/street';
 import { query } from '@/composables/use-graphql';
-import { ESRIStreet, useStreet } from '@/composables/use-street';
+import { useStreet } from '@/composables/use-street';
 import {
   useStreetClassification,
   ViewModel,
