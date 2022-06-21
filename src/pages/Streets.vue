@@ -53,6 +53,29 @@
                 </label>
               </Toggle>
             </div>
+            <Toggle
+              v-for="d in districts"
+              :id="`district-${d.value.toLowerCase()}`"
+              :name="`district-${d.value.toLowerCase()}`"
+              :key="d.value"
+              :label="d.label"
+              :modelValue="d.enabled"
+              @update:modelValue="handleClassificationToggle(d)"
+              class="flex items-center space-x-1"
+            >
+              <label
+                :id="`district-${d.value.toLowerCase()}-label`"
+                :for="`district-${d.value.toLowerCase()}`"
+                v-if="d.symbol.type == 'image'"
+                class="inline-flex items-center space-x-1"
+              >
+                <img
+                  class="w-5 h-5 border border-current rounded"
+                  :src="`data:${d.symbol.mime};base64,${d.symbol.value}`"
+                />
+                <span>{{ d.label }}</span>
+              </label>
+            </Toggle>
           </fieldset>
         </Panel>
         <ul v-if="streets.length" class="grid grid-cols-1 gap-3">
@@ -143,7 +166,7 @@ import Full from '@/components/street/Full.vue';
 import Section from '@/components/street/Section.vue';
 import { Street, StreetSection } from '@/components/street/street';
 import { query } from '@/composables/use-graphql';
-import { ESRIStreet, useStreet } from '@/composables/use-street';
+import { useStreet } from '@/composables/use-street';
 import {
   useStreetClassification,
   ViewModel,
@@ -200,6 +223,10 @@ export default defineComponent({
     });
     const layers = [
       new FeatureLayer({
+        id: 'districts',
+        url: 'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/28',
+      }),
+      new FeatureLayer({
         id: 'classifications',
         url: 'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/22',
         outFields: ['*'],
@@ -219,6 +246,10 @@ export default defineComponent({
     const { push, replace, currentRoute } = useRouter();
     const { models, classificationLabel } = useStreetClassification();
     const { convertStreet, retrieveStreet } = useStreet();
+
+    const districts = computed(() => {
+      return models.filter((m) => m.group === 'districts');
+    });
 
     const classifications = computed(() => {
       return models.filter((m) => m.group === 'design');
@@ -384,7 +415,7 @@ export default defineComponent({
     };
 
     const setupFeatureFilter = async () => {
-      const layerView = await layerViews.get('classifications');
+      let layerView = await layerViews.get('classifications');
       if (layerView) {
         layerView.filter = new FeatureFilter({
           where: `Design in (${classifications.value
@@ -392,6 +423,11 @@ export default defineComponent({
             .map((c) => `'${c.value}'`)
             .join(',')})`,
         });
+      }
+
+      layerView = await layerViews.get('districts');
+      if (layerView) {
+        layerView.visible = districts.value[0].enabled || false;
       }
     };
 
@@ -431,6 +467,7 @@ export default defineComponent({
       center,
       zoom,
       classifications,
+      districts,
       pointer,
       classificationLabel,
       highlightStreet,
@@ -438,20 +475,16 @@ export default defineComponent({
         layerViews.set(data.id, data.promise as Promise<FeatureLayerView>);
       },
       async handleClassificationToggle(model: ViewModel) {
-        const m = classifications.value.find((m) => m.value === model.value);
+        const predicate = (m: ViewModel) =>
+          m.value === model.value && m.group === model.group;
+
+        let m = classifications.value.find(predicate);
+        if (m) m.enabled = !m.enabled;
+
+        m = districts.value.find(predicate);
         if (m) m.enabled = !m.enabled;
 
         setupFeatureFilter();
-
-        /*const layerView = await layerViews.get('classifications');
-        if (layerView) {
-          layerView.filter = new FeatureFilter({
-            where: `Design in (${classifications.value
-              .filter((c) => c.enabled)
-              .map((c) => `'${c.value}'`)
-              .join(',')})`,
-          });
-        }*/
 
         createListings();
       },
@@ -509,14 +542,14 @@ export default defineComponent({
 
         createListings();
       },
-      handleClick(
-        event: Array<{ graphic?: { attributes: ESRIStreet } } | undefined>
-      ) {
-        const street = event[0]?.graphic?.attributes;
-        if (street)
-          push({ name: 'Streets', params: { id: street.TranPlanID } });
+      handleClick(event: Array<{ graphic: { attributes: unknown } }>) {
+        const street = convertStreet(
+          'esri',
+          event[0].graphic.attributes
+        ) as Partial<Street>;
+        if (street) push({ name: 'Streets', params: { id: street.id } });
       },
-      handlePointer(event: Array<{ graphic: { attributes: ESRIStreet } }>) {
+      handlePointer(event: Array<{ graphic: { attributes: unknown } }>) {
         if (event && event.length > 0) {
           pointer.value = convertStreet(
             'esri',

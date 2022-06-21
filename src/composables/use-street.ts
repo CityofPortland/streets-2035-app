@@ -35,27 +35,26 @@ type RetrieveOptions = {
 export function useStreet(): {
   convertStreet(
     sourceType: 'esri' | 'graphql',
-    street: Street | ESRIStreet
-  ): Partial<Street | ESRIStreet>;
+    street: Street | ESRIStreet | unknown
+  ): Partial<Street | ESRIStreet> | undefined;
   retrieveStreet(options: RetrieveOptions): Promise<Array<Street>>;
 } {
   return {
-    convertStreet(
-      sourceType: 'esri' | 'graphql',
-      street: Street | ESRIStreet
-    ): Partial<Street | ESRIStreet> {
+    convertStreet(sourceType: 'esri' | 'graphql', street: Street | ESRIStreet) {
       switch (sourceType) {
         case 'esri':
           street = street as ESRIStreet;
-          return {
-            id: street.TranPlanID,
-            name: street.StreetName,
-            classifications: {
-              design: street.Design,
-              bicycle: street.Bicycle,
-              transit: street.Transit,
-            },
-          };
+          return street.StreetName
+            ? {
+                id: street.TranPlanID,
+                name: street.StreetName,
+                classifications: {
+                  design: street.Design,
+                  bicycle: street.Bicycle,
+                  transit: street.Transit,
+                },
+              }
+            : undefined;
         case 'graphql':
           street = street as Street;
           return {
