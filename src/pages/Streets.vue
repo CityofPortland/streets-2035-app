@@ -78,11 +78,9 @@
             </Toggle>
           </fieldset>
         </Panel>
-
         <Message v-if="message" color="blue" variant="light" icon="information">
           <p>{{ message }}</p>
         </Message>
-
         <ul class="grid grid-cols-1 gap-3">
           <li v-for="street in streets" :key="street.hash">
             <Section
@@ -94,7 +92,6 @@
                 highlightStreet({ type: 'segment', data: $event })
               "
             />
-            <!-- <Listing :street="street" @highlight="highlightStreet(street)" /> -->
           </li>
         </ul>
       </section>
@@ -116,6 +113,9 @@
             >Back to search</router-link
           >
         </div>
+        <Message v-if="message" color="blue" variant="light" icon="information">
+          <p>{{ message }}</p>
+        </Message>
         <Full :street="street" />
       </section>
     </section>
@@ -191,11 +191,11 @@ import { computed, defineComponent, onMounted, ref } from 'vue';
 import { onBeforeRouteUpdate, useRouter } from 'vue-router';
 
 const MESSAGES = {
-  ZOOM_IN: 'You must zoom in further to view listings of streets',
+  ZOOM_IN: 'You must zoom in further to view listings of streets.',
   ENABLE_CLASSIFICATION:
-    'You must enable a classification to view listings of streets',
-  REFRESHING_STREET_SEGMENTS: 'Refreshing street segments.',
-  LOADING_STREET: 'Loading street segment.',
+    'You must enable a classification to view listings of streets.',
+  REFRESHING_STREET_SEGMENTS: 'Refreshing street segments...',
+  LOADING_STREET: 'Loading street segment...',
 };
 
 export default defineComponent({
