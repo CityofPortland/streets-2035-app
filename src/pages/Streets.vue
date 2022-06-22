@@ -78,7 +78,10 @@
             </Toggle>
           </fieldset>
         </Panel>
-        <ul v-if="streets.length" class="grid grid-cols-1 gap-3">
+        <Message v-if="message" color="blue" variant="light" icon="information">
+          <p>{{ message }}</p>
+        </Message>
+        <ul class="grid grid-cols-1 gap-3">
           <li v-for="street in streets" :key="street.hash">
             <Section
               :street="street"
@@ -89,12 +92,8 @@
                 highlightStreet({ type: 'segment', data: $event })
               "
             />
-            <!-- <Listing :street="street" @highlight="highlightStreet(street)" /> -->
           </li>
         </ul>
-        <Message v-else color="blue" variant="light" icon="information">
-          <p>{{ message }}</p>
-        </Message>
       </section>
       <section v-else class="p-4 grid grid-cols-1 gap-3">
         <div>
@@ -114,6 +113,9 @@
             >Back to search</router-link
           >
         </div>
+        <Message v-if="message" color="blue" variant="light" icon="information">
+          <p>{{ message }}</p>
+        </Message>
         <Full :street="street" />
       </section>
     </section>
@@ -189,9 +191,11 @@ import { computed, defineComponent, onMounted, ref } from 'vue';
 import { onBeforeRouteUpdate, useRouter } from 'vue-router';
 
 const MESSAGES = {
-  ZOOM_IN: 'You must zoom in further to view listings of streets',
+  ZOOM_IN: 'You must zoom in further to view listings of streets.',
   ENABLE_CLASSIFICATION:
-    'You must enable a classification to view listings of streets',
+    'You must enable a classification to view listings of streets.',
+  REFRESHING_STREET_SEGMENTS: 'Refreshing street segments...',
+  LOADING_STREET: 'Loading street segment...',
 };
 
 export default defineComponent({
@@ -209,7 +213,7 @@ export default defineComponent({
   setup() {
     const street = ref<Partial<Street> | undefined>(undefined);
     const streets = ref<Array<Partial<StreetSection>>>([]);
-    const message = ref(MESSAGES.ZOOM_IN);
+    const message = ref<string | undefined>(undefined);
     const open = ref(true);
     const showCandidates = ref(false);
     const candidates = ref(new Array<TCandidate>());
@@ -319,6 +323,8 @@ export default defineComponent({
 
     const createListings = async () => {
       if (extent.value && new Extent(extent.value).width <= 1 * 1000) {
+        message.value = MESSAGES.REFRESHING_STREET_SEGMENTS;
+
         const s = await retrieveStreet({
           extent: extent.value,
           classifications: ['design', 'bicycle', 'transit'],
@@ -375,6 +381,8 @@ export default defineComponent({
 
         if (!streets.value.length) {
           message.value = MESSAGES.ENABLE_CLASSIFICATION;
+        } else {
+          message.value = undefined;
         }
       } else {
         streets.value = [];
@@ -434,15 +442,18 @@ export default defineComponent({
     onMounted(async () => {
       setupFeatureFilter();
       if (currentRoute.value.params.id) {
+        message.value = MESSAGES.LOADING_STREET;
         street.value = await getStreet(currentRoute.value.params.id);
         if (street.value) {
           highlightStreet({ type: 'segment', data: street.value });
         }
+        message.value = undefined;
       }
     });
 
     onBeforeRouteUpdate(async (to) => {
       if (to.params.id) {
+        message.value = MESSAGES.LOADING_STREET;
         street.value = await getStreet(to.params.id);
         if (street.value) {
           highlightStreet({ type: 'segment', data: street.value });
@@ -453,6 +464,7 @@ export default defineComponent({
           highlight.remove();
         }
       }
+      message.value = undefined;
     });
 
     return {
