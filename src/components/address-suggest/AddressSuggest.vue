@@ -31,7 +31,7 @@
         role="searchbox"
         :placeholder="placeholder"
         tabindex="0"
-        required="required"
+        required
         v-model="query"
         class="flex-1 min-w-0 appearance-none bg-transparent border-transparent placeholder-gray-600"
       />
@@ -72,7 +72,7 @@
             id="taxlot"
             name="searchType"
             tabindex="0"
-            value="taxlot"
+            value="taxLot"
             v-model="type"
           />
           <label for="taxlot">Tax lot number</label>
