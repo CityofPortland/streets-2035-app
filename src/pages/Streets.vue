@@ -78,9 +78,23 @@
             </Toggle>
           </fieldset>
         </Panel>
-        <Message v-if="message" color="blue" variant="light" icon="information">
-          <p>{{ message }}</p>
-        </Message>
+        <transition
+          enter-active-class="transition ease-out duration-100"
+          enter-from-class="transform scale-y-95"
+          enter-to-class="transform scale-y-100"
+          leave-active-class="transition ease-in duration-100"
+          leave-from-class="transform scale-y-100"
+          leave-to-class="transform scale-y-95"
+        >
+          <Message
+            v-if="message"
+            :color="message.type == 'Info' ? 'blue' : 'red'"
+            variant="light"
+            :icon="message.type == 'Info' ? 'information' : 'exclamation'"
+          >
+            <p>{{ message.message }}</p>
+          </Message>
+        </transition>
         <ul class="grid grid-cols-1 gap-3">
           <li v-for="street in streets" :key="street.hash">
             <Section
@@ -113,9 +127,23 @@
             >Back to search</router-link
           >
         </div>
-        <Message v-if="message" color="blue" variant="light" icon="information">
-          <p>{{ message }}</p>
-        </Message>
+        <transition
+          enter-active-class="transition ease-out duration-100"
+          enter-from-class="transform scale-y-95"
+          enter-to-class="transform scale-y-100"
+          leave-active-class="transition ease-in duration-100"
+          leave-from-class="transform scale-y-100"
+          leave-to-class="transform scale-y-95"
+        >
+          <Message
+            v-if="message"
+            :color="message.type == 'Info' ? 'blue' : 'red'"
+            variant="light"
+            :icon="message.type == 'Info' ? 'information' : 'exclamation'"
+          >
+            <p>{{ message.message }}</p>
+          </Message>
+        </transition>
         <Full :street="street" />
       </section>
     </section>
@@ -190,12 +218,33 @@ import md5 from 'crypto-js/md5';
 import { computed, defineComponent, onMounted, ref } from 'vue';
 import { onBeforeRouteUpdate, useRouter } from 'vue-router';
 
-const MESSAGES = {
-  ZOOM_IN: 'You must zoom in further to view listings of streets.',
-  ENABLE_CLASSIFICATION:
-    'You must enable a classification to view listings of streets.',
-  REFRESHING_STREET_SEGMENTS: 'Refreshing street segments...',
-  LOADING_STREET: 'Loading street segment...',
+type infoMessage = {
+  type: 'Info' | 'Error';
+  message: string;
+};
+
+const MESSAGES: Record<string, infoMessage> = {
+  ZOOM_IN: {
+    type: 'Info',
+    message: 'You must zoom in further to view listings of streets.',
+  },
+  ENABLE_CLASSIFICATION: {
+    type: 'Info',
+    message: 'You must enable a classification to view listings of streets.',
+  },
+  REFRESHING_STREET_SEGMENTS: {
+    type: 'Info',
+    message: 'Refreshing street segments...',
+  },
+  LOADING_STREET: { type: 'Info', message: 'Loading street segment...' },
+  UNABLE_TO_CONTACT_SERVER: {
+    type: 'Error',
+    message: 'Error contacting server, please reload page and try again.',
+  },
+  ERROR_RETREIVING_STREET: {
+    type: 'Error',
+    message: 'Error retreiving street(s), please reload page and try again.',
+  },
 };
 
 export default defineComponent({
@@ -213,7 +262,7 @@ export default defineComponent({
   setup() {
     const street = ref<Partial<Street> | undefined>(undefined);
     const streets = ref<Array<Partial<StreetSection>>>([]);
-    const message = ref<string | undefined>(undefined);
+    const message = ref<infoMessage | undefined>(undefined);
     const open = ref(true);
     const showCandidates = ref(false);
     const candidates = ref(new Array<TCandidate>());
@@ -260,22 +309,25 @@ export default defineComponent({
     });
 
     const getStreet = async (id: string | string[]) => {
-      const street = await retrieveStreet({
-        street: {
-          id: Array.isArray(id) ? id.shift() : id,
-        },
-        classifications: [
-          'design',
-          'pedestrian',
-          'bicycle',
-          'transit',
-          'freight',
-          'emergency',
-          'traffic',
-        ],
-      });
-
-      return street[0];
+      try {
+        const street = await retrieveStreet({
+          street: {
+            id: Array.isArray(id) ? id.shift() : id,
+          },
+          classifications: [
+            'design',
+            'pedestrian',
+            'bicycle',
+            'transit',
+            'freight',
+            'emergency',
+            'traffic',
+          ],
+        });
+        return street[0];
+      } catch (error) {
+        message.value = MESSAGES.ERROR_RETREIVING_STREET;
+      }
     };
 
     const extent = computed(() => {
@@ -325,64 +377,68 @@ export default defineComponent({
       if (extent.value && new Extent(extent.value).width <= 1 * 1000) {
         message.value = MESSAGES.REFRESHING_STREET_SEGMENTS;
 
-        const s = await retrieveStreet({
-          extent: extent.value,
-          classifications: ['design', 'bicycle', 'transit'],
-        });
-
-        streets.value = [
-          ...s
-            .filter((x) =>
-              classifications.value
-                .filter((c) => c.enabled)
-                .find((c) => c.value == x.classifications.design)
-            )
-            .reduce<Map<string, StreetSection>>((acc, curr) => {
-              const hash = md5(
-                `${curr.name}:${curr.classifications.design}:${curr.classifications.bicycle}:${curr.classifications.transit}`
-              ).toString();
-              if (acc.has(hash)) {
-                const section = acc.get(hash);
-                if (section) {
-                  section.segments.push(curr);
-                  section.minWidth = Math.min(
-                    section.minWidth || curr.width,
-                    curr.width
-                  );
-                  section.maxWidth = Math.max(
-                    section.maxWidth || curr.width,
-                    curr.width
-                  );
-                }
-              } else {
-                acc.set(hash, {
-                  hash,
-                  segments: [curr],
-                  minWidth: curr.width,
-                  maxWidth: curr.width,
-                  ...curr,
-                });
-              }
-              return acc;
-            }, new Map())
-            .values(),
-        ]
-          .sort((a, b) =>
-            a.name.localeCompare(b.name, undefined, {
-              sensitivity: 'base',
-            })
-          )
-          .map((s) => {
-            s.segments = s.segments.sort(
-              (a, b) => (a.block || 0) - (b.block || 0)
-            );
-            return s;
+        try {
+          const s = await retrieveStreet({
+            extent: extent.value,
+            classifications: ['design', 'bicycle', 'transit'],
           });
 
-        if (!streets.value.length) {
-          message.value = MESSAGES.ENABLE_CLASSIFICATION;
-        } else {
-          message.value = undefined;
+          streets.value = [
+            ...s
+              .filter((x) =>
+                classifications.value
+                  .filter((c) => c.enabled)
+                  .find((c) => c.value == x.classifications.design)
+              )
+              .reduce<Map<string, StreetSection>>((acc, curr) => {
+                const hash = md5(
+                  `${curr.name}:${curr.classifications.design}:${curr.classifications.bicycle}:${curr.classifications.transit}`
+                ).toString();
+                if (acc.has(hash)) {
+                  const section = acc.get(hash);
+                  if (section) {
+                    section.segments.push(curr);
+                    section.minWidth = Math.min(
+                      section.minWidth || curr.width,
+                      curr.width
+                    );
+                    section.maxWidth = Math.max(
+                      section.maxWidth || curr.width,
+                      curr.width
+                    );
+                  }
+                } else {
+                  acc.set(hash, {
+                    hash,
+                    segments: [curr],
+                    minWidth: curr.width,
+                    maxWidth: curr.width,
+                    ...curr,
+                  });
+                }
+                return acc;
+              }, new Map())
+              .values(),
+          ]
+            .sort((a, b) =>
+              a.name.localeCompare(b.name, undefined, {
+                sensitivity: 'base',
+              })
+            )
+            .map((s) => {
+              s.segments = s.segments.sort(
+                (a, b) => (a.block || 0) - (b.block || 0)
+              );
+              return s;
+            });
+
+          if (!streets.value.length) {
+            message.value = MESSAGES.ENABLE_CLASSIFICATION;
+          } else {
+            message.value = undefined;
+          }
+        } catch (error) {
+          message.value = MESSAGES.ERROR_RETREIVING_STREET;
         }
       } else {
         streets.value = [];
@@ -446,8 +502,8 @@ export default defineComponent({
         street.value = await getStreet(currentRoute.value.params.id);
         if (street.value) {
           highlightStreet({ type: 'segment', data: street.value });
+          message.value = undefined;
         }
-        message.value = undefined;
       }
     });
 
@@ -457,6 +513,9 @@ export default defineComponent({
         street.value = await getStreet(to.params.id);
         if (street.value) {
           highlightStreet({ type: 'segment', data: street.value });
+          message.value = undefined;
+        } else {
+          return false;
         }
       } else {
         street.value = undefined;
@@ -464,7 +523,6 @@ export default defineComponent({
           highlight.remove();
         }
       }
-      message.value = undefined;
     });
 
     return {
@@ -507,7 +565,10 @@ export default defineComponent({
         query: string;
         type: 'address' | 'taxlot';
       }) {
-        const { data } = await query<{ [index: string]: Array<TCandidate> }>(`
+        try {
+          const { data } = await query<{
+            [index: string]: Array<TCandidate>;
+          }>(`
           {
             ${type}(search:"${q}", city:"portland") {
               id
@@ -526,9 +587,17 @@ export default defineComponent({
             }
           }`);
 
-        if (data && data[type]) {
-          candidates.value = data[type];
-          showCandidates.value = true;
+          if (data && data[type]) {
+            candidates.value = data[type];
+            showCandidates.value = true;
+          } else {
+            message.value = {
+              type: 'Error',
+              message: `Could not find a match for '${q}'. Please try a different search.`,
+            };
+          }
+        } catch (error) {
+          message.value = MESSAGES.UNABLE_TO_CONTACT_SERVER;
         }
       },
       handleSelect(candidate: TCandidate) {

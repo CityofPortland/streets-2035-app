@@ -72,7 +72,7 @@ export function useStreet(): {
           );
         }
 
-        const { data } = await query<{ street: Array<Street> }>(`{
+        const { data, errors } = await query<{ street: Array<Street> }>(`{
           street(id:"${street.id}") {
               id
               ${street.name ? '' : 'name'}
@@ -86,6 +86,10 @@ export function useStreet(): {
                 coordinates
               }
           } }`);
+
+        if (errors) {
+          throw new Error();
+        }
 
         return data ? data.street : [];
       }
