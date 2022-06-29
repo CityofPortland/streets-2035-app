@@ -565,6 +565,8 @@ export default defineComponent({
         query: string;
         type: 'address' | 'taxlot';
       }) {
+        candidates.value = [];
+        showCandidates.value = false;
         try {
           const { data } = await query<{
             [index: string]: Array<TCandidate>;
@@ -587,7 +589,7 @@ export default defineComponent({
             }
           }`);
 
-          if (data && data[type]) {
+          if (data && data[type] && data[type].length) {
             candidates.value = data[type];
             showCandidates.value = true;
           } else {
