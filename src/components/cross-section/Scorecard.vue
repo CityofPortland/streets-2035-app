@@ -96,7 +96,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
-import Box from '@/elements/box/Box';
+import Box, { BoxColor } from '@/elements/box/Box';
 
 type ScoreSet = {
   safety: number;
@@ -123,7 +123,7 @@ export default defineComponent({
     },
   },
   setup() {
-    const scoreMap = new Map<number, string>([
+    const scoreMap = new Map<number, BoxColor>([
       [1, 'red'],
       [2, 'tangerine'],
       [3, 'green'],
