@@ -3,9 +3,7 @@
     class="grid grid-flow-col gap-1"
     :style="`
         grid-template-rows: repeat(8, auto);
-        grid-template-columns: repeat(${
-          options.length + 1
-        }, minmax(10rem, 14rem) [col-start]);
+        grid-template-columns: minmax(min-content, 14rem) repeat(${options.length}, minmax(10rem, 14rem) [col-start]);
       `"
   >
     <span class="py-2"></span>
