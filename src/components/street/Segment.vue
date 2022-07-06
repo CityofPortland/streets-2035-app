@@ -28,9 +28,9 @@
       </Field>
     </FieldList>
     <div class="flex flex-col justify-center gap-3 flex-wrap">
-      <div v-if="crossSectionLink">
+      <div v-if="crossSectionRoute">
         <router-link
-          :to="crossSectionLink"
+          :to="crossSectionRoute"
           class="border-b-2 border-current text-sm font-medium"
           >View cross sections</router-link
         >
@@ -46,7 +46,7 @@
   </Box>
 </template>
 <script lang="ts">
-import { defineComponent, toRefs } from 'vue';
+import { defineComponent, ref, toRefs } from 'vue';
 
 import Box from '@/elements/box/Box';
 import Field from '@/components/field/Field.vue';
@@ -68,14 +68,14 @@ export default defineComponent({
   setup(props, { emit }) {
     const { street } = toRefs(props);
     const { id, block, width } = street.value;
-    const { crossSectionLink } = useCrossSection(street);
+    const { crossSectionRoute } = useCrossSection(ref(street.value.width));
     const { classificationKeys, classificationLabel } =
       useStreetClassification(street);
     return {
       id,
       block,
       width,
-      crossSectionLink,
+      crossSectionRoute,
       handleHighlight: () => emit('highlight', props.street),
       classificationLabel,
       classificationKeys,

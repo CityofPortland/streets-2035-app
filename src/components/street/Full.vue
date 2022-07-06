@@ -23,8 +23,8 @@
           <span>{{ street.width }} feet</span>
         </div>
 
-        <div v-if="crossSectionLink">
-          <router-link :to="crossSectionLink"
+        <div v-if="crossSectionRoute">
+          <router-link :to="crossSectionRoute"
             ><Button size="small">View cross sections</Button></router-link
           >
         </div>
@@ -60,7 +60,7 @@
   </article>
 </template>
 <script lang="ts">
-import { defineComponent, toRefs } from 'vue';
+import { defineComponent, ref, toRefs } from 'vue';
 
 import Anchor from '@/elements/anchor/Anchor.vue';
 import Button from '@/elements/button/Button.vue';
@@ -83,13 +83,13 @@ export default defineComponent({
   },
   setup(props) {
     const { street } = toRefs(props);
-    const { crossSectionLink } = useCrossSection(street);
+    const { crossSectionRoute } = useCrossSection(ref(street.value.width));
     const { classificationKeys, classificationLabel } =
       useStreetClassification(street);
     return {
       classificationLabel,
       classificationKeys,
-      crossSectionLink,
+      crossSectionRoute,
     };
   },
 });
