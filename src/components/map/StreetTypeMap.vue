@@ -123,7 +123,7 @@ export default defineComponent({
               const shuffle = (
                 array: Array<Pick<StreetSection, 'hash' | 'name'>>
               ) => {
-                var m = array.length,
+                let m = array.length,
                   t,
                   i;
 

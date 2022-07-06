@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
-import { RouterLink, useLink } from 'vue-router';
+import { RouterLink } from 'vue-router';
 
 import Anchor from '@/elements/anchor/Anchor.vue';
 
@@ -33,19 +33,13 @@ export default defineComponent({
     },
   },
   setup(props) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //@ts-ignore
-    const { href, navigate } = useLink(props);
-
     const isExternalLink = computed(
-      () => typeof props.to === 'string' && props.to.startsWith('http')
+      () => typeof props.to === 'string' && props.to.match(/^(http(s)?:)?\/\//)
     );
 
     return {
       display: props.text || props.url,
-      href,
       isExternalLink,
-      navigate,
     };
   },
 });

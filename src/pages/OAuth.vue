@@ -45,7 +45,6 @@
 import axios from 'axios';
 import { defineComponent, onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import qs from 'querystring';
 
 import Field from '@/components/field/Field.vue';
 import FieldList from '@/components/field/FieldList.vue';
@@ -63,28 +62,27 @@ export default defineComponent({
     const store = useAuthStore();
 
     const loading = ref(true);
-    const error = ref<undefined | qs.ParsedUrlQuery | unknown>(undefined);
+    const error = ref<undefined | unknown>(undefined);
 
     onMounted(async () => {
       if (hash) {
-        error.value = qs.parse(hash.slice(1));
+        const qs = new URLSearchParams(hash.slice(1));
+        error.value = qs.entries();
       }
       if (query.code) {
-        let codes: PkceCodes = JSON.parse(
+        const codes: PkceCodes = JSON.parse(
           window.localStorage.getItem('pbotapps.auth.codes') || ''
         );
 
         try {
-          let res = await axios.post(
-            `${authority}/oauth2/v2.0/token`,
-            qs.stringify({
-              grant_type: 'authorization_code',
-              redirect_uri: redirectURI,
-              code: query.code.toString(),
-              code_verifier: codes.verifier,
-              client_id: clientId,
-            })
-          );
+          const data = new URLSearchParams();
+          data.append('grant_type', 'authorization_code');
+          data.append('redirect_uri', redirectURI);
+          data.append('code', query.code.toString());
+          data.append('code_verifier', codes.verifier);
+          data.append('client_id', clientId || '');
+
+          const res = await axios.post(`${authority}/oauth2/v2.0/token`, data);
 
           const { access_token, refresh_token } = res.data;
 
