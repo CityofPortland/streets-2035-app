@@ -9,13 +9,14 @@
       <article class="inline-flex items-center space-x-2 w-full">
         <header class="md:flex-1">
           <img
+            v-if="photo"
             class="w-6 h-6 rounded-full"
             :src="photo"
             :alt="`Avatar image for logged in user`"
           />
         </header>
         <main class="flex-1 inline-flex items-center justify-between">
-          <span>{{ user.givenName }}</span>
+          <span>{{ user?.givenName }}</span>
           <Icon
             type="solid"
             name="chevron-down"
@@ -27,13 +28,16 @@
     </template>
     <template v-slot="{ open }">
       <DropdownList
+        id="user-menu"
         :open="open"
         color="white"
         class="md:origin-top-right md:absolute md:right-0 md:w-80 mt-1 rounded border border-current focus:outline-none grid grid-cols-1 gap-2"
       >
         <DropdownItem>
           <FieldList class="gap-1 text-sm">
-            <Field display="above" name="E-Mail Address">{{ user.mail }}</Field>
+            <Field display="above" name="E-Mail Address">{{
+              user?.mail
+            }}</Field>
           </FieldList>
         </DropdownItem>
         <DropdownItem>

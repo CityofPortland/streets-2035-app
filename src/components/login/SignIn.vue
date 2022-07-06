@@ -25,7 +25,7 @@ export default defineComponent({
         window.localStorage.setItem('pbotapps.auth.initiated', 'true');
 
         const url = new URL(`${authority}/oauth2/v2.0/authorize`);
-        let { searchParams } = url;
+        const { searchParams } = url;
         searchParams.append('client_id', clientId || '');
         searchParams.append('redirect_uri', redirectURI);
         searchParams.append('response_type', 'code');
