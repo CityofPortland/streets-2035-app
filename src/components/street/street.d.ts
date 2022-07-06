@@ -3,8 +3,8 @@ import { LineString } from '@turf/helpers';
 export type Street = {
   id: string;
   name: string;
-  block: number | null;
-  width: number | null;
+  block: number;
+  width: number;
   classifications: Classifications;
   geometry: LineString;
 };
