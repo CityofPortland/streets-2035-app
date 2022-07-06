@@ -1,6 +1,7 @@
 import Anchor from '@/elements/anchor/Anchor.vue';
 import Field from '@/components/field/Field.vue';
 import FieldList from '@/components/field/FieldList.vue';
+import Image from '@/elements/img/Image.vue';
 import Map from '@/components/map/StreetTypeMap.vue';
 
 <header class="prose">
@@ -14,6 +15,12 @@ import Map from '@/components/map/StreetTypeMap.vue';
     </section>
 
 </header>
+<Image
+    src={`${publicPath}img/street-type/NeighborhoodMainStreet_Perspective.webp`}
+    class="my-4"
+    alt="Perspective rendering of a neighborhood main street"
+    title="Perspective rendering of a neighborhood main street"
+/>
 <section class="mt-8 prose">
     <FieldList class="gap-4">
         <Field name="Typical Street Classification">
