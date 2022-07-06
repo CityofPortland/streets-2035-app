@@ -89,7 +89,7 @@ export default defineComponent({
     const open = ref(false);
 
     const listener = (event: Event) => {
-      let target = event.target as HTMLElement;
+      const target = event.target as HTMLElement;
 
       if (!open.value) return;
 

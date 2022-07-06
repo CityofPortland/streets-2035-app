@@ -34,21 +34,32 @@ const routes: Array<RouteRecordRaw> = [
     props: true,
   },
   {
-    path: '/cross-section/:width/:designClassification/:subClassification',
-    name: 'CrossSection',
-    component: () => import('@/pages/CrossSection.vue'),
+    path: '/cross-section/:width',
+    name: 'CrossSectionList',
+    component: () => import('@/pages/cross-section/List.vue'),
     props: (route) => {
-      const { designClassification, subClassification } = route.params;
-      const width = Array.isArray(route.params.width)
-        ? route.params.width[0]
-        : route.params.width;
+      const width = route.params.width as string;
+
       return {
         width: Number.parseInt(width),
-        designClassification,
-        subClassification,
       };
     },
   },
+  {
+    path: '/cross-section/:width/:ordinal',
+    name: 'CrossSectionOption',
+    component: () => import('@/pages/cross-section/Option.vue'),
+    props: (route) => {
+      const width = route.params.width as string;
+      const ordinal = route.params.ordinal as string;
+
+      return {
+        width: Number.parseInt(width),
+        ordinal: Number.parseInt(ordinal),
+      };
+    },
+  },
+
   {
     path: '/oauth/callback',
     name: 'OAuthCallback',

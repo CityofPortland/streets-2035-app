@@ -25,7 +25,7 @@
     <main class="flex-grow">
       <router-view />
     </main>
-    <Footer color="gray" variant="light">
+    <Footer color="gray" variant="light" class="mt-12">
       <template v-slot:middle>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
           <Nav title="General information">
@@ -75,7 +75,7 @@ export default defineComponent({
     const headerStore = useHeaderStore();
     const authStore = useAuthStore();
 
-    let models = reactive(new Array<ViewModel>());
+    const models = reactive(new Array<ViewModel>());
     provide(STREET_CLASSIFICATION_KEY, models);
 
     onMounted(async () => {

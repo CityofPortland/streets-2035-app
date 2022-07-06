@@ -6,17 +6,18 @@ import qs from 'qs';
 type User = {
   givenName?: string;
   photo?: Blob;
+  mail?: string;
 };
 
 export type AuthContext = {
-  user: User | null;
+  user?: User;
   accessToken: string | null;
   refreshToken: string | null;
 };
 
 export const useAuthStore = defineStore('auth', {
   state: (): AuthContext => ({
-    user: null,
+    user: undefined,
     accessToken: window.localStorage.getItem('pbotapps.auth.access_token'),
     refreshToken: window.localStorage.getItem('pbotapps.auth.refresh_token'),
   }),
@@ -83,7 +84,7 @@ export const useAuthStore = defineStore('auth', {
       }
     },
     clear() {
-      this.setUser(null);
+      this.setUser(undefined);
       this.setTokens(null, null);
       window.localStorage.removeItem('pbotapps.auth.access_token');
       window.localStorage.removeItem('pbotapps.auth.refresh_token');
@@ -101,7 +102,7 @@ export const useAuthStore = defineStore('auth', {
         );
       }
     },
-    setUser(user: User | null) {
+    setUser(user?: User) {
       this.user = user;
     },
   },
