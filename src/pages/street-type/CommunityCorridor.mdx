@@ -4,6 +4,8 @@ import FieldList from '@/components/field/FieldList.vue';
 import Image from '@/elements/img/Image.vue';
 import Map from '@/components/map/StreetTypeMap.vue';
 
+export const publicPath = process.env.BASE_URL;
+
 <header class="prose">
     # Community Corridors
     <section class="text-xl text-fog-900">
@@ -15,7 +17,7 @@ import Map from '@/components/map/StreetTypeMap.vue';
 </header>
 
 <Image
-    src={`${publicPath}img/street-type/CommunityCorridorALT_Perspective.webp`}
+    src={`${publicPath}img/street-type/CommunityCorridor_Perspective.webp`}
     class="my-4"
     alt="Alternate perspective rendering of a community corridor"
     title="Alternate perspective rendering of a community corridor"
