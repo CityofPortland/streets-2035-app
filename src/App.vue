@@ -12,9 +12,34 @@
         </router-link>
       </template>
       <template v-slot:menu>
-        <Nav list-class="flex flex-col gap-2 md:gap-3 md:flex-row">
+        <Nav
+          list-class="flex flex-col gap-2 md:gap-3 md:flex-row md:items-center"
+        >
           <NavItem text="Map" to="/streets" />
-          <NavItem text="Street types" to="/street-types" />
+          <Dropdown
+            label="Information"
+            id="information-button"
+            class="w-full md:w-auto justify-between"
+          >
+            <template v-slot="{ open }">
+              <DropdownList
+                id="information-menu"
+                :open="open"
+                class="md:origin-top-left md:absolute md:left-0 md:w-64 mt-1 bg-white text-black rounded border focus:outline-none"
+              >
+                <NavItem
+                  role="menuitem"
+                  text="Street types"
+                  to="/street-types"
+                />
+                <NavItem
+                  role="menuitem"
+                  text="Public improvements"
+                  to="/public-improvements"
+                />
+              </DropdownList>
+            </template>
+          </Dropdown>
         </Nav>
         <Nav class="mt-3 md:mt-0 md:ml-auto">
           <SignIn v-if="!user" />
@@ -52,7 +77,11 @@ import {
   reactive,
   ref,
 } from 'vue';
+import { onBeforeRouteUpdate } from 'vue-router';
 
+import Dropdown from './components/dropdown/Dropdown.vue';
+//import DropdownItem from './components/dropdown/DropdownItem.vue';
+import DropdownList from './components/dropdown/DropdownList.vue';
 import Footer from '@/components/footer/Footer.vue';
 import Header from '@/components/header/Header.vue';
 import Logo from '@/components/Logo.vue';
@@ -82,6 +111,11 @@ export default defineComponent({
       models.push(...(await getModels()));
     });
 
+    onBeforeRouteUpdate(() => {
+      console.log('updating rout from App...');
+      menuOpen.value = false;
+    });
+
     return {
       menuOpen,
       header: computed(() => headerStore.header),
@@ -89,6 +123,9 @@ export default defineComponent({
     };
   },
   components: {
+    Dropdown,
+    //DropdownItem,
+    DropdownList,
     Footer,
     Header,
     LoggedIn,
