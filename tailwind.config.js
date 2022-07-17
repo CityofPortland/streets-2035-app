@@ -92,12 +92,10 @@ module.exports = {
       typography: (theme) => ({
         DEFAULT: {
           css: {
+            color: 'inherit',
             a: {
-              color: theme('colors.gray.900', defaultTheme.colors.gray[900]),
+              color: 'inherit',
               textDecoration: 'none',
-              borderBottomWidth: '2px',
-              borderColor: 'currentColor',
-              fontWeight: '500',
             },
             maxWidth: '72ex',
           },
