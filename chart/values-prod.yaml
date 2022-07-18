@@ -1,0 +1,12 @@
+ingress:
+  annotations:
+    nginx.ingress.kubernetes.io/server-snippet: |-
+      add_header X-Robots-Tag "noindex, nofollow";
+  hosts:
+    - host: pbotapps.portland.gov
+      paths:
+        - path: /streets-2035
+  tls:
+    - secretName: pbotapps-portland-gov-tls
+      hosts:
+        - pbotapps.portland.gov

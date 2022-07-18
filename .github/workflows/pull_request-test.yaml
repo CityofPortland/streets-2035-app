@@ -1,6 +1,13 @@
 name: Test pull requests
 
 on: pull_request
+  paths-ignore:
+    - '.devcontainer/**'
+    - '.docker/**'
+    - '.storybook/**'
+    - 'chart/**'
+    - 'docs/**'
+    - 'scripts/**'
 
 jobs:
   install:
