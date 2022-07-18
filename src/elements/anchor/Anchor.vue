@@ -9,6 +9,7 @@
     </span>
     <slot name="after">
       <Icon
+        aria-label="External link indicator"
         v-if="externalIcon"
         type="solid"
         name="external-link"

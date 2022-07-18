@@ -16,6 +16,7 @@
       <slot name="label" :open="open" :id="id">
         <span>{{ label }}</span>
         <Icon
+          aria-label="Open dropdown"
           type="solid"
           :name="open ? 'chevron-up' : 'chevron-down'"
           class="ml-2 w-5 h-5"
