@@ -31,7 +31,7 @@ jobs:
           ACR_NAME: ${{ secrets.ACR_NAME }}
         run: az acr login --name $ACR_NAME
       - name: Push image to repository
-        run: docker push $REPOSITORY/$IMAGE:main
+        run: docker push $REPOSITORY/$IMAGE:$IMAGE_TAG
 
   deploy-release:
     name: Deploy Helm upgrade on production namespace
@@ -62,4 +62,5 @@ jobs:
           --namespace $K8S_NAMESPACE \
           --install \
           $RELEASE_NAME \
-          chart/
+          chart/ \
+          -f chart/values-prod.yaml
