@@ -203,7 +203,7 @@ import {
 } from '@/composables/use-street-classification';
 import Toggle from '@/elements/inputs/Toggle.vue';
 import Basemap from '@arcgis/core/Basemap';
-import { whenFalseOnce } from '@arcgis/core/core/watchUtils';
+import { whenOnce } from '@arcgis/core/core/reactiveUtils';
 import Extent from '@arcgis/core/geometry/Extent';
 import Point from '@arcgis/core/geometry/Point';
 import SpatialReference from '@arcgis/core/geometry/SpatialReference';
@@ -454,7 +454,7 @@ export default defineComponent({
     }) => {
       const layerView = await layerViews.get('classifications');
       if (layerView) {
-        whenFalseOnce(layerView, 'updating', () => {
+        whenOnce(() => layerView.updating).then(() => {
           const query = layerView.layer.createQuery();
           const where =
             options.type == 'segment'

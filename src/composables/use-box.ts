@@ -35,8 +35,16 @@ export function useBox(
       'green',
       new Map([
         ['light', ['bg-green-200', 'text-green-900']],
-        ['neutral', ['bg-green-500', 'text-green-100']],
+        ['neutral', ['bg-green-500', 'text-green-900']],
         ['dark', ['bg-green-900', 'text-green-100']],
+      ]),
+    ],
+    [
+      'marine',
+      new Map([
+        ['light', ['bg-marine-200', 'text-marine-900']],
+        ['neutral', ['bg-marine-500', 'text-marine-900']],
+        ['dark', ['bg-marine-900', 'text-marine-100']],
       ]),
     ],
     [
@@ -51,7 +59,7 @@ export function useBox(
       'red',
       new Map([
         ['light', ['bg-red-200', 'text-red-900']],
-        ['neutral', ['bg-red-600', 'text-red-100']],
+        ['neutral', ['bg-red-500', 'text-red-900']],
         ['dark', ['bg-red-900', 'text-red-100']],
       ]),
     ],

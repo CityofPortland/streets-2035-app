@@ -6,6 +6,7 @@ export type BoxColor =
   | 'cyan'
   | 'gray'
   | 'green'
+  | 'marine'
   | 'orange'
   | 'red'
   | 'tangerine'
