@@ -4,7 +4,11 @@ import { useRouter } from 'vue-router';
 import Anchor from '@/elements/anchor/Anchor.vue';
 import Box from '@/elements/box/Box';
 import House from './House.vue';
+import Access from './Access.vue';
+import Frontage from './Frontage.vue';
 import Stormwater from './Stormwater.vue';
+import Tree from './Tree.vue';
+import Utility from './Utility.vue';
 
 const { currentRoute } = useRouter();
 
@@ -63,31 +67,40 @@ onMounted(() => {
         as="section"
         class="grid grid-cols-1 gap-4 pl-4 border-l-4 border-cyan-500"
       >
-        <div class="border-b border-current pb-4 prose">
-          <h2>Frontage Improvements</h2>
-          <p>
-            Sidewalk standards are defined in the Pedestrian Design Guide and
-            are applied based on the Street Design Classification of the street.
-            Private development projects that meet the triggers in
-            <Anchor url="https://www.portland.gov/code/17/88/020"
-              >17.88.020</Anchor
-            >
-            are required to bring their frontage up to current standards.
-          </p>
-        </div>
-        <div class="prose-sm">
-          <h3>How to deviate from standard improvements</h3>
-          <p>
-            A Public Works Alternative (PWA) review process allows an applicant
-            to submit an alternative to the identified public improvements
-            required to meet current standards, codes, and policies.
-          </p>
-          <p>
-            <Anchor url="https://www.portlandoregon.gov/article/481371#prepare"
-              >Criteria for Accessing the Public Works Alternative
-              Process.</Anchor
-            >
-          </p>
+        <div class="flex">
+          <div class="flex text-cyan-500">
+            <Frontage class="w-24 h-24" />
+          </div>
+          <div class="flex-1 grid grid-cols-1 gap-4">
+            <div class="border-b border-current pb-4 prose">
+              <h2>Frontage Improvements</h2>
+              <p>
+                Sidewalk standards are defined in the Pedestrian Design Guide
+                and are applied based on the Street Design Classification of the
+                street. Private development projects that meet the triggers in
+                <Anchor url="https://www.portland.gov/code/17/88/020"
+                  >17.88.020</Anchor
+                >
+                are required to bring their frontage up to current standards.
+              </p>
+            </div>
+            <div class="prose-sm">
+              <h3>How to deviate from standard improvements</h3>
+              <p>
+                A Public Works Alternative (PWA) review process allows an
+                applicant to submit an alternative to the identified public
+                improvements required to meet current standards, codes, and
+                policies.
+              </p>
+              <p>
+                <Anchor
+                  url="https://www.portlandoregon.gov/article/481371#prepare"
+                  >Criteria for Accessing the Public Works Alternative
+                  Process.</Anchor
+                >
+              </p>
+            </div>
+          </div>
         </div>
       </Box>
       <Box
@@ -95,33 +108,40 @@ onMounted(() => {
         as="section"
         class="grid grid-cols-1 gap-4 pl-4 border-l-4 border-green-500"
       >
-        <div class="border-b border-current pb-4 prose">
-          <h2>Tree Planting and Preservation</h2>
-          <p>
-            Frontage (sidewalk) improvements trigger standards for planting
-            street trees. The city also has established standards for the
-            preservation of existing trees, clearances to other infrastructure,
-            and procedures for tree removal and replacement. Applicants are
-            required to consult with the City Forester at the preliminary
-            project design phase if City or Street Tree removal is likely to
-            occur to complete the project (<Anchor
-              url="https://www.portland.gov/code/11/50/040"
-              >PCC 11.50.040.C.2</Anchor
-            >)
-          </p>
-        </div>
-        <div class="prose-sm">
-          <h3>How to deviate from standard improvements</h3>
-          <p>
-            Modifications to standard sidewalk requirements to preserve a tree
-            requires a Public Works Alternative. A tree considerations
-            checksheet, completed by an arborist or Urban Forestry, should
-            accompany this request. The tree considerations checksheet is a tool
-            for assessing the relative preservation value of street trees, and
-            clarifies preservation options when developing a site, which can
-            support requests for City or Street tree removal when these are
-            deemed not feasible.
-          </p>
+        <div class="flex">
+          <div class="flex text-green-500">
+            <Tree class="w-24 h-24" />
+          </div>
+          <div class="flex-1 grid grid-cols-1 gap-4">
+            <div class="border-b border-current pb-4 prose">
+              <h2>Tree Planting and Preservation</h2>
+              <p>
+                Frontage (sidewalk) improvements trigger standards for planting
+                street trees. The city also has established standards for the
+                preservation of existing trees, clearances to other
+                infrastructure, and procedures for tree removal and replacement.
+                Applicants are required to consult with the City Forester at the
+                preliminary project design phase if City or Street Tree removal
+                is likely to occur to complete the project (<Anchor
+                  url="https://www.portland.gov/code/11/50/040"
+                  >PCC 11.50.040.C.2</Anchor
+                >)
+              </p>
+            </div>
+            <div class="prose-sm">
+              <h3>How to deviate from standard improvements</h3>
+              <p>
+                Modifications to standard sidewalk requirements to preserve a
+                tree requires a Public Works Alternative. A tree considerations
+                checksheet, completed by an arborist or Urban Forestry, should
+                accompany this request. The tree considerations checksheet is a
+                tool for assessing the relative preservation value of street
+                trees, and clarifies preservation options when developing a
+                site, which can support requests for City or Street tree removal
+                when these are deemed not feasible.
+              </p>
+            </div>
+          </div>
         </div>
       </Box>
       <Box
@@ -129,33 +149,42 @@ onMounted(() => {
         as="section"
         class="grid grid-cols-1 gap-4 pl-4 border-l-4 border-red-500"
       >
-        <div class="border-b border-current pb-4 prose">
-          <h2>Access and Loading</h2>
-          <p>
-            Requirements for access and loading on private property are defined
-            in city code and influence the space available for other
-            infrastructure in the pedestrian zone, such as street trees,
-            furnishings such as bike racks, or utility connections.
-          </p>
-        </div>
-        <div class="prose-sm">
-          <h3>How to deviate from standard improvements</h3>
-          <p>
-            Deviation from rules related to the design of driveways requires a
-            <Anchor
-              url="https://www.portland.gov/transportation/engineering/design#toc-design-exceptions"
-              >Driveway Design Exception</Anchor
-            >. Requests to modify loading requirements are evaluated through an
-            <Anchor
-              url="https://www.portland.gov/bds/zoning-land-use/land-use-review-fees-and-types/adjustment-reviews"
-              >adjustment review</Anchor
-            >
-            and associated
-            <Anchor
-              url="https://www.portland.gov/sites/default/files/code/33.805-adjustments.pdf"
-              >approval criteria.</Anchor
-            >
-          </p>
+        <div class="flex">
+          <div class="flex text-red-500">
+            <Access class="w-24 h-24" />
+          </div>
+          <div class="flex-1 grid grid-cols-1 gap-4">
+            <div class="border-b border-current pb-4 prose">
+              <h2>Access and Loading</h2>
+              <p>
+                Requirements for access and loading on private property are
+                defined in city code and influence the space available for other
+                infrastructure in the pedestrian zone, such as street trees,
+                furnishings such as bike racks, or utility connections.
+              </p>
+            </div>
+            <div class="prose-sm">
+              <h3>How to deviate from standard improvements</h3>
+              <p>
+                Deviation from rules related to the design of driveways requires
+                a
+                <Anchor
+                  url="https://www.portland.gov/transportation/engineering/design#toc-design-exceptions"
+                  >Driveway Design Exception</Anchor
+                >. Requests to modify loading requirements are evaluated through
+                an
+                <Anchor
+                  url="https://www.portland.gov/bds/zoning-land-use/land-use-review-fees-and-types/adjustment-reviews"
+                  >adjustment review</Anchor
+                >
+                and associated
+                <Anchor
+                  url="https://www.portland.gov/sites/default/files/code/33.805-adjustments.pdf"
+                  >approval criteria.</Anchor
+                >
+              </p>
+            </div>
+          </div>
         </div>
       </Box>
       <Box
@@ -164,10 +193,10 @@ onMounted(() => {
         class="grid grid-cols-1 gap-4 pl-4 border-l-4 border-marine-500"
       >
         <div class="flex">
-          <div class="hidden md:flex">
+          <div class="flex text-marine-500">
             <Stormwater class="w-24 h-24" />
           </div>
-          <div class="flex-1">
+          <div class="flex-1 grid grid-cols-1 gap-4">
             <div class="border-b border-current pb-4 prose">
               <h2>Stormwater Management</h2>
               <p>
@@ -203,30 +232,38 @@ onMounted(() => {
         as="section"
         class="grid grid-cols-1 gap-4 pl-4 border-l-4 border-orange-500"
       >
-        <div class="border-b border-current pb-4 prose">
-          <h2 id="utility">Utility Clearance</h2>
-          <p>
-            Utility clearance requirements serve to protect infrastructure and
-            maintain space to access for maintenance or replacement.
-          </p>
-        </div>
-        <div class="prose-sm">
-          <h3>How to deviate from standard improvements</h3>
-          <p>
-            Because utility and access clearances can influence space for other
-            infrastructure, the Street Design Guide contains principles for the
-            efficient layout of utilities along a frontage to help preserve tree
-            planting sites and space for stormwater management.
-          </p>
-          <p>
-            Applicants are expected to plan for power on site. Requests to site
-            electrical transformers in the right-of-way requires an exception as
-            defined in
-            <Anchor
-              url="https://www.portland.gov/policies/transportation/right-way-access/trn-813-utility-vault-or-structure-benefit-adjacent"
-              >TRN 8.13.</Anchor
-            >
-          </p>
+        <div class="flex">
+          <div class="flex text-orange-500">
+            <Utility class="w-24 h-24" />
+          </div>
+          <div class="flex-1 grid grid-cols-1 gap-4">
+            <div class="border-b border-current pb-4 prose">
+              <h2 id="utility">Utility Clearance</h2>
+              <p>
+                Utility clearance requirements serve to protect infrastructure
+                and maintain space to access for maintenance or replacement.
+              </p>
+            </div>
+            <div class="prose-sm">
+              <h3>How to deviate from standard improvements</h3>
+              <p>
+                Because utility and access clearances can influence space for
+                other infrastructure, the Street Design Guide contains
+                principles for the efficient layout of utilities along a
+                frontage to help preserve tree planting sites and space for
+                stormwater management.
+              </p>
+              <p>
+                Applicants are expected to plan for power on site. Requests to
+                site electrical transformers in the right-of-way requires an
+                exception as defined in
+                <Anchor
+                  url="https://www.portland.gov/policies/transportation/right-way-access/trn-813-utility-vault-or-structure-benefit-adjacent"
+                  >TRN 8.13.</Anchor
+                >
+              </p>
+            </div>
+          </div>
         </div>
       </Box>
       <h2 id="deviation">Processes for deviating from standard improvements</h2>
@@ -269,20 +306,29 @@ onMounted(() => {
       </div>
       <h3>Alternative to Technical Requirements</h3>
       <div class="grid grid-cols-2 gap-4">
-        <span>Frontage Improvements</span>
+        <div class="inline-flex">
+          <Frontage class="w-8 h-8" />
+          <span>Frontage Improvements</span>
+        </div>
         <Anchor
           url="https://www.portland.gov/transportation/engineering/design#toc-design-exceptions"
           >PBOT Design Exceptions</Anchor
         >
       </div>
       <div class="grid grid-cols-2 gap-4">
-        <span>Tree Planting and Preservation</span>
+        <div class="inline-flex">
+          <Tree class="w-8 h-8" />
+          <span>Tree Planting and Preservation</span>
+        </div>
         <Anchor url="https://www.portland.gov/code/11/50/070"
           >Tree Plan Submittal Requirements</Anchor
         >
       </div>
       <div class="grid grid-cols-2 gap-4">
-        <span>Access and Loading</span>
+        <div class="inline-flex">
+          <Access class="w-8 h-8" />
+          <span>Access and Loading</span>
+        </div>
         <div class="grid grid-cols-1">
           <Anchor
             url="https://www.portland.gov/transportation/engineering/design#toc-design-exceptions"
@@ -305,7 +351,10 @@ onMounted(() => {
         >
       </div>
       <div class="grid grid-cols-2 gap-4">
-        <span>Utility Clearances</span>
+        <div class="inline-flex">
+          <Utility class="w-8 h-8" />
+          <span>Utility Clearances</span>
+        </div>
         <div class="grid grid-cols-1">
           <Anchor
             url="https://www.portland.gov/water/water-development-services/engineering-admin-rule"
