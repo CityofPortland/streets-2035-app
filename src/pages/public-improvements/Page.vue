@@ -84,21 +84,39 @@ onMounted(() => {
                 are required to bring their frontage up to current standards.
               </p>
             </div>
-            <div class="prose-sm">
-              <h3>How to deviate from standard improvements</h3>
-              <p>
-                A Public Works Alternative (PWA) review process allows an
-                applicant to submit an alternative to the identified public
-                improvements required to meet current standards, codes, and
-                policies.
-              </p>
-              <p>
-                <Anchor
-                  url="https://www.portlandoregon.gov/article/481371#prepare"
-                  >Criteria for Accessing the Public Works Alternative
-                  Process.</Anchor
+            <div class="flex flex-col md:flex-row gap-4">
+              <div class="prose-sm">
+                <h3>How to deviate from standard improvements</h3>
+                <p>
+                  A Public Works Alternative (PWA) review process allows an
+                  applicant to submit an alternative to the identified public
+                  improvements required to meet current standards, codes, and
+                  policies.
+                </p>
+                <p>
+                  <Anchor
+                    url="https://www.portlandoregon.gov/article/481371#prepare"
+                    >Criteria for Accessing the Public Works Alternative
+                    Process.</Anchor
+                  >
+                </p>
+              </div>
+              <Box
+                color="cyan"
+                variant="light"
+                class="p-4 my-auto flex flex-col items-center justify-center"
+                style="box-shadow: 10px 10px currentColor"
+              >
+                <span class="text-center font-bold uppercase"
+                  >ROW Standards</span
                 >
-              </p>
+                <Anchor
+                  url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-sidewalks-and-pedestrian-crossings"
+                  class="text-center"
+                >
+                  <span>Sidewalks section</span>
+                </Anchor>
+              </Box>
             </div>
           </div>
         </div>
@@ -128,18 +146,37 @@ onMounted(() => {
                 >)
               </p>
             </div>
-            <div class="prose-sm">
-              <h3>How to deviate from standard improvements</h3>
-              <p>
-                Modifications to standard sidewalk requirements to preserve a
-                tree requires a Public Works Alternative. A tree considerations
-                checksheet, completed by an arborist or Urban Forestry, should
-                accompany this request. The tree considerations checksheet is a
-                tool for assessing the relative preservation value of street
-                trees, and clarifies preservation options when developing a
-                site, which can support requests for City or Street tree removal
-                when these are deemed not feasible.
-              </p>
+            <div class="flex flex-col md:flex-row gap-4">
+              <div class="prose-sm">
+                <h3>How to deviate from standard improvements</h3>
+                <p>
+                  Modifications to standard sidewalk requirements to preserve a
+                  tree requires a Public Works Alternative. A tree
+                  considerations checksheet, completed by an arborist or Urban
+                  Forestry, should accompany this request. The tree
+                  considerations checksheet is a tool for assessing the relative
+                  preservation value of street trees, and clarifies preservation
+                  options when developing a site, which can support requests for
+                  City or Street tree removal when these are deemed not
+                  feasible.
+                </p>
+              </div>
+              <Box
+                color="green"
+                variant="light"
+                class="p-4 my-auto flex flex-col items-center justify-center"
+                style="box-shadow: 10px 10px currentColor"
+              >
+                <span class="text-center font-bold uppercase"
+                  >ROW Standards</span
+                >
+                <Anchor
+                  url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-street-trees"
+                  class="text-center"
+                >
+                  <span>Street trees section</span>
+                </Anchor>
+              </Box>
             </div>
           </div>
         </div>
@@ -163,26 +200,44 @@ onMounted(() => {
                 furnishings such as bike racks, or utility connections.
               </p>
             </div>
-            <div class="prose-sm">
-              <h3>How to deviate from standard improvements</h3>
-              <p>
-                Deviation from rules related to the design of driveways requires
-                a
-                <Anchor
-                  url="https://www.portland.gov/transportation/engineering/design#toc-design-exceptions"
-                  >Driveway Design Exception</Anchor
-                >. Requests to modify loading requirements are evaluated through
-                an
-                <Anchor
-                  url="https://www.portland.gov/bds/zoning-land-use/land-use-review-fees-and-types/adjustment-reviews"
-                  >adjustment review</Anchor
+            <div class="flex flex-col md:flex-row gap-4">
+              <div class="prose-sm">
+                <h3>How to deviate from standard improvements</h3>
+                <p>
+                  Deviation from rules related to the design of driveways
+                  requires a
+                  <Anchor
+                    url="https://www.portland.gov/transportation/engineering/design#toc-design-exceptions"
+                    >Driveway Design Exception</Anchor
+                  >. Requests to modify loading requirements are evaluated
+                  through an
+                  <Anchor
+                    url="https://www.portland.gov/bds/zoning-land-use/land-use-review-fees-and-types/adjustment-reviews"
+                    >adjustment review</Anchor
+                  >
+                  and associated
+                  <Anchor
+                    url="https://www.portland.gov/sites/default/files/code/33.805-adjustments.pdf"
+                    >approval criteria.</Anchor
+                  >
+                </p>
+              </div>
+              <Box
+                color="red"
+                variant="light"
+                class="p-4 my-auto flex flex-col items-center justify-center"
+                style="box-shadow: 10px 10px currentColor"
+              >
+                <span class="text-center font-bold uppercase"
+                  >ROW Standards</span
                 >
-                and associated
                 <Anchor
-                  url="https://www.portland.gov/sites/default/files/code/33.805-adjustments.pdf"
-                  >approval criteria.</Anchor
+                  url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-access-and-loading"
+                  class="text-center"
                 >
-              </p>
+                  <span>Access and loading section</span>
+                </Anchor>
+              </Box>
             </div>
           </div>
         </div>
@@ -207,22 +262,40 @@ onMounted(() => {
                 drainageways, and combined sewers.
               </p>
             </div>
-            <div class="prose-sm">
-              <h3>How to deviate from standard improvements</h3>
-              <p>
-                When public improvements require stormwater management,
-                <Anchor
-                  url="https://www.portland.gov/bes/stormwater/swmm-and-right-way-projects/meeting-requirements"
-                  >four options are potentially available to meet SWMM
-                  requirements in the right-of-way</Anchor
+            <div class="flex flex-col md:flex-row gap-4">
+              <div class="prose-sm">
+                <h3>How to deviate from standard improvements</h3>
+                <p>
+                  When public improvements require stormwater management,
+                  <Anchor
+                    url="https://www.portland.gov/bes/stormwater/swmm-and-right-way-projects/meeting-requirements"
+                    >four options are potentially available to meet SWMM
+                    requirements in the right-of-way</Anchor
+                  >
+                  depending on the specific characteristics of the project.
+                </p>
+                <p>
+                  Modifications to the standard sidewalk requirements due to
+                  topography (including complexity in conveying stormwater)
+                  require a Public Works Alternative.
+                </p>
+              </div>
+              <Box
+                color="marine"
+                variant="light"
+                class="p-4 my-auto flex flex-col items-center justify-center"
+                style="box-shadow: 10px 10px currentColor"
+              >
+                <span class="text-center font-bold uppercase"
+                  >ROW Standards</span
                 >
-                depending on the specific characteristics of the project.
-              </p>
-              <p>
-                Modifications to the standard sidewalk requirements due to
-                topography (including complexity in conveying stormwater)
-                require a Public Works Alternative.
-              </p>
+                <Anchor
+                  url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
+                  class="text-center"
+                >
+                  <span>Stormater section</span>
+                </Anchor>
+              </Box>
             </div>
           </div>
         </div>
@@ -244,24 +317,42 @@ onMounted(() => {
                 and maintain space to access for maintenance or replacement.
               </p>
             </div>
-            <div class="prose-sm">
-              <h3>How to deviate from standard improvements</h3>
-              <p>
-                Because utility and access clearances can influence space for
-                other infrastructure, the Street Design Guide contains
-                principles for the efficient layout of utilities along a
-                frontage to help preserve tree planting sites and space for
-                stormwater management.
-              </p>
-              <p>
-                Applicants are expected to plan for power on site. Requests to
-                site electrical transformers in the right-of-way requires an
-                exception as defined in
-                <Anchor
-                  url="https://www.portland.gov/policies/transportation/right-way-access/trn-813-utility-vault-or-structure-benefit-adjacent"
-                  >TRN 8.13.</Anchor
+            <div class="flex flex-col md:flex-row gap-4">
+              <div class="prose-sm">
+                <h3>How to deviate from standard improvements</h3>
+                <p>
+                  Because utility and access clearances can influence space for
+                  other infrastructure, the Street Design Guide contains
+                  principles for the efficient layout of utilities along a
+                  frontage to help preserve tree planting sites and space for
+                  stormwater management.
+                </p>
+                <p>
+                  Applicants are expected to plan for power on site. Requests to
+                  site electrical transformers in the right-of-way requires an
+                  exception as defined in
+                  <Anchor
+                    url="https://www.portland.gov/policies/transportation/right-way-access/trn-813-utility-vault-or-structure-benefit-adjacent"
+                    >TRN 8.13.</Anchor
+                  >
+                </p>
+              </div>
+              <Box
+                color="orange"
+                variant="light"
+                class="p-4 my-auto flex flex-col items-center justify-center"
+                style="box-shadow: 10px 10px currentColor"
+              >
+                <span class="text-center font-bold uppercase"
+                  >ROW Standards</span
                 >
-              </p>
+                <Anchor
+                  url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-utilities"
+                  class="text-center"
+                >
+                  <span>Utilities section</span>
+                </Anchor>
+              </Box>
             </div>
           </div>
         </div>
@@ -279,16 +370,19 @@ onMounted(() => {
         <Box
           color="cyan"
           variant="light"
-          as="a"
-          href="https://www.portland.gov/policies/transportation/streets-sidewalks/trn-127-bureau-transportation-public-works-alternate"
           class="p-4 flex flex-col items-center"
           style="box-shadow: 10px 10px currentColor"
         >
           <span class="font-bold">TRN 1.27</span>
-          <span class="text-center"
-            >Bureau of Transportation Public Works Alternative Review
-            Committee</span
+          <Anchor
+            url="https://www.portland.gov/policies/transportation/streets-sidewalks/trn-127-bureau-transportation-public-works-alternate"
+            class="text-center"
           >
+            <span
+              >Bureau of Transportation Public Works Alternative Review
+              Committee</span
+            >
+          </Anchor>
         </Box>
         <Box
           color="tangerine"

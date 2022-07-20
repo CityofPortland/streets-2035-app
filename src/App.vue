@@ -25,7 +25,7 @@
               <DropdownList
                 id="information-menu"
                 :open="open"
-                class="md:origin-top-left md:absolute md:left-0 md:w-64 mt-1 bg-white text-black rounded border focus:outline-none"
+                class="md:origin-top-left md:absolute md:left-0 md:w-64 mt-1 bg-white text-black rounded border border-current shadow-md focus:outline-none"
               >
                 <NavItem
                   role="menuitem"
