@@ -39,9 +39,21 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/pages/cross-section/List.vue'),
     props: (route) => {
       const width = route.params.width as string;
+      const mainStreet = route.query.mainStreet === 'true';
+      const pedestrianPriority = route.query.pedestrianPriority;
+      const bicyclePriority = route.query.bicyclePriority;
+      const transitPriority = route.query.transitPriority;
+      const freightPriority = route.query.freightPriority;
+      const trafficPriority = route.query.trafficPriority;
 
       return {
         width: Number.parseInt(width),
+        mainStreet,
+        pedestrianPriority,
+        bicyclePriority,
+        transitPriority,
+        freightPriority,
+        trafficPriority,
       };
     },
   },
