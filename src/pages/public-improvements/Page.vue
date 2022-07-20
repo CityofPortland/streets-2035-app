@@ -377,25 +377,21 @@ onMounted(() => {
           <Anchor
             url="https://www.portland.gov/policies/transportation/streets-sidewalks/trn-127-bureau-transportation-public-works-alternate"
             class="text-center"
-          >
-            <span
-              >Bureau of Transportation Public Works Alternative Review
-              Committee</span
-            >
+            >Bureau of Transportation Public Works Alternative Review Committee
           </Anchor>
         </Box>
         <Box
           color="tangerine"
           variant="light"
-          as="a"
-          href="https://www.portlandoregon.gov/article/481371#prepare"
           class="p-4 flex flex-col items-center"
           style="box-shadow: 10px 10px currentColor"
         >
           <span class="font-bold uppercase">Criteria</span>
-          <span class="text-center"
-            >For Accessing the Public Works Alternative process</span
-          >
+          <Anchor
+            url="https://www.portlandoregon.gov/article/481371#prepare"
+            class="text-center"
+            >How to access the Public Works Alternative process
+          </Anchor>
         </Box>
       </div>
       <h3>Alternative to Technical Requirements</h3>
