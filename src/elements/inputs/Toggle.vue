@@ -2,13 +2,15 @@
   <div class="inline-flex items-center space-x-2 cursor-pointer">
     <Box
       as="button"
+      type="button"
+      v-bind="$attrs"
+      :id="id"
       :color="modelValue ? 'blue' : 'red'"
       variant="light"
-      :id="id"
       role="switch"
       :aria-checked="String(modelValue)"
       :aria-labelledby="`${id}-label`"
-      class="inline-flex items-center border border-current rounded text-xs p-1 focus:ring-2 focus:ring-offset-1 focus:ring-current"
+      class="inline-flex items-center border border-current rounded p-1 focus:ring-2 focus:ring-offset-1 focus:ring-current"
       @click="toggle"
     >
       <Box
@@ -16,14 +18,14 @@
         :color="modelValue ? 'blue' : 'transparent'"
         class="px-1 rounded"
         :class="{ 'shadow-lg': modelValue }"
-        >on</Box
+        >{{ trueLabel }}</Box
       >
       <Box
         as="span"
         :color="modelValue ? 'transparent' : 'red'"
         class="px-1 rounded"
         :class="{ 'shadow-lg': modelValue }"
-        >off</Box
+        >{{ falseLabel }}</Box
       >
     </Box>
     <slot>
@@ -39,6 +41,7 @@ import Box from '@/elements/box/Box';
 export default defineComponent({
   name: 'Toggle',
   components: { Box },
+  inheritAttrs: false,
   props: {
     id: {
       type: String,
@@ -47,6 +50,14 @@ export default defineComponent({
     label: {
       type: String,
       required: true,
+    },
+    trueLabel: {
+      type: String,
+      default: 'on',
+    },
+    falseLabel: {
+      type: String,
+      default: 'off',
     },
     modelValue: Boolean,
   },
@@ -60,5 +71,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped></style>

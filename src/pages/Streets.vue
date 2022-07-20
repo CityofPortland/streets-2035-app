@@ -38,6 +38,7 @@
                 :name="`classification-${c.value.toLowerCase()}`"
                 :label="c.label"
                 :modelValue="c.enabled"
+                class="text-xs"
                 @update:modelValue="handleClassificationToggle(c)"
               >
                 <label
@@ -61,7 +62,7 @@
               :label="d.label"
               :modelValue="d.enabled"
               @update:modelValue="handleClassificationToggle(d)"
-              class="flex items-center space-x-1"
+              class="text-xs"
             >
               <label
                 :id="`district-${d.value.toLowerCase()}-label`"
