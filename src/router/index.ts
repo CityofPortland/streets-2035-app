@@ -5,6 +5,7 @@ import Home from '@/pages/Home.vue';
 import Login from '@/pages/Login.vue';
 import Logout from '@/pages/Logout.vue';
 import OAuth from '@/pages/OAuth.vue';
+import PublicImprovements from '@/pages/public-improvements/Page.vue';
 import Streets from '@/pages/Streets.vue';
 import StreetTypes from '@/pages/street-type/StreetTypes.vue';
 
@@ -21,6 +22,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/disclaimer',
     name: 'Disclaimer',
     component: Disclaimer,
+  },
+  {
+    path: '/public-improvements',
+    name: 'PublicImprovements',
+    component: PublicImprovements,
   },
   {
     path: '/streets/:id?',

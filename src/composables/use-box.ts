@@ -50,7 +50,7 @@ export function useBox(
     [
       'orange',
       new Map([
-        ['light', ['bg-orange-100', 'text-orange-900']],
+        ['light', ['bg-orange-200', 'text-orange-900']],
         ['neutral', ['bg-orange-500', 'text-orange-900']],
         ['dark', ['bg-orange-900', 'text-orange-100']],
       ]),
