@@ -1,6 +1,6 @@
 <template>
   <section
-    class="grid grid-flow-col gap-1"
+    class="grid grid-flow-col gap-1 overflow-x-auto"
     :style="`
         grid-template-rows: repeat(8, auto);
         grid-template-columns: minmax(min-content, 14rem) repeat(${options.length}, minmax(10rem, 14rem) [col-start]);
@@ -18,7 +18,8 @@
       v-for="option in options"
       :key="option.name"
       :scores="option"
-      class="row-span-8"
+      :main-street="mainStreet"
+      :priorities="priorities"
     >
       <slot :option="option"></slot>
     </Scorecard>
@@ -30,12 +31,27 @@ import { defineComponent } from 'vue';
 
 import Scorecard from '@/components/cross-section/Scorecard.vue';
 import { CrossSection } from '@/composables/cross-section';
+import { PrioritySet } from './typings';
 
 export default defineComponent({
   name: 'Scoresheet',
   components: { Scorecard },
   props: {
     options: { type: Array as () => Array<CrossSection>, required: true },
+    mainStreet: {
+      type: Boolean,
+      default: false,
+    },
+    priorities: {
+      type: Object as () => PrioritySet,
+      default: () => ({
+        pedestrian: 'high',
+        bicycle: 'high',
+        transit: 'high',
+        freight: 'high',
+        traffic: 'high',
+      }),
+    },
   },
 });
 </script>
