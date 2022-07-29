@@ -12,15 +12,15 @@
   </Box>
   <Box
     :color="scoreColor(scores.safety)"
-    variant="light"
-    class="text-center p-2 rounded-md shadow"
+    variant="neutral"
+    class="text-center p-2 rounded-md"
     title="Safety score"
   />
   <div class="grid grid-cols-2 gap-1">
     <Box
       :color="scoreColor(scores['pedestrian:mobility'])"
-      variant="light"
-      class="text-center p-2 rounded-md shadow"
+      variant="neutral"
+      class="text-center p-2 rounded-md"
       title="Pedestrian mobility score"
       :class="{
         'low-priority': priorities.pedestrian == 'low',
@@ -29,8 +29,8 @@
     />
     <Box
       :color="scoreColor(scores['pedestrian:access'])"
-      variant="light"
-      class="text-center p-2 rounded-md shadow"
+      variant="neutral"
+      class="text-center p-2 rounded-md"
       title="Pedestrian access score"
       :class="{
         'low-priority': priorities.pedestrian == 'low',
@@ -40,15 +40,15 @@
   </div>
   <Box
     :color="scoreColor(scores.greening)"
-    variant="light"
-    class="text-center p-2 rounded-md shadow"
+    variant="neutral"
+    class="text-center p-2 rounded-md"
     title="Greening score"
   />
   <div class="grid grid-cols-2 gap-1">
     <Box
       :color="scoreColor(scores['bicycle:mobility'])"
-      variant="light"
-      class="text-center p-2 rounded-md shadow"
+      variant="neutral"
+      class="text-center p-2 rounded-md"
       :class="{
         'low-priority': priorities.bicycle == 'low',
         'no-priority': priorities.bicycle == 'none',
@@ -57,8 +57,8 @@
     />
     <Box
       :color="scoreColor(scores['bicycle:access'])"
-      variant="light"
-      class="text-center p-2 rounded-md shadow"
+      variant="neutral"
+      class="text-center p-2 rounded-md"
       :class="{
         'low-priority': priorities.bicycle == 'low',
         'no-priority': priorities.bicycle == 'none',
@@ -69,8 +69,8 @@
   <div class="grid grid-cols-2 gap-1">
     <Box
       :color="scoreColor(scores['transit:mobility'])"
-      variant="light"
-      class="text-center p-2 rounded-md shadow"
+      variant="neutral"
+      class="text-center p-2 rounded-md"
       title="Transit mobility score"
       :class="{
         'low-priority': priorities.transit == 'low',
@@ -79,8 +79,8 @@
     />
     <Box
       :color="scoreColor(scores['transit:access'])"
-      variant="light"
-      class="text-center p-2 rounded-md shadow"
+      variant="neutral"
+      class="text-center p-2 rounded-md"
       title="Transit access score"
       :class="{
         'low-priority': priorities.transit == 'low' && !mainStreet,
@@ -91,8 +91,8 @@
   <div class="grid grid-cols-2 gap-1">
     <Box
       :color="scoreColor(scores['freight:mobility'])"
-      variant="light"
-      class="text-center p-2 rounded-md shadow"
+      variant="neutral"
+      class="text-center p-2 rounded-md"
       title="Freight mobility score"
       :class="{
         'low-priority': priorities.freight == 'low',
@@ -101,8 +101,8 @@
     />
     <Box
       :color="scoreColor(scores['freight:access'])"
-      variant="light"
-      class="text-center p-2 rounded-md shadow"
+      variant="neutral"
+      class="text-center p-2 rounded-md"
       title="Freight access score"
       :class="{
         'low-priority': priorities.freight == 'low' && !mainStreet,
@@ -113,8 +113,8 @@
   <div class="grid grid-cols-2 gap-1">
     <Box
       :color="scoreColor(scores['traffic:mobility'])"
-      variant="light"
-      class="text-center p-2 rounded-md shadow"
+      variant="neutral"
+      class="text-center p-2 rounded-md"
       title="Traffic mobility score"
       :class="{
         'low-priority': priorities.traffic == 'low',
@@ -123,8 +123,8 @@
     />
     <Box
       :color="scoreColor(scores['traffic:access'])"
-      variant="light"
-      class="text-center p-2 rounded-md shadow"
+      variant="neutral"
+      class="text-center p-2 rounded-md"
       title="Traffic access score"
       :class="{
         'low-priority': priorities.traffic == 'low' && !mainStreet,
@@ -181,7 +181,7 @@ export default defineComponent({
     const scoreMap = new Map<number, BoxColor>([
       [1, 'red'],
       [2, 'tangerine'],
-      [3, 'blue'],
+      [3, 'green'],
     ]);
 
     return {
