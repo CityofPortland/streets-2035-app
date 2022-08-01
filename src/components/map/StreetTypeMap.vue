@@ -21,6 +21,7 @@
       @zoom-change="handleZoom"
       @pointer-hit="handlePointer"
       @layer-view="handleLayerView"
+      @extent-change="handleExtent"
     >
       <template v-slot:top-right>
         <div
@@ -35,7 +36,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+import { defineComponent, ref } from 'vue';
 import md5 from 'crypto-js/md5';
 
 import Basemap from '@arcgis/core/Basemap';
@@ -44,6 +45,7 @@ import FeatureLayer from '@arcgis/core/layers/FeatureLayer';
 import FeatureLayerView from '@arcgis/core/views/layers/FeatureLayerView';
 import LayerView from '@arcgis/core/views/layers/LayerView';
 import TileLayer from '@arcgis/core/layers/TileLayer';
+import Extent from '@arcgis/core/geometry/Extent';
 
 import MapVue from '@/components/map/Map.vue';
 import Section from '@/components/street/Section.vue';
@@ -104,73 +106,6 @@ export default defineComponent({
       layerViews.set(data.id, data.promise as Promise<FeatureLayerView>);
     };
 
-    const createListings = async () => {
-      const layerView = await layerViews.get('classifications');
-
-      if (layerView) {
-        const query = layerView.createQuery();
-        query.outFields = ['StreetName'];
-
-        /**
-         * Need to watch updating because this is called so early
-         * from the onMounted hook
-         */
-        layerView.watch('updating', async (updating) => {
-          if (!updating) {
-            const features = await layerView.queryFeatures(query);
-
-            if (features) {
-              const shuffle = (
-                array: Array<Pick<StreetSection, 'hash' | 'name'>>
-              ) => {
-                let m = array.length,
-                  t,
-                  i;
-
-                // While there remain elements to shuffle…
-                while (m) {
-                  // Pick a remaining element…
-                  i = Math.floor(Math.random() * m--);
-
-                  // And swap it with the current element.
-                  t = array[m];
-                  array[m] = array[i];
-                  array[i] = t;
-                }
-
-                return array;
-              };
-
-              const sections: Array<Pick<StreetSection, 'hash' | 'name'>> =
-                shuffle([
-                  ...features.features
-                    .reduce<Map<string, Pick<StreetSection, 'hash' | 'name'>>>(
-                      (acc, curr) => {
-                        const hash = md5(
-                          `${curr.attributes.StreetName}`
-                        ).toString();
-
-                        if (!acc.has(hash)) {
-                          acc.set(hash, {
-                            hash,
-                            name: curr.attributes.StreetName,
-                          });
-                        }
-
-                        return acc;
-                      },
-                      new Map()
-                    )
-                    .values(),
-                ]).splice(0, 5);
-
-              streets.value = sections;
-            }
-          }
-        });
-      }
-    };
-
     let highlight: { remove: () => void };
 
     const highlightStreet = async (section: StreetSection) => {
@@ -190,10 +125,6 @@ export default defineComponent({
       }
     };
 
-    onMounted(() => {
-      createListings();
-    });
-
     return {
       extent,
       map,
@@ -212,6 +143,66 @@ export default defineComponent({
         zoom.value = z;
       },
       highlightStreet,
+      async handleExtent(extent: Extent) {
+        const layerView = await layerViews.get('classifications');
+
+        if (layerView) {
+          const query = layerView.createQuery();
+          query.outFields = ['StreetName'];
+          query.geometry = extent;
+          query.spatialRelationship = 'envelope-intersects';
+
+          const features = await layerView.queryFeatures(query);
+
+          if (features) {
+            const shuffle = (
+              array: Array<Pick<StreetSection, 'hash' | 'name'>>
+            ) => {
+              let m = array.length,
+                t,
+                i;
+
+              // While there remain elements to shuffle…
+              while (m) {
+                // Pick a remaining element…
+                i = Math.floor(Math.random() * m--);
+
+                // And swap it with the current element.
+                t = array[m];
+                array[m] = array[i];
+                array[i] = t;
+              }
+
+              return array;
+            };
+
+            const sections: Array<Pick<StreetSection, 'hash' | 'name'>> =
+              shuffle([
+                ...features.features
+                  .reduce<Map<string, Pick<StreetSection, 'hash' | 'name'>>>(
+                    (acc, curr) => {
+                      const hash = md5(
+                        `${curr.attributes.StreetName}`
+                      ).toString();
+
+                      if (!acc.has(hash)) {
+                        acc.set(hash, {
+                          hash,
+                          name: curr.attributes.StreetName,
+                        });
+                      }
+
+                      return acc;
+                    },
+                    new Map()
+                  )
+                  .values(),
+              ]).splice(0, 5);
+
+            streets.value = sections;
+          }
+        }
+      },
     };
   },
 });
