@@ -47,10 +47,9 @@ import LayerView from '@arcgis/core/views/layers/LayerView';
 import TileLayer from '@arcgis/core/layers/TileLayer';
 import Extent from '@arcgis/core/geometry/Extent';
 
-import { ESRIStreet } from '@/composables/use-street';
+import { ESRIStreet, StreetSection } from '@/composables/use-street';
 import MapVue from '@/components/map/Map.vue';
 import Section from '@/components/street/Section.vue';
-import { StreetSection } from '../street/street';
 
 export default defineComponent({
   name: 'StreetTypeMap',
