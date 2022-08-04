@@ -47,6 +47,7 @@ import LayerView from '@arcgis/core/views/layers/LayerView';
 import TileLayer from '@arcgis/core/layers/TileLayer';
 import Extent from '@arcgis/core/geometry/Extent';
 
+import { ESRIStreet } from '@/composables/use-street';
 import MapVue from '@/components/map/Map.vue';
 import Section from '@/components/street/Section.vue';
 import { StreetSection } from '../street/street';
@@ -64,26 +65,6 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const basemap = new Basemap({
-      baseLayers: [
-        new TileLayer({
-          url: 'https://www.portlandmaps.com/arcgis/rest/services/Public/Basemap_Color/MapServer',
-        }),
-      ],
-    });
-
-    const layers = [
-      new FeatureLayer({
-        id: 'classifications',
-        url: 'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/22',
-        outFields: ['*'],
-        definitionExpression: `Design = '${props.type.toUpperCase()}'`,
-      }),
-      new TileLayer({
-        id: 'labels',
-        url: 'https://www.portlandmaps.com/arcgis/rest/services/Public/Basemap_Color_Labels/MapServer',
-      }),
-    ];
     const layerViews = new Map<string, Promise<FeatureLayerView>>();
 
     const extent = {
@@ -94,36 +75,32 @@ export default defineComponent({
       ymax: 5724489.626800001,
     };
 
-    const map = new EsriMap({ basemap, layers });
+    const map = new EsriMap({
+      basemap: new Basemap({
+        baseLayers: [
+          new TileLayer({
+            url: 'https://www.portlandmaps.com/arcgis/rest/services/Public/Basemap_Color/MapServer',
+          }),
+        ],
+      }),
+      layers: [
+        new FeatureLayer({
+          id: 'classifications',
+          url: 'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/22',
+          outFields: ['*'],
+          definitionExpression: `Design = '${props.type.toUpperCase()}'`,
+        }),
+        new TileLayer({
+          id: 'labels',
+          url: 'https://www.portlandmaps.com/arcgis/rest/services/Public/Basemap_Color_Labels/MapServer',
+        }),
+      ],
+    });
     const zoom = ref(12);
-    const pointer = ref<unknown | undefined>(undefined);
-    const streets = ref<Array<Pick<StreetSection, 'hash' | 'name'>>>([]);
-
-    const handleLayerView = (data: {
-      id: string;
-      promise: Promise<LayerView>;
-    }) => {
-      layerViews.set(data.id, data.promise as Promise<FeatureLayerView>);
-    };
+    const pointer = ref<ESRIStreet | undefined>(undefined);
+    const streets = ref<Array<Partial<StreetSection>>>([]);
 
     let highlight: { remove: () => void };
-
-    const highlightStreet = async (section: StreetSection) => {
-      const layerView = await layerViews.get('classifications');
-
-      if (layerView) {
-        const query = layerView.createQuery();
-        query.where = `StreetName = '${section.name}'`;
-
-        const features = await layerView.queryFeatures(query);
-        if (features.features.length) {
-          if (highlight) {
-            highlight.remove();
-          }
-          highlight = layerView.highlight(features.features);
-        }
-      }
-    };
 
     return {
       extent,
@@ -131,18 +108,6 @@ export default defineComponent({
       pointer,
       streets,
       zoom,
-      handleLayerView,
-      handlePointer(event: Array<{ graphic: { attributes: unknown } }>) {
-        if (event && event.length > 0) {
-          pointer.value = event[0].graphic.attributes;
-        } else {
-          pointer.value = undefined;
-        }
-      },
-      handleZoom(z: number) {
-        zoom.value = z;
-      },
-      highlightStreet,
       async handleExtent(extent: Extent) {
         const layerView = await layerViews.get('classifications');
 
@@ -176,32 +141,53 @@ export default defineComponent({
               return array;
             };
 
-            const sections: Array<Pick<StreetSection, 'hash' | 'name'>> =
-              shuffle([
-                ...features.features
-                  .reduce<Map<string, Pick<StreetSection, 'hash' | 'name'>>>(
-                    (acc, curr) => {
-                      const hash = md5(
-                        `${curr.attributes.StreetName}`
-                      ).toString();
+            streets.value = shuffle([
+              ...features.features
+                .reduce((acc, curr) => {
+                  const hash = md5(`${curr.attributes.StreetName}`).toString();
 
-                      if (!acc.has(hash)) {
-                        acc.set(hash, {
-                          hash,
-                          name: curr.attributes.StreetName,
-                        });
-                      }
+                  if (!acc.has(hash)) {
+                    acc.set(hash, {
+                      hash,
+                      name: curr.attributes.StreetName,
+                    });
+                  }
 
-                      return acc;
-                    },
-                    new Map()
-                  )
-                  .values(),
-              ]).splice(0, 5);
-
-            streets.value = sections;
+                  return acc;
+                }, new Map<string, Pick<StreetSection, 'hash' | 'name'>>())
+                .values(),
+            ]).splice(0, 5);
           }
         }
+      },
+      handleLayerView(data: { id: string; promise: Promise<LayerView> }) {
+        layerViews.set(data.id, data.promise as Promise<FeatureLayerView>);
+      },
+      handlePointer(event: Array<{ graphic: { attributes: ESRIStreet } }>) {
+        if (event && event.length > 0) {
+          pointer.value = event[0].graphic.attributes;
+        } else {
+          pointer.value = undefined;
+        }
+      },
+      async highlightStreet(section: StreetSection) {
+        const layerView = await layerViews.get('classifications');
+
+        if (layerView) {
+          const query = layerView.createQuery();
+          query.where = `StreetName = '${section.name}'`;
+
+          const features = await layerView.queryFeatures(query);
+          if (features.features.length) {
+            if (highlight) {
+              highlight.remove();
+            }
+            highlight = layerView.highlight(features.features);
+          }
+        }
+      },
+      handleZoom(z: number) {
+        zoom.value = z;
       },
     };
   },
