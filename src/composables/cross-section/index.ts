@@ -26,15 +26,25 @@ export type CrossSection = {
   episodicImages: Array<string>;
 };
 
-export const widths = Array.from(
-  database.reduce((acc, curr) => acc.add(curr.width), new Set<number>())
-);
+const widthMap = new Map<number, { min: number; max: number }>([
+  [36, { min: 34, max: 38 }],
+  [40, { min: 40, max: 42 }],
+  [44, { min: 43, max: 46 }],
+  [50, { min: 48, max: 52 }],
+  [56, { min: 54, max: 58 }],
+  [60, { min: 60, max: 62 }],
+  [66, { min: 64, max: 68 }],
+  [76, { min: 74, max: 78 }],
+]);
 
-const getClosestWidth = (width: number): number | undefined =>
-  widths
-    .filter((w) => w <= width)
-    .sort((a, b) => b - a)
-    .shift();
+export const widths = Array.from(widthMap.keys());
+
+const getClosestWidth = (width: number): number | undefined => {
+  const closestWidth = Array.from(widthMap.entries()).find(
+    (w) => width >= w[1].min && width <= w[1].max
+  );
+  return closestWidth ? closestWidth[0] : undefined;
+};
 
 export function useCrossSection(street?: Ref<Partial<Street>>): {
   options: ComputedRef<Array<CrossSection>>;
