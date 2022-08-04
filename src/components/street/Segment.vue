@@ -46,13 +46,13 @@
   </Box>
 </template>
 <script lang="ts">
-import { defineComponent, ref, toRefs } from 'vue';
+import { defineComponent, toRefs } from 'vue';
 
 import Box from '@/elements/box/Box';
 import Field from '@/components/field/Field.vue';
 import FieldList from '@/components/field/FieldList.vue';
 import Help from './Help.vue';
-import { Street } from './street';
+import { Street } from '@/composables/use-street';
 import { useStreetClassification } from '@/composables/use-street-classification';
 import { useCrossSection } from '@/composables/cross-section';
 
@@ -68,7 +68,7 @@ export default defineComponent({
   setup(props, { emit }) {
     const { street } = toRefs(props);
     const { id, block, width } = street.value;
-    const { crossSectionRoute } = useCrossSection(ref(street.value.width));
+    const { crossSectionRoute } = useCrossSection(street);
     const { classificationKeys, classificationLabel } =
       useStreetClassification(street);
     return {

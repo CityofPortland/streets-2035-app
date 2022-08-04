@@ -35,7 +35,7 @@ export default defineComponent({
   components: { Box },
   props: {
     candidate: {
-      type: Object as () => Candidate,
+      type: Object as () => Partial<Candidate>,
       required: true,
     },
   },

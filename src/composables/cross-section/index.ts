@@ -1,5 +1,6 @@
 import { computed, ComputedRef, Ref } from 'vue';
 import { LocationQuery, RouteLocation, useRouter } from 'vue-router';
+import { Classifications, Street } from '../use-street';
 
 import database from './database.json';
 
@@ -35,30 +36,62 @@ const getClosestWidth = (width: number): number | undefined =>
     .sort((a, b) => b - a)
     .shift();
 
-export function useCrossSection(
-  width: Ref<number>,
-  designClass?: Ref<string>
-): {
+export function useCrossSection(street?: Ref<Partial<Street>>): {
   options: ComputedRef<Array<CrossSection>>;
-  crossSectionRoute: ComputedRef<RouteLocation | null>;
+  crossSectionRoute: ComputedRef<RouteLocation | undefined>;
 } {
   const { resolve } = useRouter();
 
   return {
-    options: computed(() => database.filter((x) => x.width === width.value)),
+    options: computed(() =>
+      database.filter((x) => x.width === street?.value.width)
+    ),
     crossSectionRoute: computed(() => {
-      const closestWidth = getClosestWidth(width.value);
+      if (!street || !street.value || !street.value.width) return undefined;
 
-      if (!closestWidth) return null;
+      const closestWidth = getClosestWidth(street.value.width);
+
+      if (!closestWidth) return undefined;
 
       const query: LocationQuery = {};
 
-      if (designClass) {
-        const mainStreetClasses = new Set(['NMS', 'CIMS']);
-        const corridorClasses = new Set(['CC', 'CIC', 'NC']);
+      const classificationMap = new Map<
+        keyof Classifications,
+        { none: Set<string>; low: Set<string> }
+      >([
+        ['pedestrian', { none: new Set(), low: new Set('LS') }],
+        ['bicycle', { none: new Set(['LS']), low: new Set() }],
+        [
+          'transit',
+          { none: new Set(['RT', 'CT', 'LS', 'IPR']), low: new Set(['TA']) },
+        ],
+        ['freight', { none: new Set(['LS']), low: new Set(['TA']) }],
+        [
+          'traffic',
+          { none: new Set(['RT', 'LS']), low: new Set(['DC', 'NC', 'TA']) },
+        ],
+      ]);
 
-        if (mainStreetClasses.has(designClass.value)) query.mainStreet = 'true';
-        if (corridorClasses.has(designClass.value)) query.corridor = 'true';
+      if (street.value.classifications) {
+        for (const classification of classificationMap.keys()) {
+          const options = classificationMap.get(classification);
+          if (options?.none.has(street.value.classifications[classification])) {
+            query[`${classification}Priority`] = 'none';
+          } else if (
+            options?.low.has(street.value.classifications[classification])
+          ) {
+            query[`${classification}Priority`] = 'low';
+          } else {
+            query[`${classification}Priority`] = 'high';
+          }
+        }
+
+        if (street.value.classifications.design) {
+          const mainStreetClasses = new Set(['NMS', 'CIMS']);
+
+          if (mainStreetClasses.has(street.value.classifications.design))
+            query.mainStreet = 'true';
+        }
       }
 
       return resolve({

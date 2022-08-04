@@ -60,12 +60,12 @@
   </article>
 </template>
 <script lang="ts">
-import { defineComponent, ref, toRefs } from 'vue';
+import { defineComponent, toRefs } from 'vue';
 
 import Anchor from '@/elements/anchor/Anchor.vue';
 import Button from '@/elements/button/Button.vue';
 
-import { Street } from './street';
+import { Street } from '@/composables/use-street';
 import { useStreetClassification } from '@/composables/use-street-classification';
 import { useCrossSection } from '@/composables/cross-section';
 
@@ -83,7 +83,7 @@ export default defineComponent({
   },
   setup(props) {
     const { street } = toRefs(props);
-    const { crossSectionRoute } = useCrossSection(ref(street.value.width));
+    const { crossSectionRoute } = useCrossSection(street);
     const { classificationKeys, classificationLabel } =
       useStreetClassification(street);
     return {

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { rgb, RGBColorFactory } from 'd3-color';
 import { computed, ComputedRef, inject, Ref } from 'vue';
 
-import { Street, StreetSection } from '@/components/street/street';
+import { Street, StreetSection } from '@/composables/use-street';
 
 export type ViewModel = {
   group: string;
@@ -101,9 +101,11 @@ export const getModels = async (): Promise<Array<ViewModel>> => {
   return models;
 };
 
-export function useStreetClassification(street?: Ref<Street | StreetSection>): {
+export function useStreetClassification(
+  street?: Ref<Partial<Street> | Partial<StreetSection>>
+): {
   models: Array<ViewModel>;
-  classificationKeys: ComputedRef<Array<string>>;
+  classificationKeys: ComputedRef<Array<string> | undefined>;
   classificationLabel: (type: string, value: string) => string;
 } {
   const models = inject<Array<ViewModel>>(STREET_CLASSIFICATION_KEY);
@@ -114,10 +116,13 @@ export function useStreetClassification(street?: Ref<Street | StreetSection>): {
 
   return {
     models,
-    classificationKeys: computed(() =>
-      Object.entries(street?.value.classifications ?? {})
-        .filter((entry) => entry[1] != 'N/A')
-        .map((entry) => entry[0])
+    classificationKeys: computed(
+      () =>
+        street &&
+        street.value.classifications &&
+        Object.entries(street.value.classifications)
+          .filter((entry) => entry[1] != 'N/A')
+          .map((entry) => entry[0])
     ),
     classificationLabel(type: string, value: string) {
       return (
