@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, toRefs } from 'vue';
+import { computed, ref, toRefs } from 'vue';
 import { useCrossSection } from '@/composables/cross-section';
 import Anchor from '@/elements/anchor/Anchor.vue';
 import Image from '@/elements/img/Image.vue';
@@ -14,7 +14,7 @@ const props = defineProps({
 const { width, ordinal } = toRefs(props);
 const publicPath = process.env.BASE_URL;
 
-const { options } = useCrossSection(width);
+const { options } = useCrossSection(ref({ width: width.value }));
 
 const option = computed(() =>
   options.value.find((o) => o.ordinal == ordinal.value)

@@ -11,6 +11,15 @@ export type ESRIStreet = {
   Transit: string;
 };
 
+export type Classifications = {
+  design: string;
+  pedestrian: string;
+  bicycle: string;
+  transit: string;
+  freight: string;
+  traffic: string;
+};
+
 export type Street = {
   id: string;
   name: string;
@@ -20,10 +29,13 @@ export type Street = {
   geometry: LineString;
 };
 
-export type Classifications = {
-  design: string;
-  transit: string;
-  bicycle: string;
+export type StreetSection = {
+  hash: string;
+  name: string;
+  minWidth?: number;
+  maxWidth?: number;
+  classifications: Classifications;
+  segments: Array<Partial<Street>>;
 };
 
 type RetrieveOptions = {

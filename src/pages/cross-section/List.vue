@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { toRefs } from 'vue';
+import { ref, toRefs } from 'vue';
 import {
   LocationAsRelativeRaw,
   RouteLocationOptions,
@@ -37,7 +37,7 @@ const {
   trafficPriority,
 } = toRefs(props);
 
-const { options } = useCrossSection(width);
+const { options } = useCrossSection(ref({ width: width.value }));
 
 const publicPath = process.env.BASE_URL;
 

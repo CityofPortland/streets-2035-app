@@ -94,7 +94,7 @@ import FieldList from '@/components/field/FieldList.vue';
 import Help from './Help.vue';
 import Panel from '@/components/panel/Panel.vue';
 import Segment from '@/components/street/Segment.vue';
-import { Street, StreetSection } from './street';
+import { Street, StreetSection } from '@/composables/use-street';
 import { useStreetClassification } from '@/composables/use-street-classification';
 
 export default defineComponent({

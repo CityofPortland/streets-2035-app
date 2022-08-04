@@ -195,7 +195,7 @@ import Message from '@/components/message/Message.vue';
 import Panel from '@/components/panel/Panel.vue';
 import Full from '@/components/street/Full.vue';
 import Section from '@/components/street/Section.vue';
-import { Street, StreetSection } from '@/components/street/street';
+import { Street, StreetSection } from '@/composables/use-street';
 import { query } from '@/composables/use-graphql';
 import { useStreet } from '@/composables/use-street';
 import {
