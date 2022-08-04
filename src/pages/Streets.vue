@@ -454,27 +454,26 @@ export default defineComponent({
       data: Partial<StreetSection> | Partial<Street>;
     }) => {
       const layerView = await layerViews.get('classifications');
+
       if (layerView) {
-        whenOnce(() => layerView.updating).then(() => {
-          const query = layerView.layer.createQuery();
-          const where =
-            options.type == 'segment'
-              ? `('${(options.data as Street).id}')`
-              : `(${(options.data as StreetSection).segments.reduce(
-                  (acc, curr, idx) => {
-                    if (idx > 0) acc = acc.concat(',');
-                    acc = acc.concat(`'${curr.id}'`);
-                    return acc;
-                  },
-                  ''
-                )})`;
-          query.where = `TranPlanID IN ${where}`;
-          layerView.queryFeatures(query).then((result) => {
-            if (highlight) {
-              highlight.remove();
-            }
-            highlight = layerView.highlight(result.features);
-          });
+        const query = layerView.layer.createQuery();
+        const where =
+          options.type == 'segment'
+            ? `('${(options.data as Street).id}')`
+            : `(${(options.data as StreetSection).segments.reduce(
+                (acc, curr, idx) => {
+                  if (idx > 0) acc = acc.concat(',');
+                  acc = acc.concat(`'${curr.id}'`);
+                  return acc;
+                },
+                ''
+              )})`;
+        query.where = `TranPlanID IN ${where}`;
+        layerView.queryFeatures(query).then((result) => {
+          if (highlight) {
+            highlight.remove();
+          }
+          highlight = layerView.highlight(result.features);
         });
       }
     };
