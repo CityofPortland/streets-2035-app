@@ -46,6 +46,7 @@ import FeatureLayerView from '@arcgis/core/views/layers/FeatureLayerView';
 import LayerView from '@arcgis/core/views/layers/LayerView';
 import TileLayer from '@arcgis/core/layers/TileLayer';
 import Extent from '@arcgis/core/geometry/Extent';
+import { whenOnce } from '@arcgis/core/core/reactiveUtils';
 
 import { ESRIStreet, StreetSection } from '@/composables/use-street';
 import MapVue from '@/components/map/Map.vue';
@@ -111,12 +112,18 @@ export default defineComponent({
         const layerView = await layerViews.get('classifications');
 
         if (layerView) {
+          console.log('querying layerview...');
+          console.log(extent.toJSON());
+
           const query = layerView.createQuery();
           query.outFields = ['StreetName'];
           query.geometry = extent;
           query.spatialRelationship = 'envelope-intersects';
 
+          await whenOnce(() => !layerView.updating);
           const features = await layerView.queryFeatures(query);
+
+          console.log(`got ${features.features.length} features!`);
 
           if (features) {
             const shuffle = (
