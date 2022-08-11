@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, toRefs } from 'vue';
+import { computed, ComputedRef, toRefs } from 'vue';
 import {
   LocationAsRelativeRaw,
   RouteLocationOptions,
@@ -9,6 +9,7 @@ import {
   useRouter,
 } from 'vue-router';
 import { widths, useCrossSection } from '@/composables/cross-section';
+import { Street } from '@/composables/use-street';
 import Anchor from '@/elements/anchor/Anchor.vue';
 import Box from '@/elements/box/Box';
 import Image from '@/elements/img/Image.vue';
@@ -37,7 +38,11 @@ const {
   trafficPriority,
 } = toRefs(props);
 
-const { options } = useCrossSection(ref({ width: width.value }));
+const street: ComputedRef<Partial<Street>> = computed(() => ({
+  width: width.value,
+}));
+
+const { options } = useCrossSection(street);
 
 const publicPath = process.env.BASE_URL;
 
