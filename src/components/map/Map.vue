@@ -7,22 +7,22 @@
     <div ref="topLeft">
       <slot name="top-left">
         <div class="flex flex-col shadow-lg">
-          <Button
-            color="white"
-            label="Zoom in"
+          <button
+            type="button"
+            title="Zoom in"
             class="p-2 bg-white border border-b rounded-t rounded-b-none border-fog-900 focus:outline-none focus:shadow-outline"
             @click="incrementZoom"
           >
             <Icon type="solid" name="plus" class="w-4 h-4" />
-          </Button>
-          <Button
-            color="white"
-            label="Zoom out"
+          </button>
+          <button
+            type="button"
+            title="Zoom out"
             class="p-2 bg-white border border-t rounded-b rounded-t-none border-fog-900"
             @click="decrementZoom"
           >
             <Icon type="solid" name="minus" class="w-4 h-4" />
-          </Button>
+          </button>
         </div>
       </slot>
     </div>
@@ -50,12 +50,11 @@ import Legend from '@arcgis/core/widgets/Legend';
 import MapView from '@arcgis/core/views/MapView';
 import Point from '@arcgis/core/geometry/Point';
 
-import Button from '@/elements/button/Button.vue';
 import Icon from '@/elements/icon/Icon.vue';
 
 export default defineComponent({
   name: 'Map',
-  components: { Button, Icon },
+  components: { Icon },
   props: {
     map: {
       type: Object as () => EsriMap,

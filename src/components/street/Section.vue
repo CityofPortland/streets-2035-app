@@ -9,7 +9,7 @@
     <h3 class="text-lg font-bold leading-tight">
       {{ street.name?.trim() || 'Unnamed segment' }}
     </h3>
-    <div v-if="classificationKeys.length" class="flex flex-wrap gap-1">
+    <div v-if="classificationKeys?.length" class="flex flex-wrap gap-1">
       <Box
         v-for="(classification, index) in classificationKeys"
         :key="index"
