@@ -112,7 +112,6 @@ export default defineComponent({
     });
 
     onBeforeRouteUpdate(() => {
-      console.log('updating rout from App...');
       menuOpen.value = false;
     });
 

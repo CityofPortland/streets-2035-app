@@ -45,24 +45,12 @@
                 <span>{{ textWeight }}</span>
                 <span
                   v-if="contrast(color, bgWeight, textWeight) < 3"
-                  class="
-                    px-2
-                    bg-red-600
-                    text-white text-base
-                    font-medium
-                    rounded-lg
-                  "
+                  class="px-2 bg-red-600 text-white text-base font-medium rounded-lg"
                   >Fail
                 </span>
                 <span
                   v-else
-                  class="
-                    px-2
-                    bg-black
-                    text-white text-base
-                    font-medium
-                    rounded-lg
-                  "
+                  class="px-2 bg-black text-white text-base font-medium rounded-lg"
                   >{{
                     contrast(color, bgWeight, textWeight) > 4.5 ? 'AAA' : 'AA'
                   }}
@@ -75,24 +63,12 @@
                 <span>{{ textWeight }}</span>
                 <span
                   v-if="contrast(color, bgWeight, textWeight) < 4.5"
-                  class="
-                    px-2
-                    bg-red-600
-                    text-white text-base
-                    font-medium
-                    rounded-lg
-                  "
+                  class="px-2 bg-red-600 text-white text-base font-medium rounded-lg"
                   >Fail
                 </span>
                 <span
                   v-else
-                  class="
-                    px-2
-                    bg-black
-                    text-white text-base
-                    font-medium
-                    rounded-lg
-                  "
+                  class="px-2 bg-black text-white text-base font-medium rounded-lg"
                   >{{
                     contrast(color, bgWeight, textWeight) > 7 ? 'AAA' : 'AA'
                   }}
@@ -105,24 +81,12 @@
                 <span>{{ textWeight }}</span>
                 <span
                   v-if="contrast(color, bgWeight, textWeight) < 4.5"
-                  class="
-                    px-2
-                    bg-red-600
-                    text-white text-base
-                    font-medium
-                    rounded-lg
-                  "
+                  class="px-2 bg-red-600 text-white text-base font-medium rounded-lg"
                   >Fail
                 </span>
                 <span
                   v-else
-                  class="
-                    px-2
-                    bg-black
-                    text-white text-base
-                    font-medium
-                    rounded-lg
-                  "
+                  class="px-2 bg-black text-white text-base font-medium rounded-lg"
                   >{{
                     contrast(color, bgWeight, textWeight) > 7 ? 'AAA' : 'AA'
                   }}

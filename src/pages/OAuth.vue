@@ -75,7 +75,6 @@ export default defineComponent({
           const to = window.localStorage.getItem('pbotapps.auth.route');
           if (to) replace(JSON.parse(to));
         } catch (err) {
-          console.error(err);
           error.value = err;
         } finally {
           loading.value = false;

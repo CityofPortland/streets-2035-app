@@ -48,7 +48,6 @@ export const useAuthStore = defineStore('auth', {
               const { access_token, refresh_token } = res.data;
               this.setTokens(access_token, refresh_token);
             } catch (err) {
-              console.error(`Error retrieving token: ${err}`);
               // we couldn't log in silently
               this.clear();
               return;

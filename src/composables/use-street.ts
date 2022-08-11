@@ -78,12 +78,6 @@ export function useStreet(): {
     async retrieveStreet(options: RetrieveOptions): Promise<Array<Street>> {
       const { classifications, street, extent } = options;
       if (street) {
-        if (extent) {
-          console.error(
-            'Both a street and extent were passed to `retrieveStreet`. Only the street will be used.'
-          );
-        }
-
         const { data, errors } = await query<{ street: Array<Street> }>(`{
           street(id:"${street.id}") {
               id
@@ -124,9 +118,7 @@ export function useStreet(): {
         return data ? data.streets : [];
       }
 
-      console.error(
-        '🔥 Neither a street nor an extent were passed to `retrieveStreets`! Returning empty array...'
-      );
+      //🔥 Neither a street nor an extent were passed to `retrieveStreets`! Returning empty array...
       return [];
     },
   };

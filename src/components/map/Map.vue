@@ -173,18 +173,14 @@ export default defineComponent({
     });
 
     watch(center, () => {
-      view
-        .goTo({
-          center: new Point({
-            x: center.value?.x,
-            y: center.value?.y,
-            spatialReference: center.value?.spatialReference,
-          }),
-          zoom: 18,
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+      view.goTo({
+        center: new Point({
+          x: center.value?.x,
+          y: center.value?.y,
+          spatialReference: center.value?.spatialReference,
+        }),
+        zoom: 18,
+      });
     });
 
     watch(zoom, () => {

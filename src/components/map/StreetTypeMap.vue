@@ -112,9 +112,6 @@ export default defineComponent({
         const layerView = await layerViews.get('classifications');
 
         if (layerView) {
-          console.log('querying layerview...');
-          console.log(extent.toJSON());
-
           const query = layerView.createQuery();
           query.outFields = ['StreetName'];
           query.geometry = extent;
@@ -122,8 +119,6 @@ export default defineComponent({
 
           await whenOnce(() => !layerView.updating);
           const features = await layerView.queryFeatures(query);
-
-          console.log(`got ${features.features.length} features!`);
 
           if (features) {
             const shuffle = (
