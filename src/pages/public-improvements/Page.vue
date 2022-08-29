@@ -61,7 +61,7 @@ onMounted(() => {
         }"
       />
     </header>
-    <main class="prose grid grid-cols-1 gap-4">
+    <main class="grid grid-cols-1 gap-12">
       <Box
         id="frontage"
         as="section"
@@ -71,9 +71,10 @@ onMounted(() => {
           <div class="flex text-cyan-500">
             <Frontage class="w-24 h-24" />
           </div>
-          <div class="flex-1 grid grid-cols-1 gap-4">
-            <div class="border-b border-current pb-4 prose">
+          <div class="flex-1 grid grid-cols-1 gap-8">
+            <div class="border-b border-current pb-8 prose">
               <h2>Frontage Improvements</h2>
+              <h3>Requirements and standards</h3>
               <p>
                 Sidewalk standards are defined in the Pedestrian Design Guide
                 and are applied based on the Street Design Classification of the
@@ -82,10 +83,15 @@ onMounted(() => {
                   >17.88.020</Anchor
                 >
                 are required to bring their frontage up to current standards.
+                <Anchor
+                  url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-sidewalks-and-pedestrian-crossings"
+                  class="text-center"
+                  >Read more</Anchor
+                >
               </p>
             </div>
             <div class="flex flex-col md:flex-row gap-4">
-              <div class="prose-sm">
+              <div class="prose prose-sm">
                 <h3>How to deviate from standard improvements</h3>
                 <p>
                   A Public Works Alternative (PWA) review process allows an
@@ -101,22 +107,6 @@ onMounted(() => {
                   >
                 </p>
               </div>
-              <Box
-                color="cyan"
-                variant="light"
-                class="p-4 my-auto flex flex-col items-center justify-center"
-                style="box-shadow: 10px 10px currentColor"
-              >
-                <span class="text-center font-bold uppercase"
-                  >ROW Standards</span
-                >
-                <Anchor
-                  url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-sidewalks-and-pedestrian-crossings"
-                  class="text-center"
-                >
-                  <span>Sidewalks section</span>
-                </Anchor>
-              </Box>
             </div>
           </div>
         </div>
@@ -130,9 +120,10 @@ onMounted(() => {
           <div class="flex text-green-500">
             <Tree class="w-24 h-24" />
           </div>
-          <div class="flex-1 grid grid-cols-1 gap-4">
-            <div class="border-b border-current pb-4 prose">
+          <div class="flex-1 grid grid-cols-1 gap-8">
+            <div class="border-b border-current pb-8 prose">
               <h2>Tree Planting and Preservation</h2>
+              <h3>Requirements and standards</h3>
               <p>
                 Frontage (sidewalk) improvements trigger standards for planting
                 street trees. The city also has established standards for the
@@ -144,10 +135,14 @@ onMounted(() => {
                   url="https://www.portland.gov/code/11/50/040"
                   >PCC 11.50.040.C.2</Anchor
                 >)
+                <Anchor
+                  url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-street-trees"
+                  >Read more</Anchor
+                >
               </p>
             </div>
             <div class="flex flex-col md:flex-row gap-4">
-              <div class="prose-sm">
+              <div class="prose prose-sm">
                 <h3>How to deviate from standard improvements</h3>
                 <p>
                   Modifications to standard sidewalk requirements to preserve a
@@ -161,22 +156,6 @@ onMounted(() => {
                   feasible.
                 </p>
               </div>
-              <Box
-                color="green"
-                variant="light"
-                class="p-4 my-auto flex flex-col items-center justify-center"
-                style="box-shadow: 10px 10px currentColor"
-              >
-                <span class="text-center font-bold uppercase"
-                  >ROW Standards</span
-                >
-                <Anchor
-                  url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-street-trees"
-                  class="text-center"
-                >
-                  <span>Street trees section</span>
-                </Anchor>
-              </Box>
             </div>
           </div>
         </div>
@@ -190,18 +169,24 @@ onMounted(() => {
           <div class="flex text-red-500">
             <Access class="w-24 h-24" />
           </div>
-          <div class="flex-1 grid grid-cols-1 gap-4">
-            <div class="border-b border-current pb-4 prose">
+          <div class="flex-1 grid grid-cols-1 gap-8">
+            <div class="border-b border-current pb-8 prose">
               <h2>Access and Loading</h2>
+              <h3>Requirements and standards</h3>
               <p>
                 Requirements for access and loading on private property are
                 defined in city code and influence the space available for other
                 infrastructure in the pedestrian zone, such as street trees,
                 furnishings such as bike racks, or utility connections.
+                <Anchor
+                  url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-access-and-loading"
+                  class="text-center"
+                  >Read more</Anchor
+                >
               </p>
             </div>
             <div class="flex flex-col md:flex-row gap-4">
-              <div class="prose-sm">
+              <div class="prose prose-sm">
                 <h3>How to deviate from standard improvements</h3>
                 <p>
                   Deviation from rules related to the design of driveways
@@ -222,22 +207,6 @@ onMounted(() => {
                   >
                 </p>
               </div>
-              <Box
-                color="red"
-                variant="light"
-                class="p-4 my-auto flex flex-col items-center justify-center"
-                style="box-shadow: 10px 10px currentColor"
-              >
-                <span class="text-center font-bold uppercase"
-                  >ROW Standards</span
-                >
-                <Anchor
-                  url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-access-and-loading"
-                  class="text-center"
-                >
-                  <span>Access and loading section</span>
-                </Anchor>
-              </Box>
             </div>
           </div>
         </div>
@@ -251,19 +220,24 @@ onMounted(() => {
           <div class="flex text-marine-500">
             <Stormwater class="w-24 h-24" />
           </div>
-          <div class="flex-1 grid grid-cols-1 gap-4">
-            <div class="border-b border-current pb-4 prose">
+          <div class="flex-1 grid grid-cols-1 gap-8">
+            <div class="border-b border-current pb-8 prose">
               <h2>Stormwater Management</h2>
+              <h3>Requirements and standards</h3>
               <p>
                 Frontage improvements may trigger the city's Stormwater
                 Management Manual (SWMM) and require treatments to support the
                 city's livability and improve watershed health by mitigating the
                 impacts of urbanization and protecting our storm systems,
                 drainageways, and combined sewers.
+                <Anchor
+                  url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
+                  >Read more</Anchor
+                >
               </p>
             </div>
             <div class="flex flex-col md:flex-row gap-4">
-              <div class="prose-sm">
+              <div class="prose prose-sm">
                 <h3>How to deviate from standard improvements</h3>
                 <p>
                   When public improvements require stormwater management,
@@ -280,22 +254,6 @@ onMounted(() => {
                   require a Public Works Alternative.
                 </p>
               </div>
-              <Box
-                color="marine"
-                variant="light"
-                class="p-4 my-auto flex flex-col items-center justify-center"
-                style="box-shadow: 10px 10px currentColor"
-              >
-                <span class="text-center font-bold uppercase"
-                  >ROW Standards</span
-                >
-                <Anchor
-                  url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
-                  class="text-center"
-                >
-                  <span>Stormater section</span>
-                </Anchor>
-              </Box>
             </div>
           </div>
         </div>
@@ -309,16 +267,22 @@ onMounted(() => {
           <div class="flex text-orange-500">
             <Utility class="w-24 h-24" />
           </div>
-          <div class="flex-1 grid grid-cols-1 gap-4">
-            <div class="border-b border-current pb-4 prose">
-              <h2 id="utility">Utility Clearance</h2>
+          <div class="flex-1 grid grid-cols-1 gap-8">
+            <div class="border-b border-current pb-8 prose">
+              <h2>Utility Clearance</h2>
+              <h3>Requirements and standards</h3>
               <p>
                 Utility clearance requirements serve to protect infrastructure
                 and maintain space to access for maintenance or replacement.
+                <Anchor
+                  url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-utilities"
+                  class="text-center"
+                  >Read more</Anchor
+                >
               </p>
             </div>
             <div class="flex flex-col md:flex-row gap-4">
-              <div class="prose-sm">
+              <div class="prose prose-sm">
                 <h3>How to deviate from standard improvements</h3>
                 <p>
                   Because utility and access clearances can influence space for
@@ -337,126 +301,115 @@ onMounted(() => {
                   >
                 </p>
               </div>
-              <Box
-                color="orange"
-                variant="light"
-                class="p-4 my-auto flex flex-col items-center justify-center"
-                style="box-shadow: 10px 10px currentColor"
-              >
-                <span class="text-center font-bold uppercase"
-                  >ROW Standards</span
-                >
-                <Anchor
-                  url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-utilities"
-                  class="text-center"
-                >
-                  <span>Utilities section</span>
-                </Anchor>
-              </Box>
             </div>
           </div>
         </div>
       </Box>
-      <h2 id="deviation">Processes for deviating from standard improvements</h2>
-      <h3>Public Works Alternative Process</h3>
-      <p>
-        A Public Works Alternative (PWA) Review Process allows an applicant to
-        submit an alternative to the standard sidewalk per the identified
-        standards, code and policies. Note that a PWA cannot approve altering
-        specific technical requirements such as ADA standards and items
-        requiring approval of a Design Exception by the City Engineer.
-      </p>
-      <div class="grid grid-cols-2 gap-4">
-        <Box
-          color="cyan"
-          variant="light"
-          class="p-4 flex flex-col items-center"
-          style="box-shadow: 10px 10px currentColor"
-        >
-          <span class="font-bold">TRN 1.27</span>
-          <Anchor
-            url="https://www.portland.gov/policies/transportation/streets-sidewalks/trn-127-bureau-transportation-public-works-alternate"
-            class="text-center"
-            >Bureau of Transportation Public Works Alternative Review Committee
-          </Anchor>
-        </Box>
-        <Box
-          color="tangerine"
-          variant="light"
-          class="p-4 flex flex-col items-center"
-          style="box-shadow: 10px 10px currentColor"
-        >
-          <span class="font-bold uppercase">Criteria</span>
-          <Anchor
-            url="https://www.portlandoregon.gov/article/481371#prepare"
-            class="text-center"
-            >How to access the Public Works Alternative process
-          </Anchor>
-        </Box>
-      </div>
-      <h3>Alternative to Technical Requirements</h3>
-      <div class="grid grid-cols-2 gap-4">
-        <div class="inline-flex">
-          <Frontage class="w-8 h-8" />
-          <span>Frontage Improvements</span>
+      <section class="prose">
+        <h2 id="deviation">
+          Processes for deviating from standard improvements
+        </h2>
+        <h3>Public Works Alternative Process</h3>
+        <p>
+          A Public Works Alternative (PWA) Review Process allows an applicant to
+          submit an alternative to the standard sidewalk per the identified
+          standards, code and policies. Note that a PWA cannot approve altering
+          specific technical requirements such as ADA standards and items
+          requiring approval of a Design Exception by the City Engineer.
+        </p>
+        <div class="grid grid-cols-2 gap-4">
+          <Box
+            color="cyan"
+            variant="light"
+            class="p-4 flex flex-col items-center"
+            style="box-shadow: 10px 10px currentColor"
+          >
+            <span class="font-bold">TRN 1.27</span>
+            <Anchor
+              url="https://www.portland.gov/policies/transportation/streets-sidewalks/trn-127-bureau-transportation-public-works-alternate"
+              class="text-center"
+              >Bureau of Transportation Public Works Alternative Review
+              Committee
+            </Anchor>
+          </Box>
+          <Box
+            color="tangerine"
+            variant="light"
+            class="p-4 flex flex-col items-center"
+            style="box-shadow: 10px 10px currentColor"
+          >
+            <span class="font-bold uppercase">Criteria</span>
+            <Anchor
+              url="https://www.portlandoregon.gov/article/481371#prepare"
+              class="text-center"
+              >How to access the Public Works Alternative process
+            </Anchor>
+          </Box>
         </div>
-        <Anchor
-          url="https://www.portland.gov/transportation/engineering/design#toc-design-exceptions"
-          >PBOT Design Exceptions</Anchor
-        >
-      </div>
-      <div class="grid grid-cols-2 gap-4">
-        <div class="inline-flex">
-          <Tree class="w-8 h-8" />
-          <span>Tree Planting and Preservation</span>
-        </div>
-        <Anchor url="https://www.portland.gov/code/11/50/070"
-          >Tree Plan Submittal Requirements</Anchor
-        >
-      </div>
-      <div class="grid grid-cols-2 gap-4">
-        <div class="inline-flex">
-          <Access class="w-8 h-8" />
-          <span>Access and Loading</span>
-        </div>
-        <div class="grid grid-cols-1">
+        <h3>Alternative to Technical Requirements</h3>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="inline-flex">
+            <Frontage class="w-8 h-8" />
+            <span>Frontage Improvements</span>
+          </div>
           <Anchor
             url="https://www.portland.gov/transportation/engineering/design#toc-design-exceptions"
-            >Driveway Design Exception</Anchor
+            >PBOT Design Exceptions</Anchor
           >
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="inline-flex">
+            <Tree class="w-8 h-8" />
+            <span>Tree Planting and Preservation</span>
+          </div>
+          <Anchor url="https://www.portland.gov/code/11/50/070"
+            >Tree Plan Submittal Requirements</Anchor
+          >
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="inline-flex">
+            <Access class="w-8 h-8" />
+            <span>Access and Loading</span>
+          </div>
+          <div class="grid grid-cols-1">
+            <Anchor
+              url="https://www.portland.gov/transportation/engineering/design#toc-design-exceptions"
+              >Driveway Design Exception</Anchor
+            >
+            <Anchor
+              url="https://www.portland.gov/bds/zoning-land-use/land-use-review-fees-and-types/adjustment-reviews"
+              >Loading (adjustment review)</Anchor
+            >
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="inline-flex">
+            <Stormwater class="w-8 h-8" />
+            <span>Stormwater Management</span>
+          </div>
           <Anchor
-            url="https://www.portland.gov/bds/zoning-land-use/land-use-review-fees-and-types/adjustment-reviews"
-            >Loading (adjustment review)</Anchor
+            url="https://www.portland.gov/bes/stormwater/swmm-and-right-way-projects/meeting-requirements"
+            >Options for meeting stormwater requirements</Anchor
           >
         </div>
-      </div>
-      <div class="grid grid-cols-2 gap-4">
-        <div class="inline-flex">
-          <Stormwater class="w-8 h-8" />
-          <span>Stormwater Management</span>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="inline-flex">
+            <Utility class="w-8 h-8" />
+            <span>Utility Clearances</span>
+          </div>
+          <div class="grid grid-cols-1">
+            <Anchor
+              url="https://www.portland.gov/water/water-development-services/engineering-admin-rule"
+              >Water Bureau Engineering & Technical Standards</Anchor
+            >
+            <Anchor
+              url="https://www.portland.gov/policies/transportation/right-way-access/trn-813-utility-vault-or-structure-benefit-adjacent"
+              >Utility Vault or Structure for the Benefit of the Adjacent
+              Property Owner</Anchor
+            >
+          </div>
         </div>
-        <Anchor
-          url="https://www.portland.gov/bes/stormwater/swmm-and-right-way-projects/meeting-requirements"
-          >Options for meeting stormwater requirements</Anchor
-        >
-      </div>
-      <div class="grid grid-cols-2 gap-4">
-        <div class="inline-flex">
-          <Utility class="w-8 h-8" />
-          <span>Utility Clearances</span>
-        </div>
-        <div class="grid grid-cols-1">
-          <Anchor
-            url="https://www.portland.gov/water/water-development-services/engineering-admin-rule"
-            >Water Bureau Engineering & Technical Standards</Anchor
-          >
-          <Anchor
-            url="https://www.portland.gov/policies/transportation/right-way-access/trn-813-utility-vault-or-structure-benefit-adjacent"
-            >Utility Vault or Structure for the Benefit of the Adjacent Property
-            Owner</Anchor
-          >
-        </div>
-      </div>
+      </section>
     </main>
   </article>
 </template>
