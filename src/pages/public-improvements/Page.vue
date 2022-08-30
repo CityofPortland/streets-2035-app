@@ -33,7 +33,18 @@ onMounted(() => {
         approval to deviate from a standard requirement.
       </p>
       <p>
-        This is not an exhaustive list and additional information may be
+        You should use this page in combination with
+        <Anchor
+          url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
+          >our guide to city standards, guidelines, and requirements.</Anchor
+        >
+        Use this page to navigate to the standards that you are interested in
+        learning more about. You can either use the image below to navigate (use
+        the color callout boxes as links!) or simply scroll down. Each section
+        has a link to read the specific section of our guide.
+      </p>
+      <p>
+        Neither page is an exhaustive list and additional information may be
         available on individual bureau websites. Refer to the city's
         <Anchor url="https://www.portlandoregon.gov/53147"
           >Public Works Permitting page</Anchor
@@ -86,7 +97,7 @@ onMounted(() => {
                 <Anchor
                   url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-sidewalks-and-pedestrian-crossings"
                   class="text-center"
-                  >Read more</Anchor
+                  >Read the sidewalk section</Anchor
                 >
               </p>
             </div>
@@ -137,7 +148,7 @@ onMounted(() => {
                 >)
                 <Anchor
                   url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-street-trees"
-                  >Read more</Anchor
+                  >Read the street trees section</Anchor
                 >
               </p>
             </div>
@@ -181,7 +192,7 @@ onMounted(() => {
                 <Anchor
                   url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-access-and-loading"
                   class="text-center"
-                  >Read more</Anchor
+                  >Read the access and loading section</Anchor
                 >
               </p>
             </div>
@@ -232,7 +243,7 @@ onMounted(() => {
                 drainageways, and combined sewers.
                 <Anchor
                   url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
-                  >Read more</Anchor
+                  >Read the stormwater section</Anchor
                 >
               </p>
             </div>
@@ -277,7 +288,7 @@ onMounted(() => {
                 <Anchor
                   url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-utilities"
                   class="text-center"
-                  >Read more</Anchor
+                  >Read the utilities section</Anchor
                 >
               </p>
             </div>
