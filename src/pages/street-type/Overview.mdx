@@ -1,4 +1,9 @@
+import Anchor from '@/elements/anchor/Anchor.vue';
 import Box from '@/elements/box/Box';
+import Image from '@/elements/img/Image.vue';
+import Score from '@/components/street-type/Score.vue';
+
+export const publicPath = process.env.BASE_URL;
 
 <header class="prose-lg">
   # Street types
@@ -12,17 +17,153 @@ The street type descriptions identify general design priorities and consideratio
 The illustrations provided for each Street Type show just one or two examples of the multiple ways in which the available right-of-way space could be allocated according to that Street Type.
 
   </section>
-</header>
-<section class="prose mt-8">
-I'm baby vice twee hella cronut bitters. Heirloom semiotics waistcoat gastropub brunch quinoa yr. Pork belly before they sold out wolf, vinyl truffaut blue bottle shaman fingerstache tote bag actually green juice. Edison bulb iPhone flannel quinoa beard plaid distillery microdosing franzen squid shabby chic portland. Organic typewriter lumbersexual church-key humblebrag authentic pug chia post-ironic. Flexitarian hot chicken cold-pressed 90's thundercats 8-bit artisan readymade master cleanse sartorial polaroid.
+  <section class="grid grid-cols-1 md:grid-cols-2 gap-8 prose-sm max-w-none">
+    <Box color="orange" variant="light" class="p-4" style="box-shadow: 10px 10px currentColor">
+      <Box as="header" class="not-prose grid grid-cols-1 gap-4">
+        <Image
+          src={`${publicPath}img/street-type/CivicMainStreet_Perspective.webp`}
+          class="border border-current"
+          alt="Perspective rendering of a civic main street"
+          title="Perspective rendering of a civic main street"
+        />
+        <h2 class="text-lg">
+          <router-link to="/street-types/civic-main-street">
+            <span class="border-b-2 border-current">Civic Main Streets</span>
+          </router-link>
+        </h2>
+      </Box>
 
-Thundercats snackwave skateboard, hella quinoa green juice venmo before they sold out disrupt vice tote bag. Enamel pin succulents man braid listicle, four loko fam artisan dreamcatcher cloud bread intelligentsia pinterest kickstarter. Yr kombucha selvage twee flannel. Raclette single-origin coffee street art kitsch polaroid XOXO. Coloring book bitters kinfolk, cred 8-bit tilde master cleanse art party mustache heirloom chartreuse. Poke whatever quinoa drinking vinegar, plaid twee polaroid XOXO.
+      Civic Main Streets are generally Portland’s busiest, widest streets that pass through compact, pedestrian-oriented Centers that anchor neighborhoods with retail and businesses, schools and libraries, housing options, employment centers, and gathering places.
 
-Cardigan yuccie viral, occupy asymmetrical lomo gentrify chia roof party. Keffiyeh twee neutra thundercats PBR&B franzen mixtape raw denim. Cronut franzen affogato brunch shaman. Lumbersexual humblebrag narwhal affogato bespoke iceland. Lyft ethical tumblr pinterest marfa viral.
+    </Box>
+    <Box color="tangerine" variant="light" class="p-4" style="box-shadow: 10px 10px currentColor">
+      <Box as="header" class="not-prose grid grid-cols-1 gap-4">
+        <Image
+          src={`${publicPath}img/street-type/CivicCorridor_Perspective.webp`}
+          class="border border-current"
+          alt="Perspective rendering of a civic corridor"
+          title="Perspective rendering of a civic corridor"
+        />
 
-Pabst ethical jianbing heirloom 3 wolf moon lumbersexual, intelligentsia street art kombucha trust fund dreamcatcher austin tumeric crucifix. Brunch prism unicorn pug. Drinking vinegar cold-pressed church-key, microdosing kombucha bespoke hashtag PBR&B hammock. Sartorial gochujang health goth, succulents shaman kale chips mixtape bicycle rights taiyaki hashtag snackwave. Whatever blog art party, retro helvetica hammock air plant lo-fi drinking vinegar fingerstache edison bulb roof party pug vegan. Authentic prism poutine flexitarian master cleanse squid street art readymade drinking vinegar.
+        <h2 class="text-lg">
+          <router-link to="/street-types/civic-corridor">
+            <span class="border-b-2 border-current">Civic Corridiors</span>
+          </router-link>
+        </h2>
+      </Box>
 
-Cold-pressed 3 wolf moon single-origin coffee, venmo leggings typewriter echo park beard bicycle rights direct trade truffaut affogato hashtag. Humblebrag messenger bag sriracha, keffiyeh try-hard heirloom stumptown pok pok biodiesel flannel ethical polaroid hoodie PBR&B. Meh hot chicken tilde chambray food truck woke. Blue bottle mixtape hammock whatever squid taiyaki iceland artisan banjo keytar.
+      Civic Corridors are generally Portland’s busiest, widest, and most prominent streets. As the city grows, Civic Corridors are increasingly lined with multifamily residential and commercial mixed-use developments.
 
-</section>
+    </Box>
+    <Box color="cyan" variant="light" class="p-4" style="box-shadow: 10px 10px currentColor">
+      <Box as="header" class="not-prose grid grid-cols-1 gap-4">
+        <Image
+          src={`${publicPath}img/street-type/NeighborhoodMainStreet_Perspective.webp`}
+          class="border border-current"
+          alt="Perspective rendering of a neighborhood main street"
+          title="Perspective rendering of a neighborhood main street"
+        />
+
+        <h2 class="text-lg">
+          <router-link to="/street-types/neighborhood-main-street">
+            <span class="border-b-2 border-current">Neighborhood Main Street</span>
+          </router-link>
+        </h2>
+      </Box>
+
+      Neighborhood Main Streets are mid-sized streets that pass through smaller neighborhood-serving Centers. These centers support vibrant business districts and residential buildings, bringing amenities, goods, and services within walking distance of neighborhood residents.
+
+    </Box>
+    <Box color="marine" variant="light" class="p-4" style="box-shadow: 10px 10px currentColor">
+      <Box as="header" class="not-prose grid grid-cols-1 gap-4">
+        <Image
+          src={`${publicPath}img/street-type/NeighborhoodCorridor_Perspective.webp`}
+          class="border border-current"
+          alt="Perspective rendering of a neighborhood corridor"
+          title="Perspective rendering of a neighborhood corridor"
+        />
+
+        <h2 class="text-lg">
+          <router-link to="/street-types/neighborhood-corridor">
+            <span class="border-b-2 border-current">Neighborhood Corridiors</span>
+          </router-link>
+        </h2>
+      </Box>
+
+      Neighborhood Corridors are generally mid-sized streets that connect surrounding neighborhoods to each other and with other parts of the city. They are zoned to accommodate Portland’s growth of residential and commercial buildings in the coming years, but at a smaller scale than Civic Corridors.
+
+    </Box>
+    <Box color="green" variant="light" class="p-4" style="box-shadow: 10px 10px currentColor">
+      <Box as="header" class="not-prose grid grid-cols-1 gap-4">
+        <Image
+          src={`${publicPath}img/street-type/CommunityCorridor_Perspective.webp`}
+          class="border border-current"
+          alt="Alternate perspective rendering of a community corridor"
+          title="Alternate perspective rendering of a community corridor"
+        />
+
+        <h2 class="text-lg">
+          <router-link to="/street-types/community-corridor">
+            <span class="border-b-2 border-current">Community Corridiors</span>
+          </router-link>
+        </h2>
+      </Box>
+
+      Community Corridors are generally mid-sized streets that connect surrounding neighborhoods to each other. Community Corridors are not planned for major growth and feature mostly lower-density residential land uses, some small-scale retail, and neighborhood destinations such as parks and schools.
+
+    </Box>
+    <Box color="gray" variant="light" class="p-4" style="box-shadow: 10px 10px currentColor">
+      <Box as="header" class="not-prose grid grid-cols-1 gap-4">
+        <Image
+          src={`${publicPath}img/street-type/LocalService_Perspective.webp`}
+          class="border border-current"
+          alt="Perspective rendering of a local service street"
+          title="Perspective rendering of a local service street"
+        />
+
+        <h2 class="text-lg">
+          <router-link to="/street-types/local-street">
+            <span class="border-b-2 border-current">Local Streets</span>
+          </router-link>
+        </h2>
+      </Box>
+
+      Local streets make up the majority of Portland’s streets. These are narrower streets that provide access for people and goods deliveries to residences and destinations like schools and parks.
+    </Box>
+    <Box color="blue" variant="light" class="p-4" style="box-shadow: 10px 10px currentColor">
+      <Box as="header" class="not-prose grid grid-cols-1 gap-4">
+        <Image
+          src={`${publicPath}img/street-type/Industrial_Perspective.webp`}
+          class="border border-current"
+          alt="Perspective rendering of an industrial road"
+          title="Perspective rendering of an industrial road"
+        />
+
+        <h2 class="text-lg">
+          <router-link to="/street-types/industrial-road">
+            <span class="border-b-2 border-current">Industrial Roads</span>
+          </router-link>
+        </h2>
+      </Box>
+
+      Local streets make up the majority of Portland’s streets. These are narrower streets that provide access for people and goods deliveries to residences and destinations like schools and parks.
+    </Box>
+    <Box color="red" variant="light" class="p-4" style="box-shadow: 10px 10px currentColor">
+      <Box as="header" class="not-prose grid grid-cols-1 gap-4">
+        <Image
+          src={`${publicPath}img/street-type/Industrial_Perspective.webp`}
+          class="border border-current"
+          alt="Perspective rendering of an industrial road"
+          title="Perspective rendering of an industrial road"
+        />
+
+        <h2 class="text-lg">
+          <span>Regional Corridors</span>
+        </h2>
+      </Box>
+
+      Local streets make up the majority of Portland’s streets. These are narrower streets that provide access for people and goods deliveries to residences and destinations like schools and parks.
+    </Box>
+
+  </section>
 </main>
