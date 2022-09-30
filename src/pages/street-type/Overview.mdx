@@ -17,8 +17,8 @@ The street type descriptions identify general design priorities and consideratio
 The illustrations provided for each Street Type show just one or two examples of the multiple ways in which the available right-of-way space could be allocated according to that Street Type.
 
   </section>
-  <section class="grid grid-cols-1 md:grid-cols-2 gap-8 prose-sm max-w-none">
-    <Box color="orange" variant="light" class="p-4" style="box-shadow: 10px 10px currentColor">
+  <section class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-none prose-sm">
+    <Box color="orange" variant="light" class="p-4 flex flex-col gap-4" style="box-shadow: 10px 10px currentColor">
       <Box as="header" class="not-prose grid grid-cols-1 gap-4">
         <Image
           src={`${publicPath}img/street-type/CivicMainStreet_Perspective.webp`}
@@ -31,12 +31,31 @@ The illustrations provided for each Street Type show just one or two examples of
             <span class="border-b-2 border-current">Civic Main Streets</span>
           </router-link>
         </h2>
+        
+        Civic Main Streets are generally Portland’s busiest, widest streets that pass through compact, pedestrian-oriented Centers that anchor neighborhoods with retail and businesses, schools and libraries, housing options, employment centers, and gathering places.
       </Box>
 
-      Civic Main Streets are generally Portland’s busiest, widest streets that pass through compact, pedestrian-oriented Centers that anchor neighborhoods with retail and businesses, schools and libraries, housing options, employment centers, and gathering places.
+      <section class="not-prose flex flex-col gap-2">
+        <h3 class="text-lg">Percentage of all city streets</h3>
+        <div class="flex items-center gap-2">
+          <Box as="span" class="bg-current h-4" style="width: 2.5%" />
+          <p>2.5%</p>
+          <p>(~{Math.floor(2090 * .025)} miles)</p>
+        </div>
+      </section>
+
+      <section class="not-prose flex flex-col gap-2">
+        <h3 class="text-lg">Typical conditions</h3>
+        <ul class="grid grid-cols-1 gap-2 not-prose">
+          <Score as="li" label="Land Use Intensity" score={3}/>
+          <Score as="li" label="Roadway Width" score={3}/>
+          <Score as="li" label="Multimodal Mobility Demand" score={3}/>
+          <Score as="li" label="Loading/Business Access" score={3}/>
+        </ul>
+      </section>
 
     </Box>
-    <Box color="tangerine" variant="light" class="p-4" style="box-shadow: 10px 10px currentColor">
+    <Box color="tangerine" variant="light" class="p-4 flex flex-col gap-4" style="box-shadow: 10px 10px currentColor">
       <Box as="header" class="not-prose grid grid-cols-1 gap-4">
         <Image
           src={`${publicPath}img/street-type/CivicCorridor_Perspective.webp`}
@@ -47,15 +66,33 @@ The illustrations provided for each Street Type show just one or two examples of
 
         <h2 class="text-lg">
           <router-link to="/street-types/civic-corridor">
-            <span class="border-b-2 border-current">Civic Corridiors</span>
+            <span class="border-b-2 border-current">Civic Corridors</span>
           </router-link>
         </h2>
+
+        Civic Corridors are generally Portland’s busiest, widest, and most prominent streets. As the city grows, Civic Corridors are increasingly lined with multifamily residential and commercial mixed-use developments.
       </Box>
 
-      Civic Corridors are generally Portland’s busiest, widest, and most prominent streets. As the city grows, Civic Corridors are increasingly lined with multifamily residential and commercial mixed-use developments.
+      <section class="not-prose flex flex-col gap-2 mt-auto">
+        <h3 class="text-lg">Percentage of all city streets</h3>
+        <div class="flex items-center gap-2 mt-auto not-prose">
+          <Box as="span" class="bg-current h-4" style="width: 2%" />
+          <p>2%</p>
+          <p>(~{Math.floor(2090 * .02)} miles)</p>
+        </div>
+      </section>
 
+      <section class="not-prose flex flex-col gap-2">
+        <h3 class="text-lg">Typical conditions</h3>
+        <ul class="grid grid-cols-1 gap-2 not-prose">
+          <Score as="li" label="Land Use Intensity" score={2}/>
+          <Score as="li" label="Roadway Width" score={3}/>
+          <Score as="li" label="Multimodal Mobility Demand" score={3}/>
+          <Score as="li" label="Loading/Business Access" score={2}/>
+        </ul>
+      </section>
     </Box>
-    <Box color="cyan" variant="light" class="p-4" style="box-shadow: 10px 10px currentColor">
+    <Box color="cyan" variant="light" class="p-4 flex flex-col gap-4" style="box-shadow: 10px 10px currentColor">
       <Box as="header" class="not-prose grid grid-cols-1 gap-4">
         <Image
           src={`${publicPath}img/street-type/NeighborhoodMainStreet_Perspective.webp`}
@@ -69,12 +106,31 @@ The illustrations provided for each Street Type show just one or two examples of
             <span class="border-b-2 border-current">Neighborhood Main Street</span>
           </router-link>
         </h2>
+
+        Neighborhood Main Streets are mid-sized streets that pass through smaller neighborhood-serving Centers. These centers support vibrant business districts and residential buildings, bringing amenities, goods, and services within walking distance of neighborhood residents.
       </Box>
 
-      Neighborhood Main Streets are mid-sized streets that pass through smaller neighborhood-serving Centers. These centers support vibrant business districts and residential buildings, bringing amenities, goods, and services within walking distance of neighborhood residents.
 
+      <section class="not-prose flex flex-col gap-2 mt-auto">
+        <h3 class="text-base">Percentage of all city streets</h3>
+        <div class="flex items-center gap-2 mt-auto not-prose">
+          <Box as="span" class="bg-current h-4" style="width: 2.5%" />
+          <p>2.5%</p>
+          <p>(~{Math.floor(2090 * .025)} miles)</p>
+        </div>
+      </section>
+
+      <section class="not-prose flex flex-col gap-2">
+        <h3 class="text-base">Typical conditions</h3>
+        <ul class="grid grid-cols-1 gap-2 not-prose">
+          <Score as="li" label="Land Use Intensity" score={3}/>
+          <Score as="li" label="Roadway Width" score={2}/>
+          <Score as="li" label="Multimodal Mobility Demand" score={2}/>
+          <Score as="li" label="Loading/Business Access" score={3}/>
+        </ul>
+      </section>
     </Box>
-    <Box color="marine" variant="light" class="p-4" style="box-shadow: 10px 10px currentColor">
+    <Box color="marine" variant="light" class="p-4 flex flex-col gap-4" style="box-shadow: 10px 10px currentColor">
       <Box as="header" class="not-prose grid grid-cols-1 gap-4">
         <Image
           src={`${publicPath}img/street-type/NeighborhoodCorridor_Perspective.webp`}
@@ -88,12 +144,30 @@ The illustrations provided for each Street Type show just one or two examples of
             <span class="border-b-2 border-current">Neighborhood Corridiors</span>
           </router-link>
         </h2>
+
+        Neighborhood Corridors are generally mid-sized streets that connect surrounding neighborhoods to each other and with other parts of the city. They are zoned to accommodate Portland’s growth of residential and commercial buildings in the coming years, but at a smaller scale than Civic Corridors.
       </Box>
 
-      Neighborhood Corridors are generally mid-sized streets that connect surrounding neighborhoods to each other and with other parts of the city. They are zoned to accommodate Portland’s growth of residential and commercial buildings in the coming years, but at a smaller scale than Civic Corridors.
+      <section class="not-prose flex flex-col gap-2 mt-auto">
+        <h3 class="text-base">Percentage of all city streets</h3>
+        <div class="flex items-center gap-2 mt-auto not-prose">
+          <Box as="span" class="bg-current h-4" style="width: 2%" />
+          <p>2%</p>
+          <p>(~{Math.floor(2090 * .02)} miles)</p>
+        </div>
+      </section>
 
+      <section class="not-prose flex flex-col gap-2">
+        <h3 class="text-base">Typical conditions</h3>
+        <ul class="grid grid-cols-1 gap-2 not-prose">
+          <Score as="li" label="Land Use Intensity" score={2}/>
+          <Score as="li" label="Roadway Width" score={2}/>
+          <Score as="li" label="Multimodal Mobility Demand" score={2}/>
+          <Score as="li" label="Loading/Business Access" score={2}/>
+        </ul>
+      </section>
     </Box>
-    <Box color="green" variant="light" class="p-4" style="box-shadow: 10px 10px currentColor">
+    <Box color="green" variant="light" class="p-4 flex flex-col gap-4" style="box-shadow: 10px 10px currentColor">
       <Box as="header" class="not-prose grid grid-cols-1 gap-4">
         <Image
           src={`${publicPath}img/street-type/CommunityCorridor_Perspective.webp`}
@@ -107,12 +181,30 @@ The illustrations provided for each Street Type show just one or two examples of
             <span class="border-b-2 border-current">Community Corridiors</span>
           </router-link>
         </h2>
+
+        Community Corridors are generally mid-sized streets that connect surrounding neighborhoods to each other. Community Corridors are not planned for major growth and feature mostly lower-density residential land uses, some small-scale retail, and neighborhood destinations such as parks and schools.
       </Box>
 
-      Community Corridors are generally mid-sized streets that connect surrounding neighborhoods to each other. Community Corridors are not planned for major growth and feature mostly lower-density residential land uses, some small-scale retail, and neighborhood destinations such as parks and schools.
+      <section class="not-prose flex flex-col gap-2 mt-auto">
+        <h3 class="text-base">Percentage of all city streets</h3>
+        <div class="flex items-center gap-2 mt-auto not-prose">
+          <Box as="span" class="bg-current h-4" style="width: 11.5%" />
+          <p>11.5%</p>
+          <p>(~{Math.floor(2090 * .115)} miles)</p>
+        </div>
+      </section>
 
+      <section class="not-prose flex flex-col gap-2">
+        <h3 class="text-base">Typical conditions</h3>
+        <ul class="grid grid-cols-1 gap-2 not-prose">
+          <Score as="li" label="Land Use Intensity" score={1}/>
+          <Score as="li" label="Roadway Width" score={2}/>
+          <Score as="li" label="Multimodal Mobility Demand" score={2}/>
+          <Score as="li" label="Loading/Business Access" score={1}/>
+        </ul>
+      </section>
     </Box>
-    <Box color="gray" variant="light" class="p-4" style="box-shadow: 10px 10px currentColor">
+    <Box color="gray" variant="light" class="p-4 flex flex-col gap-4" style="box-shadow: 10px 10px currentColor">
       <Box as="header" class="not-prose grid grid-cols-1 gap-4">
         <Image
           src={`${publicPath}img/street-type/LocalService_Perspective.webp`}
@@ -126,11 +218,30 @@ The illustrations provided for each Street Type show just one or two examples of
             <span class="border-b-2 border-current">Local Streets</span>
           </router-link>
         </h2>
+
+        Local streets make up the majority of Portland’s streets. These are narrower streets that provide access for people and goods deliveries to residences and destinations like schools and parks.
       </Box>
 
-      Local streets make up the majority of Portland’s streets. These are narrower streets that provide access for people and goods deliveries to residences and destinations like schools and parks.
+      <section class="not-prose flex flex-col gap-2 mt-auto">
+        <h3 class="text-base">Percentage of all city streets</h3>
+        <div class="flex items-center gap-2 mt-auto not-prose">
+          <Box as="span" class="bg-current h-4" style="width: 77%" />
+          <p>77%</p>
+          <p>(~{Math.floor(2090 * .77)} miles)</p>
+        </div>
+      </section>
+
+      <section class="not-prose flex flex-col gap-2">
+        <h3 class="text-base">Typical conditions</h3>
+        <ul class="grid grid-cols-1 gap-2 not-prose">
+          <Score as="li" label="Land Use Intensity" score={1}/>
+          <Score as="li" label="Roadway Width" score={1}/>
+          <Score as="li" label="Multimodal Mobility Demand" score={1}/>
+          <Score as="li" label="Loading/Business Access" score={1}/>
+        </ul>
+      </section>
     </Box>
-    <Box color="blue" variant="light" class="p-4" style="box-shadow: 10px 10px currentColor">
+    <Box color="blue" variant="light" class="p-4 flex flex-col gap-4" style="box-shadow: 10px 10px currentColor">
       <Box as="header" class="not-prose grid grid-cols-1 gap-4">
         <Image
           src={`${publicPath}img/street-type/Industrial_Perspective.webp`}
@@ -144,25 +255,29 @@ The illustrations provided for each Street Type show just one or two examples of
             <span class="border-b-2 border-current">Industrial Roads</span>
           </router-link>
         </h2>
+
+        Industrial roads serve industrial land uses and provide freight connections to regional transportation facilities such as interstate and state highways.
       </Box>
 
-      Local streets make up the majority of Portland’s streets. These are narrower streets that provide access for people and goods deliveries to residences and destinations like schools and parks.
-    </Box>
-    <Box color="red" variant="light" class="p-4" style="box-shadow: 10px 10px currentColor">
-      <Box as="header" class="not-prose grid grid-cols-1 gap-4">
-        <Image
-          src={`${publicPath}img/street-type/Industrial_Perspective.webp`}
-          class="border border-current"
-          alt="Perspective rendering of an industrial road"
-          title="Perspective rendering of an industrial road"
-        />
 
-        <h2 class="text-lg">
-          <span>Regional Corridors</span>
-        </h2>
-      </Box>
+      <section class="not-prose flex flex-col gap-2 mt-auto">
+        <h3 class="text-base">Percentage of all city streets</h3>
+        <div class="flex items-center gap-2 mt-auto not-prose">
+          <Box as="span" class="bg-current h-4" style="width: 2%" />
+          <p>2%</p>
+          <p>(~{Math.floor(2090 * .02)} miles)</p>
+        </div>
+      </section>
 
-      Local streets make up the majority of Portland’s streets. These are narrower streets that provide access for people and goods deliveries to residences and destinations like schools and parks.
+      <section class="not-prose flex flex-col gap-2">
+        <h3 class="text-base">Typical conditions</h3>
+        <ul class="grid grid-cols-1 gap-2 not-prose">
+          <Score as="li" label="Land Use Intensity" score={2}/>
+          <Score as="li" label="Roadway Width" score={2}/>
+          <Score as="li" label="Multimodal Mobility Demand" score={3}/>
+          <Score as="li" label="Loading/Business Access" score={2}/>
+        </ul>
+      </section>
     </Box>
 
   </section>
