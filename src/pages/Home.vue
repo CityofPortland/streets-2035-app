@@ -1,42 +1,63 @@
 <template>
-  <article class="mb-8">
-    <Box as="header" color="blue" class="min-h-96 px-4 py-24">
-      <Box class="h-full max-w-7xl mx-auto flex items-center justify-start">
-        <Box
-          color="blue"
-          variant="dark"
-          class="p-8 transform skew-y-1 skew-x-1"
+  <article class="max-w-7xl px-4 mx-auto my-8">
+    <header class="prose-lg">
+      <h1>Introduction</h1>
+      <p class="lead">
+        The Street Design Framework is intended to support policy implementation
+        and decision-making in the right-of-way consistent with the City's 2035
+        Comprehensive Plan. It brings together the various policies and
+        corresponding design standards that influence space in the right-of-way
+        as part of private development and with city led capital projects.
+        Because individual sites and projects in constrained urban environments
+        can vary in their challenges and opportunities, the framework also
+        identifies the deviation processes that provide flexibility when it is
+        not possible to meet all applicable standards.
+      </p>
+      <figure>
+        <img class="w-full" src="/img/home/hero.png" />
+        <figcaption class="italic">
+          An image that shows the responsibilities for setting policies,
+          standards and design guidelines for the variety of uses for the
+          right-of-way.
+        </figcaption>
+      </figure>
+    </header>
+    <main class="prose">
+      <p>
+        <router-link to="/street-types" v-slot="{ href, navigate }"
+          ><Anchor :url="href" @click="navigate"
+            >Street Types pages</Anchor
+          ></router-link
         >
-          <div class="transform -skew-y-1 -skew-x-1 prose-lg">
-            <h1 class="text-4xl font-bold">
-              Welcome to
-              <abbr title="Portland Bureau of Transportation">PBOT's</abbr>
-              Streets 2035 design app!
-            </h1>
-            <p>
-              Streets 2035 is a tool for capital and development projects that
-              uses a framework for gathering relevant information at the
-              beginning of a project. It systematically works through tradeoffs,
-              impacts, and outcomes in a consistent manner
-            </p>
-            <div
-              class="mt-8 flex flex-col md:flex-row items-center justify-center gap-4"
-            >
-              <router-link to="/streets" class="flex">
-                <Button as="span" color="orange" size="large"
-                  >Check out the streets</Button
-                >
-              </router-link>
-              <router-link to="/street-types" class="flex">
-                <Button as="span" golor="gray" variant="light" size="large"
-                  >Read about street types</Button
-                >
-              </router-link>
-            </div>
-          </div>
-        </Box>
-      </Box>
-    </Box>
+        identify general design priorities and considerations for different
+        types of streets. The role that each street plays in the city is related
+        to its transportation function and the adjacent land use context. The
+        functional needs of a given street type informs decision-making with
+        both private development and capital projects.
+      </p>
+      <p>
+        <router-link to="/public-improvements" v-slot="{ href, navigate }"
+          ><Anchor :url="href" @click="navigate"
+            >A Public Improvements page</Anchor
+          ></router-link
+        >
+        allows users to visualize the different standards that may apply to
+        their development project, with links to available deviation processes
+        and a more detailed page of city standards, guidelines and requirements
+        that impact space in right-of-way.
+      </p>
+      <p>
+        <router-link to="/captial-projects" v-slot="{ href, navigate }"
+          ><Anchor :url="href" @click="navigate"
+            >A Capital Projects page</Anchor
+          ></router-link
+        >
+        describes a framework for evaluating policy tradeoffs when working to
+        determine the appropriate cross-section for a street. A Map identifies
+        the road width and various policy designations for each street. Typical
+        Street Sections are available for Portland's most common roadway widths.
+      </p>
+    </main>
   </article>
 </template>
 
@@ -44,17 +65,13 @@
 import { defineComponent } from 'vue';
 import { onBeforeRouteLeave } from 'vue-router';
 
-import Box from '@/elements/box/Box';
-import Button from '@/elements/button/Button.vue';
-
 import { useHeaderStore } from '@/store/header';
+
+import Anchor from '@/elements/anchor/Anchor.vue';
 
 export default defineComponent({
   name: 'Home',
-  components: {
-    Box,
-    Button,
-  },
+  components: { Anchor },
   setup() {
     onBeforeRouteLeave(() => {
       const store = useHeaderStore();
