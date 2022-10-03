@@ -72,7 +72,7 @@ onMounted(() => {
         }"
       />
     </header>
-    <main class="grid grid-cols-1 gap-12">
+    <main class="grid grid-cols-1 gap-24">
       <Box
         id="frontage"
         as="section"
