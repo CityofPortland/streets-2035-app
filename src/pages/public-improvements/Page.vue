@@ -280,7 +280,7 @@ onMounted(() => {
           </div>
           <div class="flex-1 grid grid-cols-1 gap-8">
             <div class="border-b border-current pb-8 prose">
-              <h2>Utility Clearance</h2>
+              <h2>Utility Services</h2>
               <h3>Requirements and standards</h3>
               <p>
                 Utility clearance requirements serve to protect infrastructure
