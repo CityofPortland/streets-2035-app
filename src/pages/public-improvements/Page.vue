@@ -25,14 +25,14 @@ onMounted(() => {
 <template>
   <article class="max-w-7xl mt-8 px-4 mx-auto mb-8 grid grid-cols-1 gap-4">
     <header class="prose-lg">
-      <h1>Public Improvements in the Right-of-Way</h1>
-      <p>
+      <h1>Development-Related Public Improvements in the Right-of-Way</h1>
+      <p class="lead">
         This page identifies policies and requirements that may apply to a
         development project and influence the allocation of space in the
         right-of-way. It also identifies the different paths for seeking
         approval to deviate from a standard requirement.
       </p>
-      <p>
+      <p class="lead">
         You should use this page in combination with
         <Anchor
           url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
@@ -43,7 +43,7 @@ onMounted(() => {
         the color callout boxes as links!) or simply scroll down. Each section
         has a link to read the specific section of our guide.
       </p>
-      <p>
+      <p class="lead">
         Neither page is an exhaustive list and additional information may be
         available on individual bureau websites. Refer to the city's
         <Anchor url="https://www.portlandoregon.gov/53147"
