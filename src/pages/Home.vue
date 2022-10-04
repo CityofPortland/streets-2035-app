@@ -14,7 +14,7 @@
         not possible to meet all applicable standards.
       </p>
       <figure>
-        <img class="w-full" src="/img/home/hero.png" />
+        <img class="w-full" :src="`${publicPath}img/home/hero.png`" />
         <figcaption class="italic">
           An image that shows the responsibilities for setting policies,
           standards and design guidelines for the variety of uses for the
@@ -77,6 +77,8 @@ export default defineComponent({
       const store = useHeaderStore();
       store.setHeader({ color: 'transparent' });
     });
+
+    return { publicPath: process.env.BASE_URL };
   },
   beforeRouteEnter(_to, _from, next) {
     next(() => {
