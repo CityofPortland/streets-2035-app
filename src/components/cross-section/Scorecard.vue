@@ -10,126 +10,66 @@
       <span>Access</span>
     </Box>
   </Box>
-  <Box
-    :color="scoreColor(scores.safety)"
-    variant="neutral"
-    class="text-center p-2 rounded-md"
-    title="Safety score"
-  />
+  <Scorebox :score="scores.safety" title="Safety score" />
   <div class="grid grid-cols-2 gap-1">
-    <Box
-      :color="scoreColor(scores['pedestrian:mobility'])"
-      variant="neutral"
-      class="text-center p-2 rounded-md"
+    <Scorebox
+      :score="scores['pedestrian:mobility']"
+      :priority="priorities.pedestrian"
       title="Pedestrian mobility score"
-      :class="{
-        'low-priority': priorities.pedestrian == 'low',
-        'no-priority': priorities.pedestrian == 'none',
-      }"
     />
-    <Box
-      :color="scoreColor(scores['pedestrian:access'])"
-      variant="neutral"
-      class="text-center p-2 rounded-md"
+    <Scorebox
+      :score="scores['pedestrian:access']"
+      :priority="priorities.pedestrian"
       title="Pedestrian access score"
-      :class="{
-        'low-priority': priorities.pedestrian == 'low',
-        'no-priority': priorities.pedestrian == 'none',
-      }"
     />
   </div>
-  <Box
-    :color="scoreColor(scores.greening)"
-    variant="neutral"
-    class="text-center p-2 rounded-md"
-    title="Greening score"
-  />
+  <Scorebox :score="scores.greening" title="Greening score" />
   <div class="grid grid-cols-2 gap-1">
-    <Box
-      :color="scoreColor(scores['bicycle:mobility'])"
-      variant="neutral"
-      class="text-center p-2 rounded-md"
-      :class="{
-        'low-priority': priorities.bicycle == 'low',
-        'no-priority': priorities.bicycle == 'none',
-      }"
+    <Scorebox
+      :score="scores['bicycle:mobility']"
+      :priority="priorities.bicycle"
       title="Bicycle mobility score"
     />
-    <Box
-      :color="scoreColor(scores['bicycle:access'])"
-      variant="neutral"
-      class="text-center p-2 rounded-md"
-      :class="{
-        'low-priority': priorities.bicycle == 'low',
-        'no-priority': priorities.bicycle == 'none',
-      }"
+    <Scorebox
+      :score="scores['bicycle:access']"
+      :priority="priorities.bicycle"
       title="Bicycle access score"
     />
   </div>
   <div class="grid grid-cols-2 gap-1">
-    <Box
-      :color="scoreColor(scores['transit:mobility'])"
-      variant="neutral"
-      class="text-center p-2 rounded-md"
+    <Scorebox
+      :score="scores['transit:mobility']"
+      :priority="priorities.transit"
       title="Transit mobility score"
-      :class="{
-        'low-priority': priorities.transit == 'low',
-        'no-priority': priorities.transit == 'none',
-      }"
     />
-    <Box
-      :color="scoreColor(scores['transit:access'])"
-      variant="neutral"
-      class="text-center p-2 rounded-md"
+    <Scorebox
+      :score="scores['transit:access']"
+      :priority="priorities.transit"
       title="Transit access score"
-      :class="{
-        'low-priority': priorities.transit == 'low' && !mainStreet,
-        'no-priority': priorities.transit == 'none',
-      }"
     />
   </div>
   <div class="grid grid-cols-2 gap-1">
-    <Box
-      :color="scoreColor(scores['freight:mobility'])"
-      variant="neutral"
-      class="text-center p-2 rounded-md"
+    <Scorebox
+      :score="scores['freight:mobility']"
+      :priority="priorities.freight"
       title="Freight mobility score"
-      :class="{
-        'low-priority': priorities.freight == 'low',
-        'no-priority': priorities.freight == 'none',
-      }"
     />
-    <Box
-      :color="scoreColor(scores['freight:access'])"
-      variant="neutral"
-      class="text-center p-2 rounded-md"
+    <Scorebox
+      :score="scores['freight:access']"
+      :priority="priorities.freight"
       title="Freight access score"
-      :class="{
-        'low-priority': priorities.freight == 'low' && !mainStreet,
-        'no-priority': priorities.freight == 'none',
-      }"
     />
   </div>
   <div class="grid grid-cols-2 gap-1">
-    <Box
-      :color="scoreColor(scores['traffic:mobility'])"
-      variant="neutral"
-      class="text-center p-2 rounded-md"
+    <Scorebox
+      :score="scores['traffic:mobility']"
+      :priority="priorities.traffic"
       title="Traffic mobility score"
-      :class="{
-        'low-priority': priorities.traffic == 'low',
-        'no-priority': priorities.traffic == 'none',
-      }"
     />
-    <Box
-      :color="scoreColor(scores['traffic:access'])"
-      variant="neutral"
-      class="text-center p-2 rounded-md"
+    <Scorebox
+      :score="scores['traffic:access']"
+      :priority="priorities.traffic"
       title="Traffic access score"
-      :class="{
-        'low-priority': priorities.traffic == 'low' && !mainStreet,
-        'no-priority': priorities.traffic == 'none',
-      }"
     />
   </div>
 </template>
@@ -138,6 +78,7 @@ import { defineComponent } from 'vue';
 
 import Box, { BoxColor } from '@/elements/box/Box';
 import { PrioritySet } from './typings';
+import Scorebox from './Scorebox.vue';
 
 type ScoreSet = {
   safety: number;
@@ -156,7 +97,7 @@ type ScoreSet = {
 
 export default defineComponent({
   name: 'Scorecard',
-  components: { Box },
+  components: { Box, Scorebox },
   props: {
     scores: {
       type: Object as () => ScoreSet,
@@ -169,11 +110,11 @@ export default defineComponent({
     priorities: {
       type: Object as () => PrioritySet,
       default: () => ({
-        pedestrian: 'high',
-        bicycle: 'high',
-        transit: 'high',
-        freight: 'high',
-        traffic: 'high',
+        pedestrian: 'higher',
+        bicycle: 'higher',
+        transit: 'higher',
+        freight: 'higher',
+        traffic: 'higher',
       }),
     },
   },
@@ -202,6 +143,6 @@ export default defineComponent({
   background-size: 4px 4px;
 }
 .no-priority {
-  @apply bg-transparent;
+  @apply bg-transparent border border-current;
 }
 </style>
