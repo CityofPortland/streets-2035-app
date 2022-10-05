@@ -44,7 +44,7 @@
     />
     <Scorebox
       :score="scores['transit:access']"
-      :priority="priorities.transit"
+      :priority="!mainStreet ? priorities.transit : 'higher'"
       title="Transit access score"
     />
   </div>
@@ -56,7 +56,7 @@
     />
     <Scorebox
       :score="scores['freight:access']"
-      :priority="priorities.freight"
+      :priority="!mainStreet ? priorities.freight : 'higher'"
       title="Freight access score"
     />
   </div>
@@ -68,7 +68,7 @@
     />
     <Scorebox
       :score="scores['traffic:access']"
-      :priority="priorities.traffic"
+      :priority="!mainStreet ? priorities.traffic : 'higher'"
       title="Traffic access score"
     />
   </div>
