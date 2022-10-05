@@ -15,7 +15,7 @@
           </Help>
         </div>
       </Field>
-      <Field display="above" name="Road width">
+      <Field display="above" name="Roadway width">
         <span v-if="width">{{ width }} feet</span>
         <div v-else>
           <Help

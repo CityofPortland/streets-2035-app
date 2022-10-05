@@ -27,7 +27,7 @@
       </Box>
     </div>
     <FieldList v-if="street.minWidth || street.maxWidth" class="gap-1 text-sm">
-      <Field display="inline" name="Road width">
+      <Field display="inline" name="Roadway width">
         <div v-if="!street.minWidth && !street.maxWidth">
           <Help
             help="We may display unknown values because the City of Portland

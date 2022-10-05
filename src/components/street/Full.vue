@@ -19,14 +19,57 @@
 
       <div class="grid grid-cols-1 gap-2">
         <div v-if="street.width">
-          <h2 class="text-gray-700 font-semibold">Road width</h2>
+          <h2 class="text-gray-700 font-semibold">Roadway width</h2>
           <span>{{ street.width }} feet</span>
         </div>
 
         <div v-if="crossSectionRoute">
-          <router-link :to="crossSectionRoute"
-            ><Button size="small">View cross sections</Button></router-link
+          <router-link :to="crossSectionRoute" custom v-slot="{ navigate }">
+            <Button
+              label="View cross-sections"
+              size="small"
+              @click="navigate"
+              class="inline-flex items-center gap-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                class="w-5 h-5"
+                aria-label="Image"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M1 5.25A2.25 2.25 0 013.25 3h13.5A2.25 2.25 0 0119 5.25v9.5A2.25 2.25 0 0116.75 17H3.25A2.25 2.25 0 011 14.75v-9.5zm1.5 5.81v3.69c0 .414.336.75.75.75h13.5a.75.75 0 00.75-.75v-2.69l-2.22-2.219a.75.75 0 00-1.06 0l-1.91 1.909.47.47a.75.75 0 11-1.06 1.06L6.53 8.091a.75.75 0 00-1.06 0l-2.97 2.97zM12 7a1 1 0 11-2 0 1 1 0 012 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span>View cross-sections</span>
+            </Button>
+          </router-link>
+        </div>
+        <div v-else>
+          <Box
+            color="gray"
+            variant="light"
+            class="text-sm px-2 py-1 inline-flex items-center gap-2 rounded-md"
           >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              class="w-5 h-5"
+              aria-label="No symbol"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5.965 4.904l9.131 9.131a6.5 6.5 0 00-9.131-9.131zm8.07 10.192L4.904 5.965a6.5 6.5 0 009.131 9.131zM4.343 4.343a8 8 0 1111.314 11.314A8 8 0 014.343 4.343z"
+                clip-rule="evenodd"
+              />
+            </svg>
+
+            <span>No cross-sections available</span>
+          </Box>
         </div>
       </div>
 
@@ -63,6 +106,7 @@
 import { defineComponent, toRefs } from 'vue';
 
 import Anchor from '@/elements/anchor/Anchor.vue';
+import Box from '@/elements/box/Box';
 import Button from '@/elements/button/Button.vue';
 
 import { Street } from '@/composables/use-street';
@@ -73,6 +117,7 @@ export default defineComponent({
   name: 'Street',
   components: {
     Anchor,
+    Box,
     Button,
   },
   props: {
