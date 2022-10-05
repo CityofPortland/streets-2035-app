@@ -45,11 +45,11 @@ export default defineComponent({
     priorities: {
       type: Object as () => PrioritySet,
       default: () => ({
-        pedestrian: 'high',
-        bicycle: 'high',
-        transit: 'high',
-        freight: 'high',
-        traffic: 'high',
+        pedestrian: 'higher',
+        bicycle: 'higher',
+        transit: 'higher',
+        freight: 'higher',
+        traffic: 'higher',
       }),
     },
   },
