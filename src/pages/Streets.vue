@@ -631,14 +631,18 @@ export default defineComponent({
         ) as Partial<Street>;
         if (street) push({ name: 'Streets', params: { id: street.id } });
       },
-      handlePointer(event: Array<{ graphic: { attributes: unknown } }>) {
+      handlePointer(
+        event: Array<{ graphic: { attributes: unknown; layer: FeatureLayer } }>
+      ) {
+        pointer.value = undefined;
+
         if (event && event.length > 0) {
-          pointer.value = convertStreet(
-            'esri',
-            event[0].graphic.attributes
-          ) as Partial<Street>;
-        } else {
-          pointer.value = undefined;
+          if (event[0].graphic.layer.id == 'classifications') {
+            pointer.value = convertStreet(
+              'esri',
+              event[0].graphic.attributes
+            ) as Partial<Street>;
+          }
         }
       },
     };

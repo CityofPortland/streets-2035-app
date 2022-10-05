@@ -28,7 +28,9 @@
           v-if="pointer"
           class="p-2 border border-black rounded-md shadow bg-white overflow-auto"
         >
-          <span class="font-semibold text-lg">{{ pointer.StreetName }}</span>
+          <span class="font-semibold text-lg">{{
+            pointer.StreetName || 'Unnamed segment'
+          }}</span>
         </div>
       </template>
     </MapVue>
@@ -176,7 +178,9 @@ export default defineComponent({
 
         if (layerView) {
           const query = layerView.createQuery();
-          query.where = `StreetName = '${section.name}'`;
+          query.where = section.name
+            ? 'StreetName IS NULL'
+            : `StreetName = '${section.name}'`;
 
           const features = await layerView.queryFeatures(query);
           if (features.features.length) {

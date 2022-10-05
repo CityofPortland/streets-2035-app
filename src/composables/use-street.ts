@@ -56,17 +56,15 @@ export function useStreet(): {
       switch (sourceType) {
         case 'esri':
           street = street as ESRIStreet;
-          return street.StreetName
-            ? {
-                id: street.TranPlanID,
-                name: street.StreetName,
-                classifications: {
-                  design: street.Design,
-                  bicycle: street.Bicycle,
-                  transit: street.Transit,
-                },
-              }
-            : undefined;
+          return {
+            id: street.TranPlanID,
+            name: street.StreetName || 'Unnamed segment',
+            classifications: {
+              design: street.Design,
+              bicycle: street.Bicycle,
+              transit: street.Transit,
+            },
+          };
         case 'graphql':
           street = street as Street;
           return {
