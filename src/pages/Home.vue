@@ -1,7 +1,7 @@
 <template>
   <article>
     <header>
-      <figure>
+      <figure class="prose max-w-none">
         <Image class="w-full" :src="`${publicPath}img/home/hero.webp`" />
         <figcaption class="italic px-4">
           An image that shows the responsibilities for setting policies,
