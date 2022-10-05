@@ -1,4 +1,4 @@
-export const PRIORITIES = ['high', 'low', 'none'] as const;
+export const PRIORITIES = ['higher', 'lower', 'none'] as const;
 
 export type Priority = typeof PRIORITIES[number];
 
