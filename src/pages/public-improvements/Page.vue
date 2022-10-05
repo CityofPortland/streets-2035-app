@@ -25,14 +25,14 @@ onMounted(() => {
 <template>
   <article class="max-w-7xl mt-8 px-4 mx-auto mb-8 grid grid-cols-1 gap-4">
     <header class="prose-lg">
-      <h1>Public Improvements in the Right-of-Way</h1>
-      <p>
+      <h1>Development-Related Public Improvements in the Right-of-Way</h1>
+      <p class="lead">
         This page identifies policies and requirements that may apply to a
         development project and influence the allocation of space in the
         right-of-way. It also identifies the different paths for seeking
         approval to deviate from a standard requirement.
       </p>
-      <p>
+      <p class="lead">
         You should use this page in combination with
         <Anchor
           url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
@@ -43,7 +43,7 @@ onMounted(() => {
         the color callout boxes as links!) or simply scroll down. Each section
         has a link to read the specific section of our guide.
       </p>
-      <p>
+      <p class="lead">
         Neither page is an exhaustive list and additional information may be
         available on individual bureau websites. Refer to the city's
         <Anchor url="https://www.portlandoregon.gov/53147"
@@ -72,7 +72,7 @@ onMounted(() => {
         }"
       />
     </header>
-    <main class="grid grid-cols-1 gap-12">
+    <main class="grid grid-cols-1 gap-24">
       <Box
         id="frontage"
         as="section"
@@ -94,12 +94,12 @@ onMounted(() => {
                   >17.88.020</Anchor
                 >
                 are required to bring their frontage up to current standards.
-                <Anchor
-                  url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-sidewalks-and-pedestrian-crossings"
-                  class="text-center"
-                  >Read the sidewalk section</Anchor
-                >
               </p>
+              <Anchor
+                url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-sidewalks-and-pedestrian-crossings"
+                class="text-center"
+                >Read the sidewalk section</Anchor
+              >
             </div>
             <div class="flex flex-col md:flex-row gap-4">
               <div class="prose prose-sm">
@@ -146,11 +146,11 @@ onMounted(() => {
                   url="https://www.portland.gov/code/11/50/040"
                   >PCC 11.50.040.C.2</Anchor
                 >)
-                <Anchor
-                  url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-street-trees"
-                  >Read the street trees section</Anchor
-                >
               </p>
+              <Anchor
+                url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-street-trees"
+                >Read the street trees section</Anchor
+              >
             </div>
             <div class="flex flex-col md:flex-row gap-4">
               <div class="prose prose-sm">
@@ -189,12 +189,12 @@ onMounted(() => {
                 defined in city code and influence the space available for other
                 infrastructure in the pedestrian zone, such as street trees,
                 furnishings such as bike racks, or utility connections.
-                <Anchor
-                  url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-access-and-loading"
-                  class="text-center"
-                  >Read the access and loading section</Anchor
-                >
               </p>
+              <Anchor
+                url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-access-and-loading"
+                class="text-center"
+                >Read the access and loading section</Anchor
+              >
             </div>
             <div class="flex flex-col md:flex-row gap-4">
               <div class="prose prose-sm">
@@ -241,11 +241,11 @@ onMounted(() => {
                 city's livability and improve watershed health by mitigating the
                 impacts of urbanization and protecting our storm systems,
                 drainageways, and combined sewers.
-                <Anchor
-                  url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
-                  >Read the stormwater section</Anchor
-                >
               </p>
+              <Anchor
+                url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
+                >Read the stormwater section</Anchor
+              >
             </div>
             <div class="flex flex-col md:flex-row gap-4">
               <div class="prose prose-sm">
@@ -280,17 +280,17 @@ onMounted(() => {
           </div>
           <div class="flex-1 grid grid-cols-1 gap-8">
             <div class="border-b border-current pb-8 prose">
-              <h2>Utility Clearance</h2>
+              <h2>Utility Services</h2>
               <h3>Requirements and standards</h3>
               <p>
                 Utility clearance requirements serve to protect infrastructure
                 and maintain space to access for maintenance or replacement.
-                <Anchor
-                  url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-utilities"
-                  class="text-center"
-                  >Read the utilities section</Anchor
-                >
               </p>
+              <Anchor
+                url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-utilities"
+                class="text-center"
+                >Read the utilities section</Anchor
+              >
             </div>
             <div class="flex flex-col md:flex-row gap-4">
               <div class="prose prose-sm">
