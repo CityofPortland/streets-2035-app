@@ -1,12 +1,12 @@
 <template>
   <Button
+    label="Sign in"
     as="button"
     size="small"
     color="gray"
     variant="light"
     @click="handleSignIn"
-    >Sign in</Button
-  >
+  />
 </template>
 
 <script lang="ts">
