@@ -90,9 +90,9 @@ export function useCrossSection(street?: Ref<Partial<Street>>): {
           } else if (
             options?.low.has(street.value.classifications[classification])
           ) {
-            query[`${classification}Priority`] = 'low';
+            query[`${classification}Priority`] = 'lower';
           } else {
-            query[`${classification}Priority`] = 'high';
+            query[`${classification}Priority`] = 'higher';
           }
         }
 
