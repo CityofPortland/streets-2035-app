@@ -20,7 +20,8 @@
           type="solid"
           :name="open ? 'chevron-up' : 'chevron-down'"
           class="ml-2 w-5 h-5"
-      /></slot>
+        />
+      </slot>
     </Button>
     <!--
     Dropdown menu, show/hide based on menu state.
@@ -40,7 +41,7 @@
       leave-from-class="transform opacity-100 scale-100"
       leave-to-class="transform opacity-0 scale-95"
     >
-      <slot :open="open" :id="id"></slot>
+      <slot :open="open" :toggle="toggle" :id="id"></slot>
     </transition>
   </div>
 </template>
@@ -99,12 +100,17 @@ export default defineComponent({
       open.value = false;
     };
 
+    const toggle = () => {
+      open.value = !open.value;
+    };
+
     useWindowEvent('focusin', listener);
     useWindowEvent('mousedown', listener);
 
     return {
       open,
       componentRef,
+      toggle,
     };
   },
 });
