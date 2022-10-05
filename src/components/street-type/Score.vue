@@ -13,9 +13,9 @@ defineProps({
 </script>
 
 <template>
-  <Box class="grid grid-cols-2 gap-2 items-center">
+  <Box class="flex justify-between gap-2 items-center">
     <label v-if="label">{{ label }}</label>
-    <Box class="flex gap-1 justify-self-end">
+    <Box class="flex gap-1">
       <Dot v-for="n in score" :key="n" />
     </Box>
   </Box>
