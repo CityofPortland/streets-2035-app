@@ -2149,7 +2149,7 @@ const handleFocus = (sectionName: SectionName) => {
         </g>
       </g>
     </svg>
-    <Box as="figcaption" class="italic p-1">
+    <Box as="figcaption">
       A rendering of a home and the public right-of-way around it. Use the
       colored boxes pointing to right-of-way features to help navigate this
       page.
