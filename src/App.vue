@@ -8,7 +8,7 @@
       <template v-slot:branding>
         <router-link to="/" class="w-full flex items-center">
           <Logo class="w-16 md:w-20 mr-3 flex-shrink-0" />
-          <span class="truncate text-xl">Streets 2035</span>
+          <span class="truncate text-xl">Street Design</span>
         </router-link>
       </template>
       <template v-slot:menu>
@@ -21,21 +21,30 @@
             id="information-button"
             class="w-full md:w-auto justify-between"
           >
-            <template v-slot="{ open }">
+            <template v-slot="{ open, toggle }">
               <DropdownList
                 id="information-menu"
+                color="white"
                 :open="open"
-                class="md:origin-top-left md:absolute md:left-0 md:w-64 mt-1 bg-white text-black rounded border border-current shadow-md focus:outline-none"
+                class="gap-2 md:origin-top-left md:absolute md:left-0 md:w-64 mt-1 bg-white text-black rounded border border-current shadow-md focus:outline-none"
               >
                 <NavItem
                   role="menuitem"
                   text="Street types"
                   to="/street-types"
+                  @click="toggle"
                 />
                 <NavItem
                   role="menuitem"
-                  text="Public improvements"
+                  text="Development-Related Public improvements"
                   to="/public-improvements"
+                  @click="toggle"
+                />
+                <NavItem
+                  role="menuitem"
+                  text="Right-of-way policies"
+                  to="//portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
+                  @click="toggle"
                 />
               </DropdownList>
             </template>
@@ -77,10 +86,8 @@ import {
   reactive,
   ref,
 } from 'vue';
-import { onBeforeRouteUpdate } from 'vue-router';
 
 import Dropdown from './components/dropdown/Dropdown.vue';
-//import DropdownItem from './components/dropdown/DropdownItem.vue';
 import DropdownList from './components/dropdown/DropdownList.vue';
 import Footer from '@/components/footer/Footer.vue';
 import Header from '@/components/header/Header.vue';
@@ -111,19 +118,15 @@ export default defineComponent({
       models.push(...(await getModels()));
     });
 
-    onBeforeRouteUpdate(() => {
-      menuOpen.value = false;
-    });
-
     return {
       menuOpen,
       header: computed(() => headerStore.header),
       user: computed(() => authStore.user),
+      handleClick: () => console.log('click!'),
     };
   },
   components: {
     Dropdown,
-    //DropdownItem,
     DropdownList,
     Footer,
     Header,
