@@ -17,25 +17,26 @@ import { PRIORITIES, Priority } from '@/components/cross-section/typings';
 import Scoresheet from '@/components/cross-section/Scoresheet.vue';
 import Select from '@/elements/inputs/Select.vue';
 import Toggle from '@/elements/inputs/Toggle.vue';
+import Legend from '@/components/cross-section/Legend.vue';
 
 const props = defineProps({
   width: { type: Number, required: true },
   mainStreet: { type: Boolean, default: false },
-  pedestrianPriority: { type: String as () => Priority, default: 'high' },
-  bicyclePriority: { type: String as () => Priority, default: 'high' },
-  transitPriority: { type: String as () => Priority, default: 'high' },
-  freightPriority: { type: String as () => Priority, default: 'high' },
-  trafficPriority: { type: String as () => Priority, default: 'high' },
+  pedestrianPriority: { type: String as () => Priority, default: 'higher' },
+  bicyclePriority: { type: String as () => Priority, default: 'higher' },
+  transitPriority: { type: String as () => Priority, default: 'higher' },
+  freightPriority: { type: String as () => Priority, default: 'higher' },
+  trafficPriority: { type: String as () => Priority, default: 'higher' },
 });
 
 const {
-  width,
+  bicyclePriority,
+  freightPriority,
   mainStreet,
   pedestrianPriority,
-  bicyclePriority,
-  transitPriority,
-  freightPriority,
   trafficPriority,
+  transitPriority,
+  width,
 } = toRefs(props);
 
 const street: ComputedRef<Partial<Street>> = computed(() => ({
@@ -90,12 +91,9 @@ const changeRoute = (
       <h1 class="capitalize">{{ width }} foot cross sections</h1>
     </header>
     <section>
-      <Box
-        as="form"
-        class="flex flex-col md:flex-row flex-wrap md:justify-between"
-      >
+      <Box as="form" class="flex flex-row flex-wrap gap-4">
         <div class="flex flex-col">
-          <label class="font-semibold">Width</label>
+          <label class="font-semibold">Roadway width</label>
           <Select
             id="width"
             name="width"
@@ -122,7 +120,7 @@ const changeRoute = (
             :modelValue="mainStreet"
             @update:modelValue="changeQuery({ mainStreet: String($event) })"
           >
-            <label class="hidden">Main street </label>
+            <label class="hidden">Main street</label>
           </Toggle>
         </div>
         <div class="flex flex-col">
@@ -252,5 +250,6 @@ const changeRoute = (
         </Box>
       </template>
     </Scoresheet>
+    <Legend class="my-4 prose" />
   </article>
 </template>

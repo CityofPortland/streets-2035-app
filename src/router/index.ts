@@ -40,6 +40,13 @@ const routes: Array<RouteRecordRaw> = [
     props: true,
   },
   {
+    path: '/cross-section',
+    redirect: () => ({
+      name: 'CrossSectionList',
+      params: { width: '36' },
+    }),
+  },
+  {
     path: '/cross-section/:width',
     name: 'CrossSectionList',
     component: () => import('@/pages/cross-section/List.vue'),
@@ -77,7 +84,6 @@ const routes: Array<RouteRecordRaw> = [
       };
     },
   },
-
   {
     path: '/oauth/callback',
     name: 'OAuthCallback',
@@ -98,6 +104,13 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+  scrollBehavior(_to, _from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0 };
+    }
+  },
 });
 
 router.beforeResolve(async (to) => {

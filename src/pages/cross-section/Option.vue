@@ -59,7 +59,7 @@ const option = computed(() =>
             :src="`${publicPath}img/cross-section/${width}/${option.continuousImage}.webp`"
           />
         </div>
-        <div>
+        <div class="mx-auto">
           <Scoresheet :options="[option]" />
         </div>
       </section>
