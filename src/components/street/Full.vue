@@ -23,7 +23,12 @@
           <span>{{ street.width }} feet</span>
         </div>
 
-        <div v-if="crossSectionRoute">
+        <div v-if="street.oneWay !== undefined">
+          <h2 class="text-gray-700 font-semibold">One-way</h2>
+          <span>{{ street.oneWay ? 'Yes' : 'No' }}</span>
+        </div>
+
+        <div v-if="crossSectionRoute && !street.oneWay">
           <router-link :to="crossSectionRoute" custom v-slot="{ navigate }">
             <Button
               label="View cross-sections"
