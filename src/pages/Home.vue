@@ -66,7 +66,7 @@
           </li>
           <li>
             <p>
-              <router-link to="/captial-projects" v-slot="{ href, navigate }"
+              <router-link to="/capital-projects" v-slot="{ href, navigate }"
                 ><Anchor :url="href" @click="navigate"
                   >A Capital Projects page</Anchor
                 ></router-link
