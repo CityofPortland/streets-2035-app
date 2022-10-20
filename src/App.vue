@@ -36,14 +36,20 @@
                 />
                 <NavItem
                   role="menuitem"
+                  text="Right-of-way policies"
+                  to="//portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
+                  @click="toggle"
+                />
+                <NavItem
+                  role="menuitem"
                   text="Development-Related Public improvements"
                   to="/public-improvements"
                   @click="toggle"
                 />
                 <NavItem
                   role="menuitem"
-                  text="Right-of-way policies"
-                  to="//portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
+                  text="Capital Projects"
+                  to="/capital-projects"
                   @click="toggle"
                 />
               </DropdownList>
