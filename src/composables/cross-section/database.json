@@ -35,7 +35,7 @@
     "traffic:mobility": 2,
     "traffic:access": 3,
     "safety": 3,
-    "ordinal": 1,
+    "ordinal": 2,
     "continuousImage": "PortlandStreets_CrossSections_36B_2Lane_Midbock1",
     "episodicImages": [
       "PortlandStreets_CrossSections_36B_2Lane_LTLMedianRefuge1",
@@ -80,7 +80,7 @@
     "traffic:mobility": 3,
     "traffic:access": 1,
     "safety": 3,
-    "ordinal": 1,
+    "ordinal": 2,
     "continuousImage": "PortlandStreets_CrossSections_40A_2Lane_Midbock2",
     "episodicImages": [
       "PortlandStreets_CrossSections_40A_2Lane_LTLMedianRefuge1",
@@ -103,7 +103,7 @@
     "traffic:mobility": 2,
     "traffic:access": 3,
     "safety": 3,
-    "ordinal": 1,
+    "ordinal": 3,
     "continuousImage": "PortlandStreets_CrossSections_40B_2Lane_Midbock1",
     "episodicImages": [
       "PortlandStreets_CrossSections_40B_2Lane_LTLMedianRefuge1",
@@ -147,7 +147,7 @@
     "traffic:mobility": 3,
     "traffic:access": 1,
     "safety": 3,
-    "ordinal": 1,
+    "ordinal": 2,
     "continuousImage": "PortlandStreets_CrossSections_44A_2Lane_Midbock2",
     "episodicImages": [
       "PortlandStreets_CrossSections_44A_2Lane_LTLMedianRefuge1",
@@ -169,7 +169,7 @@
     "traffic:mobility": 2,
     "traffic:access": 3,
     "safety": 3,
-    "ordinal": 1,
+    "ordinal": 3,
     "continuousImage": "PortlandStreets_CrossSections_44B_2Lane_Midbock1",
     "episodicImages": [
       "PortlandStreets_CrossSections_44B_2Lane_LTLMedianRefuge1",
@@ -215,7 +215,7 @@
     "traffic:mobility": 2,
     "traffic:access": 2,
     "safety": 3,
-    "ordinal": 1,
+    "ordinal": 2,
     "continuousImage": "PortlandStreets_CrossSections_50A_2Lane_Midbock2",
     "episodicImages": [
       "PortlandStreets_CrossSections_50A_2Lane_LTLMedianRefuge1",
@@ -238,7 +238,7 @@
     "traffic:mobility": 3,
     "traffic:access": 1,
     "safety": 3,
-    "ordinal": 1,
+    "ordinal": 3,
     "continuousImage": "PortlandStreets_CrossSections_50A_2Lane_Midbock3",
     "episodicImages": [
       "PortlandStreets_CrossSections_50A_2Lane_LTLMedianRefuge1",
@@ -261,7 +261,7 @@
     "traffic:mobility": 3,
     "traffic:access": 3,
     "safety": 3,
-    "ordinal": 1,
+    "ordinal": 4,
     "continuousImage": "PortlandStreets_CrossSections_50B_2Lane_Midbock1",
     "episodicImages": [
       "PortlandStreets_CrossSections_50B_2Lane_LTLMedianRefuge1",
@@ -284,7 +284,7 @@
     "traffic:mobility": 3,
     "traffic:access": 2,
     "safety": 3,
-    "ordinal": 1,
+    "ordinal": 5,
     "continuousImage": "PortlandStreets_CrossSections_50C_2Lane_Midbock1",
     "episodicImages": [
       "PortlandStreets_CrossSections_50C_2Lane_LTLMedianRefuge1",
@@ -329,7 +329,7 @@
     "traffic:mobility": 2,
     "traffic:access": 3,
     "safety": 3,
-    "ordinal": 1,
+    "ordinal": 2,
     "continuousImage": "PortlandStreets_CrossSections_56A_2Lane_Midbock2",
     "episodicImages": [
       "PortlandStreets_CrossSections_56A_2Lane_LTLMedianCrossing1",
@@ -352,7 +352,7 @@
     "traffic:mobility": 2,
     "traffic:access": 1,
     "safety": 1,
-    "ordinal": 1,
+    "ordinal": 3,
     "continuousImage": "PortlandStreets_CrossSections_56B_4Lane_Midbock1",
     "episodicImages": [
       "PortlandStreets_CrossSections_56B_4Lane_TransitPriority1"
@@ -373,7 +373,7 @@
     "traffic:mobility": 3,
     "traffic:access": 1,
     "safety": 2,
-    "ordinal": 1,
+    "ordinal": 4,
     "continuousImage": "PortlandStreets_CrossSections_56C_4Lane_Midbock1",
     "episodicImages": [
       "PortlandStreets_CrossSections_56C_4Lane_LTLMedianRefuge1",
@@ -418,7 +418,7 @@
     "traffic:mobility": 2,
     "traffic:access": 3,
     "safety": 3,
-    "ordinal": 1,
+    "ordinal": 2,
     "continuousImage": "PortlandStreets_CrossSections_60A_2Lane_Midbock2",
     "episodicImages": [
       "PortlandStreets_CrossSections_60A_2Lane_LTLMedianRefuge1",
@@ -440,7 +440,7 @@
     "traffic:mobility": 3,
     "traffic:access": 1,
     "safety": 1,
-    "ordinal": 1,
+    "ordinal": 3,
     "continuousImage": "PortlandStreets_CrossSections_60B_4Lane_Midbock1",
     "episodicImages": [
       "PortlandStreets_CrossSections_60B_4Lane_LTLMedianRefuge1",
@@ -463,7 +463,7 @@
     "traffic:mobility": 3,
     "traffic:access": 1,
     "safety": 2,
-    "ordinal": 1,
+    "ordinal": 4,
     "continuousImage": "PortlandStreets_CrossSections_60C_4Lane_Midbock1",
     "episodicImages": [
       "PortlandStreets_CrossSections_60C_4Lane_LTLMedianRefuge1",
@@ -485,7 +485,7 @@
     "traffic:mobility": 2,
     "traffic:access": 3,
     "safety": 3,
-    "ordinal": 1,
+    "ordinal": 5,
     "continuousImage": "PortlandStreets_CrossSections_60D_2Lane_Midbock1",
     "episodicImages": [
       "PortlandStreets_CrossSections_60D_2Lane_LTLMedianRefuge1",
@@ -530,7 +530,7 @@
     "traffic:mobility": 2,
     "traffic:access": 3,
     "safety": 3,
-    "ordinal": 1,
+    "ordinal": 2,
     "continuousImage": "PortlandStreets_CrossSections_66A_2Lane_Midbock2",
     "episodicImages": [
       "PortlandStreets_CrossSections_66A_2Lane_LTLMedianRefuge1",
@@ -553,7 +553,7 @@
     "traffic:mobility": 3,
     "traffic:access": 1,
     "safety": 2,
-    "ordinal": 1,
+    "ordinal": 3,
     "continuousImage": "PortlandStreets_CrossSections_66B_4Lane_Midbock1",
     "episodicImages": [
       "PortlandStreets_CrossSections_66B_4Lane_LTLMedianRefuge1",
@@ -598,7 +598,7 @@
     "traffic:mobility": 3,
     "traffic:access": 1,
     "safety": 2,
-    "ordinal": 1,
+    "ordinal": 2,
     "continuousImage": "PortlandStreets_CrossSections_76B_4Lane_Midbock1",
     "episodicImages": [
       "PortlandStreets_CrossSections_76B_4Lane_LTLMedianRefuge1",
@@ -621,7 +621,7 @@
     "traffic:mobility": 3,
     "traffic:access": 2,
     "safety": 2,
-    "ordinal": 1,
+    "ordinal": 3,
     "continuousImage": "PortlandStreets_CrossSections_76B_4Lane_Midbock2",
     "episodicImages": [
       "PortlandStreets_CrossSections_76B_4Lane_LTLMedianRefuge1",
