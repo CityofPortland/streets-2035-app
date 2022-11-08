@@ -39,9 +39,9 @@ onMounted(() => {
           >our guide to city standards, guidelines, and requirements.</Anchor
         >
         Use this page to navigate to the standards that you are interested in
-        learning more about. You can either use the image below to navigate (use
-        the color callout boxes as links!) or simply scroll down. Each section
-        has a link to read the specific section of our guide.
+        learning more about. You can use the image below to navigate (use the
+        color callout boxes as links!) or simply scroll down. Each section has a
+        link to read the specific section of our guide.
       </p>
       <p>
         Neither page is an exhaustive list and additional information may be
@@ -105,16 +105,26 @@ onMounted(() => {
               <div class="prose prose-sm">
                 <h3>How to deviate from standard improvements</h3>
                 <p>
-                  A Public Works Alternative (PWA) review process allows an
-                  applicant to submit an alternative to the identified public
-                  improvements required to meet current standards, codes, and
-                  policies.
+                  PBOT's Public Works Alternative (PWA) review process allows an
+                  applicant to submit an alternative to the standard sidewalk
+                  cross sections required to meet current standards, codes, and
+                  policies. Alternatives to construct or maintain a less than
+                  standard width sidewalk for the entire frontage or at a
+                  particular point are eligible for this process.
                 </p>
                 <p>
                   <Anchor
                     url="https://www.portlandoregon.gov/article/481371#prepare"
-                    >Criteria for Accessing the Public Works Alternative
-                    Process.</Anchor
+                    >Criteria for accessing the Public Works Alternative
+                    process</Anchor
+                  >
+                  to request a reduction in frontage improvements to meet other
+                  policies requirements (e.g., to preserve a tree) or respond to
+                  site constraints (e.g., topography and/or complexity in
+                  conveying stormwater) are listed in
+                  <Anchor
+                    url="https://www.portland.gov/policies/transportation/streets-sidewalks/trn-127-bureau-transportation-public-works-alternate"
+                    >TRN 1.27.</Anchor
                   >
                 </p>
               </div>
@@ -133,18 +143,16 @@ onMounted(() => {
           </div>
           <div class="flex-1 grid grid-cols-1 gap-8">
             <div class="border-b border-current pb-8 prose">
-              <h2>Tree Planting and Preservation</h2>
+              <h2>Tree Preservation and Planting</h2>
               <h3>Requirements and standards</h3>
               <p>
-                Frontage (sidewalk) improvements trigger standards for planting
-                street trees. The city also has established standards for the
-                preservation of existing trees, clearances to other
-                infrastructure, and procedures for tree removal and replacement.
-                Applicants are required to consult with the City Forester at the
-                preliminary project design phase if City or Street Tree removal
-                is likely to occur to complete the project (<Anchor
-                  url="https://www.portland.gov/code/11/50/040"
-                  >PCC 11.50.040.C.2</Anchor
+                The city has established standards for the preservation of
+                existing trees, clearances to other infrastructure, and
+                procedures for tree removal and replacement. Frontage (sidewalk)
+                improvements trigger standards for planting street trees. City
+                or Street tree removal requires the approval of the City
+                Forester (<Anchor url="https://www.portland.gov/code/11/50/040"
+                  >PCC 11.50.040</Anchor
                 >)
               </p>
               <Anchor
@@ -156,15 +164,26 @@ onMounted(() => {
               <div class="prose prose-sm">
                 <h3>How to deviate from standard improvements</h3>
                 <p>
-                  Modifications to standard sidewalk requirements to preserve a
-                  tree requires a Public Works Alternative. A tree
-                  considerations checksheet, completed by an arborist or Urban
-                  Forestry, should accompany this request. The tree
-                  considerations checksheet is a tool for assessing the relative
-                  preservation value of street trees, and clarifies preservation
-                  options when developing a site, which can support requests for
-                  City or Street tree removal when these are deemed not
-                  feasible.
+                  A
+                  <Anchor
+                    url="https://www.portland.gov/trees/trees-development/tree-plan-requirements-development-permits"
+                    >tree plan</Anchor
+                  >
+                  is required in conjunction with all development permits
+                  (11.50.020) to indicate trees to be retained, proposed for
+                  removal, and planted.
+                </p>
+                <p>
+                  A tree considerations checksheet is a tool for assessing the
+                  relative preservation value of street trees, and clarifies
+                  preservation options when developing a site, which can support
+                  requests for City or Street tree removal.
+                </p>
+                <p>
+                  This form, completed by an arborist or Urban Forestry, should
+                  also accompany requests to modify standard sidewalk
+                  requirements to preserve a tree (see Frontage Improvements
+                  section above)
                 </p>
               </div>
             </div>
@@ -240,7 +259,9 @@ onMounted(() => {
                 Management Manual (SWMM) and require treatments to support the
                 city's livability and improve watershed health by mitigating the
                 impacts of urbanization and protecting our storm systems,
-                drainageways, and combined sewers.
+                drainageways, and combined sewers. Projects that add or replace
+                500 square feet or more of pavement should check if SWMM
+                compliance is required.
               </p>
               <Anchor
                 url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
@@ -254,15 +275,10 @@ onMounted(() => {
                   When public improvements require stormwater management,
                   <Anchor
                     url="https://www.portland.gov/bes/stormwater/swmm-and-right-way-projects/meeting-requirements"
-                    >four options are potentially available to meet SWMM
-                    requirements in the right-of-way</Anchor
+                    >options are potentially available to meet SWMM requirements
+                    in the right-of-way</Anchor
                   >
                   depending on the specific characteristics of the project.
-                </p>
-                <p>
-                  Modifications to the standard sidewalk requirements due to
-                  topography (including complexity in conveying stormwater)
-                  require a Public Works Alternative.
                 </p>
               </div>
             </div>
@@ -283,8 +299,16 @@ onMounted(() => {
               <h2>Utility Services</h2>
               <h3>Requirements and standards</h3>
               <p>
-                Utility clearance requirements serve to protect infrastructure
-                and maintain space to access for maintenance or replacement.
+                Utility services clearance requirements serve to protect
+                infrastructure and maintain space to access for maintenance or
+                replacement.
+              </p>
+              <p>
+                Because utility and access clearances can influence space for
+                other infrastructure, the Street Design Guide contains
+                principles for the efficient layout of utilities along a
+                frontage to help preserve tree planting sites and space for
+                stormwater management.
               </p>
               <Anchor
                 url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-utilities"
@@ -296,11 +320,10 @@ onMounted(() => {
               <div class="prose prose-sm">
                 <h3>How to deviate from standard improvements</h3>
                 <p>
-                  Because utility and access clearances can influence space for
-                  other infrastructure, the Street Design Guide contains
-                  principles for the efficient layout of utilities along a
-                  frontage to help preserve tree planting sites and space for
-                  stormwater management.
+                  Refer the 'Processes for Deviating from Standard Improvements'
+                  section below. Utility services include water and sewer as
+                  well as franchised utilities such as electricity, natural gas,
+                  and telecommunications.
                 </p>
                 <p>
                   Applicants are expected to plan for power on site. Requests to
