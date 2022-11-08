@@ -1,5 +1,9 @@
 <template>
-  <Box as="header" class="flex flex-col gap-1">
+  <Box
+    as="header"
+    class="flex flex-col gap-1 transition-opacity"
+    :class="{ 'opacity-25': disabled }"
+  >
     <slot></slot>
     <Box
       color="gray"
@@ -10,30 +14,48 @@
       <span>Access</span>
     </Box>
   </Box>
-  <Scorebox :score="scores.safety" title="Safety score" />
+  <Scorebox
+    :score="scores.safety"
+    title="Safety score"
+    class="transition-opacity"
+    :class="{ 'opacity-25': disabled }"
+  />
   <div class="grid grid-cols-2 gap-1">
     <Scorebox
       :score="scores['pedestrian:mobility']"
       :priority="priorities.pedestrian"
       title="Pedestrian mobility score"
+      class="transition-opacity"
+      :class="{ 'opacity-25': disabled }"
     />
     <Scorebox
       :score="scores['pedestrian:access']"
       :priority="priorities.pedestrian"
       title="Pedestrian access score"
+      class="transition-opacity"
+      :class="{ 'opacity-25': disabled }"
     />
   </div>
-  <Scorebox :score="scores.greening" title="Greening score" />
+  <Scorebox
+    :score="scores.greening"
+    title="Greening score"
+    class="transition-opacity"
+    :class="{ 'opacity-25': disabled }"
+  />
   <div class="grid grid-cols-2 gap-1">
     <Scorebox
       :score="scores['bicycle:mobility']"
       :priority="priorities.bicycle"
       title="Bicycle mobility score"
+      class="transition-opacity"
+      :class="{ 'opacity-25': disabled }"
     />
     <Scorebox
       :score="scores['bicycle:access']"
       :priority="priorities.bicycle"
       title="Bicycle access score"
+      class="transition-opacity"
+      :class="{ 'opacity-25': disabled }"
     />
   </div>
   <div class="grid grid-cols-2 gap-1">
@@ -41,6 +63,8 @@
       :score="scores['transit:mobility']"
       :priority="priorities.transit"
       title="Transit mobility score"
+      class="transition-opacity"
+      :class="{ 'opacity-25': disabled }"
     />
     <Scorebox
       :score="scores['transit:access']"
@@ -52,6 +76,8 @@
           : 'higher'
       "
       title="Transit access score"
+      class="transition-opacity"
+      :class="{ 'opacity-25': disabled }"
     />
   </div>
   <div class="grid grid-cols-2 gap-1">
@@ -59,6 +85,8 @@
       :score="scores['freight:mobility']"
       :priority="priorities.freight"
       title="Freight mobility score"
+      class="transition-opacity"
+      :class="{ 'opacity-25': disabled }"
     />
     <Scorebox
       :score="scores['freight:access']"
@@ -70,6 +98,8 @@
           : 'higher'
       "
       title="Freight access score"
+      class="transition-opacity"
+      :class="{ 'opacity-25': disabled }"
     />
   </div>
   <div class="grid grid-cols-2 gap-1">
@@ -77,6 +107,8 @@
       :score="scores['traffic:mobility']"
       :priority="priorities.traffic"
       title="Traffic mobility score"
+      class="transition-opacity"
+      :class="{ 'opacity-25': disabled }"
     />
     <Scorebox
       :score="scores['traffic:access']"
@@ -88,13 +120,21 @@
           : 'higher'
       "
       title="Traffic access score"
+      class="transition-opacity"
+      :class="{ 'opacity-25': disabled }"
     />
   </div>
+  <Button
+    size="small"
+    :label="disabled ? 'Enable' : 'Disable'"
+    @click="disabled = !disabled"
+  />
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 import Box, { BoxColor } from '@/elements/box/Box';
+import Button from '@/elements/button/Button.vue';
 import { PrioritySet } from './typings';
 import Scorebox from './Scorebox.vue';
 
@@ -115,7 +155,7 @@ type ScoreSet = {
 
 export default defineComponent({
   name: 'Scorecard',
-  components: { Box, Scorebox },
+  components: { Box, Button, Scorebox },
   props: {
     scores: {
       type: Object as () => ScoreSet,
@@ -143,7 +183,10 @@ export default defineComponent({
       [3, 'green'],
     ]);
 
+    const disabled = ref(false);
+
     return {
+      disabled,
       publicPath: process.env.BASE_URL,
       scoreColor: (score: number) => scoreMap.get(score),
     };
