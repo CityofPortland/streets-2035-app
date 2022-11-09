@@ -4,11 +4,14 @@ import Image from '@/elements/img/Image.vue';
 import Legend from '@/components/cross-section/Legend.vue';
 import Scoresheet from '@/components/cross-section/Scoresheet.vue';
 import { useCrossSection } from '@/composables/cross-section';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 const publicPath = process.env.BASE_URL;
-const width = 36;
-const { options } = useCrossSection(ref({ width }));
+const width = 50;
+const options = computed(() => {
+  const { options } = useCrossSection(ref({ width }));
+  return options.value.slice(0, 2);
+});
 </script>
 
 <template>
@@ -187,8 +190,8 @@ const { options } = useCrossSection(ref({ width }));
           :priorities="{
             pedestrian: 'higher',
             bicycle: 'higher',
-            transit: 'higher',
-            freight: 'higher',
+            transit: 'lower',
+            freight: 'none',
             traffic: 'higher',
           }"
         >
