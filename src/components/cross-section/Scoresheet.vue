@@ -2,7 +2,7 @@
   <section
     class="grid grid-flow-col gap-1 overflow-x-auto"
     :style="`
-        grid-template-rows: repeat(8, auto);
+        grid-template-rows: repeat(9, auto);
         grid-template-columns: minmax(min-content, 14rem) repeat(${options.length}, minmax(10rem, 14rem) [col-start]);
       `"
   >
@@ -14,6 +14,7 @@
     <span class="py-2">Transit</span>
     <span class="py-2">Freight</span>
     <span class="py-2">Traffic</span>
+    <span></span>
     <Scorecard
       v-for="option in options"
       :key="option.name"
