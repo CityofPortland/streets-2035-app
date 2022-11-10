@@ -41,6 +41,9 @@ defineProps({
     }),
   },
 });
+
+const emit = defineEmits(['move-left', 'move-right']);
+
 const disabled = ref(false);
 
 const classes = computed(() => {
@@ -157,11 +160,20 @@ const classes = computed(() => {
       :class="classes"
     />
   </div>
-  <Button
-    size="small"
-    :label="disabled ? 'Enable' : 'Disable'"
-    @click="disabled = !disabled"
-  />
+  <div class="grid grid-cols-1 gap-1">
+    <Button
+      size="small"
+      :label="disabled ? 'Enable' : 'Disable'"
+      @click="disabled = !disabled"
+    />
+    <div class="grid grid-cols-2 gap-1">
+      <Button
+        size="small"
+        label="Move left"
+        @click="emit('move-left')"
+      /><Button size="small" label="Move right" @click="emit('move-right')" />
+    </div>
+  </div>
 </template>
 
 <style scoped>
