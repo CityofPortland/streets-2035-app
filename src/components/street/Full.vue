@@ -54,27 +54,34 @@
           </router-link>
         </div>
         <div v-else>
-          <Box
-            color="gray"
-            variant="light"
-            class="text-sm px-2 py-1 inline-flex items-center gap-2 rounded-md"
+          <Help
+            :help="
+              street.oneWay
+                ? 'This is a one-way segment'
+                : 'This is a non-standard width segment'
+            "
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              class="w-5 h-5"
-              aria-label="No symbol"
+            <Box
+              color="gray"
+              variant="light"
+              class="text-sm px-2 py-1 inline-flex items-center gap-2 rounded-md"
             >
-              <path
-                fill-rule="evenodd"
-                d="M5.965 4.904l9.131 9.131a6.5 6.5 0 00-9.131-9.131zm8.07 10.192L4.904 5.965a6.5 6.5 0 009.131 9.131zM4.343 4.343a8 8 0 1111.314 11.314A8 8 0 014.343 4.343z"
-                clip-rule="evenodd"
-              />
-            </svg>
-
-            <span>No cross-sections available</span>
-          </Box>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                class="w-5 h-5"
+                aria-label="No symbol"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.965 4.904l9.131 9.131a6.5 6.5 0 00-9.131-9.131zm8.07 10.192L4.904 5.965a6.5 6.5 0 009.131 9.131zM4.343 4.343a8 8 0 1111.314 11.314A8 8 0 014.343 4.343z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span>No cross-sections available</span>
+            </Box>
+          </Help>
         </div>
       </div>
 
@@ -113,6 +120,7 @@ import { defineComponent, toRefs } from 'vue';
 import Anchor from '@/elements/anchor/Anchor.vue';
 import Box from '@/elements/box/Box';
 import Button from '@/elements/button/Button.vue';
+import Help from './Help.vue';
 
 import { Street } from '@/composables/use-street';
 import { useStreetClassification } from '@/composables/use-street-classification';
@@ -124,6 +132,7 @@ export default defineComponent({
     Anchor,
     Box,
     Button,
+    Help,
   },
   props: {
     street: {
