@@ -28,7 +28,7 @@
       </Field>
     </FieldList>
     <div class="flex flex-col justify-center gap-3 flex-wrap">
-      <div v-if="crossSectionRoute">
+      <div v-if="crossSectionRoute && !street.oneWay">
         <router-link
           :to="crossSectionRoute"
           class="border-b-2 border-current text-sm font-medium"
