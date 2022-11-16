@@ -1,20 +1,21 @@
 <template>
-  <div class="flex items-center space-x-2">
+  <div ref="componentRef" class="flex items-center space-x-2 relative">
     <slot></slot>
-    <button type="button" title="Show more information" @click="show = !show">
+    <button type="button" title="Show more information" @click.stop="toggle">
       <Icon type="solid" name="question-mark-circle" class="w-4 h-4" />
     </button>
   </div>
-  <slot name="help">
+  <slot name="help" :help="help" :show="show">
     <p v-show="show" class="text-xs text-gray-600">
       {{ help }}
     </p>
   </slot>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, Ref, ref } from 'vue';
 
 import Icon from '@/elements/icon/Icon.vue';
+import { useWindowEvent } from '@/composables/useWindowEvent';
 
 export default defineComponent({
   name: 'Help',
@@ -23,8 +24,30 @@ export default defineComponent({
     help: String,
   },
   setup() {
+    const componentRef: Ref<HTMLElement | null> = ref(null);
+    const show = ref(false);
+
+    const listener = (event: Event) => {
+      const target = event.target as HTMLElement;
+
+      if (!show.value) return;
+
+      if (componentRef.value && componentRef.value.contains(target)) return;
+
+      show.value = false;
+    };
+
+    const toggle = () => {
+      show.value = !show.value;
+    };
+
+    useWindowEvent('focusin', listener);
+    useWindowEvent('mousedown', listener);
+
     return {
-      show: ref(false),
+      componentRef,
+      show,
+      toggle,
     };
   },
 });

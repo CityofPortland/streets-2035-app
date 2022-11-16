@@ -15,7 +15,6 @@
         <Nav
           list-class="flex flex-col gap-2 md:gap-3 md:flex-row md:items-center"
         >
-          <NavItem text="Map" to="/streets" />
           <Dropdown
             label="Information"
             id="information-button"
@@ -55,6 +54,8 @@
               </DropdownList>
             </template>
           </Dropdown>
+          <NavItem text="Map" to="/streets" />
+          <NavItem text="Cross-Sections" to="/cross-section" />
         </Nav>
         <Nav class="mt-3 md:mt-0 md:ml-auto">
           <SignIn v-if="!user" />

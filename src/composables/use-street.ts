@@ -21,7 +21,6 @@ export type Classifications = {
 };
 
 export type Street = {
-  [x: string]: any;
   id: string;
   name: string;
   block?: number;
@@ -111,6 +110,7 @@ export function useStreet(): {
               name
               block
               width
+              oneWay
               classifications {
                   ${classifications.join(' ')}
               }

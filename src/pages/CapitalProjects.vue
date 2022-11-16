@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Anchor from '@/elements/anchor/Anchor.vue';
 import Box from '@/elements/box/Box';
 import Image from '@/elements/img/Image.vue';
 import Legend from '@/components/cross-section/Legend.vue';
@@ -222,10 +223,14 @@ const options = computed(() => {
         document, both internally and to the public, how they have considered
         trade-offs in justifying the recommendation of a balanced or alternative
         cross-section, where applicable. The visualization of tradeoffs matrix
-        is complemented by an Analytical Considerations document, which helps
-        staff to consistently identify when a balanced section is deemed
-        acceptable for adequately meeting all of the modal priorities, or to
-        identify mitigations for the modes not served directly on the corridor.
+        is complemented by an
+        <Anchor
+          :url="`${publicPath}doc/Right-of-way Tradeoff Analysis Handbook.pdf`"
+          >Analytical Considerations document</Anchor
+        >, which helps staff to consistently identify when a balanced section is
+        deemed acceptable for adequately meeting all of the modal priorities, or
+        to identify mitigations for the modes not served directly on the
+        corridor.
       </p>
       <p>The process utilizes the following steps:</p>
       <ul>
