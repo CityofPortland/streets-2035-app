@@ -1,14 +1,18 @@
 <script setup lang="ts">
+import Anchor from '@/elements/anchor/Anchor.vue';
 import Box from '@/elements/box/Box';
 import Image from '@/elements/img/Image.vue';
 import Legend from '@/components/cross-section/Legend.vue';
 import Scoresheet from '@/components/cross-section/Scoresheet.vue';
 import { useCrossSection } from '@/composables/cross-section';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 const publicPath = process.env.BASE_URL;
-const width = 36;
-const { options } = useCrossSection(ref({ width }));
+const width = 50;
+const options = computed(() => {
+  const { options } = useCrossSection(ref({ width }));
+  return options.value.slice(0, 2);
+});
 </script>
 
 <template>
@@ -187,8 +191,8 @@ const { options } = useCrossSection(ref({ width }));
           :priorities="{
             pedestrian: 'higher',
             bicycle: 'higher',
-            transit: 'higher',
-            freight: 'higher',
+            transit: 'lower',
+            freight: 'none',
             traffic: 'higher',
           }"
         >
@@ -219,10 +223,14 @@ const { options } = useCrossSection(ref({ width }));
         document, both internally and to the public, how they have considered
         trade-offs in justifying the recommendation of a balanced or alternative
         cross-section, where applicable. The visualization of tradeoffs matrix
-        is complemented by an Analytical Considerations document, which helps
-        staff to consistently identify when a balanced section is deemed
-        acceptable for adequately meeting all of the modal priorities, or to
-        identify mitigations for the modes not served directly on the corridor.
+        is complemented by an
+        <Anchor
+          :url="`${publicPath}doc/Right-of-way Tradeoff Analysis Handbook.pdf`"
+          >Analytical Considerations document</Anchor
+        >, which helps staff to consistently identify when a balanced section is
+        deemed acceptable for adequately meeting all of the modal priorities, or
+        to identify mitigations for the modes not served directly on the
+        corridor.
       </p>
       <p>The process utilizes the following steps:</p>
       <ul>

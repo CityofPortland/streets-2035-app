@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import Anchor from '@/elements/anchor/Anchor.vue';
 import Scorebox from './Scorebox.vue';
 
 const classes = ['w-24', 'h-10'];
+const publicPath = process.env.BASE_URL;
 </script>
 
 <template>
@@ -23,6 +25,14 @@ const classes = ['w-24', 'h-10'];
           <dd>Not accomodated: Justification required</dd>
         </div>
       </dl>
+      <p class="prose-sm">
+        Read the
+        <Anchor
+          :url="`${publicPath}doc/Right-of-way Tradeoff Analysis Handbook.pdf`"
+          >Analytical Considerations document</Anchor
+        >
+        to learn more about spatial tradeoffs.
+      </p>
     </div>
     <div>
       <h3>Policy Priorities</h3>
