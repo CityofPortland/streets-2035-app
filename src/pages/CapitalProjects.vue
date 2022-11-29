@@ -23,7 +23,7 @@ const options = computed(() => {
         When a road is re-designed as part of a capital project, road
         reconstruction, or in some instances as part of a repaving project, PBOT
         needs to determine the appropriate cross-section for the street.
-        Described below, Streets 2035 developed a decision-making process that
+        Described below, StreetsPDX developed a decision-making process that
         provides PBOT with an organized and rational process for considering a
         roadway's context, the trade-offs between different right-of-way uses,
         and guidance for what to do when there is not sufficient space to
@@ -34,7 +34,7 @@ const options = computed(() => {
       <section class="prose">
         <h2>Identify project parameters</h2>
         <p>
-          Locate your project using the Streets 2035 map. Click a street segment
+          Locate your project using the StreetsPDX map. Click a street segment
           to access information about its street design and other TSP
           classifications, width, and the typical cross section(s) associated
           with it.
@@ -276,7 +276,7 @@ const options = computed(() => {
     <figure class="prose-lg">
       <Image :src="`${publicPath}img/capital-projects/gantt.webp`" />
       <figcaption>
-        This graphic illustrates how the Streets 2035 framework fits into the
+        This graphic illustrates how the StreetsPDX framework fits into the
         overall project development process. It supports the development and
         preliminary evaluation of cross sections to be advanced to the public,
         complementing existing PBOT processes such as those for project

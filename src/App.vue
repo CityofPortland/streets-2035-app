@@ -8,7 +8,7 @@
       <template v-slot:branding>
         <router-link to="/" class="w-full flex items-center">
           <Logo class="w-16 md:w-20 mr-3 flex-shrink-0" />
-          <span class="truncate text-xl">Street Design</span>
+          <span class="truncate text-xl">StreetsPDX</span>
         </router-link>
       </template>
       <template v-slot:menu>

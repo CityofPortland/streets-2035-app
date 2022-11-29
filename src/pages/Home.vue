@@ -1,21 +1,17 @@
 <template>
   <article class="max-w-7xl px-4 mx-auto mt-4">
     <header class="prose-lg">
-      <h1>
-        Welcome to
-        <abbr title="Portland Bureau of Transportation">PBOT's</abbr>
-        Street Design Framework!
-      </h1>
+      <h1>Welcome to StreetsPDX</h1>
       <p>
-        The Street Design Framework is intended to support policy implementation
-        and decision-making in the right-of-way consistent with the City's 2035
-        Comprehensive Plan. It brings together the various policies and
-        corresponding design standards that influence space in the right-of-way
-        as part of private development and with city led capital projects.
-        Because individual sites and projects in constrained urban environments
-        can vary in their challenges and opportunities, the framework also
-        identifies the deviation processes that provide flexibility when it is
-        not possible to meet all applicable standards.
+        StreetsPDX is a design framework intended to support policy
+        implementation and decision-making in the right-of-way consistent with
+        the City's 2035 Comprehensive Plan. It brings together the various
+        policies and corresponding design standards that influence space in the
+        right-of-way as part of private development and with city led capital
+        projects. Because individual sites and projects in constrained urban
+        environments can vary in their challenges and opportunities, the
+        framework also identifies the deviation processes that provide
+        flexibility when it is not possible to meet all applicable standards.
       </p>
       <figure>
         <Image class="w-full" :src="`${publicPath}img/home/hero.webp`" />
