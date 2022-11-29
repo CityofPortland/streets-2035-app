@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import Box from '@/elements/box/Box';
+import { computed } from 'vue';
 
-defineProps({
+const props = defineProps({
   label: {
     type: String,
   },
@@ -9,6 +10,8 @@ defineProps({
     type: Number,
   },
 });
+
+const extra = computed(() => Math.abs((props.score || 0) - 3));
 </script>
 
 <template>
@@ -19,6 +22,11 @@ defineProps({
         v-for="n in score"
         :key="n"
         class="bg-current h-4 w-4 rounded-full"
+      />
+      <span
+        v-for="n in extra"
+        :key="n"
+        class="bg-current h-4 w-4 rounded-full opacity-25"
       />
     </Box>
   </Box>
