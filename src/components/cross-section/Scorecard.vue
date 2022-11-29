@@ -163,7 +163,7 @@ const classes = computed(() => {
   <div class="grid grid-cols-1 gap-1">
     <Button
       size="small"
-      :label="disabled ? 'Enable' : 'Disable'"
+      :label="disabled ? 'Show' : 'Hide'"
       @click="disabled = !disabled"
     />
     <div class="grid grid-cols-2 gap-1">
