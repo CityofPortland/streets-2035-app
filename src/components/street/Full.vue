@@ -58,7 +58,7 @@
             :help="
               street.oneWay
                 ? 'This is a one-way segment'
-                : 'This is a non-standard width segment'
+                : 'This segment is not a typical width'
             "
           >
             <Box
