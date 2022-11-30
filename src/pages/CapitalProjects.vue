@@ -234,7 +234,7 @@ const options = computed(() => {
           tradeoffs matrix is complemented by an
           <Anchor
             :url="`${publicPath}doc/Right-of-way Tradeoff Analysis Handbook.pdf`"
-            >Analytical Considerations document</Anchor
+            >PBOT Tradeoffs Analysis Booklet</Anchor
           >, which helps staff to consistently identify when a balanced section
           is deemed acceptable for adequately meeting all of the modal
           priorities, or to identify mitigations for the modes not served

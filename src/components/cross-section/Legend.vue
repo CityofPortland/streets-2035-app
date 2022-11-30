@@ -29,7 +29,7 @@ const publicPath = process.env.BASE_URL;
         Read the
         <Anchor
           :url="`${publicPath}doc/Right-of-way Tradeoff Analysis Handbook.pdf`"
-          >Analytical Considerations document</Anchor
+          >PBOT Tradeoffs Analysis Booklet</Anchor
         >
         to learn more about spatial tradeoffs.
       </p>

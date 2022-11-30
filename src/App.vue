@@ -13,51 +13,18 @@
       </template>
       <template v-slot:menu>
         <Nav
+          class="md:ml-auto"
           list-class="flex flex-col gap-2 md:gap-3 md:flex-row md:items-center"
         >
-          <Dropdown
-            label="Information"
-            id="information-button"
-            class="w-full md:w-auto justify-between"
-          >
-            <template v-slot="{ open, toggle }">
-              <DropdownList
-                id="information-menu"
-                color="white"
-                :open="open"
-                class="gap-2 md:origin-top-left md:absolute md:left-0 md:w-64 mt-1 bg-white text-black rounded border border-current shadow-md focus:outline-none"
-              >
-                <NavItem
-                  role="menuitem"
-                  text="Street types"
-                  to="/street-types"
-                  @click="toggle"
-                />
-                <NavItem
-                  role="menuitem"
-                  text="Right-of-way policies"
-                  to="//portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
-                  @click="toggle"
-                />
-                <NavItem
-                  role="menuitem"
-                  text="Development-Related Public improvements"
-                  to="/public-improvements"
-                  @click="toggle"
-                />
-                <NavItem
-                  role="menuitem"
-                  text="Capital Projects"
-                  to="/capital-projects"
-                  @click="toggle"
-                />
-              </DropdownList>
-            </template>
-          </Dropdown>
-          <NavItem text="Map" to="/streets" />
+          <NavItem text="Street Types" to="/street-types" />
+          <NavItem text="Capital Projects" to="/capital-projects" />
+          <NavItem text="Public Improvements" to="/public-improvements" />
+          <NavItem
+            text="Right-of-way Policies"
+            to="//portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
+          />
+          <NavItem text="Street Map" to="/streets" />
           <NavItem text="Cross-Sections" to="/cross-section" />
-        </Nav>
-        <Nav class="mt-3 md:mt-0 md:ml-auto">
           <SignIn v-if="!user" />
           <LoggedIn v-else />
         </Nav>
@@ -66,7 +33,7 @@
     <main class="flex-grow">
       <router-view />
     </main>
-    <Footer color="gray" variant="light" class="mt-12">
+    <Footer color="gray" variant="light">
       <template v-slot:middle>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
           <Nav title="General information">
@@ -94,8 +61,6 @@ import {
   ref,
 } from 'vue';
 
-import Dropdown from './components/dropdown/Dropdown.vue';
-import DropdownList from './components/dropdown/DropdownList.vue';
 import Footer from '@/components/footer/Footer.vue';
 import Header from '@/components/header/Header.vue';
 import Logo from '@/components/Logo.vue';
@@ -133,8 +98,6 @@ export default defineComponent({
     };
   },
   components: {
-    Dropdown,
-    DropdownList,
     Footer,
     Header,
     LoggedIn,
