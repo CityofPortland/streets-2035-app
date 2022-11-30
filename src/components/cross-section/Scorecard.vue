@@ -40,6 +40,10 @@ defineProps({
       traffic: 'higher',
     }),
   },
+  showControls: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 const emit = defineEmits(['move-left', 'move-right']);
@@ -160,7 +164,7 @@ const classes = computed(() => {
       :class="classes"
     />
   </div>
-  <div class="grid grid-cols-1 gap-1">
+  <div v-if="showControls" class="grid grid-cols-1 gap-1">
     <Button
       size="small"
       :label="disabled ? 'Show' : 'Hide'"
