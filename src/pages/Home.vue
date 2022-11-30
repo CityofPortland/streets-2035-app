@@ -165,6 +165,58 @@
           </Box>
         </div>
       </Box>
+      <Box
+        as="section"
+        color="blue"
+        variant="light"
+        class="py-8 grid grid-cols-1 justify-items-center"
+      >
+        <Box as="div" class="p-12 flex flex-col gap-4 prose">
+          <header
+            class="mx-auto uppercase flex flex-col gap-2 items-center not-prose"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-24 h-24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
+              />
+            </svg>
+            <h2 class="text-3xl text-center font-bold">
+              Right-of-way Policies
+            </h2>
+          </header>
+          <p>
+            We have created a page on portland.gov that identifies commonly
+            referenced design guidelines, standards and clearance requirements
+            that influence how space is organized in the public right-of-way.
+            This is not an exhaustive list, as the multiple bureaus that operate
+            within the right-of-way have developed a variety of documents that
+            inform their work and may apply to a given city-led or private
+            development project. This is a starting point to understand all the
+            policies that apply in the public right-of-way.
+          </p>
+          <footer class="mt-auto flex flex-col items-center not-prose">
+            <router-link
+              to="//portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
+            >
+              <Button
+                as="span"
+                label="Read about right-of-way policies"
+                size="large"
+                color="orange"
+              />
+            </router-link>
+          </footer>
+        </Box>
+      </Box>
       <Box as="section" color="cyan" variant="dark" class="py-8">
         <div class="text-center">
           <p>
@@ -173,7 +225,7 @@
             projects.
           </p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2">
+        <div class="grid grid-cols-1 md:grid-cols-2 justify-items-center">
           <Box as="div" class="p-12 flex flex-col gap-4 prose">
             <header
               class="mx-auto uppercase flex flex-col gap-2 items-center not-prose"
