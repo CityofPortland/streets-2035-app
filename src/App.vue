@@ -33,7 +33,7 @@
     <main class="flex-grow">
       <router-view />
     </main>
-    <Footer color="gray" variant="light" class="mt-12">
+    <Footer color="gray" variant="light">
       <template v-slot:middle>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
           <Nav title="General information">
