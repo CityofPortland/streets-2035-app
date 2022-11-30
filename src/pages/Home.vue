@@ -4,7 +4,7 @@
       as="header"
       color="blue"
       variant="dark"
-      class="grid grid-cols-1 md:grid-cols-2 items-center"
+      class="grid grid-cols-1 md:grid-cols-3 items-center"
     >
       <Box as="section" class="prose-lg px-12 py-8">
         <h1>
@@ -24,9 +24,8 @@
           flexibility when it is not possible to meet all applicable standards.
         </p>
       </Box>
-      <figure class="px-12">
+      <figure class="md:col-span-2">
         <Image
-          class="w-full border border-current rounded shadow"
           :src="`${publicPath}img/home/hero.webp`"
           alt="Rendering of a street to show the different responsibilities in the right-of-way"
         />
@@ -74,7 +73,6 @@
             <footer class="mt-auto flex flex-col items-center not-prose">
               <router-link to="/street-types">
                 <Button
-                  as="span"
                   label="Read about street types"
                   size="large"
                   color="orange"
@@ -113,7 +111,6 @@
             <footer class="mt-auto flex flex-col items-center not-prose">
               <router-link to="/public-improvements">
                 <Button
-                  as="span"
                   label="Read about public improvements"
                   size="large"
                   color="orange"
@@ -155,7 +152,6 @@
             <footer class="mt-auto flex flex-col items-center not-prose">
               <router-link to="/capital-projects">
                 <Button
-                  as="span"
                   label="Read about capital projects"
                   size="large"
                   color="orange"
@@ -208,7 +204,6 @@
               to="//portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
             >
               <Button
-                as="span"
                 label="Read about right-of-way policies"
                 size="large"
                 color="orange"
@@ -257,12 +252,7 @@
             </p>
             <footer class="mt-auto flex flex-col items-center not-prose">
               <router-link to="/streets">
-                <Button
-                  as="span"
-                  label="Browse the map"
-                  size="large"
-                  color="orange"
-                />
+                <Button label="Browse the map" size="large" color="orange" />
               </router-link>
             </footer>
           </Box>
@@ -296,7 +286,6 @@
             <footer class="mt-auto flex flex-col items-center not-prose">
               <router-link to="/cross-section">
                 <Button
-                  as="span"
                   label="Use the cross-section tool"
                   size="large"
                   color="orange"
