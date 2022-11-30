@@ -3,12 +3,25 @@ import Anchor from '@/elements/anchor/Anchor.vue';
 import Box from '@/elements/box/Box';
 import Image from '@/elements/img/Image.vue';
 import Legend from '@/components/cross-section/Legend.vue';
+import Message from '@/components/message/Message.vue';
+import Scorebox from '@/components/cross-section/Scorebox.vue';
 import Scoresheet from '@/components/cross-section/Scoresheet.vue';
 import { useCrossSection } from '@/composables/cross-section';
 import { computed, ref } from 'vue';
+import { onBeforeRouteLeave } from 'vue-router';
+import { useHeaderStore } from '@/store/header';
 
 const publicPath = process.env.BASE_URL;
 const width = 50;
+
+onBeforeRouteLeave(() => {
+  const store = useHeaderStore();
+  store.setHeader({ color: 'transparent' });
+});
+
+const store = useHeaderStore();
+store.setHeader({ color: 'red' });
+
 const options = computed(() => {
   const { options } = useCrossSection(ref({ width }));
   return options.value.slice(0, 3);
@@ -16,181 +29,193 @@ const options = computed(() => {
 </script>
 
 <template>
-  <article class="max-w-7xl px-4 mx-auto">
-    <header class="prose-lg">
-      <h1>Capital Projects</h1>
-      <p>
-        When a road is re-designed as part of a capital project, road
-        reconstruction, or in some instances as part of a repaving project, PBOT
-        needs to determine the appropriate cross-section for the street.
-        Described below, Streets 2035 developed a decision-making process that
-        provides PBOT with an organized and rational process for considering a
-        roadway's context, the trade-offs between different right-of-way uses,
-        and guidance for what to do when there is not sufficient space to
-        accommodate all policy-specified uses to their preferred dimensions.
-      </p>
-    </header>
-    <main class="grid grid-cols-1 gap-8">
-      <section class="prose">
-        <h2>Identify project parameters</h2>
+  <article>
+    <Box
+      as="header"
+      color="red"
+      variant="light"
+      class="grid grid-cols-1 md:grid-cols-3 items-center mb-8"
+    >
+      <Box as="section" class="prose-lg px-12 py-8">
+        <h1>Capital Projects</h1>
         <p>
-          Locate your project using the Streets 2035 map. Click a street segment
-          to access information about its street design and other TSP
-          classifications, width, and the typical cross section(s) associated
+          When a road is re-designed as part of a capital project, road
+          reconstruction, or in some instances as part of a repaving project,
+          PBOT needs to determine the appropriate cross-section for the street.
+          StreetsPDX developed a decision-making process that provides PBOT with
+          an organized and rational process for considering a roadway's context,
+          the trade-offs between different right-of-way uses, and guidance for
+          what to do when there is not sufficient space to accommodate all
+          policy-specified uses to their preferred dimensions.
+        </p>
+      </Box>
+      <figure class="md:col-span-2">
+        <Image
+          :src="`${publicPath}img/capital-projects/tractor.webp`"
+          alt="Rendering of a street to show the different responsibilities in the right-of-way"
+        />
+      </figure>
+    </Box>
+    <main class="px-12 grid grid-cols-1 gap-8">
+      <section class="prose">
+        <Box as="h2" class="inline flex items-center gap-2">
+          <span class="px-3 py-1 border border-current rounded-full">1</span
+          ><span>Identify project parameters and cross-sections</span>
+        </Box>
+        <p>
+          Locate your project using the StreetsPDX map. Click a street to access
+          its street design and other transportation system plan (TSP)
+          classifications, street width, and typical cross sections associated
           with it.
         </p>
-        <h2>Identify cross-section options</h2>
         <p>
-          Click on the “View cross sections” button to see the cross-section
-          options available for that street segment. Typical Sections illustrate
-          the various ways that the street cross-section could be laid out and
-          are available for the eight most common roadway widths in Portland.
+          Click “View cross sections” button to see the cross-section options
+          available for that street segment.
         </p>
-
         <p>
-          Typical sections can be accessed from the curb-to-curb width drop-down
-          menu on the [insert title] page or by selecting a specific road
-          segment from the map. Select the "Option" link below each section to
-          launch a new page with "episodic" cross sections that illustrate
-          elements not needed continuously throughout a corridor (such as left
-          turn lanes, pedestrian crossings, or transit priority lanes) and help
-          visualize where the space for these elements comes from.
+          Select the "Option" link below each cross section to see "episodic"
+          sections that illustrate elements that might be needed periodically
+          (such as left turn lanes, pedestrian crossings, or transit priority
+          lanes).
         </p>
-        <p>Cross sections can be classified ideal, balanced or alternative:</p>
-        <ul>
-          <li>
-            <p>
-              An “Ideal” cross-section is one where all right-of-way uses
-              identified in policy can be accommodated to their preferred
-              dimensions.
-            </p>
-          </li>
-          <li>
-            <p>
-              A “Balanced” cross-section reflects a level of compromise from the
-              “ideal” cross-section where all right-of-way uses identified in
-              policy can be accommodated, but not all of to their preferred
-              dimensions due to space constraints. “Balanced” cross-sections
-              need to be evaluated to determine if the compromises to the
-              accommodation of each mode are acceptable.
-            </p>
-          </li>
-          <li>
-            <p>
-              An “Alternative” cross-section is needed when a balanced
-              cross-section cannot be achieved in a manner acceptable to the
-              right-of-way uses identified in policy. “Alternative” sections may
-              require a different accommodation for one or more right-of-way
-              uses, such as providing travel for a particular mode on a parallel
-              route.
-            </p>
-          </li>
-        </ul>
-        <h3>What if the street does not have an available typical section?</h3>
-        <p>
-          Typical sections are intended as a starting point for capital project
-          design. Staff may develop new cross sections to complement the
-          existing typical sections or when typical sections are not available
-          for a given street width. This could include adapting a cross section
-          from a narrower street width. Staff would then apply the framework for
-          working through trade-offs.
-        </p>
+        <Message
+          color="blue"
+          variant="light"
+          icon="information"
+          summary="Cross sections can be classified ideal, balanced or alternative"
+          class="mb-4"
+        >
+          <p>
+            “Ideal” - all right-of-way uses identified in policy can be
+            accommodated to their preferred dimensions.
+          </p>
+          <p>
+            “Balanced” - all right-of-way uses identified in policy can be
+            accommodated, but not all to preferred dimensions due to space
+            constraints.
+          </p>
+          <p>
+            “Alternative” - needed when a balanced cross-section cannot be
+            achieved in a manner acceptable to the right-of-way uses identified
+            in policy.
+          </p>
+        </Message>
+        <Message
+          color="tangerine"
+          variant="light"
+          icon="question"
+          summary="What if the street does not have an available typical section?"
+        >
+          <p>
+            Typical sections are intended as a starting point for capital
+            project design. Staff may develop new cross sections to complement
+            the existing typical sections or when typical sections are not
+            available for a given street width. This could include adapting a
+            cross section from a similar street width. Staff would then apply
+            the framework for working through trade-offs.
+          </p>
+        </Message>
       </section>
       <section class="prose">
-        <h2>
-          Select street section(s) to advance (framework for considering
-          tradeoffs)
-        </h2>
+        <Box as="h2" class="inline flex items-center gap-2">
+          <span class="px-3 py-1 border border-current rounded-full">2</span>
+          <span>Select Street Sections to Advance</span>
+        </Box>
         <p>
-          Based on the project goals and modal priorities, choose one or more of
-          the available street cross sections to advance. A matrix comparison of
-          the typical sections is automatically generated and provides a
-          visualization of the potential trade-offs for each cross-section
-          option. The visualization is generated based on the street type, the
-          width of the street, and the modal priorities identified for the
-          street in the Transportation System Plan (TSP). The priority drop-down
-          boxes at the top of the page reflect the TSP designations of the
-          particular street segment selected from the map.
+          Based on project goals and modal priorities, choose one or more
+          sections to advance. A matrix comparison is automatically generated
+          and provides a visualization of potential trade-offs for each option.
+          The visualization is generated based on street type, width, and modal
+          priorities identified in the TSP.
         </p>
         <p>
-          Providing this evaluation framework supports consistency in allocating
-          the right-of-way and working through the trade-offs. These decisions
-          will be documented by PBOT as part of the Capital Projects development
-          process.
+          The matrix includes evaluations for mobility and access. Mobility
+          evaluates the ability to travel along a corridor, whether as a
+          pedestrian or by bicycle, transit, freight or motor vehicle. Access
+          evaluates the ability to access destinations on the corridor,
+          including the ability to safely cross the street, reach destinations
+          by bicycle, access the curb at transit stops, and to serve loading and
+          parking needs.
         </p>
-        <p>
-          The transportation functions include separate evaluations for mobility
-          and access.
-        </p>
-        <ul>
-          <li>
+        <Message
+          color="blue"
+          variant="light"
+          icon="information"
+          summary="Color coding highlights where trade-offs need to be considered"
+          class="mb-4"
+        >
+          <dl class="mt-4 grid grid-cols-1 gap-1 items-center md:w-50">
+            <div class="flex items-center gap-4">
+              <dt><Scorebox :score="3" class="w-20 h-10" /></dt>
+              <dd>
+                Mode or use is accommodated at preferred dimensions in the
+                cross-section
+              </dd>
+            </div>
+            <div class="flex items-center gap-4">
+              <dt><Scorebox :score="2" class="w-20 h-10" /></dt>
+              <dd>
+                Mode or use supported with less than preferred dimensions.
+                Analyze to determine if trade-offs are acceptable and/or can be
+                mitigated through design
+              </dd>
+            </div>
+            <div class="flex items-center gap-4">
+              <dt><Scorebox :score="1" class="w-20 h-10" /></dt>
+              <dd>
+                Mode or use not accommodated; depending on policy designations
+                of street, may be an “alternative” section
+              </dd>
+            </div>
+          </dl>
+        </Message>
+        <Message
+          color="blue"
+          variant="light"
+          icon="information"
+          summary="The shading identifies the policy priority of each function on that
+          street"
+          class="mb-4"
+        >
+          <dl class="mt-4 grid grid-cols-1 gap-1 items-center md:w-50">
+            <div class="flex items-center gap-4">
+              <dt>
+                <Scorebox
+                  color="white"
+                  :score="3"
+                  priority="lower"
+                  class="w-20 h-10"
+                />
+              </dt>
+              <dd>Mode or use is not required by policy</dd>
+            </div>
+            <div class="flex items-center gap-4">
+              <dt>
+                <Scorebox
+                  color="white"
+                  :score="3"
+                  priority="none"
+                  class="w-20 h-10"
+                />
+              </dt>
+              <dd>
+                Street is on the network for that mode of transportation, but
+                not with the highest priority designation *
+              </dd>
+            </div>
+          </dl>
+          <footer class="prose-sm">
             <p>
-              <strong>Mobility</strong> evaluates the ability to travel along a
-              corridor, whether as a pedestrian or by bicycle, transit, freight
-              or motor vehicle.
+              * On Main Streets, hatched shading is applied to the mobility
+              functions only, to illustrate there is still a need to consider
+              access to adjacent land uses. On Corridors, a lower classification
+              means that neither mobility nor access are high priorities for
+              that mode by policy, so both cells are shaded.
             </p>
-          </li>
-          <li>
-            <p>
-              <strong>Access</strong> evaluates the ability to access
-              destinations on the corridor, including the ability to safely
-              cross the street, reach destinations by bicycle, access the curb
-              at transit stops, and to serve loading and parking needs.
-            </p>
-          </li>
-        </ul>
-        <p>
-          The color-coding highlights where trade-offs need to be considered:
-        </p>
-        <ul>
-          <li>
-            Green cells: mean that the mode or use is accommodated at preferred
-            dimensions in the cross-section.
-          </li>
-          <li>
-            Yellow cells: mean that the mode or use is supported but with
-            minimum or less than preferred dimensions. These trade-offs need to
-            be further analyzed to determine if they are acceptable and/or if
-            they can be mitigated through project design (see "Analytical
-            Considerations" section below).
-          </li>
-          <li>
-            Red cells: mean that the mode or use is not accommodated, and,
-            depending on the policy designations of the street, this may be
-            deemed an “alternative” cross-section. Decisions to not accommodate
-            a mode or use that is established in policy need to be justified
-            (see "Justification of Alternative" section below).
-          </li>
-        </ul>
-        <p>
-          The shading identifies the policy priority of each function on that
-          street:
-        </p>
-        <ul>
-          <li>
-            Shaded cells (white): mean that the mode or use is not required by
-            policy.
-          </li>
-          <li>
-            Shaded cells (hatched): mean that the street is on the network for
-            that mode of transportation, but not with the highest priority
-            designation.
-            <ul>
-              <li>
-                On Main Streets, hatched shading is applied to the mobility
-                functions only, to illustrate there is still a need to consider
-                access to adjacent land uses.
-              </li>
-              <li>
-                On Corridors, a lower classification means that neither mobility
-                nor access are high priorities for that mode by policy, so both
-                cells are shaded.
-              </li>
-            </ul>
-          </li>
-        </ul>
+          </footer>
+        </Message>
       </section>
-      <figure class="prose-lg">
+      <figure class="prose max-w-none">
         <Scoresheet
           class="py-2"
           :options="options"
@@ -224,64 +249,66 @@ const options = computed(() => {
         </figcaption>
       </figure>
       <section class="prose">
-        <h2>Justification of selected section</h2>
+        <Box as="h2" class="inline flex items-center gap-2">
+          <span class="px-3 py-1 border border-current rounded-full">3</span>
+          <span>Justification of selected section</span>
+        </Box>
         <p>
-          The decision-making process provides a framework for evaluating the
-          tradeoffs between cross-sections. This process is intended to help
-          staff document, both internally and to the public, how they have
-          considered trade-offs in justifying the recommendation of a balanced
-          or alternative cross-section, where applicable. The visualization of
-          tradeoffs matrix is complemented by an
+          This framework for evaluating tradeoffs between cross-sections is
+          intended to help staff document, both internally and to the public,
+          how they have considered trade-offs in the recommendation of a
+          balanced or alternative cross-section, where applicable.
+        </p>
+        <p>
+          A
           <Anchor
             :url="`${publicPath}doc/Right-of-way Tradeoff Analysis Handbook.pdf`"
-            >PBOT Tradeoffs Analysis Booklet</Anchor
-          >, which helps staff to consistently identify when a balanced section
-          is deemed acceptable for adequately meeting all of the modal
-          priorities, or to identify mitigations for the modes not served
-          directly on the corridor.
+            >Right-of-Way Tradeoff Analysis Handbook</Anchor
+          >
+          helps staff to consistently identify when a balanced section is deemed
+          acceptable for adequately meeting all modal priorities, or to identify
+          mitigations for the modes not served directly on the corridor.
         </p>
-        <p>The process utilizes the following steps:</p>
-        <ul>
-          <li>
-            Identify the yellow and red cells on each cross section being
-            considered and refer to the “Analysis of Tradeoffs” column to
-            identify analyses that inform whether a tradeoff is acceptable.
-            These analyses may identify that the tradeoff is of minimal impact
-            or can be addressed through project design.
-          </li>
-          <li>
-            The “Potential Reasons for Accepting Tradeoffs” directs project
-            managers to assess and attempt to overcome potential constraints to
-            achieving a balanced cross section. This step also supports
+        <p>
+          Identify the yellow and red cells on each cross section being
+          considered and refer to the Handbook to determine whether a tradeoff
+          is acceptable.
+        </p>
+        <Message
+          color="blue"
+          variant="light"
+          icon="information"
+          summary="The process for evaluating tradeoffs utilizes the following steps"
+          class="mb-4"
+        >
+          <p>
+            The “Analysis of Tradeoffs” column identifies analyses to inform if
+            a tradeoff is acceptable (e.g., of minimal impact or can be
+            addressed through project design).
+          </p>
+          <p>
+            The “Potential Reasons for Accepting Tradeoffs” column supports
             consistent documentation when a constraint cannot be overcome.
-          </li>
-          <li>
+          </p>
+          <p>
             The “Options to Mitigate Tradeoffs” column identifies options to
-            mitigate impacts to a mode or use, either due to a tradeoff from
+            mitigate impacts to a mode or use, either due to varying from
             preferred dimensions or when a use is not accommodated on the
             corridor.
-          </li>
-        </ul>
-        <p>
-          For "balanced" sections that meet all policies, this framework helps
-          staff evaluate any tradeoffs or compromises, and why they are deemed
-          acceptable. The justification of an "alternative" cross-section is an
-          expectation of the decision-making framework when recommending a
-          cross-section that does not meet an applicable adopted policy (e.g.,
-          if a decision is made to not serve a mode designated in the TSP
-          classifications).
-        </p>
+          </p>
+        </Message>
       </section>
+      <figure class="prose max-w-none">
+        <Image :src="`${publicPath}img/capital-projects/gantt.webp`" />
+        <figcaption>
+          This graphic illustrates how the Streets 2035 framework fits into the
+          overall project development process. It supports the development and
+          preliminary evaluation of cross sections to be advanced to the public,
+          complementing existing PBOT processes such as those for project
+          selection, application of the equity matrix, and stakeholder
+          engagement.
+        </figcaption>
+      </figure>
     </main>
-    <figure class="prose-lg">
-      <Image :src="`${publicPath}img/capital-projects/gantt.webp`" />
-      <figcaption>
-        This graphic illustrates how the Streets 2035 framework fits into the
-        overall project development process. It supports the development and
-        preliminary evaluation of cross sections to be advanced to the public,
-        complementing existing PBOT processes such as those for project
-        selection, application of the equity matrix, and stakeholder engagement.
-      </figcaption>
-    </figure>
   </article>
 </template>
