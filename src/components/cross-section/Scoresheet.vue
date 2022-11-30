@@ -22,6 +22,10 @@ const props = defineProps({
       traffic: 'higher',
     }),
   },
+  showControls: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 // Get a ref copy of the options to manipulate
@@ -47,8 +51,10 @@ const handleMove = (curr: number, desired: number) => {
   <section
     class="grid grid-flow-col gap-1 overflow-x-auto"
     :style="`
-        grid-template-rows: repeat(9, auto);
-        grid-template-columns: minmax(min-content, 14rem) repeat(${options.length}, minmax(10rem, 14rem) [col-start]);
+        grid-template-rows: repeat(${showControls ? 9 : 8}, auto);
+        grid-template-columns: minmax(min-content, 14rem) repeat(${
+          options.length
+        }, minmax(10rem, 14rem) [col-start]);
       `"
   >
     <span class="py-2"></span>
@@ -350,13 +356,14 @@ const handleMove = (curr: number, desired: number) => {
         </template>
       </Help>
     </div>
-    <span></span>
+    <span v-if="showControls"></span>
     <Scorecard
       v-for="(option, index) in options"
       :key="`${option.width}:${option.name}`"
       :scores="option"
       :main-street="mainStreet"
       :priorities="priorities"
+      :show-controls="showControls"
       @move-left="handleMove(index, index - 1)"
       @move-right="handleMove(index, index + 1)"
     >

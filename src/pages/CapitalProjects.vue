@@ -116,138 +116,142 @@ const options = computed(() => {
           </p>
         </Message>
       </section>
-      <section class="prose">
-        <Box as="h2" class="inline flex items-center gap-2">
-          <span class="px-3 py-1 border border-current rounded-full">2</span>
-          <span>Select Street Sections to Advance</span>
-        </Box>
-        <p>
-          Based on project goals and modal priorities, choose one or more
-          sections to advance. A matrix comparison is automatically generated
-          and provides a visualization of potential trade-offs for each option.
-          The visualization is generated based on street type, width, and modal
-          priorities identified in the TSP.
-        </p>
-        <p>
-          The matrix includes evaluations for mobility and access. Mobility
-          evaluates the ability to travel along a corridor, whether as a
-          pedestrian or by bicycle, transit, freight or motor vehicle. Access
-          evaluates the ability to access destinations on the corridor,
-          including the ability to safely cross the street, reach destinations
-          by bicycle, access the curb at transit stops, and to serve loading and
-          parking needs.
-        </p>
-        <Message
-          color="blue"
-          variant="light"
-          icon="information"
-          summary="Color coding highlights where trade-offs need to be considered"
-          class="mb-4"
-        >
-          <dl class="mt-4 grid grid-cols-1 gap-1 items-center md:w-50">
-            <div class="flex items-center gap-4">
-              <dt><Scorebox :score="3" class="w-20 h-10" /></dt>
-              <dd>
-                Mode or use is accommodated at preferred dimensions in the
-                cross-section
-              </dd>
-            </div>
-            <div class="flex items-center gap-4">
-              <dt><Scorebox :score="2" class="w-20 h-10" /></dt>
-              <dd>
-                Mode or use supported with less than preferred dimensions.
-                Analyze to determine if trade-offs are acceptable and/or can be
-                mitigated through design
-              </dd>
-            </div>
-            <div class="flex items-center gap-4">
-              <dt><Scorebox :score="1" class="w-20 h-10" /></dt>
-              <dd>
-                Mode or use not accommodated; depending on policy designations
-                of street, may be an “alternative” section
-              </dd>
-            </div>
-          </dl>
-        </Message>
-        <Message
-          color="blue"
-          variant="light"
-          icon="information"
-          summary="The shading identifies the policy priority of each function on that
+      <section class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <main class="prose">
+          <Box as="h2" class="inline flex items-center gap-2">
+            <span class="px-3 py-1 border border-current rounded-full">2</span>
+            <span>Select Street Sections to Advance</span>
+          </Box>
+          <p>
+            Based on project goals and modal priorities, choose one or more
+            sections to advance. A matrix comparison is automatically generated
+            and provides a visualization of potential trade-offs for each
+            option. The visualization is generated based on street type, width,
+            and modal priorities identified in the TSP.
+          </p>
+          <p>
+            The matrix includes evaluations for mobility and access. Mobility
+            evaluates the ability to travel along a corridor, whether as a
+            pedestrian or by bicycle, transit, freight or motor vehicle. Access
+            evaluates the ability to access destinations on the corridor,
+            including the ability to safely cross the street, reach destinations
+            by bicycle, access the curb at transit stops, and to serve loading
+            and parking needs.
+          </p>
+          <Message
+            color="blue"
+            variant="light"
+            icon="information"
+            summary="Color coding highlights where trade-offs need to be considered"
+            class="mb-4"
+          >
+            <dl class="mt-4 grid grid-cols-1 gap-1 items-center md:w-50">
+              <div class="flex items-center gap-4">
+                <dt><Scorebox :score="3" class="w-20 h-10" /></dt>
+                <dd>
+                  Mode or use is accommodated at preferred dimensions in the
+                  cross-section
+                </dd>
+              </div>
+              <div class="flex items-center gap-4">
+                <dt><Scorebox :score="2" class="w-20 h-10" /></dt>
+                <dd>
+                  Mode or use supported with less than preferred dimensions.
+                  Analyze to determine if trade-offs are acceptable and/or can
+                  be mitigated through design
+                </dd>
+              </div>
+              <div class="flex items-center gap-4">
+                <dt><Scorebox :score="1" class="w-20 h-10" /></dt>
+                <dd>
+                  Mode or use not accommodated; depending on policy designations
+                  of street, may be an “alternative” section
+                </dd>
+              </div>
+            </dl>
+          </Message>
+          <Message
+            color="blue"
+            variant="light"
+            icon="information"
+            summary="The shading identifies the policy priority of each function on that
           street"
-          class="mb-4"
-        >
-          <dl class="mt-4 grid grid-cols-1 gap-1 items-center md:w-50">
-            <div class="flex items-center gap-4">
-              <dt>
-                <Scorebox
-                  color="white"
-                  :score="3"
-                  priority="lower"
-                  class="w-20 h-10"
-                />
-              </dt>
-              <dd>Mode or use is not required by policy</dd>
-            </div>
-            <div class="flex items-center gap-4">
-              <dt>
-                <Scorebox
-                  color="white"
-                  :score="3"
-                  priority="none"
-                  class="w-20 h-10"
-                />
-              </dt>
-              <dd>
-                Street is on the network for that mode of transportation, but
-                not with the highest priority designation *
-              </dd>
-            </div>
-          </dl>
-          <footer class="prose-sm">
-            <p>
-              * On Main Streets, hatched shading is applied to the mobility
-              functions only, to illustrate there is still a need to consider
-              access to adjacent land uses. On Corridors, a lower classification
-              means that neither mobility nor access are high priorities for
-              that mode by policy, so both cells are shaded.
-            </p>
-          </footer>
-        </Message>
-      </section>
-      <figure class="prose max-w-none">
-        <Scoresheet
-          class="py-2"
-          :options="options"
-          :mainStreet="false"
-          :priorities="{
-            pedestrian: 'higher',
-            bicycle: 'higher',
-            transit: 'lower',
-            freight: 'none',
-            traffic: 'higher',
-          }"
-        >
-          <template v-slot="{ option }">
-            <Image
-              :src="`${publicPath}img/cross-section/${width}/${option.continuousImage}.webp`"
-              :sizes="[640]"
-            />
-            <Box
-              color="gray"
-              variant="light"
-              class="p-2 flex justify-center rounded-md"
+            class="mb-4"
+          >
+            <dl class="mt-4 grid grid-cols-1 gap-1 items-center md:w-50">
+              <div class="flex items-center gap-4">
+                <dt>
+                  <Scorebox
+                    color="white"
+                    :score="3"
+                    priority="lower"
+                    class="w-20 h-10"
+                  />
+                </dt>
+                <dd>Mode or use is not required by policy</dd>
+              </div>
+              <div class="flex items-center gap-4">
+                <dt>
+                  <Scorebox
+                    color="white"
+                    :score="3"
+                    priority="none"
+                    class="w-20 h-10"
+                  />
+                </dt>
+                <dd>
+                  Street is on the network for that mode of transportation, but
+                  not with the highest priority designation *
+                </dd>
+              </div>
+            </dl>
+            <footer class="prose-sm">
+              <p>
+                * On Main Streets, hatched shading is applied to the mobility
+                functions only, to illustrate there is still a need to consider
+                access to adjacent land uses. On Corridors, a lower
+                classification means that neither mobility nor access are high
+                priorities for that mode by policy, so both cells are shaded.
+              </p>
+            </footer>
+          </Message>
+        </main>
+        <aside>
+          <figure class="prose max-w-none">
+            <Scoresheet
+              class="py-2"
+              :options="options"
+              :mainStreet="false"
+              :priorities="{
+                pedestrian: 'higher',
+                bicycle: 'higher',
+                transit: 'lower',
+                freight: 'none',
+                traffic: 'higher',
+              }"
+              :show-controls="false"
             >
-              {{ option.name }}
-            </Box>
-          </template>
-        </Scoresheet>
-        <Legend class="my-4 prose" />
-        <figcaption>
-          A demonstration matrix is provided showing the different features for
-          evaluating a cross-section
-        </figcaption>
-      </figure>
+              <template v-slot="{ option }">
+                <Image
+                  :src="`${publicPath}img/cross-section/${width}/${option.continuousImage}.webp`"
+                  :sizes="[640]"
+                />
+                <Box
+                  color="gray"
+                  variant="light"
+                  class="p-2 flex justify-center rounded-md"
+                >
+                  {{ option.name }}
+                </Box>
+              </template>
+            </Scoresheet>
+            <figcaption>
+              A demonstration matrix is provided showing the different features
+              for evaluating a cross-section
+            </figcaption>
+          </figure>
+        </aside>
+      </section>
       <section class="prose">
         <Box as="h2" class="inline flex items-center gap-2">
           <span class="px-3 py-1 border border-current rounded-full">3</span>
