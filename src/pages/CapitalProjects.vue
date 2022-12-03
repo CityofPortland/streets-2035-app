@@ -34,10 +34,10 @@ const options = computed(() => {
       as="header"
       color="red"
       variant="light"
-      class="grid grid-cols-1 md:grid-cols-3 items-center mb-8"
+      class="grid grid-cols-1 lg:grid-cols-2 mb-8"
     >
-      <Box as="section" class="prose-lg px-12 py-8">
-        <h1>Capital Projects</h1>
+      <Box as="section" class="prose prose-lg px-4 lg:pl-12 py-12">
+        <h1 class="text-current">Capital Projects</h1>
         <p>
           When a road is re-designed as part of a capital project, road
           reconstruction, or in some instances as part of a repaving project,
@@ -49,12 +49,11 @@ const options = computed(() => {
           policy-specified uses to their preferred dimensions.
         </p>
       </Box>
-      <figure class="md:col-span-2">
         <Image
           :src="`${publicPath}img/capital-projects/tractor.webp`"
-          alt="Rendering of a street to show the different responsibilities in the right-of-way"
+        alt="Photograph of a tractor in a paved roadway next to a curb"
+        class="w-full h-full object-cover"
         />
-      </figure>
     </Box>
     <main class="px-12 grid grid-cols-1 gap-8">
       <section class="prose">
