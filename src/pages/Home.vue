@@ -4,10 +4,10 @@
       as="header"
       color="blue"
       variant="dark"
-      class="grid grid-cols-1 md:grid-cols-3 items-center"
+      class="grid grid-cols-1 lg:grid-cols-2"
     >
-      <Box as="section" class="prose-lg px-12 py-8">
-        <h1>
+      <Box as="section" class="prose prose-lg px-4 lg:pl-12 py-12">
+        <h1 class="text-current">
           Welcome to
           <abbr title="Portland Bureau of Transportation">PBOT's</abbr>
           Street Design Framework!
@@ -24,12 +24,11 @@
           flexibility when it is not possible to meet all applicable standards.
         </p>
       </Box>
-      <figure class="md:col-span-2">
-        <Image
-          :src="`${publicPath}img/home/hero.webp`"
-          alt="Rendering of a street to show the different responsibilities in the right-of-way"
-        />
-      </figure>
+      <Image
+        :src="`${publicPath}img/home/hero.webp`"
+        alt="Rendering of a street to show the different responsibilities in the right-of-way"
+        class="w-full h-full object-fit"
+      />
     </Box>
     <main>
       <Box as="section" color="cyan" variant="light" class="py-8">
@@ -299,32 +298,10 @@
   </article>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import { onBeforeRouteLeave } from 'vue-router';
-
-import { useHeaderStore } from '@/store/header';
-
+<script setup lang="ts">
 import Box from '@/elements/box/Box';
 import Button from '@/elements/button/Button.vue';
 import Image from '@/elements/img/Image.vue';
 
-export default defineComponent({
-  name: 'Home',
-  components: { Box, Button, Image },
-  setup() {
-    onBeforeRouteLeave(() => {
-      const store = useHeaderStore();
-      store.setHeader({ color: 'transparent' });
-    });
-
-    return { publicPath: process.env.BASE_URL };
-  },
-  beforeRouteEnter(_to, _from, next) {
-    next(() => {
-      const store = useHeaderStore();
-      store.setHeader({ color: 'blue' });
-    });
-  },
-});
+const publicPath = process.env.BASE_URL;
 </script>

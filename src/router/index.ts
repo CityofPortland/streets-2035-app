@@ -110,7 +110,7 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-  scrollBehavior(to, _from, savedPosition) {
+  scrollBehavior(to, from, savedPosition) {
     if (to.hash) {
       return {
         el: to.hash,
@@ -120,9 +120,13 @@ const router = createRouter({
 
     if (savedPosition) {
       return savedPosition;
-    } else {
+    }
+
+    if (to.path != from.path) {
       return { top: 0 };
     }
+
+    return false;
   },
 });
 
