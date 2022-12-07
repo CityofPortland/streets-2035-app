@@ -304,7 +304,7 @@ const options = computed(() => {
       <figure class="prose max-w-none">
         <Image :src="`${publicPath}img/capital-projects/gantt.webp`" />
         <figcaption>
-          This graphic illustrates how the Streets 2035 framework fits into the
+          This graphic illustrates how the StreetsPDX framework fits into the
           overall project development process. It supports the development and
           preliminary evaluation of cross sections to be advanced to the public,
           complementing existing PBOT processes such as those for project
