@@ -1,4 +1,5 @@
 import Anchor from '@/elements/anchor/Anchor.vue';
+import Box from '@/elements/box/Box';
 import Field from '@/components/field/Field.vue';
 import FieldList from '@/components/field/FieldList.vue';
 import Image from '@/elements/img/Image.vue';
@@ -6,24 +7,32 @@ import Map from '@/components/map/StreetTypeMap.vue';
 
 export const publicPath = process.env.BASE_URL;
 
-<header class="prose-lg">
-    # Neighborhood Main streets
+<Box
+    as="header"
+    color="cyan"
+    variant="light"
+    class="grid grid-cols-1 lg:grid-cols-2 mb-8"
+>
+    <Box as="section" class="prose prose-lg px-4 lg:pl-12 py-12">
+        <h1 class="text-current">Neighborhood Main streets</h1>
 
-    Neighborhood Main Streets are mid-sized streets that pass through smaller neighborhood-serving Centers. These centers support vibrant business districts and residential buildings, bringing amenities, goods, and services within walking distance of neighborhood residents.
+        Neighborhood Main Streets are mid-sized streets that pass through smaller neighborhood-serving Centers. These centers support vibrant business districts and residential buildings, bringing amenities, goods, and services within walking distance of neighborhood residents.
 
-    Neighborhood Main Streets emphasize multimodal access to destinations, while accommodating mobility for all modes.
+        Neighborhood Main Streets emphasize multimodal access to destinations, while accommodating mobility for all modes.
 
-    Some Neighborhood Main Streets have been business districts for decades, while others are transitioning to this role over time.
+        Some Neighborhood Main Streets have been business districts for decades, while others are transitioning to this role over time.
 
-</header>
-<Image
-    src={`${publicPath}img/street-type/NeighborhoodMainStreet.webp`}
-    class="my-4"
-    alt="Perspective rendering of a neighborhood main street"
-    title="Perspective rendering of a neighborhood main street"
-/>
-<section class="mt-8 prose">
-    <FieldList class="gap-4">
+    </Box>
+    <Image
+        src={`${publicPath}img/street-type/NeighborhoodMainStreet.webp`}
+        class="w-full h-full object-cover"
+        alt="Perspective rendering of a neighborhood main street"
+        title="Perspective rendering of a neighborhood main street"
+    />
+
+</Box>
+<main class="max-w-7xl px-4 md:pl-12">
+    <FieldList class="gap-4 prose">
         <Field name="Typical Street Classification">
             * Major City Walkway 
             * City/Major City Bikeway
@@ -34,7 +43,7 @@ export const publicPath = process.env.BASE_URL;
         </Field>
 
         <Field name="Typical Travel-Way Width">
-            36’-50’
+            36'-50'
         </Field>
 
         <Field name="Travel Lanes">
@@ -82,10 +91,10 @@ export const publicPath = process.env.BASE_URL;
         </Field>
     </FieldList>
 
-</section>
-<section>
+</main>
+<aside class="max-w-7xl px-4 md:pl-12">
     <header class="prose mb-4">
         ## Example streets
     </header>
     <Map type="nms"></Map>
-</section>
+</aside>

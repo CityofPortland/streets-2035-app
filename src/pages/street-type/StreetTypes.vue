@@ -1,19 +1,6 @@
 <template>
-  <div
-    class="flex flex-col md:flex-row md:justify-between max-w-7xl w-full mx-auto px-4 mt-4"
-  >
-    <aside class="md:w-1/4 order-last">
-      <Nav title="Sections" class="my-2">
-        <NavItem
-          v-for="(page, idx) in pages"
-          :key="idx"
-          :text="page[1].name"
-          :to="{ name: 'StreetTypes', params: { page: page[0] } }"
-          class="my-2"
-        />
-      </Nav>
-    </aside>
-    <article class="mb-8 md:w-3/4 md:pr-4">
+  <div>
+    <article class="mb-8">
       <component :is="currentPage"></component>
     </article>
   </div>
@@ -37,7 +24,7 @@ export default defineComponent({
         '',
         {
           name: 'Overview',
-          component: defineAsyncComponent(() => import('./Overview.mdx')),
+          component: defineAsyncComponent(() => import('./Overview.vue')),
         },
       ],
       [
