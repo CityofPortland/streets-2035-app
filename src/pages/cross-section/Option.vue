@@ -60,7 +60,7 @@ const option = computed(() =>
           />
         </div>
         <div class="mx-auto">
-          <Scoresheet :options="[option]" />
+          <Scoresheet :options="[option]" :show-controls="false" />
         </div>
       </section>
       <section class="relative">

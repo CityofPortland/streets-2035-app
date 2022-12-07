@@ -40,11 +40,24 @@ watch(
 );
 
 const handleMove = (curr: number, desired: number) => {
-  console.log(`Moving from ${curr} to ${desired}...`);
   if (desired >= 0 && desired < options.value.length) {
     options.value.splice(desired, 0, ...options.value.splice(curr, 1));
   }
 };
+
+const helpClasses = [
+  'prose',
+  'absolute',
+  'w-80',
+  'max-h-96',
+  'overflow-y-auto',
+  'p-4',
+  'bg-white',
+  'border',
+  'border-current',
+  'rounded-md',
+  'z-50',
+];
 </script>
 
 <template>
@@ -62,10 +75,7 @@ const handleMove = (curr: number, desired: number) => {
       <Help>
         <span class="py-2">Safety</span>
         <template v-slot:help="{ show }">
-          <div
-            v-show="show"
-            class="prose absolute bg-white p-4 rounded border border-current z-50"
-          >
+          <div v-show="show" :class="helpClasses">
             <h3>Metric</h3>
             <p>
               Evaluates the need for additional design solutions to provide a
@@ -94,10 +104,7 @@ const handleMove = (curr: number, desired: number) => {
       <Help>
         <span class="py-2">Pedestrian</span>
         <template v-slot:help="{ show }">
-          <div
-            v-show="show"
-            class="prose absolute bg-white p-4 rounded border border-current z-50"
-          >
+          <div v-show="show" :class="helpClasses">
             <h3>Mobility</h3>
             <h4>Metric</h4>
             <p>
@@ -144,10 +151,7 @@ const handleMove = (curr: number, desired: number) => {
       <Help>
         <span class="py-2">Greening</span>
         <template v-slot:help="{ show }">
-          <div
-            v-show="show"
-            class="prose absolute bg-white p-4 rounded border border-current z-50"
-          >
+          <div v-show="show" :class="helpClasses">
             <h3>Metric</h3>
             <p>
               Typically located in furnishing zone, evaluates additional
@@ -174,10 +178,7 @@ const handleMove = (curr: number, desired: number) => {
       <Help>
         <span class="py-2">Bicycle</span>
         <template v-slot:help="{ show }">
-          <div
-            v-show="show"
-            class="prose absolute bg-white p-4 rounded border border-current z-50"
-          >
+          <div v-show="show" :class="helpClasses">
             <h3>Mobility</h3>
             <h4>Metric</h4>
             <p>
@@ -229,10 +230,7 @@ const handleMove = (curr: number, desired: number) => {
       <Help>
         <span class="py-2">Transit</span>
         <template v-slot:help="{ show }">
-          <div
-            v-show="show"
-            class="prose absolute bg-white p-4 rounded border border-current z-50 grid grid-cols-1"
-          >
+          <div v-show="show" :class="helpClasses">
             <h3>Mobility</h3>
             <h4>Metric</h4>
             <p>
@@ -281,10 +279,7 @@ const handleMove = (curr: number, desired: number) => {
       <Help>
         <span class="py-2">Freight</span>
         <template v-slot:help="{ show }">
-          <div
-            v-show="show"
-            class="prose absolute bg-white p-4 rounded border border-current z-50 grid grid-cols-1"
-          >
+          <div v-show="show" :class="helpClasses">
             <h3>Mobility</h3>
             <h4>Metric</h4>
             <p>Evaluates potential delay to freight vehicles.</p>
@@ -319,10 +314,7 @@ const handleMove = (curr: number, desired: number) => {
       <Help>
         <span class="py-2">Traffic</span>
         <template v-slot:help="{ show }">
-          <div
-            v-show="show"
-            class="prose absolute bg-white p-4 rounded border border-current z-50 grid grid-cols-1"
-          >
+          <div v-show="show" :class="helpClasses">
             <h3>Mobility</h3>
             <h4>Metric</h4>
             <p>
