@@ -2,7 +2,7 @@
   <Box
     :color="color"
     :variant="variant"
-    class="p-4 border border-current rounded shadow flex space-x-4"
+    class="p-4 border border-current rounded-md shadow flex space-x-4"
   >
     <Icon
       v-if="icon"
