@@ -1,10 +1,6 @@
 <template>
   <div class="min-h-screen flex flex-col font-sans">
-    <Header
-      :color="header.color"
-      :open="menuOpen"
-      @toggle="menuOpen = !menuOpen"
-    >
+    <Header :open="menuOpen" @toggle="menuOpen = !menuOpen">
       <template v-slot:branding>
         <router-link to="/" class="w-full flex items-center">
           <Logo class="w-16 md:w-20 mr-3 flex-shrink-0" />

@@ -31,7 +31,7 @@
         id="user-menu"
         :open="open"
         color="white"
-        class="md:origin-top-right md:absolute md:right-0 md:w-80 mt-1 rounded border border-current focus:outline-none grid grid-cols-1 gap-2"
+        class="md:origin-top-right md:absolute md:right-0 md:w-80 mt-1 rounded-md border border-current focus:outline-none grid grid-cols-1 gap-2"
       >
         <DropdownItem>
           <FieldList class="gap-1 text-sm">

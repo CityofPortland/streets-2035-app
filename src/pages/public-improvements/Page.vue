@@ -23,56 +23,75 @@ onMounted(() => {
 </script>
 
 <template>
-  <article class="max-w-7xl mt-8 px-4 mx-auto mb-8 grid grid-cols-1 gap-4">
-    <header class="prose-lg">
-      <h1>Development-Related Public Improvements in the Right-of-Way</h1>
-      <p>
-        This page identifies policies and requirements that may apply to a
-        development project and influence the allocation of space in the
-        right-of-way. It also identifies the different paths for seeking
-        approval to deviate from a standard requirement.
-      </p>
-      <p>
-        You should use this page in combination with
-        <Anchor
-          url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
-          >our guide to city standards, guidelines, and requirements.</Anchor
-        >
-        Use this page to navigate to the standards that you are interested in
-        learning more about. You can use the image below to navigate (use the
-        color callout boxes as links!) or simply scroll down. Each section has a
-        link to read the specific section of our guide.
-      </p>
-      <p>
-        Neither page is an exhaustive list and additional information may be
-        available on individual bureau websites. Refer to the city's
-        <Anchor url="https://www.portlandoregon.gov/53147"
-          >Public Works Permitting page</Anchor
-        >
-        for information related to public works projects, including permit, fee
-        and
-        <Anchor url="https://www.portlandoregon.gov/61813"
-          >technical resources</Anchor
-        >. For more information on the development review process, refer to
-        <Anchor url="https://www.portland.gov/bds/development-permit-processes"
-          >Development Review and Permit Process (BDS)</Anchor
-        >
-        and
-        <Anchor url="https://www.portland.gov/transportation/development"
-          >Transportation Development Review and Early Assistance.</Anchor
-        >
-      </p>
-      <House
-        :links="{
-          access: '#access',
-          frontage: '#frontage',
-          stormwater: '#stormwater',
-          tree: '#tree',
-          utility: '#utility',
-        }"
-      />
-    </header>
-    <main class="grid grid-cols-1 gap-24">
+  <article class="mb-8 grid grid-cols-1 gap-4">
+    <Box
+      as="header"
+      color="tangerine"
+      variant="light"
+      class="grid grid-cols-1 lg:grid-cols-2 mb-8"
+    >
+      <Box as="section" class="prose prose-lg px-4 lg:pl-12 py-12">
+        <h1 class="text-current">
+          Development-Related Public Improvements in the Right-of-Way
+        </h1>
+        <p>
+          This page identifies policies and requirements that may apply to a
+          development project and influence the allocation of space in the
+          right-of-way. It also identifies the different paths for seeking
+          approval to deviate from a standard requirement.
+        </p>
+        <p>
+          You should use this page in combination with
+          <Anchor
+            url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
+            >our guide to city standards, guidelines, and requirements.</Anchor
+          >
+          Use the image or scroll down to navigate to the standards that you are
+          interested in learning more about. Each section has a link to read the
+          specific section of our guide.
+        </p>
+      </Box>
+      <figure class="w-full flex flex-col prose max-w-none p-4">
+        <House
+          class="w-full h-full"
+          :links="{
+            access: '#access',
+            frontage: '#frontage',
+            stormwater: '#stormwater',
+            tree: '#tree',
+            utility: '#utility',
+          }"
+        />
+        <figcaption class="text-current">
+          Features in the public right-of-way surrounding development. Use the
+          colored boxes pointing to the right-of-way features to help navigate
+          this page.
+        </figcaption>
+      </figure>
+    </Box>
+    <main class="prose px-12 grid grid-cols-1 gap-24">
+      <section>
+        <p>
+          Neither page is an exhaustive list and additional information may be
+          available on individual bureau websites. Refer to the city's
+          <Anchor url="https://www.portlandoregon.gov/53147"
+            >Public Works Permitting page</Anchor
+          >
+          for information related to public works projects, including permit,
+          fee and
+          <Anchor url="https://www.portlandoregon.gov/61813"
+            >technical resources</Anchor
+          >. For more information on the development review process, refer to
+          <Anchor
+            url="https://www.portland.gov/bds/development-permit-processes"
+            >Development Review and Permit Process (BDS)</Anchor
+          >
+          and
+          <Anchor url="https://www.portland.gov/transportation/development"
+            >Transportation Development Review and Early Assistance.</Anchor
+          >
+        </p>
+      </section>
       <Box
         id="frontage"
         as="section"
