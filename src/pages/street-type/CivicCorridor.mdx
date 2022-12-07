@@ -1,4 +1,5 @@
 import Anchor from '@/elements/anchor/Anchor.vue';
+import Box from '@/elements/box/Box';
 import Field from '@/components/field/Field.vue';
 import FieldList from '@/components/field/FieldList.vue';
 import Image from '@/elements/img/Image.vue';
@@ -6,30 +7,47 @@ import Map from '@/components/map/StreetTypeMap.vue';
 
 export const publicPath = process.env.BASE_URL;
 
-<header class="prose-lg">
-    # Civic corridors
+<Box
+    as="header"
+    color="tangerine"
+    variant="light"
+    class="grid grid-cols-1 lg:grid-cols-2 mb-8"
+>
+    <Box as="section" class="prose prose-lg px-4 lg:pl-12 py-12">
+      <h1 class="text-current">Civic corridors</h1>
+        Civic Corridors are generally Portland's busiest, widest, and most prominent streets. As the city grows, Civic Corridors are increasingly lined with multifamily residential and commercial mixed-use developments.
 
-    Civic Corridors are generally Portland’s busiest, widest, and most prominent streets. As the city grows, Civic Corridors are increasingly lined with multifamily residential and commercial mixed-use developments.
+        Civic Corridors balance the need to provide safe mobility for all modes while moving large volumes of people and goods.
+    </Box>
+    <ul
+        class="flex flex-row flex-nowrap gap-8 overflow-x-auto snap-x snap-mandatory"
+        role="region"
+        aria-label="Gallery of images"
+        tabindex="0"
+    >
+        <li class="min-w-fit snap-center">
+            <Image
+                src={`${publicPath}img/street-type/CivicCorridor.webp`}
+                class="w-full h-full object-cover"
+                alt="Perspective rendering of a civic corridor"
+                title="Perspective rendering of a civic corridor"
+            />
+        </li>
+        <li class="min-w-fit snap-center">
+            <Image
+                src={`${publicPath}img/street-type/CivicCorridor_ALT.webp`}
+                class="w-full h-full object-cover"
+                alt="Perspective rendering of a civic corridor"
+                title="Perspective rendering of a civic corridor"
+            />
+        </li>
+    </ul>
 
-    Civic Corridors balance the need to provide safe mobility for all modes while moving large volumes of people and goods.
-
-</header>
-<Image
-    src={`${publicPath}img/street-type/CivicCorridor.webp`}
-    class="my-4"
-    alt="Perspective rendering of a civic corridor"
-    title="Perspective rendering of a civic corridor"
-/>
-<Image
-    src={`${publicPath}img/street-type/CivicCorridor_ALT.webp`}
-    class="my-4"
-    alt="Alternate perspective rendering of a civic corridor"
-    title="Alternate perspective rendering of a civic corridor"
-/>
-<section class="mt-8 prose">
-    <FieldList class="gap-4">
+</Box>
+<main class="max-w-7xl px-4 md:pl-12">
+    <FieldList class="gap-4 prose">
         <Field name="Typical Street Classification">
-            * Major City Walkway                    
+            * Major City Walkway
             * City/Major City Bikeway
             * Major Transit Priority
             * Major City Traffic
@@ -38,7 +56,7 @@ export const publicPath = process.env.BASE_URL;
         </Field>
 
         <Field name="Typical Travel-Way Width">
-            56’-76’
+            56'-76'
         </Field>
 
         <Field name="Travel Lanes">
@@ -62,7 +80,7 @@ export const publicPath = process.env.BASE_URL;
         </Field>
 
         <Field name="Transit">
-            Civic Corridors are typically Major Transit Priority routes and play an essential role in the city’s transit network. Street design includes transit priority treatments from the <Anchor url="https://www.portland.gov/sites/default/files/2020-03/capital-operational-toolbox.pdf">ETC Toolbox</Anchor> such as transit stop curb extensions or islands to allow transit to stop in lane, transit signal priority, queue bypasses, and Business Access and Transit lanes to make transit a rapid and reliable choice for daily transportation.
+            Civic Corridors are typically Major Transit Priority routes and play an essential role in the city's transit network. Street design includes transit priority treatments from the <Anchor url="https://www.portland.gov/sites/default/files/2020-03/capital-operational-toolbox.pdf">ETC Toolbox</Anchor> such as transit stop curb extensions or islands to allow transit to stop in lane, transit signal priority, queue bypasses, and Business Access and Transit lanes to make transit a rapid and reliable choice for daily transportation.
         </Field>
 
         <Field name="Freight">
@@ -82,10 +100,10 @@ export const publicPath = process.env.BASE_URL;
         </Field>
     </FieldList>
 
-</section>
-<section>
+</main>
+<aside class="max-w-7xl px-4 md:pl-12">
     <header class="prose mb-4">
         ## Example streets
     </header>
     <Map type="cic"></Map>
-</section>
+</aside>

@@ -15,8 +15,8 @@ const extra = computed(() => Math.abs((props.score || 0) - 3));
 </script>
 
 <template>
-  <Box class="flex justify-between gap-2 items-center">
-    <label v-if="label">{{ label }}</label>
+  <Box class="flex justify-start gap-2 items-center">
+    <label class="basis-full md:basis-1/2" v-if="label">{{ label }}</label>
     <Box class="flex gap-1">
       <span
         v-for="n in score"

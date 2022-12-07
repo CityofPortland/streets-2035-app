@@ -1,3 +1,4 @@
+import Box from '@/elements/box/Box';
 import Field from '@/components/field/Field.vue';
 import FieldList from '@/components/field/FieldList.vue';
 import Image from '@/elements/img/Image.vue';
@@ -5,22 +6,29 @@ import Map from '@/components/map/StreetTypeMap.vue';
 
 export const publicPath = process.env.BASE_URL;
 
-<header class="prose-lg">
-    # Civic Main Streets
+<Box
+    as="header"
+    color="orange"
+    variant="light"
+    class="grid grid-cols-1 lg:grid-cols-2 mb-8"
+>
+    <Box as="section" class="prose prose-lg px-4 lg:pl-12 py-12">
+        <h1 class="text-current">Civic Main Streets</h1>
 
-    Civic Main Streets are generally Portland’s busiest, widest streets that pass through compact, pedestrian-oriented Centers that anchor neighborhoods with retail and businesses, schools and libraries, housing options, employment centers, and gathering places.
+        Civic Main Streets are generally Portland's busiest, widest streets that pass through compact, pedestrian-oriented Centers that anchor neighborhoods with retail and businesses, schools and libraries, housing options, employment centers, and gathering places.
 
-    Civic Main Streets emphasize multimodal access to destinations, while accommodating mobility for all modes.
+        Civic Main Streets emphasize multimodal access to destinations, while accommodating mobility for all modes.
+    </Box>
+    <Image
+        src={`${publicPath}img/street-type/CivicMainStreet.webp`}
+        class="w-full h-full object-cover"
+        alt="Perspective rendering of a civic main street"
+        title="Perspective rendering of a civic main street"
+    />
 
-</header>
-<Image
-    src={`${publicPath}img/street-type/CivicMainStreet.webp`}
-    class="my-4"
-    alt="Perspective rendering of a civic main street"
-    title="Perspective rendering of a civic main street"
-/>
-<section class="mt-8 prose">
-    <FieldList class="gap-4">
+</Box>
+<main class="max-w-7xl px-4 md:pl-12">
+    <FieldList class="gap-4 prose">
         <Field name="Typical Street Classification">
             * [Major City Walkway](https://portland-tsp.com/#/text#major-city-walkways)
             * City/Major City Bikeway
@@ -30,7 +38,7 @@ export const publicPath = process.env.BASE_URL;
         </Field>
 
         <Field name="Typical Travel-Way Width">
-            56’-76’
+            56'-76'
         </Field>
 
         <Field name="Travel Lanes">
@@ -74,11 +82,11 @@ export const publicPath = process.env.BASE_URL;
         </Field>
     </FieldList>
 
-</section>
-<section>
+</main>
+<aside class="max-w-7xl px-4 md:pl-12">
     <header class="prose mb-4">
         ## Example streets
     </header>
     <Map type="cims"></Map>
 
-</section>
+</aside>

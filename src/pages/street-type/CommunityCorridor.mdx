@@ -1,4 +1,5 @@
 import Anchor from '@/elements/anchor/Anchor.vue';
+import Box from '@/elements/box/Box';
 import Field from '@/components/field/Field.vue';
 import FieldList from '@/components/field/FieldList.vue';
 import Image from '@/elements/img/Image.vue';
@@ -6,23 +7,29 @@ import Map from '@/components/map/StreetTypeMap.vue';
 
 export const publicPath = process.env.BASE_URL;
 
-<header class="prose-lg">
-    # Community Corridors
+<Box
+    as="header"
+    color="green"
+    variant="light"
+    class="grid grid-cols-1 lg:grid-cols-2 mb-8"
+>
+    <Box as="section" class="prose prose-lg px-4 lg:pl-12 py-12">
+        <h1 class="text-current">Community Corridors</h1>
 
-    Community Corridors are generally mid-sized streets that connect surrounding neighborhoods to each other. Community Corridors are not planned for major growth and feature mostly lower-density residential land uses, some small-scale retail, and neighborhood destinations such as parks and schools.
+        Community Corridors are generally mid-sized streets that connect surrounding neighborhoods to each other. Community Corridors are not planned for major growth and feature mostly lower-density residential land uses, some small-scale retail, and neighborhood destinations such as parks and schools.
 
-    Community Corridors emphasize multimodal mobility and vary in character across the city’s geography, or <Anchor url="https://www.portlandonline.com/portlandplan/index.cfm?a=288085&c=52254">pattern areas</Anchor> as identified in the 2035 Comprehensive Plan.
+        Community Corridors emphasize multimodal mobility and vary in character across the city's geography, or <Anchor url="https://www.portlandonline.com/portlandplan/index.cfm?a=288085&c=52254">pattern areas</Anchor> as identified in the 2035 Comprehensive Plan.
+    </Box>
+    <Image
+        src={`${publicPath}img/street-type/CommunityCorridor.webp`}
+        class="w-full h-full object-cover"
+        alt="Alternate perspective rendering of a community corridor"
+        title="Alternate perspective rendering of a community corridor"
+    />
 
-</header>
-
-<Image
-    src={`${publicPath}img/street-type/CommunityCorridor.webp`}
-    class="my-4"
-    alt="Alternate perspective rendering of a community corridor"
-    title="Alternate perspective rendering of a community corridor"
-/>
-<section class="mt-8 prose">
-    <FieldList class="gap-4">
+</Box>
+<main class="max-w-7xl px-4 md:pl-12">
+    <FieldList class="gap-4 prose">
         <Field name="Typical Street Classification">
             * City Walkway 
             * City Bikeway 
@@ -33,7 +40,7 @@ export const publicPath = process.env.BASE_URL;
         </Field>
 
         <Field name="Typical Travel-Way Width">
-            22’-44’
+            22'-44'
         </Field>
 
         <Field name="Travel Lanes">
@@ -55,7 +62,7 @@ export const publicPath = process.env.BASE_URL;
         </Field>
 
         <Field name="Transit">
-            About half of Portland’s Community Corridors support transit service, though few have the highest transit classification that may require space in the road or at signals for transit priority treatments.
+            About half of Portland's Community Corridors support transit service, though few have the highest transit classification that may require space in the road or at signals for transit priority treatments.
         </Field>
 
         <Field name="Freight">
@@ -77,10 +84,10 @@ export const publicPath = process.env.BASE_URL;
         </Field>
     </FieldList>
 
-</section>
-<section>
+</main>
+<aside class="max-w-7xl px-4 md:pl-12">
     <header class="prose mb-4">
         ## Example streets
     </header>
     <Map type="cc"></Map>
-</section>
+</aside>
