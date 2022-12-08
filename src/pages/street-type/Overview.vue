@@ -49,7 +49,7 @@ const publicPath = process.env.BASE_URL;
 
       <figure class="prose max-w-none">
         <ul
-          class="not-prose flex flex-row flex-nowrap overflow-x-auto snap-x snap-mandatory"
+          class="not-prose flex flex-row gap-2 flex-nowrap overflow-x-auto snap-x snap-mandatory"
           role="region"
           aria-label="Gallery of street types"
           tabindex="0"

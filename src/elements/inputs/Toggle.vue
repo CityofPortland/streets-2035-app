@@ -10,20 +10,20 @@
       role="switch"
       :aria-checked="String(modelValue)"
       :aria-labelledby="`${id}-label`"
-      class="inline-flex items-center border border-current rounded p-1 focus:ring-2 focus:ring-offset-1 focus:ring-current"
+      class="inline-flex items-center border border-current rounded-md p-1 focus:ring-2 focus:ring-offset-1 focus:ring-current"
       @click="toggle"
     >
       <Box
         as="span"
         :color="modelValue ? 'blue' : 'transparent'"
-        class="px-1 rounded"
+        class="px-1 rounded-md"
         :class="{ 'shadow-lg': modelValue }"
         >{{ trueLabel }}</Box
       >
       <Box
         as="span"
         :color="modelValue ? 'transparent' : 'red'"
-        class="px-1 rounded"
+        class="px-1 rounded-md"
         :class="{ 'shadow-lg': modelValue }"
         >{{ falseLabel }}</Box
       >

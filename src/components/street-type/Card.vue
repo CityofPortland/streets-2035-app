@@ -11,7 +11,7 @@ defineProps({
 <template>
   <Box
     variant="light"
-    class="m-4 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-prose"
+    class="m-2 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-prose"
   >
     <Box as="header" class="not-prose grid grid-cols-1 gap-4">
       <slot name="header"></slot>

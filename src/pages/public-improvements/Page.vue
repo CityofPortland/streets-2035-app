@@ -418,7 +418,7 @@ onMounted(() => {
           <div class="grid grid-cols-2 gap-4">
             <div class="inline-flex">
               <Utility class="w-8 h-8" />
-              <span>Utility Clearances</span>
+              <span>Utility Services</span>
             </div>
             <div class="grid grid-cols-1">
               <Anchor

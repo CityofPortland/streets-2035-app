@@ -35,7 +35,7 @@
             StreetsPDX framework.
           </p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3">
+        <div class="grid grid-cols-1 md:grid-cols-3 justify-items-center">
           <Box as="div" class="p-12 flex flex-col gap-4 prose">
             <header
               class="mx-auto uppercase flex flex-col gap-2 items-center not-prose"

@@ -55,7 +55,7 @@ const options = computed(() => {
         class="w-full h-full object-cover"
       />
     </Box>
-    <main class="px-12 grid grid-cols-1 gap-8">
+    <main class="px-4 lg:pl-12 grid grid-cols-1 gap-8">
       <section class="prose">
         <Box as="h2" class="inline flex items-center gap-2">
           <span class="px-3 py-1 border border-current rounded-full">1</span
