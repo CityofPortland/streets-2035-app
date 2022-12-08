@@ -7,13 +7,9 @@
       class="grid grid-cols-1 lg:grid-cols-2"
     >
       <Box as="section" class="prose prose-lg px-4 lg:pl-12 py-12">
-        <h1 class="text-current">
-          Welcome to
-          <abbr title="Portland Bureau of Transportation">PBOT's</abbr>
-          Street Design Framework!
-        </h1>
+        <h1 class="text-current">Welcome to StreetsPDX</h1>
         <p>
-          The Street Design Framework is intended to support policy
+          StreetsPDX is a design framework intended to support policy
           implementation and decision-making in the right-of-way consistent with
           the City's 2035 Comprehensive Plan. It brings together the various
           policies and corresponding design standards that influence space in

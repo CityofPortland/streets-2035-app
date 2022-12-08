@@ -49,11 +49,11 @@ const options = computed(() => {
           policy-specified uses to their preferred dimensions.
         </p>
       </Box>
-        <Image
-          :src="`${publicPath}img/capital-projects/tractor.webp`"
+      <Image
+        :src="`${publicPath}img/capital-projects/tractor.webp`"
         alt="Photograph of a tractor in a paved roadway next to a curb"
         class="w-full h-full object-cover"
-        />
+      />
     </Box>
     <main class="px-12 grid grid-cols-1 gap-8">
       <section class="prose">
@@ -304,7 +304,7 @@ const options = computed(() => {
       <figure class="prose max-w-none">
         <Image :src="`${publicPath}img/capital-projects/gantt.webp`" />
         <figcaption>
-          This graphic illustrates how the Streets 2035 framework fits into the
+          This graphic illustrates how the StreetsPDX framework fits into the
           overall project development process. It supports the development and
           preliminary evaluation of cross sections to be advanced to the public,
           complementing existing PBOT processes such as those for project
