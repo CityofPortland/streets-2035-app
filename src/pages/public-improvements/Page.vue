@@ -69,8 +69,8 @@ onMounted(() => {
         </figcaption>
       </figure>
     </Box>
-    <main class="prose px-12 grid grid-cols-1 gap-24">
-      <section>
+    <main class="px-4 lg:pl-12 grid grid-cols-1 gap-8">
+      <section class="prose">
         <p>
           Neither page is an exhaustive list and additional information may be
           available on individual bureau websites. Refer to the city's
