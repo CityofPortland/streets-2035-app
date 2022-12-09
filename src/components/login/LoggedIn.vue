@@ -1,10 +1,5 @@
 <template>
-  <Dropdown
-    size="small"
-    label="User information"
-    id="menu-button"
-    class="w-full rounded-md border border-current"
-  >
+  <Dropdown label="User information" id="menu-button" class="w-full">
     <template v-slot:label="{ open }">
       <article class="inline-flex items-center space-x-2 w-full">
         <header class="md:flex-1">
@@ -31,7 +26,7 @@
         id="user-menu"
         :open="open"
         color="white"
-        class="md:origin-top-right md:absolute md:right-0 md:w-80 mt-1 rounded-md border border-current focus:outline-none grid grid-cols-1 gap-2"
+        class="md:origin-top-right md:absolute md:right-0 w-full md:min-w-max mt-4 grid grid-cols-1 gap-2"
       >
         <DropdownItem>
           <FieldList class="gap-1 text-sm">

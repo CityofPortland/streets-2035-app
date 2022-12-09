@@ -12,7 +12,50 @@
           class="md:ml-auto"
           list-class="flex flex-col gap-2 md:gap-3 md:flex-row md:items-center"
         >
-          <NavItem text="Street Types" to="/street-types" />
+          <li>
+            <Dropdown label="Street types" id="street-types">
+              <template v-slot:label="{ label, open }">
+                <router-link
+                  to="/street-types"
+                  custom
+                  v-slot="{ href, navigate }"
+                >
+                  <Anchor :url="href" @click.stop="navigate">{{
+                    label
+                  }}</Anchor>
+                </router-link>
+                <Icon
+                  aria-label="Open dropdown"
+                  type="solid"
+                  :name="open ? 'chevron-up' : 'chevron-down'"
+                  class="ml-2 w-5 h-5"
+                />
+              </template>
+              <template v-slot:default="{ open }">
+                <DropdownList
+                  as="ul"
+                  id="street-types"
+                  :open="open"
+                  class="md:absolute md:bg-white p-3 mt-4 md:min-w-max"
+                >
+                  <NavItem
+                    v-for="x in [
+                      ['civic-corridor', 'Civic Corridors'],
+                      ['civic-main-street', 'Civic Main Streets'],
+                      ['neighborhood-corridor', 'Neighborhood Corridors'],
+                      ['neighborhood-main-street', 'Neighborhood Main Streets'],
+                      ['community-corridor', 'Community Corridors'],
+                      ['local-street', 'Local Streets'],
+                      ['industrial-road', 'Industrial Roads'],
+                    ]"
+                    :key="x"
+                    :text="x[1]"
+                    :to="`/street-types/${x[0]}`"
+                  />
+                </DropdownList>
+              </template>
+            </Dropdown>
+          </li>
           <NavItem text="Capital Projects" to="/capital-projects" />
           <NavItem text="Public Improvements" to="/public-improvements" />
           <NavItem
@@ -21,8 +64,10 @@
           />
           <NavItem text="Street Map" to="/streets" />
           <NavItem text="Cross-Sections" to="/cross-section" />
-          <SignIn v-if="!user" />
-          <LoggedIn v-else />
+          <li>
+            <SignIn v-if="!user" />
+            <LoggedIn v-else />
+          </li>
         </Nav>
       </template>
     </Header>
@@ -57,8 +102,11 @@ import {
   ref,
 } from 'vue';
 
+import Dropdown from './components/dropdown/Dropdown.vue';
+import DropdownList from './components/dropdown/DropdownList.vue';
 import Footer from '@/components/footer/Footer.vue';
 import Header from '@/components/header/Header.vue';
+import Icon from './elements/icon/Icon.vue';
 import Logo from '@/components/Logo.vue';
 import LoggedIn from '@/components/login/LoggedIn.vue';
 import Nav from '@/components/nav/Nav.vue';
@@ -71,6 +119,7 @@ import {
 } from './composables/use-street-classification';
 import { useAuthStore } from '@/store/auth';
 import { useHeaderStore } from '@/store/header';
+import Anchor from './elements/anchor/Anchor.vue';
 
 export default defineComponent({
   setup() {
@@ -94,13 +143,17 @@ export default defineComponent({
     };
   },
   components: {
+    Dropdown,
+    DropdownList,
     Footer,
     Header,
+    Icon,
     LoggedIn,
     Logo,
     Nav,
     NavItem,
     SignIn,
+    Anchor,
   },
 });
 </script>

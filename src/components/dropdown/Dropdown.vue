@@ -1,10 +1,8 @@
 <template>
   <div ref="componentRef" class="relative">
-    <Button
-      :as="as"
+    <Box
       :color="color"
       :variant="variant"
-      :size="size"
       :id="id"
       :label="label"
       :aria-expanded="open"
@@ -13,7 +11,7 @@
       @click="open = !open"
       v-bind="$attrs"
     >
-      <slot name="label" :open="open" :id="id">
+      <slot name="label" :label="label" :open="open" :id="id">
         <span>{{ label }}</span>
         <Icon
           aria-label="Open dropdown"
@@ -22,7 +20,7 @@
           class="ml-2 w-5 h-5"
         />
       </slot>
-    </Button>
+    </Box>
     <!--
     Dropdown menu, show/hide based on menu state.
 
@@ -51,19 +49,14 @@ import { defineComponent, Ref, ref } from 'vue';
 
 import { useWindowEvent } from '@/composables/useWindowEvent';
 
-import Button from '@/elements/button/Button.vue';
+import Box, { BoxColor, BoxColorVariant } from '@/elements/box/Box';
 import { ButtonSize } from '@/elements/button/Button.types';
 import Icon from '@/elements/icon/Icon.vue';
-import { BoxColor, BoxColorVariant } from '@/elements/box/Box';
 
 export default defineComponent({
   name: 'DropDown',
-  components: { Button, Icon },
+  components: { Box, Icon },
   props: {
-    as: {
-      type: String,
-      default: 'button',
-    },
     label: {
       type: String,
       required: true,
