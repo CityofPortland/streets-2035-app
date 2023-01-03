@@ -31,12 +31,12 @@
                   class="ml-2 w-5 h-5"
                 />
               </template>
-              <template v-slot:default="{ open }">
+              <template v-slot:default="{ open, toggle }">
                 <DropdownList
                   as="ul"
                   id="street-types"
                   :open="open"
-                  class="md:absolute md:bg-white p-3 mt-4 md:min-w-max"
+                  class="md:absolute md:bg-white p-3 mt-8 md:min-w-max"
                 >
                   <NavItem
                     v-for="x in [
@@ -51,6 +51,7 @@
                     :key="x"
                     :text="x[1]"
                     :to="`/street-types/${x[0]}`"
+                    @click="toggle"
                   />
                 </DropdownList>
               </template>

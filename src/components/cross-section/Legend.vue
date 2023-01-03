@@ -50,7 +50,7 @@ const publicPath = process.env.BASE_URL;
         </div>
         <div class="flex items-center gap-4">
           <dt><Scorebox :score="3" priority="none" :class="classes" /></dt>
-          <dd>Not on priority network</dd>
+          <dd>Not on network</dd>
         </div>
       </dl>
     </div>

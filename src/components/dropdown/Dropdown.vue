@@ -1,5 +1,5 @@
 <template>
-  <div ref="componentRef" class="relative">
+  <div ref="componentRef" class="relative flex flex-col">
     <Box
       :color="color"
       :variant="variant"
@@ -7,11 +7,11 @@
       :label="label"
       :aria-expanded="open"
       aria-haspopup="true"
-      class="w-full md:w-auto inline-flex items-center justify-between"
+      class="w-full md:w-auto inline-flex items-center justify-between cursor-pointer"
       @click="open = !open"
       v-bind="$attrs"
     >
-      <slot name="label" :label="label" :open="open" :id="id">
+      <slot name="label" :label="label" :open="open" :id="id" :toggle="toggle">
         <span>{{ label }}</span>
         <Icon
           aria-label="Open dropdown"
@@ -39,7 +39,7 @@
       leave-from-class="transform opacity-100 scale-100"
       leave-to-class="transform opacity-0 scale-95"
     >
-      <slot :open="open" :toggle="toggle" :id="id"></slot>
+      <slot :id="id" :open="open" :toggle="toggle"></slot>
     </transition>
   </div>
 </template>
