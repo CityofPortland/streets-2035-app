@@ -77,7 +77,7 @@ const publicPath = process.env.BASE_URL;
               </h2>
               <p>
                 Civic Main Streets are generally Portland's busiest, widest
-                streets that pass through compact, pedestrian-oriented Centers
+                streets that pass through compact, pedestrian-oriented centers
                 that anchor neighborhoods with retail and businesses, schools
                 and libraries, housing options, employment centers, and
                 gathering places.
@@ -124,13 +124,13 @@ const publicPath = process.env.BASE_URL;
               <h2 class="text-lg">
                 <router-link to="/street-types/neighborhood-main-street">
                   <span class="border-b-2 border-current"
-                    >Neighborhood Main Street</span
+                    >Neighborhood Main Streets</span
                   >
                 </router-link>
               </h2>
               <p>
                 Neighborhood Main Streets are mid-sized streets that pass
-                through smaller neighborhood-serving Centers. These centers
+                through smaller neighborhood-serving centers. These centers
                 support vibrant business districts and residential buildings,
                 bringing amenities, goods, and services within walking distance
                 of neighborhood residents.

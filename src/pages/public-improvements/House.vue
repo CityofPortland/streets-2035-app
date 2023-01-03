@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
-import Box from '@/elements/box/Box';
 
 defineEmits<{
   (event: 'click', section: string): void;
@@ -2722,9 +2721,9 @@ const handleFocus = (sectionName: SectionName) => {
   fill: none;
 }
 .st71 {
-  @apply font-sans font-medium;
+  @apply font-sans;
 }
 .st72 {
-  font-size: 20px;
+  @apply text-xl font-bold;
 }
 </style>

@@ -23,7 +23,7 @@
       <Image
         :src="`${publicPath}img/home/hero.webp`"
         alt="Rendering of a street to show the different responsibilities in the right-of-way"
-        class="w-full h-full object-fit"
+        class="w-full h-full object-cover"
       />
     </Box>
     <main>
@@ -62,7 +62,7 @@
               Transportation System Plan (TSP) includes a “Street Design”
               classification which assigns each street a “type” based on a
               combination of the transportation function and the adjacent land
-              use context. These “Street Types” are the foundational element of
+              use context. These “Street Types” are a foundational element of
               the StreetsPDX decision-making framework.
             </p>
             <footer class="mt-auto flex flex-col items-center not-prose">
@@ -191,8 +191,8 @@
             This is not an exhaustive list, as the multiple bureaus that operate
             within the right-of-way have developed a variety of documents that
             inform their work and may apply to a given city-led or private
-            development project. This is a starting point to understand all the
-            policies that apply in the public right-of-way.
+            development project. This is a starting point to understand policies
+            that apply in the public right-of-way.
           </p>
           <footer class="mt-auto flex flex-col items-center not-prose">
             <router-link
@@ -241,7 +241,7 @@
               designations for each street. Use the map to navigate to your area
               of interest. You may then browse that information on each street
               segment within that area. If a street section has applicable
-              cross-sections, they will be linked from their information
+              cross-sections, they will be linked from their information that
               identifies the road width and various policy designations for each
               street.
             </p>

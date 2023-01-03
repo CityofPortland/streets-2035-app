@@ -1,14 +1,14 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue';
+import { onBeforeRouteLeave } from 'vue-router';
+
 import Anchor from '@/elements/anchor/Anchor.vue';
 import Box from '@/elements/box/Box';
 import Image from '@/elements/img/Image.vue';
-import Legend from '@/components/cross-section/Legend.vue';
 import Message from '@/components/message/Message.vue';
 import Scorebox from '@/components/cross-section/Scorebox.vue';
 import Scoresheet from '@/components/cross-section/Scoresheet.vue';
 import { useCrossSection } from '@/composables/cross-section';
-import { computed, ref } from 'vue';
-import { onBeforeRouteLeave } from 'vue-router';
 import { useHeaderStore } from '@/store/header';
 
 const publicPath = process.env.BASE_URL;
@@ -144,15 +144,19 @@ const options = computed(() => {
             summary="Color coding highlights where trade-offs need to be considered"
             class="mb-4"
           >
-            <dl class="mt-4 grid grid-cols-1 gap-1 items-center md:w-50">
-              <div class="flex items-center gap-4">
+            <dl class="mt-4 grid grid-cols-1 gap-4 items-center md:w-50">
+              <div
+                class="flex flex-col md:flex-row items-start md:items-center gap-2"
+              >
                 <dt><Scorebox :score="3" class="w-20 h-10" /></dt>
                 <dd>
                   Mode or use is accommodated at preferred dimensions in the
                   cross-section
                 </dd>
               </div>
-              <div class="flex items-center gap-4">
+              <div
+                class="flex flex-col md:flex-row items-start md:items-center gap-2"
+              >
                 <dt><Scorebox :score="2" class="w-20 h-10" /></dt>
                 <dd>
                   Mode or use supported with less than preferred dimensions.
@@ -160,7 +164,9 @@ const options = computed(() => {
                   be mitigated through design
                 </dd>
               </div>
-              <div class="flex items-center gap-4">
+              <div
+                class="flex flex-col md:flex-row items-start md:items-center gap-2"
+              >
                 <dt><Scorebox :score="1" class="w-20 h-10" /></dt>
                 <dd>
                   Mode or use not accommodated; depending on policy designations
@@ -177,8 +183,10 @@ const options = computed(() => {
           street"
             class="mb-4"
           >
-            <dl class="mt-4 grid grid-cols-1 gap-1 items-center md:w-50">
-              <div class="flex items-center gap-4">
+            <dl class="mt-4 grid grid-cols-1 gap-4 items-center md:w-50">
+              <div
+                class="flex flex-col md:flex-row items-start md:items-center gap-2"
+              >
                 <dt>
                   <Scorebox
                     color="white"
@@ -187,9 +195,14 @@ const options = computed(() => {
                     class="w-20 h-10"
                   />
                 </dt>
-                <dd>Mode or use is not required by policy</dd>
+                <dd>
+                  Street is on the network for that mode of transportation, but
+                  not with the highest priority designation *
+                </dd>
               </div>
-              <div class="flex items-center gap-4">
+              <div
+                class="flex flex-col md:flex-row items-start md:items-center gap-2"
+              >
                 <dt>
                   <Scorebox
                     color="white"
@@ -198,10 +211,7 @@ const options = computed(() => {
                     class="w-20 h-10"
                   />
                 </dt>
-                <dd>
-                  Street is on the network for that mode of transportation, but
-                  not with the highest priority designation *
-                </dd>
+                <dd>Mode or use is not required by policy</dd>
               </div>
             </dl>
             <footer class="prose-sm">
