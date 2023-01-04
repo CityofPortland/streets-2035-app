@@ -20,7 +20,7 @@ export default defineComponent({
     name: { type: String, required: true },
     display: {
       type: String as () => DisplayType,
-      default: 'inline',
+      default: 'above',
     },
   },
   setup(props) {
@@ -30,7 +30,7 @@ export default defineComponent({
           ['inline', ['sm:grid-cols-3']],
         ]);
 
-        return ['grid', 'grid-cols-1', 'gap-1'].concat(
+        return ['grid', 'grid-cols-1', 'self-start', 'gap-1'].concat(
           ...(m.get(props.display) || [])
         );
       }),
