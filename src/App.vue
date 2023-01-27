@@ -40,10 +40,10 @@
                 >
                   <NavItem
                     v-for="x in [
-                      ['civic-corridor', 'Civic Corridors'],
                       ['civic-main-street', 'Civic Main Streets'],
-                      ['neighborhood-corridor', 'Neighborhood Corridors'],
+                      ['civic-corridor', 'Civic Corridors'],
                       ['neighborhood-main-street', 'Neighborhood Main Streets'],
+                      ['neighborhood-corridor', 'Neighborhood Corridors'],
                       ['community-corridor', 'Community Corridors'],
                       ['local-street', 'Local Streets'],
                       ['industrial-road', 'Industrial Roads'],

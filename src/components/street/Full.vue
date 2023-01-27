@@ -95,13 +95,12 @@
           classification
         </h2>
         <Anchor
-          :url="`https://portland-tsp.com/#/text#${classificationLabel(
-            classification,
-            street.classifications[classification]
-          )
-            .toLowerCase()
-            .split(' ')
-            .join('-')}`"
+          :url="
+            classificationLink(
+              classification,
+              street.classifications[classification]
+            )
+          "
         >
           {{
             classificationLabel(
@@ -146,8 +145,43 @@ export default defineComponent({
     const { classificationKeys, classificationLabel } =
       useStreetClassification(street);
     return {
-      classificationLabel,
       classificationKeys,
+      classificationLabel,
+      classificationLink(
+        classificationType: string,
+        classificationValue: string
+      ) {
+        const internalClassifications = [
+          'CMS',
+          'CIC',
+          'NMS',
+          'NC',
+          'CC',
+          'LS',
+          'IR',
+        ];
+
+        if (
+          classificationType == 'design' &&
+          internalClassifications.find((c) => c === classificationValue)
+        ) {
+          return `${process.env.BASE_URL}street-types/${classificationLabel(
+            classificationType,
+            classificationValue
+          )
+            .toLowerCase()
+            .split(' ')
+            .join('-')}`;
+        } else {
+          return `https://portland-tsp.com/#/text#${classificationLabel(
+            classificationType,
+            classificationValue
+          )
+            .toLowerCase()
+            .split(' ')
+            .join('-')}`;
+        }
+      },
       crossSectionRoute,
     };
   },
