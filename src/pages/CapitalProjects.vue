@@ -24,7 +24,7 @@ store.setHeader({ color: 'red' });
 
 const options = computed(() => {
   const { options } = useCrossSection(ref({ width }));
-  return options.value.slice(0, 3);
+  return [0, 3, 4].map((i) => options.value[i]);
 });
 </script>
 
@@ -234,9 +234,9 @@ const options = computed(() => {
               :priorities="{
                 pedestrian: 'higher',
                 bicycle: 'higher',
-                transit: 'lower',
-                freight: 'none',
-                traffic: 'higher',
+                transit: 'none',
+                freight: 'lower',
+                traffic: 'lower',
               }"
               :show-controls="false"
             >
