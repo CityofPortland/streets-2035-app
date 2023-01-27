@@ -305,7 +305,14 @@ export default defineComponent({
     });
 
     const classifications = computed(() => {
-      return models.filter((m) => m.group === 'design');
+      const order = ['CMS', 'CIC', 'NMS', 'NC', 'CC', 'LS', 'IR', 'RC', 'UT'];
+      return models
+        .filter((m) => m.group === 'design')
+        .sort(
+          (a, b) =>
+            order.findIndex((o) => o == a.value) -
+            order.findIndex((o) => o == b.value)
+        );
     });
 
     const getStreet = async (id: string | string[]) => {

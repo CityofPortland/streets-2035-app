@@ -1,6 +1,7 @@
 <template>
   <a
     :href="url"
+    :target="externalIcon ? '_blank' : '_self'"
     class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-black"
   >
     <slot name="before"></slot>
