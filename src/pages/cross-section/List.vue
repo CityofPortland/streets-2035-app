@@ -228,26 +228,28 @@ const changeRoute = (
       }"
     >
       <template v-slot="{ option }">
-        <Image
-          :src="`${publicPath}img/cross-section/${width}/${option.continuousImage}.webp`"
-          :sizes="[640]"
-        />
-        <Box
-          color="gray"
-          variant="light"
-          class="p-2 flex justify-center rounded-md"
+        <router-link
+          :to="{
+            name: 'CrossSectionOption',
+            params: { width, ordinal: option.ordinal },
+          }"
+          custom
+          v-slot="{ href, navigate }"
         >
-          <router-link
-            :to="{
-              name: 'CrossSectionOption',
-              params: { width, ordinal: option.ordinal },
-            }"
-            custom
-            v-slot="{ href, navigate }"
+          <Image
+            :src="`${publicPath}img/cross-section/${width}/${option.continuousImage}.webp`"
+            :sizes="[640]"
+            @click="navigate"
+            class="cursor-pointer"
+          />
+          <Box
+            color="gray"
+            variant="light"
+            class="p-2 flex justify-center rounded-md"
           >
             <Anchor :url="href" @click="navigate">{{ option.name }}</Anchor>
-          </router-link>
-        </Box>
+          </Box>
+        </router-link>
       </template>
     </Scoresheet>
     <Legend class="my-4 prose" />
