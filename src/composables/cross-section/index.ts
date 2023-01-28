@@ -69,16 +69,16 @@ export function useCrossSection(street?: Ref<Partial<Street>>): {
         keyof Classifications,
         { none: Set<string>; low: Set<string> }
       >([
-        ['pedestrian', { none: new Set(), low: new Set('LS') }],
-        ['bicycle', { none: new Set(['LS']), low: new Set() }],
-        [
-          'transit',
-          { none: new Set(['RT', 'CT', 'LS', 'IPR']), low: new Set(['TA']) },
-        ],
-        ['freight', { none: new Set(['LS']), low: new Set(['TA']) }],
+        ['bicycle', { none: new Set(['LS']), low: new Set(['CB']) }],
+        ['freight', { none: new Set([]), low: new Set(['MT', 'TA', 'LS']) }],
+        ['pedestrian', { none: new Set([]), low: new Set(['LS', 'NW', 'CW']) }],
         [
           'traffic',
           { none: new Set(['RT', 'LS']), low: new Set(['DC', 'NC', 'TA']) },
+        ],
+        [
+          'transit',
+          { none: new Set(['RT', 'CT', 'LS', 'IPR']), low: new Set(['TA']) },
         ],
       ]);
 

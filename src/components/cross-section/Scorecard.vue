@@ -68,7 +68,7 @@ const classes = computed(() => {
     <Box
       color="gray"
       variant="light"
-      class="p-2 rounded-md font-bold grid grid-cols-2 gap-1 justify-items-center"
+      class="p-2 rounded-md grid grid-cols-2 gap-1 justify-items-center"
     >
       <span>Mobility</span>
       <span>Access</span>
@@ -84,7 +84,13 @@ const classes = computed(() => {
     />
     <Scorebox
       :score="scores['pedestrian:access']"
-      :priority="priorities.pedestrian"
+      :priority="
+        !mainStreet
+          ? priorities.pedestrian
+          : priorities.pedestrian == 'none'
+          ? 'none'
+          : 'higher'
+      "
       title="Pedestrian access score"
       :class="classes"
     />
@@ -99,7 +105,13 @@ const classes = computed(() => {
     />
     <Scorebox
       :score="scores['bicycle:access']"
-      :priority="priorities.bicycle"
+      :priority="
+        !mainStreet
+          ? priorities.bicycle
+          : priorities.bicycle == 'none'
+          ? 'none'
+          : 'higher'
+      "
       title="Bicycle access score"
       :class="classes"
     />
