@@ -92,11 +92,9 @@ const changeRoute = (
       <p>
         Use this page to visualize options and their tradeoffs for your capital
         project. The
-        <router-link to="/capital-projects" custom v-slot="{ href, navigate }"
-          ><Anchor :url="href" @click="navigate"
-            >Capital Projects</Anchor
-          ></router-link
-        >
+        <router-link to="/capital-projects" custom v-slot="{ href, navigate }">
+          <Anchor :url="href" @click="navigate">Capital Projects</Anchor>
+        </router-link>
         page contains more information on how to interpret and what to do with
         the information contained here.
       </p>
