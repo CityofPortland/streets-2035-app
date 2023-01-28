@@ -5,7 +5,7 @@
     class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-black"
   >
     <slot name="before"></slot>
-    <span :class="{ ...borderClasses }">
+    <span class="font-semibold" :class="{ ...borderClasses }">
       <slot>{{ url }}</slot>
     </span>
     <slot name="after">
