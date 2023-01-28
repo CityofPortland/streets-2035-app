@@ -87,8 +87,19 @@ const changeRoute = (
 
 <template>
   <article class="flex flex-col gap-1 max-w-7xl px-4 mx-auto">
-    <header class="prose mb-8">
+    <header class="prose prose-lg mb-8">
       <h1 class="capitalize">{{ width }} foot cross sections</h1>
+      <p>
+        Use this page to visualize options and their tradeoffs for your capital
+        project. The
+        <router-link to="/capital-projects" custom v-slot="{ href, navigate }"
+          ><Anchor :url="href" @click="navigate"
+            >Capital Projects</Anchor
+          ></router-link
+        >
+        page contains more information on how to interpret and what to do with
+        the information contained here.
+      </p>
     </header>
     <section>
       <Box as="form" class="flex flex-row flex-wrap gap-4">
