@@ -212,10 +212,10 @@ onMounted(() => {
       <Box
         id="access"
         as="section"
-        class="grid grid-cols-1 gap-4 pl-4 border-l-4 border-red-500"
+        class="grid grid-cols-1 gap-4 pl-4 border-l-4 border-purple-500"
       >
         <div class="flex">
-          <div class="flex text-red-500">
+          <div class="flex text-purple-500">
             <Access class="w-24 h-24" />
           </div>
           <div class="flex-1 grid grid-cols-1 gap-8">
@@ -263,10 +263,10 @@ onMounted(() => {
       <Box
         id="stormwater"
         as="section"
-        class="grid grid-cols-1 gap-4 pl-4 border-l-4 border-marine-500"
+        class="grid grid-cols-1 gap-4 pl-4 border-l-4 border-orange-500"
       >
         <div class="flex">
-          <div class="flex text-marine-500">
+          <div class="flex text-orange-500">
             <Stormwater class="w-24 h-24" />
           </div>
           <div class="flex-1 grid grid-cols-1 gap-8">
@@ -307,10 +307,10 @@ onMounted(() => {
       <Box
         id="utility"
         as="section"
-        class="grid grid-cols-1 gap-4 pl-4 border-l-4 border-orange-500"
+        class="grid grid-cols-1 gap-4 pl-4 border-l-4 border-red-500"
       >
         <div class="flex">
-          <div class="flex text-orange-500">
+          <div class="flex text-red-500">
             <Utility class="w-24 h-24" />
           </div>
           <div class="flex-1 grid grid-cols-1 gap-8">

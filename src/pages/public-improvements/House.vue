@@ -63,7 +63,7 @@ const handleFocus = (sectionName: SectionName) => {
       <g>
         <line class="st5" x1="599.2" y1="584" x2="874.3" y2="743.7" />
         <circle class="st1" cx="869.8" cy="741.2" r="9.7" />
-        <circle class="st6" cx="602.5" cy="585.9" r="9.1" />
+        <circle class="fill-orange-500" cx="602.5" cy="585.9" r="9.1" />
         <circle class="st3" cx="869.8" cy="741.2" r="7.3" />
       </g>
       <g>
@@ -2277,7 +2277,13 @@ const handleFocus = (sectionName: SectionName) => {
           :style="focus['stormwater'] ? focusStyles : undefined"
         >
           <g>
-            <rect x="927" y="824.2" class="st6" width="261" height="80.1" />
+            <rect
+              x="927"
+              y="824.2"
+              class="fill-orange-500"
+              width="261"
+              height="80.1"
+            />
             <g>
               <path
                 class="st67"
@@ -2400,7 +2406,7 @@ const handleFocus = (sectionName: SectionName) => {
             <rect
               x="1364.4"
               y="664.5"
-              class="st35"
+              class="fill-red-500"
               width="227.8"
               height="80.1"
             />
@@ -2464,8 +2470,8 @@ const handleFocus = (sectionName: SectionName) => {
 </template>
 <style>
 .st0 {
+  @apply stroke-red-500;
   fill: none;
-  stroke: #f58220;
   stroke-width: 8.2064;
   stroke-miterlimit: 10;
 }
@@ -2479,18 +2485,19 @@ const handleFocus = (sectionName: SectionName) => {
   fill: #b3b3b3;
 }
 .st4 {
+  @apply stroke-orange-500;
   fill: none;
-  stroke: #acd0d8;
   stroke-width: 4;
   stroke-miterlimit: 10;
 }
 .st5 {
+  @apply stroke-orange-500;
   fill: none;
-  stroke: #98cbcc;
   stroke-width: 16;
   stroke-miterlimit: 10;
 }
 .st6 {
+  @apply fill-orange-500;
   fill: #98cbcc;
 }
 .st7 {
@@ -2584,13 +2591,13 @@ const handleFocus = (sectionName: SectionName) => {
   clip-path: url(#SVGID_00000075865933064250900050000006401483220173351599_);
 }
 .st34 {
+  @apply stroke-red-500;
   fill: none;
-  stroke: #f58220;
   stroke-width: 16;
   stroke-miterlimit: 10;
 }
 .st35 {
-  fill: #f58220;
+  @apply fill-red-500;
 }
 .st36 {
   opacity: 0.4;
@@ -2598,21 +2605,9 @@ const handleFocus = (sectionName: SectionName) => {
   enable-background: new;
 }
 .st37 {
+  @apply fill-purple-500;
   opacity: 0.4;
-  fill: #f16667;
   enable-background: new;
-}
-.st38 {
-  fill: none;
-  stroke: #f58220;
-  stroke-width: 3.08;
-  stroke-miterlimit: 10;
-}
-.st39 {
-  fill: none;
-  stroke: #f58220;
-  stroke-width: 12.6379;
-  stroke-miterlimit: 10;
 }
 .st40 {
   fill: #61848c;
@@ -2715,7 +2710,7 @@ const handleFocus = (sectionName: SectionName) => {
   stroke-width: 0.7116;
 }
 .st69 {
-  fill: #f16667;
+  @apply fill-purple-500;
 }
 .st70 {
   fill: none;
