@@ -90,13 +90,15 @@ const changeRoute = (
     <header class="prose prose-lg mb-8">
       <h1 class="capitalize">{{ width }} foot cross sections</h1>
       <p>
-        Use this page to visualize options and their tradeoffs for your capital
-        project. The
+        The StreetsPDX Cross-Section tool visualizes options for usage of the
+        right-of-way. It allows you to set various priorities and highlight
+        designs that result in minimal tradeoffs for meeting capital projects
+        goals. To get started, review the
         <router-link to="/capital-projects" custom v-slot="{ href, navigate }">
-          <Anchor :url="href" @click="navigate">Capital Projects</Anchor>
+          <Anchor :url="href" @click="navigate">Capital Projects page</Anchor>
         </router-link>
-        page contains more information on how to interpret and what to do with
-        the information contained here.
+        which describes how to interpret and contextualize this information for
+        a given project.
       </p>
     </header>
     <section>
