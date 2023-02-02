@@ -83,16 +83,16 @@ const helpClasses = [
             </p>
             <h3>Scoring description</h3>
             <dl>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="3" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="3" class="w-8" /></dt>
                 <dd>Two to three lanes</dd>
               </div>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="2" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="2" class="w-8" /></dt>
                 <dd>Five lanes</dd>
               </div>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="1" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="1" class="w-8" /></dt>
                 <dd>Four lanes</dd>
               </div>
             </dl>
@@ -113,12 +113,12 @@ const helpClasses = [
             </p>
             <h4>Scoring description</h4>
             <dl>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="3" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="3" class="w-8" /></dt>
                 <dd>Parking or bike lane</dd>
               </div>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="2" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="2" class="w-8" /></dt>
                 <dd>Travel lane</dd>
               </div>
             </dl>
@@ -130,16 +130,16 @@ const helpClasses = [
             </p>
             <h4>Scoring description</h4>
             <dl>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="3" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="3" class="w-8" /></dt>
                 <dd>Two to three lanes</dd>
               </div>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="2" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="2" class="w-8" /></dt>
                 <dd>Five lanes</dd>
               </div>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="1" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="1" class="w-8" /></dt>
                 <dd>Four lanes</dd>
               </div>
             </dl>
@@ -159,12 +159,12 @@ const helpClasses = [
             </p>
             <h3>Scoring description</h3>
             <dl>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="3" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="3" class="w-8" /></dt>
                 <dd>Presence of median or curb zone</dd>
               </div>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="2" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="2" class="w-8" /></dt>
                 <dd>
                   No median or curb zone; greening occurs in furnishing zone
                 </dd>
@@ -188,16 +188,16 @@ const helpClasses = [
             </p>
             <h4>Scoring description</h4>
             <dl>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="3" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="3" class="w-8" /></dt>
                 <dd>Seven or more foot wide buffered or protected bike lane</dd>
               </div>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="2" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="2" class="w-8" /></dt>
                 <dd>Less than seven foot wide bike lane</dd>
               </div>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="1" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="1" class="w-8" /></dt>
                 <dd>No bike lane</dd>
               </div>
             </dl>
@@ -209,16 +209,16 @@ const helpClasses = [
             </p>
             <h4>Scoring description</h4>
             <dl>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="3" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="3" class="w-8" /></dt>
                 <dd>Seven or more foot wide buffered or protected bike lane</dd>
               </div>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="2" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="2" class="w-8" /></dt>
                 <dd>Less than seven foot wide bike lane</dd>
               </div>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="1" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="1" class="w-8" /></dt>
                 <dd>No bike lane</dd>
               </div>
             </dl>
@@ -250,8 +250,8 @@ const helpClasses = [
             </p>
             <h4>Scoring description</h4>
             <dl>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="3" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="3" class="w-8" /></dt>
                 <dd>
                   <p>
                     Cross section is consistent with transit stopping in lane
@@ -263,8 +263,8 @@ const helpClasses = [
                   </ul>
                 </dd>
               </div>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="2" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="2" class="w-8" /></dt>
                 <dd>
                   Cross section typically requires transit to pull out of lane
                   to access curb
@@ -293,16 +293,16 @@ const helpClasses = [
             </p>
             <h4>Scoring description</h4>
             <dl>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="3" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="3" class="w-8" /></dt>
                 <dd>Curbside access on both sides</dd>
               </div>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="2" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="2" class="w-8" /></dt>
                 <dd>Curbside access on one side</dd>
               </div>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="1" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="1" class="w-8" /></dt>
                 <dd>No curbside access</dd>
               </div>
             </dl>
@@ -331,16 +331,16 @@ const helpClasses = [
             </p>
             <h4>Scoring description</h4>
             <dl>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="3" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="3" class="w-8" /></dt>
                 <dd>Curbside access on both sides</dd>
               </div>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="2" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="2" class="w-8" /></dt>
                 <dd>Curbside access on one side</dd>
               </div>
-              <div class="flex items-center gap-4">
-                <dt><Scorebox :score="1" class="w-8" /></dt>
+              <div class="flex items-start gap-4">
+                <dt class="mt-2"><Scorebox :score="1" class="w-8" /></dt>
                 <dd>No curbside access</dd>
               </div>
             </dl>
