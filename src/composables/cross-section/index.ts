@@ -74,7 +74,7 @@ export function useCrossSection(street?: Ref<Partial<Street>>): {
         ['pedestrian', { none: new Set([]), low: new Set(['LS', 'NW', 'CW']) }],
         [
           'traffic',
-          { none: new Set(['RT', 'LS']), low: new Set(['DC', 'NC', 'TA']) },
+          { none: new Set(['RT']), low: new Set(['DC', 'NC', 'TA', 'LS']) },
         ],
         [
           'transit',
