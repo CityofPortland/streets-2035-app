@@ -1,6 +1,6 @@
 {
-  "name": "streets-2035",
-  "version": "0.1.0",
+  "name": "streets-pdx",
+  "version": "1.0.0-beta.1",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -13,6 +13,7 @@
     "@arcgis/core": "^4.20.2",
     "@fontsource/merriweather": "^4.5.0",
     "@fontsource/open-sans": "^4.5.0",
+    "@mdx-js/loader": "^2.1.5",
     "@turf/along": "^6.5.0",
     "@turf/bbox": "^6.5.0",
     "@turf/centroid": "^6.5.0",
@@ -77,7 +78,5 @@
     "webpack": "^5.58.2",
     "xdm": "^3.0.1",
     "xlsx": "^0.18.4"
-  },
-  "_id": "streets-2035-app@0.1.0",
-  "readme": "ERROR: No README data found!"
+  }
 }
