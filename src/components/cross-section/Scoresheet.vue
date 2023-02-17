@@ -154,20 +154,20 @@ const helpClasses = [
           <div v-show="show" :class="helpClasses">
             <h3>Metric</h3>
             <p>
-              Typically located in furnishing zone, evaluates additional
-              potential space for stormwater swales or trees.
+              Evaluates potential space for stormwater swales or trees between
+              the curbs (i.e., in the roadway). This may be relevant if there is
+              not space in the sidewalk, where greening functions are typically
+              provided.
             </p>
             <h3>Scoring description</h3>
             <dl>
               <div class="flex items-start gap-4">
                 <dt class="mt-2"><Scorebox :score="3" class="w-8" /></dt>
-                <dd>Presence of median or curb zone</dd>
+                <dd>Presence of curb zone (e.g., parking lane) or median</dd>
               </div>
               <div class="flex items-start gap-4">
                 <dt class="mt-2"><Scorebox :score="2" class="w-8" /></dt>
-                <dd>
-                  No median or curb zone; greening occurs in furnishing zone
-                </dd>
+                <dd>No curb zone or median</dd>
               </div>
             </dl>
           </div>
