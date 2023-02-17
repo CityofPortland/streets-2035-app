@@ -51,7 +51,7 @@ ingress:
   hosts:
     - host: pbotapps.portland.gov
       paths:
-        - path: /streets-2035
+        - path: /streets-pdx
           pathType: Prefix
   tls:
     - secretName: pbotapps-portland-gov-tls
