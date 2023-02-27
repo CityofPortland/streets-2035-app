@@ -95,9 +95,10 @@ const changeRoute = (
         set various priorities (which populate automatically when you reach this
         page from the
         <router-link to="/streets" custom v-slot="{ href, navigate }">
-          <Anchor :url="href" @click="navigate">Street Map</Anchor>
-        </router-link>
-        ) and evaluate potential cross sections to meet capital projects goals.
+          <Anchor :url="href" @click="navigate"
+            >Street Map</Anchor
+          > </router-link
+        >) and evaluate potential cross sections to meet capital projects goals.
         This tool makes clear that there are always tradeoffs between potential
         cross sections. Priority designations, project goals, and analyses of
         tradeoffs inform which section(s) are advanced. To get started, review
