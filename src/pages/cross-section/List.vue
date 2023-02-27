@@ -106,7 +106,13 @@ const changeRoute = (
         <router-link to="/capital-projects" custom v-slot="{ href, navigate }">
           <Anchor :url="href" @click="navigate">City Projects page</Anchor>
         </router-link>
-        which describes how to use this tool for a given project.
+        which describes how to use this tool for a given project. For more help
+        using this tool and the rest of this site, use the
+        <router-link to="/training" custom v-slot="{ href, navigate }">
+          <Anchor :url="href" @click="navigate"
+            >training page</Anchor
+          > </router-link
+        >.
       </p>
     </header>
     <section>
