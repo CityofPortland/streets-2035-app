@@ -112,6 +112,9 @@
           <Nav title="Legal notices">
             <NavItem to="/disclaimer">Disclaimer</NavItem>
           </Nav>
+          <Nav title="Help">
+            <NavItem to="/training">Training videos</NavItem>
+          </Nav>
         </div>
       </template>
     </Footer>
