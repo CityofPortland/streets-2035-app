@@ -176,7 +176,7 @@
         >
           <span class="font-semibold text-lg">{{ pointer.name }}</span>
           <span class="text-gray-700">{{
-            classificationLabel('design', pointer.classifications?.design)
+            label(pointer.classifications?.design)
           }}</span>
         </section>
       </template>
@@ -198,11 +198,8 @@ import Section from '@/components/street/Section.vue';
 import { Street, StreetSection } from '@/composables/use-street';
 import { query } from '@/composables/use-graphql';
 import { useStreet } from '@/composables/use-street';
-import {
-  useStreetClassification,
-  ViewModel,
-} from '@/composables/use-street-classification';
 import Toggle from '@/elements/inputs/Toggle.vue';
+import { useClassificationStore, ViewModel } from '@/store/classification';
 import Basemap from '@arcgis/core/Basemap';
 import Extent from '@arcgis/core/geometry/Extent';
 import Point from '@arcgis/core/geometry/Point';
@@ -301,7 +298,7 @@ export default defineComponent({
     const layerViews = new Map<string, Promise<FeatureLayerView>>();
 
     const { push, replace, currentRoute } = useRouter();
-    const { models, classificationLabel } = useStreetClassification();
+    const { models, label } = useClassificationStore();
     const { convertStreet, retrieveStreet } = useStreet();
 
     const districts = computed(() => {
@@ -554,7 +551,7 @@ export default defineComponent({
       classifications,
       districts,
       pointer,
-      classificationLabel,
+      label,
       highlightStreet,
       handleLayerView: (data: { id: string; promise: Promise<LayerView> }) => {
         layerViews.set(data.id, data.promise as Promise<FeatureLayerView>);

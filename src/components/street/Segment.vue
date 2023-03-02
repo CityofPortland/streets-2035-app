@@ -53,7 +53,6 @@ import Field from '@/components/field/Field.vue';
 import FieldList from '@/components/field/FieldList.vue';
 import Help from './Help.vue';
 import { Street } from '@/composables/use-street';
-import { useStreetClassification } from '@/composables/use-street-classification';
 import { useCrossSection } from '@/composables/cross-section';
 
 export default defineComponent({
@@ -69,16 +68,12 @@ export default defineComponent({
     const { street } = toRefs(props);
     const { id, block, width } = street.value;
     const { crossSectionRoute } = useCrossSection(street);
-    const { classificationKeys, classificationLabel } =
-      useStreetClassification(street);
     return {
       id,
       block,
       width,
       crossSectionRoute,
       handleHighlight: () => emit('highlight', props.street),
-      classificationLabel,
-      classificationKeys,
     };
   },
 });

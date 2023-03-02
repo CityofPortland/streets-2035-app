@@ -93,14 +93,7 @@
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  onMounted,
-  provide,
-  reactive,
-  ref,
-} from 'vue';
+import { computed, defineComponent, onMounted, ref } from 'vue';
 
 import Dropdown from './components/dropdown/Dropdown.vue';
 import DropdownList from './components/dropdown/DropdownList.vue';
@@ -110,31 +103,22 @@ import Icon from './elements/icon/Icon.vue';
 import Logo from '@/components/Logo.vue';
 import Nav from '@/components/nav/Nav.vue';
 import NavItem from '@/components/nav/NavItem.vue';
-import {
-  getModels,
-  STREET_CLASSIFICATION_KEY,
-  ViewModel,
-} from './composables/use-street-classification';
 import { useHeaderStore } from '@/store/header';
 import Anchor from './elements/anchor/Anchor.vue';
+import { useClassificationStore } from './store/classification';
 
 export default defineComponent({
   setup() {
     const menuOpen = ref(false);
 
     const headerStore = useHeaderStore();
+    const { init } = useClassificationStore();
 
-    const models = reactive(new Array<ViewModel>());
-    provide(STREET_CLASSIFICATION_KEY, models);
-
-    onMounted(async () => {
-      models.push(...(await getModels()));
-    });
+    onMounted(() => init());
 
     return {
       menuOpen,
       header: computed(() => headerStore.header),
-      handleClick: () => console.log('click!'),
     };
   },
   components: {
