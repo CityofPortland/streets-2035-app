@@ -3,9 +3,6 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import CityProjects from '@/pages/CityProjects.vue';
 import Disclaimer from '@/pages/Disclaimer.vue';
 import Home from '@/pages/Home.vue';
-import Login from '@/pages/Login.vue';
-import Logout from '@/pages/Logout.vue';
-import OAuth from '@/pages/OAuth.vue';
 import DevelopmentImprovements from '@/pages/development-improvements/Page.vue';
 import Streets from '@/pages/Streets.vue';
 import StreetTypes from '@/pages/street-type/StreetTypes.vue';
@@ -89,21 +86,6 @@ const routes: Array<RouteRecordRaw> = [
         ordinal: Number.parseInt(ordinal),
       };
     },
-  },
-  {
-    path: '/oauth/callback',
-    name: 'OAuthCallback',
-    component: OAuth,
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: Login,
-  },
-  {
-    path: '/logout',
-    name: 'Logout',
-    component: Logout,
   },
 ];
 
