@@ -50,6 +50,29 @@ onMounted(() => {
           interested in learning more about. Each section has a link to read the
           specific section of our guide.
         </p>
+
+        <section class="prose">
+          <p>
+            Neither page is an exhaustive list and additional information may be
+            available. Refer to the city's
+            <Anchor url="https://www.portlandoregon.gov/53147"
+              >Public Works Permitting page</Anchor
+            >
+            for information related to public works projects, including permit,
+            fee and
+            <Anchor url="https://www.portlandoregon.gov/61813"
+              >technical resources</Anchor
+            >. For more information on the development review process, refer to
+            <Anchor
+              url="https://www.portland.gov/bds/development-permit-processes"
+              >Development Review and Permit Process (BDS)</Anchor
+            >
+            and
+            <Anchor url="https://www.portland.gov/transportation/development"
+              >Transportation Development Review and Early Assistance.</Anchor
+            >
+          </p>
+        </section>
       </Box>
       <figure class="w-full flex flex-col prose max-w-none p-4">
         <House
@@ -70,28 +93,6 @@ onMounted(() => {
       </figure>
     </Box>
     <main class="px-4 lg:pl-12 grid grid-cols-1 gap-8">
-      <section class="prose">
-        <p>
-          Neither page is an exhaustive list and additional information may be
-          available on individual bureau websites. Refer to the city's
-          <Anchor url="https://www.portlandoregon.gov/53147"
-            >Public Works Permitting page</Anchor
-          >
-          for information related to public works projects, including permit,
-          fee and
-          <Anchor url="https://www.portlandoregon.gov/61813"
-            >technical resources</Anchor
-          >. For more information on the development review process, refer to
-          <Anchor
-            url="https://www.portland.gov/bds/development-permit-processes"
-            >Development Review and Permit Process (BDS)</Anchor
-          >
-          and
-          <Anchor url="https://www.portland.gov/transportation/development"
-            >Transportation Development Review and Early Assistance.</Anchor
-          >
-        </p>
-      </section>
       <Box
         id="frontage"
         as="section"
@@ -117,11 +118,11 @@ onMounted(() => {
               <Anchor
                 url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-sidewalks-and-pedestrian-crossings"
                 class="text-center"
-                >Read the sidewalk section</Anchor
+                >Read more about sidewalk requirements and standards</Anchor
               >
             </div>
             <div class="flex flex-col md:flex-row gap-4">
-              <div class="prose prose-sm">
+              <div class="prose">
                 <h3>How to deviate from standard improvements</h3>
                 <p>
                   PBOT's Public Works Alternative (PWA) review process allows an
@@ -176,7 +177,7 @@ onMounted(() => {
               </p>
               <Anchor
                 url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-street-trees"
-                >Read the street trees section</Anchor
+                >Read more about street tree requirements and standards</Anchor
               >
             </div>
             <div class="flex flex-col md:flex-row gap-4">
@@ -231,7 +232,8 @@ onMounted(() => {
               <Anchor
                 url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-access-and-loading"
                 class="text-center"
-                >Read the access and loading section</Anchor
+                >Read more about access and loading requirements and
+                standards</Anchor
               >
             </div>
             <div class="flex flex-col md:flex-row gap-4">
@@ -284,7 +286,7 @@ onMounted(() => {
               </p>
               <Anchor
                 url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
-                >Read the stormwater section</Anchor
+                >Read more about stormwater requirements and standards</Anchor
               >
             </div>
             <div class="flex flex-col md:flex-row gap-4">
@@ -332,7 +334,7 @@ onMounted(() => {
               <Anchor
                 url="https://www.portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way#toc-utilities"
                 class="text-center"
-                >Read the utilities section</Anchor
+                >Read more about utility requirements and standards</Anchor
               >
             </div>
             <div class="flex flex-col md:flex-row gap-4">
