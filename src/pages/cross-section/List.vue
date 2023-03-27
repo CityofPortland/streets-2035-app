@@ -104,7 +104,7 @@ const changeRoute = (
         tradeoffs inform which section(s) are advanced. To get started, review
         the
         <router-link to="/capital-projects" custom v-slot="{ href, navigate }">
-          <Anchor :url="href" @click="navigate">Capital Projects page</Anchor>
+          <Anchor :url="href" @click="navigate">City Projects page</Anchor>
         </router-link>
         which describes how to use this tool for a given project.
       </p>
