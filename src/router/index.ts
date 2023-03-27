@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
-import CapitalProjects from '@/pages/CapitalProjects.vue';
+import CityProjects from '@/pages/CityProjects.vue';
 import Disclaimer from '@/pages/Disclaimer.vue';
 import Home from '@/pages/Home.vue';
 import Login from '@/pages/Login.vue';
 import Logout from '@/pages/Logout.vue';
 import OAuth from '@/pages/OAuth.vue';
-import PublicImprovements from '@/pages/public-improvements/Page.vue';
+import DevelopmentImprovements from '@/pages/development-improvements/Page.vue';
 import Streets from '@/pages/Streets.vue';
 import StreetTypes from '@/pages/street-type/StreetTypes.vue';
 
@@ -20,9 +20,9 @@ const routes: Array<RouteRecordRaw> = [
     component: Home,
   },
   {
-    path: '/capital-projects',
-    name: 'CapitalProjects',
-    component: CapitalProjects,
+    path: '/city-projects',
+    name: 'CityProjects',
+    component: CityProjects,
   },
   {
     path: '/disclaimer',
@@ -30,9 +30,9 @@ const routes: Array<RouteRecordRaw> = [
     component: Disclaimer,
   },
   {
-    path: '/public-improvements',
-    name: 'PublicImprovements',
-    component: PublicImprovements,
+    path: '/development-improvements',
+    name: 'DevelopmentImprovements',
+    component: DevelopmentImprovements,
   },
   {
     path: '/streets/:id?',

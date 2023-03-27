@@ -37,9 +37,9 @@ const options = computed(() => {
       class="grid grid-cols-1 lg:grid-cols-2 mb-8"
     >
       <Box as="section" class="prose prose-lg px-4 lg:pl-12 py-12">
-        <h1 class="text-current">Capital Projects</h1>
+        <h1 class="text-current">City Projects</h1>
         <p>
-          When a road is re-designed as part of a capital project, road
+          When a road is re-designed as part of a city project, road
           reconstruction, or in some instances as part of a repaving project,
           PBOT needs to determine the appropriate cross-section for the street.
           StreetsPDX developed a decision-making process that provides PBOT with
@@ -50,7 +50,7 @@ const options = computed(() => {
         </p>
       </Box>
       <Image
-        :src="`${publicPath}img/capital-projects/tractor.webp`"
+        :src="`${publicPath}img/city-projects/tractor.webp`"
         alt="Photograph of a tractor in a paved roadway next to a curb"
         class="w-full h-full object-cover"
       />
@@ -106,12 +106,12 @@ const options = computed(() => {
           summary="What if the street does not have an available typical section?"
         >
           <p>
-            Typical sections are intended as a starting point for capital
-            project design. Staff may develop new cross sections to complement
-            the existing typical sections or when typical sections are not
-            available for a given street width. This could include adapting a
-            cross section from a similar street width. Staff would then apply
-            the framework for working through trade-offs.
+            Typical sections are intended as a starting point for city project
+            design. Staff may develop new cross sections to complement the
+            existing typical sections or when typical sections are not available
+            for a given street width. This could include adapting a cross
+            section from a similar street width. Staff would then apply the
+            framework for working through trade-offs.
           </p>
         </Message>
       </section>
@@ -312,7 +312,7 @@ const options = computed(() => {
         </Message>
       </section>
       <figure class="prose max-w-none">
-        <Image :src="`${publicPath}img/capital-projects/gantt.webp`" />
+        <Image :src="`${publicPath}img/city-projects/gantt.webp`" />
         <figcaption>
           This graphic illustrates how the StreetsPDX framework fits into the
           overall project development process. It supports the development and

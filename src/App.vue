@@ -57,8 +57,11 @@
               </template>
             </Dropdown>
           </li>
-          <NavItem text="Capital Projects" to="/capital-projects" />
-          <NavItem text="Public Improvements" to="/public-improvements" />
+          <NavItem text="City Projects" to="/city-projects" />
+          <NavItem
+            text="Development Improvements"
+            to="/development-improvements"
+          />
           <NavItem
             text="Right-of-way Policies"
             to="//portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
