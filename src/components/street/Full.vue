@@ -154,6 +154,7 @@ export default defineComponent({
         const internalClassifications = [
           'CMS',
           'CIC',
+          'CIMS',
           'NMS',
           'NC',
           'CC',
