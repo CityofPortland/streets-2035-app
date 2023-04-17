@@ -385,7 +385,7 @@ onMounted(() => {
           <div class="grid grid-cols-2 gap-4">
             <div class="inline-flex">
               <Tree class="w-8 h-8" />
-              <span>Tree Planting and Preservation</span>
+              <span>Tree Preservation and Planting</span>
             </div>
             <Anchor url="https://www.portland.gov/code/11/50/090"
               >Administrative Review (Trees in Development Situations)</Anchor
