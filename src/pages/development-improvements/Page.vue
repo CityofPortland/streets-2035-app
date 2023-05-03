@@ -51,28 +51,26 @@ onMounted(() => {
           specific section of our guide.
         </p>
 
-        <section class="prose">
-          <p>
-            Neither page is an exhaustive list and additional information may be
-            available. Refer to the city's
-            <Anchor url="https://www.portlandoregon.gov/53147"
-              >Public Works Permitting page</Anchor
-            >
-            for information related to public works projects, including permit,
-            fee and
-            <Anchor url="https://www.portlandoregon.gov/61813"
-              >technical resources</Anchor
-            >. For more information on the development review process, refer to
-            <Anchor
-              url="https://www.portland.gov/bds/development-permit-processes"
-              >Development Review and Permit Process (BDS)</Anchor
-            >
-            and
-            <Anchor url="https://www.portland.gov/transportation/development"
-              >Transportation Development Review and Early Assistance.</Anchor
-            >
-          </p>
-        </section>
+        <p>
+          Neither page is an exhaustive list and additional information may be
+          available. Refer to the city's
+          <Anchor url="https://www.portlandoregon.gov/53147"
+            >Public Works Permitting page</Anchor
+          >
+          for information related to public works projects, including permit,
+          fee and
+          <Anchor url="https://www.portlandoregon.gov/61813"
+            >technical resources</Anchor
+          >. For more information on the development review process, refer to
+          <Anchor
+            url="https://www.portland.gov/bds/development-permit-processes"
+            >Development Review and Permit Process (BDS)</Anchor
+          >
+          and
+          <Anchor url="https://www.portland.gov/transportation/development"
+            >Transportation Development Review and Early Assistance.</Anchor
+          >
+        </p>
       </Box>
       <figure class="w-full flex flex-col prose max-w-none p-4">
         <House
