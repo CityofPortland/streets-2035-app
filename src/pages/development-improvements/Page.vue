@@ -192,10 +192,15 @@ onMounted(() => {
                   removal, and planted.
                 </p>
                 <p>
-                  A tree considerations checksheet is a tool for assessing the
-                  relative preservation value of street trees, and clarifies
-                  preservation options when developing a site, which can support
-                  requests for City or Street tree removal.
+                  A
+                  <Anchor
+                    url="https://www.portland.gov/trees/treepermits/do-i-need-tree-permit/tree-requirements-building-permits"
+                    >street tree considerations checksheet</Anchor
+                  >
+                  is a tool for assessing the relative preservation value of
+                  street trees, and clarifies preservation options when
+                  developing a site, which can support requests for City or
+                  Street tree removal.
                 </p>
                 <p>
                   This form, completed by an arborist or Urban Forestry, should
