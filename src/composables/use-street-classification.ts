@@ -45,8 +45,12 @@ const classifications = new Map([
     'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/16',
   ],
   [
-    'districts',
+    'pedestrian_district',
     'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/28',
+  ],
+  [
+    'freight_district',
+    'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/32',
   ],
 ]);
 

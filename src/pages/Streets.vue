@@ -276,7 +276,11 @@ export default defineComponent({
     });
     const layers = [
       new FeatureLayer({
-        id: 'districts',
+        id: 'freight_district',
+        url: 'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/32',
+      }),
+      new FeatureLayer({
+        id: 'pedestrian_district',
         url: 'https://www.portlandmaps.com/arcgis/rest/services/Public/PBOT_Planning/MapServer/28',
       }),
       new FeatureLayer({
@@ -301,7 +305,9 @@ export default defineComponent({
     const { convertStreet, retrieveStreet } = useStreet();
 
     const districts = computed(() => {
-      return models.filter((m) => m.group === 'districts');
+      return models.filter((m) =>
+        ['pedestrian_district', 'freight_district'].includes(m.group)
+      );
     });
 
     const classifications = computed(() => {
@@ -485,7 +491,7 @@ export default defineComponent({
     };
 
     const setupFeatureFilter = async () => {
-      let layerView = await layerViews.get('classifications');
+      const layerView = await layerViews.get('classifications');
       if (layerView) {
         layerView.filter = new FeatureFilter({
           where: `Design in (${classifications.value
@@ -495,10 +501,13 @@ export default defineComponent({
         });
       }
 
-      layerView = await layerViews.get('districts');
-      if (layerView) {
-        layerView.visible = districts.value[0].enabled || false;
-      }
+      // loop through distrcts, get name
+      districts.value.forEach(async (d) => {
+        const layerView = await layerViews.get(d.group);
+        if (layerView) {
+          layerView.visible = d.enabled || false;
+        }
+      });
     };
 
     onMounted(async () => {
