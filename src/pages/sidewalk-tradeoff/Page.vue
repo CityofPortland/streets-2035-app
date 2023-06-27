@@ -46,6 +46,14 @@ const streetTypes = computed(() =>
     .sort((a, b) => (b.label > a.label ? -1 : 1))
 );
 
+const standardWidth = computed(
+  () =>
+    (sidewalk.value?.frontage.standardWidth || 0) +
+    (sidewalk.value?.pedestrians.standardWidth || 0) +
+    (sidewalk.value?.furnishings.standardWidth || 0) +
+    (sidewalk.value?.curb.standardWidth || 0)
+);
+
 const totalWidth = computed(
   () =>
     frontage.value +
@@ -76,9 +84,9 @@ const changeRoute = (
 };
 </script>
 <template>
-  <article class="flex flex-col gap-4 p-4 mx-auto">
-    <header class="prose prose-lg max-w-none mb-8 grid grid-cols-2">
-      <section>
+  <article class="flex flex-col gap-4 p-4 max-w-7xl mx-auto">
+    <header class="mb-8">
+      <section class="prose prose-lg">
         <h1 class="capitalize">Sidewalk tradeoffs evaluation</h1>
         <p>
           The Sidewalk Tradeoffs Evaluation Tool can be used to visualize the
@@ -96,7 +104,7 @@ const changeRoute = (
           zone to see the tradeoffs of non-standard sidewalk widths.
         </p>
       </section>
-      <figure>
+      <figure class="prose prose-lg max-w-none">
         <Image :src="`${publicPath}img/sidewalk-tradeoffs/zones.webp`" />
         <figcaption>
           Rendering to demonstrate the different parts of the sidewalk. You may
@@ -152,12 +160,7 @@ const changeRoute = (
           <div>
             <dt class="font-semibold">Standard width</dt>
             <dd class="grid grid-cols-2 gap-2">
-              {{
-                sidewalk.frontage.standardWidth +
-                sidewalk.pedestrians.standardWidth +
-                sidewalk.furnishings.standardWidth +
-                sidewalk.curb.standardWidth
-              }}
+              {{ standardWidth }}
               feet
             </dd>
           </div>
