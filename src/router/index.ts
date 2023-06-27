@@ -79,10 +79,23 @@ const routes: Array<RouteRecordRaw> = [
     path: '/sidewalk-tradeoffs',
     name: 'SidewalkTradeoffs',
     component: SidewalkTradeoffs,
+    beforeEnter(to) {
+      if (!to.query.streetType) {
+        return {
+          ...to,
+          query: {
+            streetType: 'CIC',
+            pedestrianDistrict: 'false',
+          },
+        };
+      }
+    },
     props: (route) => {
       const pedestrianDistrict = route.query.pedestrianDistrict === 'true';
+      const streetType = route.query.streetType;
 
       return {
+        streetType,
         pedestrianDistrict,
       };
     },

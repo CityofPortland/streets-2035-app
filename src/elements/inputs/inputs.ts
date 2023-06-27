@@ -1,6 +1,6 @@
 import { computed, ComputedRef, Ref } from 'vue';
 
-export type TextInputType = 'email' | 'search' | 'text';
+export type TextInputType = 'email' | 'number' | 'search' | 'text';
 
 export interface TextInputProps {
   id: string;
@@ -15,7 +15,7 @@ export interface TextInputProps {
 export function useInput(
   required: Ref<boolean>,
   disabled: Ref<boolean>,
-  modelValue: Ref<string | undefined> | undefined
+  modelValue: Ref<number | string | undefined> | undefined
 ): { classes: ComputedRef<string[]> } {
   return {
     classes: computed(() => [

@@ -8,7 +8,6 @@ import {
   useRouter,
 } from 'vue-router';
 
-import Box from '@/elements/box/Box';
 import Image from '@/elements/img/Image.vue';
 import Portion from './Portion.vue';
 import Select from '@/elements/inputs/Select.vue';
@@ -27,7 +26,7 @@ const { pedestrianDistrict, streetType } = toRefs(props);
 const route = useRoute();
 const router = useRouter();
 const store = useClassificationStore();
-const sidewalk = useSidewalk(streetType, pedestrianDistrict);
+const { sidewalk } = useSidewalk(streetType, pedestrianDistrict);
 
 const frontage = ref(0);
 const pedestrian = ref(0);
@@ -77,24 +76,38 @@ const changeRoute = (
 };
 </script>
 <template>
-  <article class="flex flex-col gap-4 max-w-7xl p-4 mx-auto">
-    <header class="prose prose-lg mb-8">
-      <h1 class="capitalize">Sidewalk tradeoffs evaluation</h1>
-      <p>
-        The Sidewalk Tradeoffs Evaluation Tool can be used to visualize the
-        tradeoffs when constructing or maintaining a less than standard sidewalk
-        with private development or a capital project. It can also be used to
-        determine whether additional priority needs to be placed on finding
-        opportunities for greening (i.e., street trees and stormwater swales).
-      </p>
-      <p>
-        To use the tool, select the street type that the project is on and
-        whether it is in a pedestrian district. This will populate the City's
-        standards for the furnishing, pedestrian, and frontage zones of the
-        sidewalk. You can then enter the proposed widths for each sidewalk zone
-        to see the tradeoffs of non-standard sidewalk widths.
-      </p>
-      <Box as="section" class="flex gap-2">
+  <article class="flex flex-col gap-4 p-4 mx-auto">
+    <header class="prose prose-lg max-w-none mb-8 grid grid-cols-2">
+      <section>
+        <h1 class="capitalize">Sidewalk tradeoffs evaluation</h1>
+        <p>
+          The Sidewalk Tradeoffs Evaluation Tool can be used to visualize the
+          tradeoffs when constructing or maintaining a less than standard
+          sidewalk with private development or a city project. It can also be
+          used to determine whether additional priority needs to be placed on
+          finding opportunities for greening (i.e., street trees and stormwater
+          swales).
+        </p>
+        <p>
+          To use the tool, select the street type that the project is on and
+          whether it is in a pedestrian district. This will populate the City's
+          standards for the furnishing, pedestrian, and frontage zones of the
+          sidewalk. You can then enter the proposed widths for each sidewalk
+          zone to see the tradeoffs of non-standard sidewalk widths.
+        </p>
+      </section>
+      <figure>
+        <Image :src="`${publicPath}img/sidewalk-tradeoffs/zones.webp`" />
+        <figcaption>
+          Rendering to demonstrate the different parts of the sidewalk. You may
+          use the tool controls below to see the tradeoffs for space when
+          designing sidewalks.
+        </figcaption>
+      </figure>
+    </header>
+
+    <main class="grid grid-cols-1 lg:grid-cols-4 gap-2">
+      <section class="bg-transparent flex flex-col gap-1">
         <div class="flex flex-col">
           <label class="font-semibold">Street type</label>
           <Select
@@ -106,7 +119,7 @@ const changeRoute = (
               v-for="(x, i) in streetTypes"
               :key="i"
               :value="x.value"
-              :selected="x == streetType"
+              :selected="x.value == streetType"
             >
               {{ x.label }}
             </option>
@@ -127,56 +140,11 @@ const changeRoute = (
             <label class="hidden">Pedestrian district</label>
           </Toggle>
         </div>
-      </Box>
-    </header>
-    <figure>
-      <Image :src="`${publicPath}img/sidewalk-tradeoffs/zones.webp`" />
-      <figcaption>
-        Rendering to demonstrate the different parts of the sidewalk. You may
-        use the tool controls below to see the tradeoffs for space when
-        designing sidewalks.
-      </figcaption>
-    </figure>
-    <main class="grid grid-cols-1 lg:grid-cols-4 gap-2">
-      <Portion
-        label="Frontage zone"
-        :maxWidth="2.5"
-        :portion="sidewalk.frontage"
-        @changed="frontage = $event"
-      />
-      <Portion
-        label="Pedestrian Through Zone (PTZ)"
-        :maxWidth="8"
-        :portion="sidewalk.pedestrians"
-        @changed="pedestrian = $event"
-      />
-      <Portion
-        label="Furnishing Zone"
-        :maxWidth="6"
-        :portion="sidewalk.furnishings"
-        @changed="furnishings = $event"
-      />
-      <section class="bg-transparent flex flex-col gap-1">
-        <h3 class="font-bold">Curb Zone</h3>
+        <h3 class="font-bold">Curb</h3>
         <dl>
           <div>
             <dt class="font-semibold">Standard width</dt>
-            <dd class="grid grid-cols-2 gap-2">
-              <input
-                type="range"
-                min="0"
-                max="0.5"
-                step="0.1"
-                value="0.5"
-                disabled
-              />
-              <input
-                type="number"
-                disabled
-                value="0.5"
-                class="border border-gray-500 opacity-50 rounded-md shadow-md bg-gray-100 text-current placeholder-gray-500 truncate focus:outline-none focus:ring focus:ring-blue-500"
-              />
-            </dd>
+            <dd class="grid grid-cols-2 gap-2">0.5 feet</dd>
           </div>
         </dl>
         <h3 class="font-bold">Total width</h3>
@@ -184,53 +152,42 @@ const changeRoute = (
           <div>
             <dt class="font-semibold">Standard width</dt>
             <dd class="grid grid-cols-2 gap-2">
-              <input
-                type="range"
-                min="0"
-                max="17"
-                step="0.1"
-                :value="
-                  sidewalk.frontage.standardWidth +
-                  sidewalk.pedestrians.standardWidth +
-                  sidewalk.furnishings.standardWidth +
-                  sidewalk.curb.standardWidth
-                "
-                disabled
-              />
-              <input
-                type="number"
-                disabled
-                :value="
-                  sidewalk.frontage.standardWidth +
-                  sidewalk.pedestrians.standardWidth +
-                  sidewalk.furnishings.standardWidth +
-                  sidewalk.curb.standardWidth
-                "
-                class="border border-gray-500 opacity-50 rounded-md shadow-md bg-gray-100 text-current placeholder-gray-500 truncate focus:outline-none focus:ring focus:ring-blue-500"
-              />
+              {{
+                sidewalk.frontage.standardWidth +
+                sidewalk.pedestrians.standardWidth +
+                sidewalk.furnishings.standardWidth +
+                sidewalk.curb.standardWidth
+              }}
+              feet
             </dd>
           </div>
           <div>
             <dt class="font-semibold">Alternative width</dt>
-            <dd class="grid grid-cols-2 gap-2">
-              <input
-                type="range"
-                min="0"
-                max="17"
-                step="0.1"
-                :value="totalWidth"
-                disabled
-              />
-              <input
-                type="number"
-                disabled
-                :value="totalWidth"
-                class="border border-gray-500 opacity-50 rounded-md shadow-md bg-gray-100 text-current placeholder-gray-500 truncate focus:outline-none focus:ring focus:ring-blue-500"
-              />
-            </dd>
+            <dd>{{ totalWidth }} feet</dd>
           </div>
         </dl>
       </section>
+      <Portion
+        v-if="sidewalk?.frontage"
+        label="Frontage zone"
+        :maxWidth="2.5"
+        :portion="sidewalk.frontage"
+        @changed="frontage = $event"
+      />
+      <Portion
+        v-if="sidewalk?.pedestrians"
+        label="Pedestrian Through Zone (PTZ)"
+        :maxWidth="8"
+        :portion="sidewalk.pedestrians"
+        @changed="pedestrian = $event"
+      />
+      <Portion
+        v-if="sidewalk?.furnishings"
+        label="Furnishing Zone"
+        :maxWidth="6"
+        :portion="sidewalk.furnishings"
+        @changed="furnishings = $event"
+      />
     </main>
   </article>
 </template>

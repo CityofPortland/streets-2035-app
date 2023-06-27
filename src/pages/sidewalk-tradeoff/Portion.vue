@@ -23,9 +23,7 @@ const issues = computed(() =>
   props.portion.issues.filter((i) => i.width > width.value)
 );
 
-watch(width, (newWidth) =>
-  emit('changed', Number.parseFloat(newWidth.toString()))
-);
+watch(width, (newWidth) => emit('changed', newWidth));
 </script>
 <template>
   <Box as="section" class="flex flex-col gap-1">
@@ -44,15 +42,7 @@ watch(width, (newWidth) =>
           <div>
             <dt class="font-semibold">Standard width</dt>
             <dd class="grid grid-cols-2 gap-2">
-              <input
-                type="range"
-                min="0"
-                :max="maxWidth"
-                step="0.1"
-                :value="portion.standardWidth"
-                disabled
-              />
-              <Input type="number" :value="portion.standardWidth" disabled />
+              {{ portion.standardWidth }} feet
             </dd>
           </div>
           <div>
@@ -65,7 +55,7 @@ watch(width, (newWidth) =>
                 min="0"
                 :max="maxWidth"
                 step="0.1"
-                v-model="width"
+                v-model.number="width"
               />
               <Input
                 id="width"
@@ -74,7 +64,7 @@ watch(width, (newWidth) =>
                 min="0"
                 :max="maxWidth"
                 step="0.1"
-                v-model="width"
+                v-model.number="width"
               />
             </dd>
           </div>

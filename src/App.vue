@@ -66,8 +66,25 @@
             text="Right-of-way Policies"
             to="//portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
           />
-          <NavItem text="Street Map" to="/streets" />
-          <NavItem text="Cross-Sections" to="/cross-section" />
+          <li>
+            <Dropdown label="Tools" id="tools">
+              <template v-slot:default="{ open }">
+                <DropdownList
+                  as="ul"
+                  id="tools"
+                  :open="open"
+                  class="md:absolute md:bg-white p-3 mt-8 md:-ml-16 md:min-w-max"
+                >
+                  <NavItem text="Street Map" to="/streets" />
+                  <NavItem text="Cross-Sections Viewer" to="/cross-section" />
+                  <NavItem
+                    text="Sidewalk Tradeoffs Evaluation"
+                    to="/sidewalk-tradeoffs"
+                  />
+                </DropdownList>
+              </template>
+            </Dropdown>
+          </li>
         </Nav>
       </template>
     </Header>

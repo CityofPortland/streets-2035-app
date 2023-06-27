@@ -145,9 +145,9 @@
               policy-specified uses to their preferred dimensions.
             </p>
             <footer class="mt-auto flex flex-col items-center not-prose">
-              <router-link to="/capital-projects">
+              <router-link to="/city-projects">
                 <Button
-                  label="Read about capital projects"
+                  label="Read about city projects"
                   size="large"
                   color="orange"
                 />
@@ -215,7 +215,7 @@
             projects.
           </p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 justify-items-center">
+        <div class="grid grid-cols-1 md:grid-cols-3 justify-items-center">
           <Box as="div" class="p-12 flex flex-col gap-4 prose">
             <header
               class="mx-auto uppercase flex flex-col gap-2 items-center not-prose"
@@ -282,6 +282,44 @@
               <router-link to="/cross-section">
                 <Button
                   label="Use the cross-section tool"
+                  size="large"
+                  color="orange"
+                />
+              </router-link>
+            </footer>
+          </Box>
+          <Box as="div" class="p-12 flex flex-col gap-4 prose">
+            <header
+              class="mx-auto uppercase flex flex-col gap-2 items-center not-prose"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-24 h-24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z"
+                />
+              </svg>
+
+              <h2 class="text-3xl text-center font-bold">
+                Sidewalk tradeoff evaluation
+              </h2>
+            </header>
+            <p>
+              Our sidewalk tradeoff evaluation tool allows you to view the
+              impacts of deviating from standard width sidewalks for your
+              projects.
+            </p>
+            <footer class="mt-auto flex flex-col items-center not-prose">
+              <router-link to="/sidewalk-tradeoffs">
+                <Button
+                  label="Evaluate sidewalk tradeoffs"
                   size="large"
                   color="orange"
                 />
