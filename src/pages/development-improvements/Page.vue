@@ -131,10 +131,10 @@ onMounted(() => {
                   particular point are eligible for this process.
                 </p>
                 <p>
+                  Submittal requirements for accessing the
                   <Anchor
                     url="https://www.portlandoregon.gov/article/481371#prepare"
-                    >Criteria for accessing the Public Works Alternative
-                    process</Anchor
+                    >Public Works Alternative review process</Anchor
                   >
                   to request a reduction in frontage improvements to meet other
                   policies requirements (e.g., to preserve a tree) or respond to
@@ -143,6 +143,13 @@ onMounted(() => {
                   <Anchor
                     url="https://www.portland.gov/policies/transportation/streets-sidewalks/trn-127-bureau-transportation-public-works-alternate"
                     >TRN 1.27.</Anchor
+                  >
+                  Requests to alter specific technical requirements that are
+                  part of a public works permit are not eligible for this
+                  process and require a
+                  <Anchor
+                    url="https://www.portland.gov/transportation/engineering/capital-project-delivery-process#toc-design-exceptions"
+                    >PBOT Design Exception.</Anchor
                   >
                 </p>
               </div>
@@ -179,7 +186,7 @@ onMounted(() => {
               >
             </div>
             <div class="flex flex-col md:flex-row gap-4">
-              <div class="prose prose-sm">
+              <div class="prose">
                 <h3>How to deviate from standard improvements</h3>
                 <p>
                   A
@@ -240,7 +247,7 @@ onMounted(() => {
               >
             </div>
             <div class="flex flex-col md:flex-row gap-4">
-              <div class="prose prose-sm">
+              <div class="prose">
                 <h3>How to deviate from standard improvements</h3>
                 <p>
                   Deviation from rules related to the design of driveways
@@ -293,7 +300,7 @@ onMounted(() => {
               >
             </div>
             <div class="flex flex-col md:flex-row gap-4">
-              <div class="prose prose-sm">
+              <div class="prose">
                 <h3>How to deviate from standard improvements</h3>
                 <p>
                   When public improvements require stormwater management,
@@ -312,10 +319,10 @@ onMounted(() => {
       <Box
         id="utility"
         as="section"
-        class="grid grid-cols-1 gap-4 pl-4 border-l-4 border-red-500"
+        class="grid grid-cols-1 gap-4 pl-4 border-l-4 border-blue-500"
       >
         <div class="flex">
-          <div class="flex text-red-500">
+          <div class="flex text-blue-500">
             <Utility class="w-24 h-24" />
           </div>
           <div class="flex-1 grid grid-cols-1 gap-8">
@@ -341,7 +348,7 @@ onMounted(() => {
               >
             </div>
             <div class="flex flex-col md:flex-row gap-4">
-              <div class="prose prose-sm">
+              <div class="prose">
                 <h3>How to deviate from standard improvements</h3>
                 <p>
                   Refer the 'Processes for Deviating from Standard Improvements'
