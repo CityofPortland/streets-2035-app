@@ -68,10 +68,6 @@
           />
           <NavItem text="Street Map" to="/streets" />
           <NavItem text="Cross-Sections" to="/cross-section" />
-          <li>
-            <SignIn v-if="!user" />
-            <LoggedIn v-else />
-          </li>
         </Nav>
       </template>
     </Header>
@@ -112,16 +108,13 @@ import Footer from '@/components/footer/Footer.vue';
 import Header from '@/components/header/Header.vue';
 import Icon from './elements/icon/Icon.vue';
 import Logo from '@/components/Logo.vue';
-import LoggedIn from '@/components/login/LoggedIn.vue';
 import Nav from '@/components/nav/Nav.vue';
 import NavItem from '@/components/nav/NavItem.vue';
-import SignIn from '@/components/login/SignIn.vue';
 import {
   getModels,
   STREET_CLASSIFICATION_KEY,
   ViewModel,
 } from './composables/use-street-classification';
-import { useAuthStore } from '@/store/auth';
 import { useHeaderStore } from '@/store/header';
 import Anchor from './elements/anchor/Anchor.vue';
 
@@ -130,7 +123,6 @@ export default defineComponent({
     const menuOpen = ref(false);
 
     const headerStore = useHeaderStore();
-    const authStore = useAuthStore();
 
     const models = reactive(new Array<ViewModel>());
     provide(STREET_CLASSIFICATION_KEY, models);
@@ -142,7 +134,6 @@ export default defineComponent({
     return {
       menuOpen,
       header: computed(() => headerStore.header),
-      user: computed(() => authStore.user),
       handleClick: () => console.log('click!'),
     };
   },
@@ -152,11 +143,9 @@ export default defineComponent({
     Footer,
     Header,
     Icon,
-    LoggedIn,
     Logo,
     Nav,
     NavItem,
-    SignIn,
     Anchor,
   },
 });
