@@ -22,24 +22,28 @@ import Box from '@/elements/box/Box';
       </Box>
     </Box>
     <main class="mt-4 mb-8 grid grid-cols-1 gap-4">
-      <section class="grid grid-cols-1 md:grid-cols-2 px-4 lg:pl-12">
+      <section class="grid grid-cols-1 lg:grid-cols-2 px-4 lg:pl-12">
         <div class="prose">
           <h2>Video one</h2>
-          <p>Here's some intro text for the video to the side</p>
+          <p>
+            This video provides an overview of the StreetsPDX website and tools.
+          </p>
         </div>
         <iframe
           class="w-full h-96"
-          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-          title="YouTube video player"
+          src="https://player.vimeo.com/video/815450894?h=91262da591&title=0&byline=0&portrait=0"
           frameborder="0"
-          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="autoplay; fullscreen; picture-in-picture"
           allowfullscreen
         ></iframe>
       </section>
-      <section class="grid grid-cols-1 md:grid-cols-2 px-4 lg:pl-12">
+      <section class="grid grid-cols-1 lg:grid-cols-2 px-4 lg:pl-12">
         <div class="prose">
           <h2>Video two</h2>
-          <p>Here's some intro text for the video to the side</p>
+          <p>
+            The second video describes StreetsPDX tools for understanding
+            development related public improvements in the right-of-way.
+          </p>
         </div>
         <iframe
           class="w-full h-96"
@@ -50,10 +54,13 @@ import Box from '@/elements/box/Box';
           allowfullscreen
         ></iframe>
       </section>
-      <section class="grid grid-cols-1 md:grid-cols-2 px-4 lg:pl-12">
+      <section class="grid grid-cols-1 lg:grid-cols-2 px-4 lg:pl-12">
         <div class="prose">
           <h2>Video three</h2>
-          <p>Here's some intro text for the video to the side</p>
+          <p>
+            The last video describes the decision-making process and tools that
+            support the evaluation of tradeoffs as part of City Projects.
+          </p>
         </div>
         <iframe
           class="w-full h-96"
