@@ -160,7 +160,7 @@
         as="section"
         color="blue"
         variant="light"
-        class="py-8 grid grid-cols-1 justify-items-center"
+        class="py-8 grid grid-cols-2 justify-items-center"
       >
         <Box as="div" class="p-12 flex flex-col gap-4 prose">
           <header
@@ -200,6 +200,39 @@
             >
               <Button
                 label="Read about right-of-way policies"
+                size="large"
+                color="orange"
+              />
+            </router-link>
+          </footer>
+        </Box>
+        <Box as="div" class="p-12 flex flex-col gap-4 prose">
+          <header
+            class="mx-auto uppercase flex flex-col gap-2 items-center not-prose"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-24 h-24"
+            >
+              <path
+                stroke-linecap="round"
+                d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"
+              />
+            </svg>
+            <h2 class="text-3xl text-center font-bold">Training Videos</h2>
+          </header>
+          <p>
+            We have created several videos that will help users navigate and
+            utilize this site and its various tools.
+          </p>
+          <footer class="mt-auto flex flex-col items-center not-prose">
+            <router-link to="/training">
+              <Button
+                label="Watch the training videos"
                 size="large"
                 color="orange"
               />
