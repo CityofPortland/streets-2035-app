@@ -112,23 +112,4 @@ const router = createRouter({
   },
 });
 
-router.beforeResolve(async (to) => {
-  const store = useAuthStore();
-  if (!store.isLoggedIn) {
-    await store.initialize();
-  }
-
-  if (
-    !store.user &&
-    to.name !== 'Login' &&
-    to.name !== 'OAuthCallback' &&
-    to.name != 'Logout'
-  ) {
-    const { saveReturnLocation } = useLogin();
-
-    saveReturnLocation(to);
-    return { name: 'Login' };
-  }
-});
-
 export default router;
