@@ -7,9 +7,6 @@ import DevelopmentImprovements from '@/pages/development-improvements/Page.vue';
 import Streets from '@/pages/Streets.vue';
 import StreetTypes from '@/pages/street-type/StreetTypes.vue';
 
-import { useAuthStore } from '@/store/auth';
-import { useLogin } from '@/composables/use-login';
-
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
