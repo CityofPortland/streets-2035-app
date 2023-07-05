@@ -160,7 +160,7 @@
         as="section"
         color="blue"
         variant="light"
-        class="py-8 grid grid-cols-2 justify-items-center"
+        class="py-8 grid grid-cols-1 md:grid-cols-2 justify-items-center"
       >
         <Box as="div" class="p-12 flex flex-col gap-4 prose">
           <header
