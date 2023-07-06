@@ -20,7 +20,9 @@ const emit = defineEmits(['changed']);
 const width = ref(props.portion.standardWidth);
 
 const issues = computed(() =>
-  props.portion.issues.filter((i) => i.width > width.value)
+  props.portion.issues.filter(
+    (i) => width.value >= i.minWidth && width.value < i.maxWidth
+  )
 );
 
 watch(width, (newWidth) => emit('changed', newWidth));
@@ -84,7 +86,7 @@ watch(width, (newWidth) => emit('changed', newWidth));
           icon="check"
           color="green"
           variant="light"
-          summary="No issues!"
+          summary="Meets standards"
         />
       </div>
     </main>

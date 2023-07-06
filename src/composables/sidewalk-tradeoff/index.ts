@@ -5,7 +5,8 @@ export type SidewalkPortion = {
   standardWidth: number;
   comment: string;
   issues: Array<{
-    width: number;
+    minWidth: number;
+    maxWidth: number;
     comment: string;
   }>;
 };
