@@ -73,7 +73,7 @@
                   as="ul"
                   id="tools"
                   :open="open"
-                  class="md:absolute md:bg-white p-3 mt-8 md:-ml-16 md:min-w-max"
+                  class="md:absolute md:bg-white p-3 mt-8 md:-ml-20 md:min-w-max"
                 >
                   <NavItem text="Street Map" to="/streets" />
                   <NavItem text="Cross-Sections Viewer" to="/cross-section" />
