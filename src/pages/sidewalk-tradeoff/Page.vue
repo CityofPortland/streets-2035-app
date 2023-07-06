@@ -103,6 +103,10 @@ const changeRoute = (
           sidewalk. You can then enter the proposed widths for each sidewalk
           zone to see the tradeoffs of non-standard sidewalk widths.
         </p>
+        <p>
+          This tool is a representation of information provided in the city's
+          Pedestrian Design Guide.
+        </p>
       </section>
       <figure class="prose prose-lg max-w-none">
         <Image :src="`${publicPath}img/sidewalk-tradeoffs/zones.webp`" />

@@ -33,6 +33,15 @@ const publicPath = process.env.BASE_URL;
         >
         to learn more about spatial tradeoffs.
       </p>
+      <p class="prose-sm">
+        Use the
+        <router-link to="/sidewalk-tradeoff" custom v-slot="{ href, navigate }">
+          <Anchor :url="href" @click="navigate"
+            >Sidewalk Tradeoffs Evaluation Tool</Anchor
+          >
+        </router-link>
+        to evaluate conditions behind the curb
+      </p>
     </div>
     <div>
       <h3>Policy Priorities</h3>

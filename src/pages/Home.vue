@@ -312,9 +312,9 @@
               </h2>
             </header>
             <p>
-              Our sidewalk tradeoff evaluation tool allows you to view the
-              impacts of deviating from standard width sidewalks for your
-              projects.
+              This tool identifies tradeoffs when constructing or maintaining a
+              less than standard sidewalk. This can inform decision-making with
+              private development or city projects.
             </p>
             <footer class="mt-auto flex flex-col items-center not-prose">
               <router-link to="/sidewalk-tradeoffs">
