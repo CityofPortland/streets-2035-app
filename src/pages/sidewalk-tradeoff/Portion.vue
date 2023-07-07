@@ -28,48 +28,44 @@ const issues = computed(() =>
 watch(width, (newWidth) => emit('changed', newWidth));
 </script>
 <template>
-  <Box as="section" class="flex flex-col gap-1">
+  <Box as="section">
     <header>
       <h3 class="font-bold">
         {{ label }}
       </h3>
+      <label class="font-semibold">Typical uses</label>
+      <p>{{ portion.comment }}</p>
     </header>
-    <main class="grid grid-cols-1 lg:grid-rows-2 gap-2 h-full">
-      <dl class="grid grid-cols-1 content-between">
+    <main class="row-auto flex flex-col gap-2">
+      <dl>
         <div>
-          <dt class="font-semibold">Typical uses</dt>
-          <dd>{{ portion.comment }}</dd>
+          <dt class="font-semibold">Standard width</dt>
+          <dd class="grid grid-cols-2 gap-2">
+            {{ portion.standardWidth }} feet
+          </dd>
         </div>
         <div>
-          <div>
-            <dt class="font-semibold">Standard width</dt>
-            <dd class="grid grid-cols-2 gap-2">
-              {{ portion.standardWidth }} feet
-            </dd>
-          </div>
-          <div>
-            <dt class="font-semibold">Alternative width</dt>
-            <dd class="grid grid-cols-2 gap-2">
-              <input
-                type="range"
-                id="width"
-                name="width"
-                min="0"
-                :max="maxWidth"
-                step="0.1"
-                v-model.number="width"
-              />
-              <Input
-                id="width"
-                name="width"
-                type="number"
-                min="0"
-                :max="maxWidth"
-                step="0.1"
-                v-model.number="width"
-              />
-            </dd>
-          </div>
+          <dt class="font-semibold">Alternative width</dt>
+          <dd class="grid grid-cols-2 gap-2">
+            <input
+              type="range"
+              id="width"
+              name="width"
+              min="0"
+              :max="maxWidth"
+              step="0.1"
+              v-model.number="width"
+            />
+            <Input
+              id="width"
+              name="width"
+              type="number"
+              min="0"
+              :max="maxWidth"
+              step="0.1"
+              v-model.number="width"
+            />
+          </dd>
         </div>
       </dl>
       <div class="space-y-2">
