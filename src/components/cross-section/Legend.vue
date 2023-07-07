@@ -35,7 +35,11 @@ const publicPath = process.env.BASE_URL;
       </p>
       <p class="prose-sm">
         Use the
-        <router-link to="/sidewalk-tradeoff" custom v-slot="{ href, navigate }">
+        <router-link
+          to="/sidewalk-tradeoffs"
+          custom
+          v-slot="{ href, navigate }"
+        >
           <Anchor :url="href" @click="navigate"
             >Sidewalk Tradeoffs Evaluation Tool</Anchor
           >
