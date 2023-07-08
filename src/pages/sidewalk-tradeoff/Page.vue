@@ -171,7 +171,7 @@ const changeRoute = (
           </div>
           <div>
             <dt class="font-semibold">Alternative width</dt>
-            <dd>{{ totalWidth }} feet</dd>
+            <dd>{{ totalWidth.toFixed(1) }} feet</dd>
           </div>
         </dl>
       </section>
