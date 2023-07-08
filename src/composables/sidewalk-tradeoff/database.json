@@ -469,7 +469,7 @@
       ]
     },
     "frontage": {
-      "standardWidth": 1.5,
+      "standardWidth": 0.5,
       "comment": "Shy zone between public sidewalk and private property at back of walk",
       "issues": [
         {
@@ -638,7 +638,7 @@
       ]
     },
     "frontage": {
-      "standardWidth": 1.5,
+      "standardWidth": 0.5,
       "comment": "Flexible space for construction uses or grading, shy zone between public sidewalk & private property at back of walk",
       "issues": [
         {
