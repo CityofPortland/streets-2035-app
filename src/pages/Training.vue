@@ -31,7 +31,8 @@ import Box from '@/elements/box/Box';
         </div>
         <iframe
           class="w-full h-96"
-          src="https://player.vimeo.com/video/815450894?h=91262da591&title=0&byline=0&portrait=0"
+          src="https://www.youtube.com/embed/KnqxCor3jv0"
+          title="YouTube video player"
           frameborder="0"
           allow="autoplay; fullscreen; picture-in-picture"
           allowfullscreen
@@ -47,10 +48,10 @@ import Box from '@/elements/box/Box';
         </div>
         <iframe
           class="w-full h-96"
-          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          src="https://www.youtube.com/embed/DVv1EoJgAs8"
           title="YouTube video player"
           frameborder="0"
-          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="autoplay; fullscreen; picture-in-picture"
           allowfullscreen
         ></iframe>
       </section>
@@ -64,10 +65,10 @@ import Box from '@/elements/box/Box';
         </div>
         <iframe
           class="w-full h-96"
-          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          src="https://www.youtube.com/embed/OO5MVnT9y9g"
           title="YouTube video player"
           frameborder="0"
-          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="autoplay; fullscreen; picture-in-picture"
           allowfullscreen
         ></iframe>
       </section>
