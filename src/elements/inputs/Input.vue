@@ -50,7 +50,7 @@ export default defineComponent({
       type: Number,
     },
     modelValue: {
-      type: String,
+      type: [String, Number],
       default: '',
     },
     modelModifiers: {
@@ -80,7 +80,7 @@ export default defineComponent({
 
       if (props.size) {
         if (value.length >= props.size) {
-          value = value.substr(0, props.size);
+          value = value.substring(0, props.size);
           target.value = value;
         }
       }

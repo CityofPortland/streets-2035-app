@@ -36,7 +36,7 @@
                   as="ul"
                   id="street-types"
                   :open="open"
-                  class="md:absolute md:bg-white p-3 mt-8 md:min-w-max"
+                  class="md:absolute md:bg-white p-3 md:mt-[2.5rem] md:min-w-max"
                 >
                   <NavItem
                     v-for="x in [
@@ -66,8 +66,34 @@
             text="Right-of-way Policies"
             to="//portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
           />
-          <NavItem text="Street Map" to="/streets" />
-          <NavItem text="Cross-Sections" to="/cross-section" />
+          <li>
+            <Dropdown label="Tools" id="tools">
+              <template v-slot:label="{ label, open }">
+                <span class="font-semibold">{{ label }}</span>
+                <Icon
+                  aria-label="Open dropdown"
+                  type="solid"
+                  :name="open ? 'chevron-up' : 'chevron-down'"
+                  class="ml-2 w-5 h-5"
+                />
+              </template>
+              <template v-slot:default="{ open }">
+                <DropdownList
+                  as="ul"
+                  id="tools"
+                  :open="open"
+                  class="md:absolute md:bg-white p-3 md:mt-[2.5rem] md:-ml-[10.5rem] md:min-w-max"
+                >
+                  <NavItem text="Street Map" to="/streets" />
+                  <NavItem text="Cross-Sections Viewer" to="/cross-section" />
+                  <NavItem
+                    text="Sidewalk Tradeoffs Evaluation"
+                    to="/sidewalk-tradeoffs"
+                  />
+                </DropdownList>
+              </template>
+            </Dropdown>
+          </li>
         </Nav>
       </template>
     </Header>
@@ -93,14 +119,7 @@
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  onMounted,
-  provide,
-  reactive,
-  ref,
-} from 'vue';
+import { computed, defineComponent, onMounted, ref } from 'vue';
 
 import Dropdown from './components/dropdown/Dropdown.vue';
 import DropdownList from './components/dropdown/DropdownList.vue';
@@ -110,31 +129,22 @@ import Icon from './elements/icon/Icon.vue';
 import Logo from '@/components/Logo.vue';
 import Nav from '@/components/nav/Nav.vue';
 import NavItem from '@/components/nav/NavItem.vue';
-import {
-  getModels,
-  STREET_CLASSIFICATION_KEY,
-  ViewModel,
-} from './composables/use-street-classification';
 import { useHeaderStore } from '@/store/header';
 import Anchor from './elements/anchor/Anchor.vue';
+import { useClassificationStore } from './store/classification';
 
 export default defineComponent({
   setup() {
     const menuOpen = ref(false);
 
     const headerStore = useHeaderStore();
+    const { init } = useClassificationStore();
 
-    const models = reactive(new Array<ViewModel>());
-    provide(STREET_CLASSIFICATION_KEY, models);
-
-    onMounted(async () => {
-      models.push(...(await getModels()));
-    });
+    onMounted(() => init());
 
     return {
       menuOpen,
       header: computed(() => headerStore.header),
-      handleClick: () => console.log('click!'),
     };
   },
   components: {

@@ -4,6 +4,7 @@ import CityProjects from '@/pages/CityProjects.vue';
 import Disclaimer from '@/pages/Disclaimer.vue';
 import Home from '@/pages/Home.vue';
 import DevelopmentImprovements from '@/pages/development-improvements/Page.vue';
+import SidewalkTradeoffs from '@/pages/sidewalk-tradeoff/Page.vue';
 import Streets from '@/pages/Streets.vue';
 import StreetTypes from '@/pages/street-type/StreetTypes.vue';
 
@@ -18,27 +19,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'CityProjects',
     component: CityProjects,
   },
-  {
-    path: '/disclaimer',
-    name: 'Disclaimer',
-    component: Disclaimer,
-  },
-  {
-    path: '/development-improvements',
-    name: 'DevelopmentImprovements',
-    component: DevelopmentImprovements,
-  },
-  {
-    path: '/streets/:id?',
-    name: 'Streets',
-    component: Streets,
-  },
-  {
-    path: '/street-types/:page?',
-    name: 'StreetTypes',
-    component: StreetTypes,
-    props: true,
-  },
+
   {
     path: '/cross-section',
     redirect: () => ({
@@ -83,6 +64,52 @@ const routes: Array<RouteRecordRaw> = [
         ordinal: Number.parseInt(ordinal),
       };
     },
+  },
+  {
+    path: '/disclaimer',
+    name: 'Disclaimer',
+    component: Disclaimer,
+  },
+  {
+    path: '/development-improvements',
+    name: 'DevelopmentImprovements',
+    component: DevelopmentImprovements,
+  },
+  {
+    path: '/sidewalk-tradeoffs',
+    name: 'SidewalkTradeoffs',
+    component: SidewalkTradeoffs,
+    beforeEnter(to) {
+      if (!to.query.streetType) {
+        return {
+          ...to,
+          query: {
+            streetType: 'CIC',
+            pedestrianDistrict: 'false',
+          },
+        };
+      }
+    },
+    props: (route) => {
+      const pedestrianDistrict = route.query.pedestrianDistrict === 'true';
+      const streetType = route.query.streetType;
+
+      return {
+        streetType,
+        pedestrianDistrict,
+      };
+    },
+  },
+  {
+    path: '/streets/:id?',
+    name: 'Streets',
+    component: Streets,
+  },
+  {
+    path: '/street-types/:page?',
+    name: 'StreetTypes',
+    component: StreetTypes,
+    props: true,
   },
 ];
 

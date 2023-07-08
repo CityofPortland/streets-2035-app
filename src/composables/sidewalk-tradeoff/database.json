@@ -1,0 +1,652 @@
+[
+  {
+    "streetType": "CIMS",
+    "pedestrianDistrict": true,
+    "curb": {
+      "standardWidth": 0.5
+    },
+    "furnishings": {
+      "standardWidth": 4,
+      "comment": "Space for street trees (tree wells), separation of pedestrians from roadway, place for furnishings to keep PTZ clear",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 2,
+          "comment": "Furnishings may encroach on PTZ"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 2,
+          "comment": "Limited or no buffer from street"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 3,
+          "comment": "No space for street trees"
+        },
+        {
+          "minWidth": 3,
+          "maxWidth": 4,
+          "comment": "Less space for furnishing zone uses"
+        }
+      ]
+    },
+    "pedestrians": {
+      "standardWidth": 8,
+      "comment": "8' PTZ on Main Streets in Pedestrian Districts",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 6,
+          "comment": "Not space for 2 people to walk/pass"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 8,
+          "comment": "Not space for 3 people to walk/pass"
+        }
+      ]
+    },
+    "frontage": {
+      "standardWidth": 2.5,
+      "comment": "Sidewalk cafés and restaurants, waiting area for shops and take-out, planters",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 0.5,
+          "comment": "Shy space from private property"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 2.5,
+          "comment": "Café seating more challenging"
+        }
+      ]
+    }
+  },
+  {
+    "streetType": "CIMS",
+    "pedestrianDistrict": false,
+    "curb": {
+      "standardWidth": 0.5
+    },
+    "furnishings": {
+      "standardWidth": 4,
+      "comment": "Space for street trees (tree wells), separation of pedestrians from roadway, place for furnishings to keep PTZ clear",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 2,
+          "comment": "Furnishings may encroach on PTZ"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 2,
+          "comment": "Limited or no buffer from street"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 3,
+          "comment": "No space for street trees"
+        },
+        {
+          "minWidth": 3,
+          "maxWidth": 4,
+          "comment": "Less space for furnishing zone uses"
+        }
+      ]
+    },
+    "pedestrians": {
+      "standardWidth": 6,
+      "comment": "Citywide minimum  6' PTZ",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 6,
+          "comment": "Not space for 2 people to walk/pass"
+        }
+      ]
+    },
+    "frontage": {
+      "standardWidth": 1.5,
+      "comment": "Small sidewalk cafés, planters",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 0.5,
+          "comment": "Shy space from private property"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 1.5,
+          "comment": "Café seating more challenging"
+        }
+      ]
+    }
+  },
+  {
+    "streetType": "CIC",
+    "curb": {
+      "standardWidth": 0.5
+    },
+    "furnishings": {
+      "standardWidth": 4,
+      "comment": "Space for street trees (tree wells), separation of pedestrians from roadway, place for furnishings to keep PTZ clear",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 2,
+          "comment": "Furnishings may encroach on PTZ"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 2,
+          "comment": "Limited or no buffer from street"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 3,
+          "comment": "No space for street trees"
+        },
+        {
+          "minWidth": 3,
+          "maxWidth": 4,
+          "comment": "Less space for furnishing zone uses"
+        }
+      ]
+    },
+    "pedestrians": {
+      "standardWidth": 6,
+      "comment": "Citywide minimum  6' PTZ",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 6,
+          "comment": "Not space for 2 people to walk/pass"
+        }
+      ]
+    },
+    "frontage": {
+      "standardWidth": 1.5,
+      "comment": "Small sidewalk cafés, planters",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 0.5,
+          "comment": "Shy space from private property"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 1.5,
+          "comment": "Café seating more challenging"
+        }
+      ]
+    }
+  },
+  {
+    "streetType": "NMS",
+    "pedestrianDistrict": true,
+    "curb": {
+      "standardWidth": 0.5
+    },
+    "furnishings": {
+      "standardWidth": 4,
+      "comment": "Space for street trees (tree wells), separation of pedestrians from roadway, place for furnishings to keep PTZ clear",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 2,
+          "comment": "Furnishings may encroach on PTZ"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 2,
+          "comment": "Limited or no buffer from street"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 3,
+          "comment": "No space for street trees"
+        },
+        {
+          "minWidth": 3,
+          "maxWidth": 4,
+          "comment": "Less space for furnishing zone uses"
+        }
+      ]
+    },
+    "pedestrians": {
+      "standardWidth": 8,
+      "comment": "8' PTZ on Main Streets in Pedestrian Districts",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 6,
+          "comment": "Not space for 2 people to walk/pass"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 8,
+          "comment": "Not space for 3 people to walk/pass"
+        }
+      ]
+    },
+    "frontage": {
+      "standardWidth": 2.5,
+      "comment": "Sidewalk cafés and restaurants, waiting area for shops and take-out, planters",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 0.5,
+          "comment": "Shy space from private property"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 2.5,
+          "comment": "Café seating more challenging"
+        }
+      ]
+    }
+  },
+  {
+    "streetType": "NMS",
+    "pedestrianDistrict": false,
+    "curb": {
+      "standardWidth": 0.5
+    },
+    "furnishings": {
+      "standardWidth": 4,
+      "comment": "Space for street trees (tree wells), separation of pedestrians from roadway, place for furnishings to keep PTZ clear",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 2,
+          "comment": "Furnishings may encroach on PTZ"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 2,
+          "comment": "Limited or no buffer from street"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 3,
+          "comment": "No space for street trees"
+        },
+        {
+          "minWidth": 3,
+          "maxWidth": 4,
+          "comment": "Less space for furnishing zone uses"
+        }
+      ]
+    },
+    "pedestrians": {
+      "standardWidth": 6,
+      "comment": "Citywide minimum  6' PTZ",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 6,
+          "comment": "Not space for 2 people to walk/pass"
+        }
+      ]
+    },
+    "frontage": {
+      "standardWidth": 1.5,
+      "comment": "Small sidewalk cafés, planters",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 0.5,
+          "comment": "Shy space from private property"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 1.5,
+          "comment": "Café seating more challenging"
+        }
+      ]
+    }
+  },
+  {
+    "streetType": "NC",
+    "curb": {
+      "standardWidth": 0.5
+    },
+    "furnishings": {
+      "standardWidth": 4,
+      "comment": "Space for street trees (tree wells), separation of pedestrians from roadway, place for furnishings to keep PTZ clear",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 2,
+          "comment": "Furnishings may encroach on PTZ"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 2,
+          "comment": "Limited or no buffer from street"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 3,
+          "comment": "No space for street trees"
+        },
+        {
+          "minWidth": 3,
+          "maxWidth": 4,
+          "comment": "Less space for furnishing zone uses"
+        }
+      ]
+    },
+    "pedestrians": {
+      "standardWidth": 6,
+      "comment": "Citywide minimum  6' PTZ",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 6,
+          "comment": "Not space for 2 people to walk/pass"
+        }
+      ]
+    },
+    "frontage": {
+      "standardWidth": 1.5,
+      "comment": "Small sidewalk cafés, planters",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 0.5,
+          "comment": "Shy space from private property"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 1.5,
+          "comment": "Café seating more challenging"
+        }
+      ]
+    }
+  },
+  {
+    "streetType": "CC",
+    "curb": {
+      "standardWidth": 0.5
+    },
+    "furnishings": {
+      "standardWidth": 4,
+      "comment": "Space for street trees (continuous planter strip), separation of pedestrians from roadway, place for furnishings to keep PTZ clear",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 2,
+          "comment": "Furnishings may encroach on PTZ"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 2,
+          "comment": "Limited or no buffer from street"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 3,
+          "comment": "No space for street trees"
+        },
+        {
+          "minWidth": 3,
+          "maxWidth": 4,
+          "comment": "Less space for furnishing zone uses"
+        }
+      ]
+    },
+    "pedestrians": {
+      "standardWidth": 6,
+      "comment": "Citywide minimum  6' PTZ",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 6,
+          "comment": "Not space for 2 people to walk/pass"
+        }
+      ]
+    },
+    "frontage": {
+      "standardWidth": 1.5,
+      "comment": "Planters, shy zone between public sidewalk and private property at back of walk",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 0.5,
+          "comment": "Shy space from private property"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 1.5,
+          "comment": "Café seating more challenging"
+        }
+      ]
+    }
+  },
+  {
+    "streetType": "IR",
+    "curb": {
+      "standardWidth": 0.5
+    },
+    "furnishings": {
+      "standardWidth": 5,
+      "comment": "Space for street trees (continuous planter strip), separation of pedestrians from roadway, place for furnishings to keep PTZ clear",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 2,
+          "comment": "Furnishings may encroach on PTZ"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 2,
+          "comment": "Limited or no buffer from street"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 3,
+          "comment": "No space for street trees"
+        },
+        {
+          "minWidth": 3,
+          "maxWidth": 5,
+          "comment": "Less space for furnishing zone uses"
+        }
+      ]
+    },
+    "pedestrians": {
+      "standardWidth": 6,
+      "comment": "Citywide minimum  6' PTZ",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 6,
+          "comment": "Not space for 2 people to walk/pass"
+        }
+      ]
+    },
+    "frontage": {
+      "standardWidth": 0.5,
+      "comment": "Shy zone between public sidewalk and private property at back of walk",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 0.5,
+          "comment": "Shy space from private property"
+        }
+      ]
+    }
+  },
+  {
+    "streetType": "RC",
+    "curb": {
+      "standardWidth": 0.5
+    },
+    "furnishings": {
+      "standardWidth": 5,
+      "comment": "Space for street trees (continuous planter strip), separation of pedestrians from roadway, place for furnishings to keep PTZ clear",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 2,
+          "comment": "Furnishings may encroach on PTZ"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 2,
+          "comment": "Limited or no buffer from street"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 3,
+          "comment": "No space for street trees"
+        },
+        {
+          "minWidth": 3,
+          "maxWidth": 5,
+          "comment": "Less space for furnishing zone uses"
+        }
+      ]
+    },
+    "pedestrians": {
+      "standardWidth": 6,
+      "comment": "Citywide minimum  6' PTZ",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 6,
+          "comment": "Not space for 2 people to walk/pass"
+        }
+      ]
+    },
+    "frontage": {
+      "standardWidth": 0.5,
+      "comment": "Planters, shy zone between public sidewalk and private property at back of walk",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 0.5,
+          "comment": "Shy space from private property"
+        }
+      ]
+    }
+  },
+  {
+    "streetType": "LS",
+    "pedestrianDistrict": true,
+    "curb": {
+      "standardWidth": 0.5
+    },
+    "furnishings": {
+      "standardWidth": 4,
+      "comment": "Space for street trees (tree wells), separation of pedestrians from roadway, place for furnishings to keep PTZ clear",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 2,
+          "comment": "Furnishings may encroach on PTZ"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 2,
+          "comment": "Limited or no buffer from street"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 3,
+          "comment": "No space for street trees"
+        },
+        {
+          "minWidth": 3,
+          "maxWidth": 4,
+          "comment": "Less space for furnishing zone uses"
+        }
+      ]
+    },
+    "pedestrians": {
+      "standardWidth": 6,
+      "comment": "Citywide minimum  6' PTZ",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 6,
+          "comment": "Not space for 2 people to walk/pass"
+        }
+      ]
+    },
+    "frontage": {
+      "standardWidth": 0.5,
+      "comment": "Small sidewalk cafés, planters",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 0.5,
+          "comment": "Shy space from private property"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 1.5,
+          "comment": "Café seating more challenging"
+        }
+      ]
+    }
+  },
+  {
+    "streetType": "LS",
+    "pedestrianDistrict": false,
+    "curb": {
+      "standardWidth": 0.5
+    },
+    "furnishings": {
+      "standardWidth": 4,
+      "comment": "Space for street trees (continuous planter strip), separation of pedestrians from roadway, place for furnishings to keep PTZ clear",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 2,
+          "comment": "Furnishings may encroach on PTZ"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 2,
+          "comment": "Limited or no buffer from street"
+        },
+        {
+          "minWidth": 0,
+          "maxWidth": 3,
+          "comment": "No space for street trees"
+        },
+        {
+          "minWidth": 3,
+          "maxWidth": 4,
+          "comment": "Less space for furnishing zone uses"
+        }
+      ]
+    },
+    "pedestrians": {
+      "standardWidth": 6,
+      "comment": "Citywide minimum  6' PTZ",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 6,
+          "comment": "Not space for 2 people to walk/pass"
+        }
+      ]
+    },
+    "frontage": {
+      "standardWidth": 0.5,
+      "comment": "Flexible space for construction uses or grading, shy zone between public sidewalk & private property at back of walk",
+      "issues": [
+        {
+          "minWidth": 0,
+          "maxWidth": 0.5,
+          "comment": "Shy space from private property"
+        }
+      ]
+    }
+  }
+]

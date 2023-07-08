@@ -9,21 +9,16 @@
     <h3 class="text-lg font-bold leading-tight">
       {{ street.name?.trim() || 'Unnamed segment' }}
     </h3>
-    <div v-if="classificationKeys?.length" class="flex flex-wrap gap-1">
+    <div v-if="keys(street)?.length" class="flex flex-wrap gap-1">
       <Box
-        v-for="(classification, index) in classificationKeys"
+        v-for="(classification, index) in keys(street)"
         :key="index"
         as="span"
         color="gray"
         variant="light"
         class="inline-flex px-2 py-0.5 text-xs uppercase border border-current rounded-full"
       >
-        {{
-          classificationLabel(
-            classification,
-            street.classifications[classification]
-          )
-        }}
+        {{ label(street.classifications[classification], classification) }}
       </Box>
     </div>
     <FieldList v-if="street.minWidth || street.maxWidth" class="gap-1 text-sm">
@@ -95,7 +90,7 @@ import Help from './Help.vue';
 import Panel from '@/components/panel/Panel.vue';
 import Segment from '@/components/street/Segment.vue';
 import { Street, StreetSection } from '@/composables/use-street';
-import { useStreetClassification } from '@/composables/use-street-classification';
+import { useClassificationStore } from '@/store/classification';
 
 export default defineComponent({
   name: 'StreetSection',
@@ -112,8 +107,7 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const { street } = toRefs(props);
-    const { classificationKeys, classificationLabel } =
-      useStreetClassification(street);
+    const { keys, label } = useClassificationStore();
     const showSegments = ref(false);
 
     return {
@@ -132,8 +126,8 @@ export default defineComponent({
         300,
         { leading: false, trailing: true }
       ),
-      classificationLabel,
-      classificationKeys,
+      label,
+      keys,
     };
   },
 });

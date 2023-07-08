@@ -86,7 +86,7 @@
       </div>
 
       <div
-        v-for="(classification, index) in classificationKeys"
+        v-for="(classification, index) in keys(street)"
         :key="index"
         class="my-2"
       >
@@ -102,12 +102,7 @@
             )
           "
         >
-          {{
-            classificationLabel(
-              classification,
-              street.classifications[classification]
-            )
-          }}
+          {{ label(classification, street.classifications[classification]) }}
         </Anchor>
       </div>
     </main>
@@ -122,8 +117,8 @@ import Button from '@/elements/button/Button.vue';
 import Help from './Help.vue';
 
 import { Street } from '@/composables/use-street';
-import { useStreetClassification } from '@/composables/use-street-classification';
 import { useCrossSection } from '@/composables/cross-section';
+import { useClassificationStore } from '@/store/classification';
 
 export default defineComponent({
   name: 'Street',
@@ -142,11 +137,10 @@ export default defineComponent({
   setup(props) {
     const { street } = toRefs(props);
     const { crossSectionRoute } = useCrossSection(street);
-    const { classificationKeys, classificationLabel } =
-      useStreetClassification(street);
+    const { keys, label } = useClassificationStore();
     return {
-      classificationKeys,
-      classificationLabel,
+      keys,
+      label,
       classificationLink(
         classificationType: string,
         classificationValue: string
@@ -166,7 +160,7 @@ export default defineComponent({
           classificationType == 'design' &&
           internalClassifications.find((c) => c === classificationValue)
         ) {
-          return `${process.env.BASE_URL}street-types/${classificationLabel(
+          return `${process.env.BASE_URL}street-types/${label(
             classificationType,
             classificationValue
           )
@@ -174,7 +168,7 @@ export default defineComponent({
             .split(' ')
             .join('-')}`;
         } else {
-          return `https://portland-tsp.com/#/text#${classificationLabel(
+          return `https://portland-tsp.com/#/text#${label(
             classificationType,
             classificationValue
           )
