@@ -36,7 +36,7 @@
                   as="ul"
                   id="street-types"
                   :open="open"
-                  class="md:absolute md:bg-white p-3 mt-8 md:min-w-max"
+                  class="md:absolute md:bg-white p-3 md:mt-[2.5rem] md:min-w-max"
                 >
                   <NavItem
                     v-for="x in [
@@ -68,12 +68,21 @@
           />
           <li>
             <Dropdown label="Tools" id="tools">
+              <template v-slot:label="{ label, open }">
+                <span class="font-semibold">{{ label }}</span>
+                <Icon
+                  aria-label="Open dropdown"
+                  type="solid"
+                  :name="open ? 'chevron-up' : 'chevron-down'"
+                  class="ml-2 w-5 h-5"
+                />
+              </template>
               <template v-slot:default="{ open }">
                 <DropdownList
                   as="ul"
                   id="tools"
                   :open="open"
-                  class="md:absolute md:bg-white p-3 mt-8 md:-ml-20 md:min-w-max"
+                  class="md:absolute md:bg-white p-3 md:mt-[2.5rem] md:-ml-[10.5rem] md:min-w-max"
                 >
                   <NavItem text="Street Map" to="/streets" />
                   <NavItem text="Cross-Sections Viewer" to="/cross-section" />
