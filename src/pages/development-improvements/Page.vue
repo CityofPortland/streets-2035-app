@@ -48,9 +48,14 @@ onMounted(() => {
           >
           Use the image or scroll down to navigate to the standards that you are
           interested in learning more about. Each section has a link to read the
-          specific section of our guide.
+          specific section of our guide. For more help using this tool and the
+          rest of this site, use the
+          <router-link to="/training" custom v-slot="{ href, navigate }"
+            ><Anchor :url="href" @click="navigate"
+              >training page.</Anchor
+            ></router-link
+          >
         </p>
-
         <p>
           Neither page is an exhaustive list and additional information may be
           available. Refer to the city's
@@ -74,7 +79,7 @@ onMounted(() => {
       </Box>
       <figure class="w-full flex flex-col prose max-w-none p-4">
         <House
-          class="w-full h-full"
+          class="w-full"
           :links="{
             access: '#access',
             frontage: '#frontage',

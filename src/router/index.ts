@@ -7,6 +7,7 @@ import DevelopmentImprovements from '@/pages/development-improvements/Page.vue';
 import SidewalkTradeoffs from '@/pages/sidewalk-tradeoff/Page.vue';
 import Streets from '@/pages/Streets.vue';
 import StreetTypes from '@/pages/street-type/StreetTypes.vue';
+import Training from '@/pages/Training.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -110,6 +111,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'StreetTypes',
     component: StreetTypes,
     props: true,
+  },
+  {
+    path: '/training',
+    name: 'Training',
+    component: Training,
   },
 ];
 
