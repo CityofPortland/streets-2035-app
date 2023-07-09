@@ -5,7 +5,7 @@
         v-for="street in streets"
         :key="street.hash"
         tabindex="0"
-        class="p-2 rounded-md outline outline-0 outline-offset-2 hover:outline-1 focus:outline-1"
+        class="p-2 rounded-md outline-offset-2 hover:outline hover:outline-1 focus:outline focus:outline-1"
         @mouseenter="highlightStreet(street)"
         @focus="highlightStreet(street)"
       >
