@@ -1,8 +1,15 @@
 <template>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-2 md:h-64">
     <ul v-if="streets.length" class="flex flex-col gap-2">
-      <li v-for="street in streets" :key="street.hash">
-        <Section :street="street" @highlight-section="highlightStreet" />
+      <li
+        v-for="street in streets"
+        :key="street.hash"
+        tabindex="0"
+        class="p-2 rounded-md outline outline-0 outline-offset-2 hover:outline-1 focus:outline-1"
+        @mouseenter="highlightStreet(street)"
+        @focus="highlightStreet(street)"
+      >
+        <span>{{ street.name }}</span>
       </li>
     </ul>
     <MapVue
@@ -52,13 +59,11 @@ import { whenOnce } from '@arcgis/core/core/reactiveUtils';
 
 import { ESRIStreet, StreetSection } from '@/composables/use-street';
 import MapVue from '@/components/map/Map.vue';
-import Section from '@/components/street/Section.vue';
 
 export default defineComponent({
   name: 'StreetTypeMap',
   components: {
     MapVue,
-    Section,
   },
   props: {
     type: {
@@ -100,7 +105,7 @@ export default defineComponent({
     });
     const zoom = ref(12);
     const pointer = ref<ESRIStreet | undefined>(undefined);
-    const streets = ref<Array<Partial<StreetSection>>>([]);
+    const streets = ref<Array<Pick<StreetSection, 'hash' | 'name'>>>([]);
 
     let highlight: { remove: () => void };
 
@@ -147,13 +152,17 @@ export default defineComponent({
             streets.value = shuffle([
               ...features.features
                 .reduce((acc, curr) => {
-                  const hash = md5(`${curr.attributes.StreetName}`).toString();
+                  if (curr.attributes.StreetName) {
+                    const hash = md5(
+                      `${curr.attributes.StreetName}`
+                    ).toString();
 
-                  if (!acc.has(hash)) {
-                    acc.set(hash, {
-                      hash,
-                      name: curr.attributes.StreetName,
-                    });
+                    if (!acc.has(hash)) {
+                      acc.set(hash, {
+                        hash,
+                        name: curr.attributes.StreetName,
+                      });
+                    }
                   }
 
                   return acc;
@@ -173,14 +182,14 @@ export default defineComponent({
           pointer.value = undefined;
         }
       },
-      async highlightStreet(section: StreetSection) {
+      async highlightStreet(section: Partial<StreetSection>) {
         const layerView = await layerViews.get('classifications');
 
         if (layerView) {
           const query = layerView.createQuery();
           query.where = section.name
-            ? 'StreetName IS NULL'
-            : `StreetName = '${section.name}'`;
+            ? `StreetName = '${section.name}'`
+            : 'StreetName IS NULL';
 
           const features = await layerView.queryFeatures(query);
           if (features.features.length) {
