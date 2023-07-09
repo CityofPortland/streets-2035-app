@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import Anchor from '@/elements/anchor/Anchor.vue';
 import Scorebox from './Scorebox.vue';
 
 const classes = ['w-24', 'h-10'];
-const publicPath = process.env.BASE_URL;
 </script>
 
 <template>
@@ -25,27 +23,6 @@ const publicPath = process.env.BASE_URL;
           <dd>Not accomodated: Justification required</dd>
         </div>
       </dl>
-      <p class="prose-sm">
-        Read the
-        <Anchor
-          :url="`${publicPath}doc/Right-of-way Tradeoff Analysis Handbook.pdf`"
-          >PBOT Tradeoffs Analysis Booklet</Anchor
-        >
-        to learn more about spatial tradeoffs.
-      </p>
-      <p class="prose-sm">
-        Use the
-        <router-link
-          to="/sidewalk-tradeoffs"
-          custom
-          v-slot="{ href, navigate }"
-        >
-          <Anchor :url="href" @click="navigate"
-            >Sidewalk Tradeoffs Evaluation Tool</Anchor
-          >
-        </router-link>
-        to evaluate conditions behind the curb
-      </p>
     </div>
     <div>
       <h3>Policy Priorities</h3>

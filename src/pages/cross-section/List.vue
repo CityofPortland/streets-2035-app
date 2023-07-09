@@ -8,16 +8,18 @@ import {
   useRoute,
   useRouter,
 } from 'vue-router';
+
 import { widths, useCrossSection } from '@/composables/cross-section';
 import { Street } from '@/composables/use-street';
 import Anchor from '@/elements/anchor/Anchor.vue';
 import Box from '@/elements/box/Box';
+import Icon from '@/elements/icon/Icon.vue';
 import Image from '@/elements/img/Image.vue';
+import Legend from '@/components/cross-section/Legend.vue';
 import { PRIORITIES, Priority } from '@/components/cross-section/typings';
 import Scoresheet from '@/components/cross-section/Scoresheet.vue';
 import Select from '@/elements/inputs/Select.vue';
 import Toggle from '@/elements/inputs/Toggle.vue';
-import Legend from '@/components/cross-section/Legend.vue';
 
 const props = defineProps({
   width: { type: Number, required: true },
@@ -86,7 +88,7 @@ const changeRoute = (
 </script>
 
 <template>
-  <article class="flex flex-col gap-1 max-w-7xl px-4 mx-auto">
+  <article class="flex flex-col gap-1 max-w-7xl px-4 mx-auto mb-8">
     <header class="prose prose-lg mb-8">
       <h1 class="capitalize">{{ width }} foot cross sections</h1>
       <p>
@@ -103,7 +105,7 @@ const changeRoute = (
         cross sections. Priority designations, project goals, and analyses of
         tradeoffs inform which section(s) are advanced. To get started, review
         the
-        <router-link to="/capital-projects" custom v-slot="{ href, navigate }">
+        <router-link to="/city-projects" custom v-slot="{ href, navigate }">
           <Anchor :url="href" @click="navigate">City Projects page</Anchor>
         </router-link>
         which describes how to use this tool for a given project. For more help
@@ -278,5 +280,44 @@ const changeRoute = (
       </template>
     </Scoresheet>
     <Legend class="my-4 prose" />
+    <footer class="prose flex flex-col gap-4">
+      <Box
+        as="span"
+        color="blue"
+        variant="light"
+        class="p-4 border border-current rounded-md flex gap-2"
+      >
+        <Icon name="information" class="flex-shrink-0 w-6 h-6" />
+        <p class="m-0">
+          Read the
+          <Anchor
+            :url="`${publicPath}doc/Right-of-way Tradeoff Analysis Handbook.pdf`"
+            >PBOT Tradeoffs Analysis Booklet</Anchor
+          >
+          to learn more about spatial tradeoffs.
+        </p>
+      </Box>
+      <Box
+        as="span"
+        color="blue"
+        variant="light"
+        class="p-4 border border-current rounded-md flex gap-2"
+      >
+        <Icon name="information" class="flex-shrink-0 w-6 h-6" />
+        <p class="m-0">
+          Use the
+          <router-link
+            to="/sidewalk-tradeoffs"
+            custom
+            v-slot="{ href, navigate }"
+          >
+            <Anchor :url="href" @click="navigate"
+              >Sidewalk Tradeoffs Evaluation Tool</Anchor
+            >
+          </router-link>
+          to evaluate conditions behind the curb
+        </p>
+      </Box>
+    </footer>
   </article>
 </template>
