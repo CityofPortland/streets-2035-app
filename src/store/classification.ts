@@ -1,4 +1,4 @@
-import { Street } from '@/composables/use-street';
+import { Street, StreetSection } from '@/composables/use-street';
 import UniqueValueInfo from '@arcgis/core/renderers/support/UniqueValueInfo';
 import axios from 'axios';
 import { rgb, RGBColorFactory } from 'd3-color';
@@ -54,7 +54,7 @@ export const useClassificationStore = defineStore('classification', {
     models: new Array<ViewModel>(),
   }),
   getters: {
-    keys: () => (street: Street) =>
+    keys: () => (street: Street | StreetSection) =>
       Object.entries(street.classifications)
         .filter((entry) => entry[1] != 'N/A')
         .map((entry) => entry[0]),

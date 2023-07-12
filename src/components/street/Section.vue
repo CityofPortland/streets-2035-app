@@ -47,7 +47,7 @@
     </FieldList>
     <Panel
       v-if="street.segments && street.segments.length"
-      color="fog"
+      color="gray"
       variant="light"
       class="text-sm"
       :open="showSegments"
@@ -79,7 +79,7 @@
   </Box>
 </template>
 <script lang="ts">
-import { defineComponent, ref, toRefs } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 import { debounce } from 'lodash';
 
@@ -105,8 +105,7 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(props, { emit }) {
-    const { street } = toRefs(props);
+  setup(_, { emit }) {
     const { keys, label } = useClassificationStore();
     const showSegments = ref(false);
 

@@ -60,7 +60,7 @@ export default defineComponent({
   components: { Box, Field, FieldList, Help },
   props: {
     street: {
-      type: Object as () => Street,
+      type: Object as () => Partial<Street>,
       required: true,
     },
   },

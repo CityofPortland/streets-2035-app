@@ -11,7 +11,7 @@ export type ESRIStreet = {
   Transit: string;
 };
 
-export type Classifications = {
+export type Classifications = Record<string, string> & {
   design: string;
   pedestrian: string;
   bicycle: string;

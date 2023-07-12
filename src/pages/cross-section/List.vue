@@ -88,7 +88,7 @@ const changeRoute = (
 </script>
 
 <template>
-  <article class="flex flex-col gap-1 max-w-7xl px-4 mx-auto mb-8">
+  <article class="flex flex-col gap-1 px-4 mx-auto mb-8">
     <header class="prose prose-lg mb-8">
       <h1 class="capitalize">{{ width }} foot cross sections</h1>
       <p>

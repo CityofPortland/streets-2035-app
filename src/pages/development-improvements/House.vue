@@ -12,7 +12,7 @@ const sectionNames = [
   'tree',
   'utility',
 ] as const;
-type SectionName = (typeof sectionNames)[number];
+type SectionName = typeof sectionNames[number];
 
 type SectionLinks = Record<SectionName, string>;
 
