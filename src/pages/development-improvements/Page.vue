@@ -215,10 +215,9 @@ onMounted(() => {
                   Street tree removal.
                 </p>
                 <p>
-                  This form, completed by an arborist or Urban Forestry, should
-                  also accompany requests to modify standard sidewalk
-                  requirements to preserve a tree (see Frontage Improvements
-                  section above)
+                  This form, completed by an arborist or Urban Forestry, can
+                  also support requests to modify standard sidewalk requirements
+                  to preserve a tree (see Frontage Improvements section above)
                 </p>
               </div>
             </div>
