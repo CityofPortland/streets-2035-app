@@ -25,7 +25,7 @@
           "comment": "No space for street trees"
         },
         {
-          "minWidth": 3,
+          "minWidth": 0,
           "maxWidth": 4,
           "comment": "Less space for furnishing zone uses"
         }
@@ -54,7 +54,7 @@
         {
           "minWidth": 0,
           "maxWidth": 0.5,
-          "comment": "Shy space from private property"
+          "comment": "No shy space from private property"
         },
         {
           "minWidth": 0,
@@ -90,7 +90,7 @@
           "comment": "No space for street trees"
         },
         {
-          "minWidth": 3,
+          "minWidth": 0,
           "maxWidth": 4,
           "comment": "Less space for furnishing zone uses"
         }
@@ -114,7 +114,7 @@
         {
           "minWidth": 0,
           "maxWidth": 0.5,
-          "comment": "Shy space from private property"
+          "comment": "No shy space from private property"
         },
         {
           "minWidth": 0,
@@ -149,7 +149,7 @@
           "comment": "No space for street trees"
         },
         {
-          "minWidth": 3,
+          "minWidth": 0,
           "maxWidth": 4,
           "comment": "Less space for furnishing zone uses"
         }
@@ -173,7 +173,7 @@
         {
           "minWidth": 0,
           "maxWidth": 0.5,
-          "comment": "Shy space from private property"
+          "comment": "No shy space from private property"
         },
         {
           "minWidth": 0,
@@ -209,7 +209,7 @@
           "comment": "No space for street trees"
         },
         {
-          "minWidth": 3,
+          "minWidth": 0,
           "maxWidth": 4,
           "comment": "Less space for furnishing zone uses"
         }
@@ -238,7 +238,7 @@
         {
           "minWidth": 0,
           "maxWidth": 0.5,
-          "comment": "Shy space from private property"
+          "comment": "No shy space from private property"
         },
         {
           "minWidth": 0,
@@ -274,7 +274,7 @@
           "comment": "No space for street trees"
         },
         {
-          "minWidth": 3,
+          "minWidth": 0,
           "maxWidth": 4,
           "comment": "Less space for furnishing zone uses"
         }
@@ -298,7 +298,7 @@
         {
           "minWidth": 0,
           "maxWidth": 0.5,
-          "comment": "Shy space from private property"
+          "comment": "No shy space from private property"
         },
         {
           "minWidth": 0,
@@ -333,7 +333,7 @@
           "comment": "No space for street trees"
         },
         {
-          "minWidth": 3,
+          "minWidth": 0,
           "maxWidth": 4,
           "comment": "Less space for furnishing zone uses"
         }
@@ -357,7 +357,7 @@
         {
           "minWidth": 0,
           "maxWidth": 0.5,
-          "comment": "Shy space from private property"
+          "comment": "No shy space from private property"
         },
         {
           "minWidth": 0,
@@ -392,7 +392,7 @@
           "comment": "No space for street trees"
         },
         {
-          "minWidth": 3,
+          "minWidth": 0,
           "maxWidth": 4,
           "comment": "Less space for furnishing zone uses"
         }
@@ -416,7 +416,7 @@
         {
           "minWidth": 0,
           "maxWidth": 0.5,
-          "comment": "Shy space from private property"
+          "comment": "No shy space from private property"
         },
         {
           "minWidth": 0,
@@ -451,7 +451,7 @@
           "comment": "No space for street trees"
         },
         {
-          "minWidth": 3,
+          "minWidth": 0,
           "maxWidth": 5,
           "comment": "Less space for furnishing zone uses"
         }
@@ -475,7 +475,7 @@
         {
           "minWidth": 0,
           "maxWidth": 0.5,
-          "comment": "Shy space from private property"
+          "comment": "No shy space from private property"
         }
       ]
     }
@@ -505,7 +505,7 @@
           "comment": "No space for street trees"
         },
         {
-          "minWidth": 3,
+          "minWidth": 0,
           "maxWidth": 5,
           "comment": "Less space for furnishing zone uses"
         }
@@ -529,7 +529,7 @@
         {
           "minWidth": 0,
           "maxWidth": 0.5,
-          "comment": "Shy space from private property"
+          "comment": "No shy space from private property"
         }
       ]
     }
@@ -560,7 +560,7 @@
           "comment": "No space for street trees"
         },
         {
-          "minWidth": 3,
+          "minWidth": 0,
           "maxWidth": 4,
           "comment": "Less space for furnishing zone uses"
         }
@@ -584,7 +584,7 @@
         {
           "minWidth": 0,
           "maxWidth": 0.5,
-          "comment": "Shy space from private property"
+          "comment": "No shy space from private property"
         },
         {
           "minWidth": 0,
@@ -620,7 +620,7 @@
           "comment": "No space for street trees"
         },
         {
-          "minWidth": 3,
+          "minWidth": 0,
           "maxWidth": 4,
           "comment": "Less space for furnishing zone uses"
         }
@@ -644,7 +644,7 @@
         {
           "minWidth": 0,
           "maxWidth": 0.5,
-          "comment": "Shy space from private property"
+          "comment": "No shy space from private property"
         }
       ]
     }
