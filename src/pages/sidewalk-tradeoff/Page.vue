@@ -46,7 +46,13 @@ const streetTypes = computed(() =>
   store.models
     .filter((m) => m.group == 'design')
     .filter((m) => m.value != 'UT')
-    .sort((a, b) => (b.label > a.label ? -1 : 1))
+    .sort((a, b) => {
+      const order = ['CMS', 'CIC', 'NMS', 'NC', 'CC', 'LS', 'IR', 'RC', 'UT'];
+      return (
+        order.findIndex((o) => o == a.value) -
+        order.findIndex((o) => o == b.value)
+      );
+    })
 );
 
 const standardWidth = computed(
@@ -114,7 +120,7 @@ const changeRoute = (
           >
         </p>
       </Box>
-      <figure class="prose prose-lg px-4 max-w-6xl">
+      <figure class="prose prose-lg px-4 max-w-7xl">
         <Image :src="`${publicPath}img/sidewalk-tradeoffs/zones.webp`" />
       </figure>
     </Box>
