@@ -24,7 +24,7 @@ import Box from '@/elements/box/Box';
     <main class="mt-4 mb-8 grid grid-cols-1 gap-4">
       <section class="grid grid-cols-1 lg:grid-cols-2 px-4 lg:pl-12">
         <div class="prose">
-          <h2>Video one</h2>
+          <h2>Video one – Overview of StreetsPDX</h2>
           <p>
             This video provides an overview of the StreetsPDX website and tools.
           </p>
@@ -40,7 +40,7 @@ import Box from '@/elements/box/Box';
       </section>
       <section class="grid grid-cols-1 lg:grid-cols-2 px-4 lg:pl-12">
         <div class="prose">
-          <h2>Video two</h2>
+          <h2>Video two – Development Improvements</h2>
           <p>
             The second video describes StreetsPDX tools for understanding
             development related public improvements in the right-of-way.
@@ -57,10 +57,10 @@ import Box from '@/elements/box/Box';
       </section>
       <section class="grid grid-cols-1 lg:grid-cols-2 px-4 lg:pl-12">
         <div class="prose">
-          <h2>Video three</h2>
+          <h2>Video three – City Projects</h2>
           <p>
             The last video describes the decision-making process and tools that
-            support the evaluation of tradeoffs as part of City Projects.
+            support the evaluation of tradeoffs as part of city projects.
           </p>
         </div>
         <iframe

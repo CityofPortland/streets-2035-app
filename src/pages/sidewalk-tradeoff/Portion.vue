@@ -37,7 +37,7 @@ watch(width, (newWidth) => emit('changed', newWidth));
       <p>{{ portion.comment }}</p>
     </header>
     <main class="row-auto flex flex-col gap-2">
-      <dl>
+      <dl class="flex flex-col gap-4">
         <div>
           <dt class="font-semibold">Standard width</dt>
           <dd class="grid grid-cols-2 gap-2">

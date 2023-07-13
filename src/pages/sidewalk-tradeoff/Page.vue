@@ -87,8 +87,8 @@ const changeRoute = (
 };
 </script>
 <template>
-  <article class="flex flex-col gap-4 pb-12">
-    <Box as="header" class="flex flex-col gap-4">
+  <article class="flex flex-col pb-12">
+    <Box as="header" class="flex flex-col gap-4 mb-8">
       <Box as="main" class="prose prose-lg px-4">
         <h1 class="capitalize text-current">Sidewalk tradeoffs evaluation</h1>
         <p>
@@ -114,17 +114,11 @@ const changeRoute = (
           >
         </p>
       </Box>
-      <figure class="prose prose-lg px-4 max-w-none">
+      <figure class="prose prose-lg px-4 max-w-6xl">
         <Image :src="`${publicPath}img/sidewalk-tradeoffs/zones.webp`" />
-        <figcaption class="text-current">
-          Rendering to demonstrate the different parts of the sidewalk. You may
-          use the tool controls below to see the tradeoffs for space when
-          designing sidewalks.
-        </figcaption>
       </figure>
     </Box>
-
-    <main class="flex flex-col md:flex-row gap-2 px-4">
+    <main class="flex flex-col md:flex-row gap-4 px-4">
       <section class="flex-1 grid md:grid-rows-[11rem_1fr]">
         <div>
           <div class="flex flex-col">
@@ -161,7 +155,7 @@ const changeRoute = (
             </Toggle>
           </div>
         </div>
-        <dl>
+        <dl class="flex flex-col gap-4">
           <div>
             <dt class="font-semibold">Standard width</dt>
             <dd class="grid grid-cols-2 gap-2">
@@ -201,9 +195,13 @@ const changeRoute = (
       />
       <div class="flex-1 grid md:grid-rows-[minmax(min-content,_11rem)_1fr]">
         <h3 class="font-bold">Curb</h3>
-        <dl>
+        <dl class="flex flex-col gap-4">
           <div>
             <dt class="font-semibold">Standard width</dt>
+            <dd class="grid grid-cols-2 gap-2">0.5 feet</dd>
+          </div>
+          <div>
+            <dt class="font-semibold">Alternative width</dt>
             <dd class="grid grid-cols-2 gap-2">0.5 feet</dd>
           </div>
         </dl>
