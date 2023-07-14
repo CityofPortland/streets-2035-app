@@ -102,7 +102,7 @@
             )
           "
         >
-          {{ label(classification, street.classifications[classification]) }}
+          {{ label(street.classifications[classification], classification) }}
         </Anchor>
       </div>
     </main>
@@ -161,8 +161,8 @@ export default defineComponent({
           internalClassifications.find((c) => c === classificationValue)
         ) {
           return `${process.env.BASE_URL}street-types/${label(
-            classificationType,
-            classificationValue
+            classificationValue,
+            classificationType
           )
             .toLowerCase()
             .split(' ')
