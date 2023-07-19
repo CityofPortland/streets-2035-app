@@ -316,15 +316,15 @@
             that apply in the public right-of-way.
           </p>
           <footer class="mt-auto flex flex-col items-center not-prose">
-            <router-link
-              to="//portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
+            <a
+              href="//portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
             >
               <Button
                 label="Read about right-of-way policies"
                 size="large"
                 color="orange"
               />
-            </router-link>
+            </a>
           </footer>
         </Box>
         <Box as="div" class="p-12 flex flex-col gap-4 prose">
