@@ -318,6 +318,7 @@
           <footer class="mt-auto flex flex-col items-center not-prose">
             <a
               href="//portland.gov/transportation/permitting/city-standards-guidelines-requirements-impact-space-right-way"
+              target="_blank"
             >
               <Button
                 label="Read about right-of-way policies"
@@ -366,6 +367,7 @@
 </template>
 
 <script setup lang="ts">
+import Anchor from '@/elements/anchor/Anchor.vue';
 import Box from '@/elements/box/Box';
 import Button from '@/elements/button/Button.vue';
 import Image from '@/elements/img/Image.vue';
