@@ -47,8 +47,8 @@ jobs:
     env:
       K8S_CLUSTER_NAME: ${{ secrets.K8S_CLUSTER_NAME }}
       K8S_CLUSTER_RG: ${{ secrets.K8S_CLUSTER_RG }}
-      K8S_NAMESPACE: test
-      RELEASE_NAME: ${{ secrets.HELM_RELEASE_NAME }}-test
+      K8S_NAMESPACE: pbotapps-test
+      RELEASE_NAME: ${{ secrets.HELM_RELEASE_NAME }}
     steps:
       - uses: actions/checkout@v2
       - uses: azure/setup-kubectl@v3
@@ -64,6 +64,7 @@ jobs:
           helm \
           upgrade \
           --namespace $K8S_NAMESPACE \
+          --create-namespace \
           --install \
           $RELEASE_NAME \
           chart/ \
@@ -77,7 +78,7 @@ jobs:
     env:
       K8S_CLUSTER_NAME: ${{ secrets.K8S_CLUSTER_NAME }}
       K8S_CLUSTER_RG: ${{ secrets.K8S_CLUSTER_RG }}
-      K8S_NAMESPACE: test
+      K8S_NAMESPACE: pbotapps-test
       RELEASE_NAME: ${{ secrets.HELM_RELEASE_NAME }}-test
     steps:
       - uses: actions/checkout@v2

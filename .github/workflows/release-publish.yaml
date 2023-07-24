@@ -67,6 +67,7 @@ jobs:
           helm \
           upgrade \
           --namespace $K8S_NAMESPACE \
+          --create-namespace \
           --install \
           $RELEASE_NAME \
           chart/ \
