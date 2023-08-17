@@ -21,7 +21,7 @@ const publicPath = process.env.BASE_URL;
         System Plan (TSP) includes a “Street Design” classification which
         assigns each street a “type” based on a combination of the
         transportation function and the adjacent land use context. These “Street
-        Types” are the foundational element of the StreetsPDX decision-making
+        Types” are a foundational element of the StreetsPDX decision-making
         framework.
       </p>
     </Box>
