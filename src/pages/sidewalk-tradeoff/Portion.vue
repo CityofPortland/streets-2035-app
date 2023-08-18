@@ -25,7 +25,10 @@ const issues = computed(() =>
   )
 );
 
-watch(width, (newWidth) => emit('changed', newWidth));
+watch(width, (newWidth: number) => {
+  width.value = newWidth || 0;
+  emit('changed', width.value);
+});
 </script>
 <template>
   <Box as="section">
