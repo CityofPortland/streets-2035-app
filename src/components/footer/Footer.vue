@@ -11,10 +11,10 @@
               ADA Title II laws and reasonably provides: translation,
               interpretation, modifications, accommodations, alternative
               formats, auxiliary aids and services. To request these services,
-              contact
-              <Anchor url="tel:503-823-5185">503-823-5185</Anchor>, City TTY
-              <Anchor url="tel:503-823-6868">503-823-6868</Anchor>, Relay
-              Service <Anchor url="tel:711">711</Anchor>.
+              contact the Portland Bureau of Transportation at 311 (<Anchor
+                url="tel:503-823-400"
+                >503-823-4000</Anchor
+              >), for Relay Service & TTY: <Anchor url="tel:711">711</Anchor>.
             </p>
             <p>
               Traducción e Interpretación | Biên Dịch và Thông Dịch | अनुवादन
@@ -22,7 +22,7 @@
               iyo Fasiraad Письмовий і усний переклад | Traducere și
               interpretariat | Chiaku me Awewen Kapas | Translation and
               Interpretation
-              <Anchor url="tel:503-823-5185">503-823-5185</Anchor>
+              <Anchor url="tel:503-823-4000">503-823-4000</Anchor>
             </p>
           </div>
         </section>
