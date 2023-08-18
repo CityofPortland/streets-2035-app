@@ -79,7 +79,7 @@ jobs:
       K8S_CLUSTER_NAME: ${{ secrets.K8S_CLUSTER_NAME }}
       K8S_CLUSTER_RG: ${{ secrets.K8S_CLUSTER_RG }}
       K8S_NAMESPACE: pbotapps-test
-      RELEASE_NAME: ${{ secrets.HELM_RELEASE_NAME }}-test
+      RELEASE_NAME: ${{ secrets.HELM_RELEASE_NAME }}
     steps:
       - uses: actions/checkout@v2
       - uses: azure/setup-kubectl@v3
