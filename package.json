@@ -1,6 +1,6 @@
 {
   "name": "streets-pdx",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -19,7 +19,7 @@
     "@turf/centroid": "^6.5.0",
     "@turf/helpers": "^6.5.0",
     "@turf/length": "^6.5.0",
-    "axios": "^0.21.4",
+    "axios": "^1.6.1",
     "core-js": "^3.6.5",
     "crypto-js": "^4.1.1",
     "d3-color": "^3.0.1",
