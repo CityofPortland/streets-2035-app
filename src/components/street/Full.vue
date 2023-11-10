@@ -156,25 +156,25 @@ export default defineComponent({
           'IR',
         ];
 
+        let classificationLabel = label(
+          classificationValue,
+          classificationType
+        );
+
+        if (!classificationLabel) return '#';
+
+        classificationLabel = classificationLabel
+          .toLowerCase()
+          .split(' ')
+          .join('-');
+
         if (
           classificationType == 'design' &&
           internalClassifications.find((c) => c === classificationValue)
         ) {
-          return `${process.env.BASE_URL}street-types/${label(
-            classificationValue,
-            classificationType
-          )
-            .toLowerCase()
-            .split(' ')
-            .join('-')}`;
+          return `${process.env.BASE_URL}street-types/${classificationLabel}`;
         } else {
-          return `https://portland-tsp.com/#/text#${label(
-            classificationType,
-            classificationValue
-          )
-            .toLowerCase()
-            .split(' ')
-            .join('-')}`;
+          return `https://portland-tsp.com/#/text#${classificationLabel}`;
         }
       },
       crossSectionRoute,

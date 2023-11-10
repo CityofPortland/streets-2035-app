@@ -64,15 +64,17 @@ export const useClassificationStore = defineStore('classification', {
         .map((entry) => entry[0]),
     label:
       (state) =>
-      (value: string, type = 'design') =>
-        state.models.find((model) => {
-          return (
-            model.group == type &&
-            model.value.localeCompare(value, undefined, {
-              sensitivity: 'base',
-            }) === 0
-          );
-        })?.label || 'N/A',
+      (value?: string, type = 'design') =>
+        value
+          ? state.models.find((model) => {
+              return (
+                model.group == type &&
+                model.value.localeCompare(value, undefined, {
+                  sensitivity: 'base',
+                }) === 0
+              );
+            })?.label
+          : undefined,
   },
   actions: {
     init() {
