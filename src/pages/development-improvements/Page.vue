@@ -68,8 +68,8 @@ onMounted(() => {
             >technical resources</Anchor
           >. For more information on the development review process, refer to
           <Anchor
-            url="https://www.portland.gov/bds/development-permit-processes"
-            >Development Review and Permit Process (BDS)</Anchor
+            url="https://www.portland.gov/ppd/development-permit-processes"
+            >Development Review and Permit Process (PP&D)</Anchor
           >
           and
           <Anchor url="https://www.portland.gov/transportation/development"
@@ -113,8 +113,9 @@ onMounted(() => {
                 Sidewalk standards are defined in the Pedestrian Design Guide
                 and are applied based on the Street Design Classification of the
                 street. Private development projects that meet the triggers in
-                <Anchor url="https://www.portland.gov/code/17/88/020"
-                  >17.88.020</Anchor
+                <Anchor
+                  url="https://www.portland.gov/policies/transportation/streets-sidewalks/trn-130-thresholds-frontage-improvement-and-dedication"
+                  >TRN 1.30</Anchor
                 >
                 are required to bring their frontage up to current standards.
               </p>
