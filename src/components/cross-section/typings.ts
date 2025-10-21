@@ -1,6 +1,6 @@
 export const PRIORITIES = ['higher', 'lower', 'none'] as const;
 
-export type Priority = typeof PRIORITIES[number];
+export type Priority = (typeof PRIORITIES)[number];
 
 export type PrioritySet = {
   pedestrian: Priority;

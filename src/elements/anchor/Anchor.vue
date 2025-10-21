@@ -44,7 +44,7 @@ export default defineComponent({
   setup(props) {
     return {
       externalIcon:
-        props.external === undefined
+        props.external !== undefined
           ? props.external
           : /[////]{2}/.test(props.url), // matches '//'
       borderClasses: computed(() => {

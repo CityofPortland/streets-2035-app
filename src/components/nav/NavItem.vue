@@ -3,17 +3,16 @@
     <Anchor v-if="isExternalLink" v-bind="$attrs" :url="to">
       <slot :url="url" :display="display">{{ display }}</slot>
     </Anchor>
-    <router-link v-else v-bind="$props" custom v-slot="{ href, navigate }">
+    <RouterLink v-else custom :to="to" v-slot="{ href, navigate }">
       <Anchor v-bind="$attrs" :url="href" @click="navigate">
         <slot :url="url" :display="display">{{ display }}</slot>
       </Anchor>
-    </router-link>
+    </RouterLink>
   </li>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
-import { RouterLink } from 'vue-router';
 
 import Anchor from '@/elements/anchor/Anchor.vue';
 
@@ -22,9 +21,10 @@ export default defineComponent({
   components: { Anchor },
   inheritAttrs: false,
   props: {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //@ts-ignore
-    ...RouterLink.props,
+    to: {
+      type: String,
+      required: true,
+    },
     url: {
       type: String,
     },

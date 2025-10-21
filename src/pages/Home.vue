@@ -367,7 +367,6 @@
 </template>
 
 <script setup lang="ts">
-import Anchor from '@/elements/anchor/Anchor.vue';
 import Box from '@/elements/box/Box';
 import Button from '@/elements/button/Button.vue';
 import Image from '@/elements/img/Image.vue';

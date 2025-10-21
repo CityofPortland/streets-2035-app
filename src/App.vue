@@ -39,7 +39,7 @@
                   class="md:absolute md:bg-white p-3 md:mt-[2.5rem] md:min-w-max"
                 >
                   <NavItem
-                    v-for="x in [
+                    v-for="(x, i) in [
                       ['civic-main-street', 'Civic Main Streets'],
                       ['civic-corridor', 'Civic Corridors'],
                       ['neighborhood-main-street', 'Neighborhood Main Streets'],
@@ -48,7 +48,7 @@
                       ['local-street', 'Local Streets'],
                       ['industrial-road', 'Industrial Roads'],
                     ]"
-                    :key="x"
+                    :key="i"
                     :text="x[1]"
                     :to="`/street-types/${x[0]}`"
                     @click="toggle"
