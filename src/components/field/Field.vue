@@ -1,7 +1,9 @@
 <template>
   <div :class="layoutClasses">
     <dt class="font-semibold" :class="labelClasses">
-      <slot name="name">{{ name }}</slot>
+      <h5>
+        <slot name="name">{{ name }}</slot>
+      </h5>
     </dt>
     <dd :class="valueClasses">
       <slot></slot>
