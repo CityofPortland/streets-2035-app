@@ -20,12 +20,16 @@
                   custom
                   v-slot="{ href, navigate }"
                 >
-                  <Anchor :url="href" @click.stop="navigate">{{
-                    label
-                  }}</Anchor>
+                  <Anchor
+                    id="street-types-dropdown-label"
+                    :url="href"
+                    @click.stop="navigate"
+                    >{{ label }}
+                  </Anchor>
                 </router-link>
                 <Icon
                   aria-label="Open dropdown"
+                  aria-labelledby="street-types-dropdown-label"
                   type="solid"
                   :name="open ? 'chevron-up' : 'chevron-down'"
                   class="ml-2 w-5 h-5"
@@ -69,9 +73,12 @@
           <li>
             <Dropdown label="Tools" id="tools">
               <template v-slot:label="{ label, open }">
-                <span class="font-semibold">{{ label }}</span>
+                <span id="tools-dropdown-label" class="font-semibold">{{
+                  label
+                }}</span>
                 <Icon
                   aria-label="Open dropdown"
+                  aria-labelledby="tools-dropdown-label"
                   type="solid"
                   :name="open ? 'chevron-up' : 'chevron-down'"
                   class="ml-2 w-5 h-5"

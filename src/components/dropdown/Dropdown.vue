@@ -6,7 +6,7 @@
       :id="id"
       :label="label"
       :aria-expanded="open"
-      aria-haspopup="true"
+      aria-haspopup="menu"
       class="w-full md:w-auto inline-flex items-center justify-between cursor-pointer"
       @click="open = !open"
       v-bind="$attrs"
